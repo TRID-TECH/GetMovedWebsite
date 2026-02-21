@@ -1,0 +1,3384 @@
+<!DOCTYPE html>
+<!--
+SECTION MAP (Template -> GetMoved)
+Template file: getmoved-landing/index.html
+
+ASSETS
+- CSS: css/plugins.min.css, css/revslider/settings.css, css/style.css?v=2.1
+- JS: js/bs.js, js/plugins.min.js, js/revslider/jquery.themepunch.revolution.min.js, js/revslider/jquery.themepunch.tools.min.js, js/functions.js
+- Images: images/ (key subfolders: images/portfolio/)
+- Logo: assets/img/logo_png.png
+
+SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
+1) Home / Hero slider -> section#home.rev_slider_wrapper -> GetMoved Hero (placeholder)
+2) Home page content strip -> section#home-page-content.bg-dark4 -> Value strip (placeholder)
+3) About -> section#about -> What is GetMoved (placeholder)
+4) How it works -> section#how-it-works -> Steps (placeholder)
+5) Demo -> section#demo (grid #works) -> Demo results (placeholder)
+6) Features -> section#features -> Key product features (placeholder)
+7) FAQ -> section#faq -> Frequently asked questions (placeholder)
+8) Use cases -> section#use-cases -> Use cases (placeholder)
+9) Pricing -> section#pricing -> Pricing plans (placeholder)
+10) Contact -> section#contact -> Contact US (placeholder)
+11) Footer -> footer -> Footer / legal
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>GetMoved — AI Moving Inventory</title>
+    <meta name="description" content="GetMoved converts walkthrough videos into an accurate moving inventory with estimated volume, weight, and vehicle recommendations." />
+    <meta property="og:title" content="GetMoved — AI Moving Inventory" />
+    <meta property="og:description" content="GetMoved converts walkthrough videos into an accurate moving inventory with estimated volume, weight, and vehicle recommendations." />
+    <meta property="og:image" content="assets/img/hero-mock.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--Favicon -->
+	<link rel="icon" type="image/png" href="assets/img/favicon-128.png" />
+	<!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"/>
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/plugins.min.css" />
+	<!-- Revolution Slider -->
+    <link rel="stylesheet" href="css/revslider/settings.css" />
+	<!-- Page Styles -->
+	<link rel="stylesheet" href="css/style.css?v=2.1" />
+	<!-- End CSS Files -->
+</head>
+
+<body>
+
+    <!-- Page loader -->
+	<div class="page-loader loader-wrapper bg-white">
+		<div class="loader">
+			<div class="outter b-dark3">
+				<div class="mid b-dark3"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+    <!-- Start Navigation -->
+    <nav id="navigation" class="modern-nav sticky nav-lg fs-15 bordered link-hover-01 nav-white font-secondary fixed-height" data-offset="75">
+        <!-- Navigation container - You can chnage container type and paddding value -->
+        <div class="container nav-container">
+            <!-- Row for cols in the nav -->
+            <div class="row nav-wrapper justify-content-end">
+                <!-- Column for logo -->
+                <div class="col">
+                    <a href="#home" class="logo d-flex align-items-center">
+                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
+                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-dark mxw-140">
+                    </a>
+                </div>
+                <!-- Column for Navigation -->
+                <div id="nav-menu" class="col ml-auto nav-menu">
+                    <!-- Navigation links, you can add nav-links-centered class for centered links -->
+                    <ul class="nav-links justify-content-end">
+                        <!-- Logo for mobile navigation -->
+                        <li class="logo-for-mobile-navigation">
+                            <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
+                        </li>
+                        <li><a href="#home" class="nav-link">Home</a></li>
+                        <li><a href="#how-it-works" class="nav-link">How it works</a></li>
+                        <li><a href="#features" class="nav-link">Features</a></li>
+                        <li><a href="https://test.getmoved.app" class="nav-link" target="_blank" rel="noopener noreferrer">Demo</a></li>
+                        <li><a href="#use-cases" class="nav-link">Become partner</a></li>
+                        <li><a href="#pricing" class="nav-link">Release Plan</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- End Column for Navigation -->
+                <!-- Mobile navigation trigger button -->
+                <div class="mobile-nb">
+                    <div class="hamburger-menu">
+                        <div class="top-bun"></div>
+                        <div class="meat"></div>
+                        <div class="bottom-bun"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Row for cols in the nav -->
+        </div>
+        <!-- End Navigation container -->
+        <div class="mobile-nav-bg"></div>
+    </nav>
+    <!-- End Navigation -->
+
+
+
+
+	<!-- Home -->
+	<section id="home" class="rev_slider_wrapper">
+		<!-- Wrapper for slider -->
+		<div id="home-slider-wrapper" class="rev_slider_wrapper fullwidthbanner-container">
+			<!-- Start slider -->
+			<div id="home-slider" class="rev_slider fullwidthbanner" data-version="5.4.1">
+				<ul>
+			        <!-- Slide -->
+					<li class="rs-slide" data-masterspeed="1000" data-transition="random" data-thumb="images/slide1.png" data-saveperformance="off" data-title="Create Stunning Website" data-description="Home Slider">
+
+						<!-- Background Image -->
+						<img src="images/slide1.png" alt="Image Background" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="0" class="rev-slidebg" data-no-retina>
+
+						<!-- First Mobile -->
+						<div class="tp-caption"
+							data-x="['left','left','left','center']"
+							data-y="['middle','middle','middle','bottom']"
+							data-frames='[{"delay":"+2750","speed":1100,"frame":"0","from":"x:-600px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['0','0','0','-20']"
+							data-voffset="['16','15','15','20']"
+							style="z-index:1;">
+								<img
+								src="assets/img/slider/laptop.png"
+								data-ww="['450px','450px','420px','240px']"
+                            	          data-hh="['300px','300px','280px','160px']"
+								alt="Laptop mockup"/>
+						</div>
+
+						<!-- Second Mobile -->
+						<div class="tp-caption"
+							data-x="['left','left','left','center']"
+							data-y="['middle','middle','middle','bottom']"
+							data-frames='[{"delay":"+3250","speed":1100,"frame":"0","from":"y:900px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['240','240','240','60']"
+							data-voffset="['72','70','60','20']"
+							style="z-index:1;">
+								<img
+								src="assets/img/slider/mobilni2.png"
+								data-ww="['260px','260px','240px','160px']"
+                            	data-hh="['390px','390px','360px','240px']"
+								alt="GetMoved hero mock"/>
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-secondary"
+							data-x="['right','right','right','center']"
+							data-y="['middle','middle','middle','top']"
+							data-color="#C8FAD6"
+							data-lineheight="30"
+							data-textalign="['right','right','right','center']"
+							data-fontsize="['30','28','24','22','26']"
+							data-width="['520','740','560','410']"
+							data-frames='[{"delay":"+2000","speed":1000,"frame":"0","from":"y:-250px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['-20','-20','-15','0']"
+							data-voffset="['-70','-80','-80','90','93']"
+							style="text-shadow:0 2px 10px rgba(0,0,0,0.55);">
+								Everything in one place.
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-secondary"
+							data-x="['right','right','right','center']"
+							data-y="['middle','middle','middle','top']"
+							data-textalign="['right','right','right','left']"
+							data-color="#686868"
+							data-lineheight="30"
+							data-fontsize="['30','28','24','22','27']"
+							data-width="['100','100','100','100','130']"
+							data-frames='[{"delay":"+3000","speed":1000,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['320','300','280','-85']"
+							data-voffset="['-12','-22','-24','145']">
+								
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-secondary"
+							data-x="['right','right','right','center']"
+							data-y="['middle','middle','middle','top']"
+							data-textalign="['right','right','right','right']"
+							data-color="#007867"
+							data-lineheight="60"
+							data-fontsize="['50','48','44','36','41']"
+							data-width="['320','340','360','310','360']"
+							data-frames='[{"delay":"+2400","speed":1000,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['0','0','0','0']"
+							data-voffset="['-20','-30','-30','125']"
+							style="text-shadow:0 2px 10px rgba(0,0,0,0.55);">
+								Try <span style="color:#C8FAD6;">GET</span> <span style="color:#00A76F;">MOVED</span>
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-main"
+							data-x="['right','right','right','center']"
+							data-y="['middle','middle','middle','top']"
+							data-textalign="['right','right','right','center']"
+							data-color="#C8FAD6"
+							data-lineheight="25"
+							data-fontsize="['16','16','15','15','18']"
+							data-width="['520','740','560','410','490']"
+							data-frames='[{"delay":"+3300","speed":1000,"frame":"0","from":"y:150px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['0','0','0','0']"
+							data-voffset="['40','35','30','195']"
+							style="text-shadow:0 2px 8px rgba(0,0,0,0.55);">
+								Find trusted movers, compare offers, book your move, and pay after completion —<br/> all through a single platform.
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-main text-end"
+							data-x="['right','right','right','center']"
+							data-y="['middle','middle','middle','top']"
+							data-color="#727272"
+							data-lineheight="25"
+							data-fontsize="['16','16','15','15']"
+							data-frames='[{"delay":3800,"speed":300,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power4.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
+							data-hoffset="['170','170','160','-110','-130']"
+							data-voffset="['100','100','100','270']">
+								<!-- Your URL -->
+								<a href="#how-it-works" class="btn-sm bg-white dark white-hover bg-opacity-75 rounded-0 border border-1 bg-colored1-hover slow">
+									How it Works
+								</a>
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-main text-end"
+							data-x="['right','right','right','center']"
+							data-y="['middle','middle','middle','top']"
+							data-color="#727272"
+							data-lineheight="25"
+							data-fontsize="['16','16','15','15']"
+							data-frames='[{"delay":4200,"speed":300,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power4.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
+							data-hoffset="['-10','-10','-10','140','160']"
+							data-voffset="['100','100','100','270']">
+								<!-- Your URL -->
+								<a href="#contact" class="btn-sm bg-white dark white-hover bg-opacity-75 rounded-0 border border-1 bg-colored1-hover slow">
+									Contact
+								</a>
+						</div>
+
+					</li>
+					<!-- End Slide -->
+
+
+					<!-- Slide -->
+					<li class="rs-slide" data-masterspeed="1000" data-transition="random" data-thumb="images/slide2.jpg" data-saveperformance="off" data-title="Create Stunning Website" data-description="Home Slider">
+
+						<!-- Background Image -->
+						<img src="images/slide2.jpg" alt="Image Background" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="0" class="rev-slidebg" data-no-retina>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase text-bold font-tertiary"
+							data-x="['center','center','center','center']"
+							data-y="['middle','middle','middle','middle']"
+							data-textalign="['center','center','center','center']"
+							data-color="#000000"
+							data-lineheight="['70','64','58','54']"
+							data-fontweight="500"
+							data-fontsize="['60','54','38','28']"
+							data-width="['1170','1024','620','450']"
+							data-frames='[{"delay":"+1600","speed":500,"frame":"0","from":"y:-150px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['0','0','0','0']"
+							data-voffset="['-150','-150','-145','-150']"
+							style="color:#007867 !important; text-shadow:0 2px 10px rgba(0,0,0,0.55);">
+								<span style="color:#007867 !important;">GROW YOUR BUSINESS.</span>
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption font-tertiary ws-normal"
+							data-x="['center','center','center','center']"
+							data-y="['middle','middle','middle','middle']"
+							data-textalign="['center','center','center','center']"
+							data-color="#5BE49B"
+							data-lineheight="['32','32','32','32']"
+							data-fontweight="400"
+							data-fontsize="['22','22','22','20']"
+							data-width="['1170','1024','620','350']"
+							data-frames='[{"delay":"+1600","speed":500,"frame":"0","from":"y:150px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['0','0','0','0']"
+							data-voffset="['-90','-90','-85','-82']"
+							style="text-shadow:0 2px 10px rgba(0,0,0,0.55);">
+								<span style="color:#000000 !important; font-weight:700 !important;">Larger market, more jobs, manage operations, and get paid, all by using GetMoved as your marketplace, your SaaS operating system, or both.</span>
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-main text-end"
+							data-x="['center','center','center','center']"
+							data-y="['middle','middle','middle','middle']"
+							data-color="#727272"
+							data-lineheight="25"
+							data-fontsize="['16','16','15','15']"
+							data-frames='[{"delay":2800,"speed":300,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power4.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
+							data-hoffset="['-180','-180','-170','-125','-140']"
+							data-voffset="['-30','-30','-40','10']">
+								<!-- Your URL -->
+								<a href="#features" class="btn-sm bg-soft-dark6 bg-soft-dark0-hover bg-colored-hover white rounded-0 b-1 b-soft-white1 b-colored-hover slow">
+									<span>Features</span>
+								</a>
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-main text-end"
+							data-x="['center','center','center','center']"
+							data-y="['middle','middle','middle','middle']"
+							data-color="#727272"
+							data-lineheight="25"
+							data-fontsize="['16','16','15','15']"
+							data-frames='[{"delay":3100,"speed":300,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power4.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
+							data-hoffset="['180','180','170','125','140']"
+							data-voffset="['-30','-30','-40','10']">
+								<!-- Your URL -->
+								<a href="#pricing" class="btn-sm bg-soft-dark6 bg-soft-dark0-hover bg-colored-hover white rounded-0 b-1 b-soft-white1 b-colored-hover slow">
+									<span>Release Plan</span>
+								</a>
+						</div>
+
+					</li>
+					<!-- End Slide -->
+
+
+
+
+					<!-- Slide -->
+					<li class="rs-slide" data-masterspeed="1000" data-transition="random" data-thumb="images/slide3.jpg" data-saveperformance="off" data-title="Create Stunning Website" data-description="Home Slider" data-videomp4="images/videozeleni.mp4" data-videoloop="loop" data-forcecover="1" data-aspectratio="16:9">
+
+						<!-- Background Image -->
+						<img src="images/slide3.jpg" alt="Image Background" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="0" class="rev-slidebg" data-no-retina>
+
+						<!-- Layer -->
+						<div class="tp-caption font-quaternary"
+							data-x="['right','right','right','right']"
+							data-y="['middle','middle','middle','middle']"
+							data-textalign="['right','right','right','right']"
+							data-color="#5BE49B"
+							data-lineheight="['35','35','35','35']"
+							data-fontweight="500"
+							data-fontsize="['36','32','28','28']"
+							data-width="['1170','1024','620','450']"
+							data-frames='[{"delay":"+1600","speed":500,"frame":"0","from":"y:-150px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['40','40','35','30']"
+							data-voffset="['-60','-50','-45','-60']"
+							style="text-shadow:0 2px 10px rgba(0,0,0,0.55);">
+								Powered by AI. Built for precision.
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption font-tertiary ws-normal"
+							data-x="['right','right','right','right']"
+							data-y="['middle','middle','middle','middle']"
+							data-textalign="['right','right','right','right']"
+							data-color="#C8FAD6"
+							data-lineheight="['25','25','25','25']"
+							data-fontweight="400"
+							data-fontsize="['18','18','18','18']"
+							data-width="['600','1024','620','350']"
+							data-frames='[{"delay":"+1600","speed":500,"frame":"0","from":"y:150px;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+							data-hoffset="['0','0','0','0']"
+							data-voffset="['0','10','5','20']"
+							style="text-shadow:0 2px 10px rgba(0,0,0,0.55);">
+								HPC-driven AI automates: inventory creation, reduces manual work, minimizes errors, and improves pricing accuracy. Available as API or fully integrated within platform.
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-main text-end"
+							data-x="['right','right','right','right']"
+							data-y="['middle','middle','middle','middle']"
+							data-color="#727272"
+							data-lineheight="25"
+							data-fontsize="['16','16','15','15']"
+							data-frames='[{"delay":2800,"speed":300,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power4.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
+							data-hoffset="['0','0','0','0']"
+							data-voffset="['75','70','60','110']">
+								<!-- Your URL -->
+								<a href="https://test.getmoved.app" class="btn-sm bg-white dark white-hover bg-opacity-75 rounded-0 bg-colored1-hover slow" target="_blank" rel="noopener noreferrer">
+									Demo
+								</a>
+						</div>
+
+						<!-- Layer -->
+						<div class="tp-caption text-uppercase font-main text-end"
+							data-x="['right','right','right','right']"
+							data-y="['middle','middle','middle','middle']"
+							data-color="#727272"
+							data-lineheight="25"
+							data-fontsize="['16','16','15','15']"
+							data-frames='[{"delay":3100,"speed":300,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"power4.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
+							data-hoffset="['-180','-180','-170','-140']"
+							data-voffset="['75','70','60','110']">
+								<!-- Your URL -->
+								<a href="#use-cases" class="btn-sm bg-white dark white-hover bg-opacity-75 rounded-0 bg-colored1-hover slow">
+									Become partner
+								</a>
+						</div>
+
+					</li>
+					<!-- End Slide -->
+
+				</ul>
+				<div class="tp-bannertimer bg-white bs-xl opacity-5"></div>
+			</div>
+			<!-- End slider -->
+		</div>
+		<!-- End wrapper for slider -->
+	</section>
+	<!-- End Home Section -->
+
+
+
+	<!-- Page Content -->
+	<section id="home-page-content" class="bg-dark4 py-25 d-flex align-items-center">
+		
+		<!-- Container for page content -->
+		<div class="container">
+			
+			<!-- Row for page content -->
+			<div class="row row-eq-height align-items-center">
+				
+				<!-- Column for title and description -->
+				<div class="col-lg-8 col-sm-12 t-left t-center-sm">
+					<!-- Title -->
+					<h2 class="fs-35 lh-35 white font-secondary uppercase medium">
+						MOVING. REINVENTED.
+					</h2>
+					<!-- Description -->
+					<p class="gray2 mt-10 lh-25">
+						The future of moving is here — powered by technology, designed for simplicity.
+					</p>
+				</div>
+				<!-- End column for title and description -->
+
+				<!-- Column for the buttons -->
+				<div class="col-lg-4 col-sm-12 d-flex justify-content-lg-end justify-content-center mt-15-sm">
+					
+					<!-- Purchase / External link -->
+					<a href="#contact" class="btn-md bg-dark6 white font-secondary uppercase fs-16 bg-colored-hover ml-10 mx-5-sm slow">
+						CONTACT US
+					</a>
+
+					<!-- Get started / Internal link -->
+					<a href="https://test.getmoved.app" class="btn-md bg-dark6 white font-secondary uppercase fs-16 bg-colored-hover ml-10 mx-5-sm slow" target="_blank" rel="noopener noreferrer">
+						VIEW DEMO
+					</a>
+
+				</div>
+				<!-- End column for the buttons -->
+
+			</div>
+			<!-- End row for page content -->
+
+		</div>
+		<!-- End container for page content -->
+
+	</section>
+	<!-- End page Content -->
+
+
+
+
+
+
+
+
+    <!-- About Section -->
+    <section id="about" class="py-120">
+        <!-- Container for template -->
+        <div class="container">
+            <!-- Row for template -->
+            <div class="row t-center">
+                <!-- Column for title -->
+            	<div class="col-12 mb-40 d-flex flex-column align-items-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
+						What is GetMoved?
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-18 lh-30 animated" data-animation="fadeIn" data-animation-delay="100">
+						GetMoved is an end-to-end digital moving platform connecting customers and moving companies through automation, data, and intelligent workflows.
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+                <!-- Box col -->
+                <div class="col-xl col-lg-6 col-md-6 col-12 hover-container c-info mt-30 c-default animated" data-animation="fadeIn" data-animation-delay="100">
+                    <!-- Icon box -->
+                    <div class="hover-container relative d-inline-flex width-130 height-130 circle align-items-center justify-content-center b-1 b-solid b-gray5 bg-dark4-hover-item white-hover-item gray8 slow">
+                		<!-- Border animation -->
+                    	<div class="zoom-in-hover-item opacity-0 opacity-hover-item absolute radius-inherit bg-transparent left-0 top-0 bottom-0 right-0 slow zi-1 b-1 b-dark"></div>
+                		<!-- Icon -->
+                        <i class="ti-user fs-25 relative zi-5"></i>
+                    </div>
+                    <!-- Subtitle -->
+                    <h5 class="fs-20 font-secondary gray7 uppercase mt-25">FOR CUSTOMERS</h5>
+                    <!-- Desc -->
+                    <p class="gray6 fs-16 lh-25 mt-15">
+                        All-in-one moving experience<br/>Find verified movers, compare transparent offers, book online, and pay securely — without endless calls or paperwork.
+                    </p>
+                </div>
+                <!-- End box col -->
+
+                <!-- Box col -->
+                <div class="col-xl col-lg-6 col-md-6 col-12 hover-container c-info mt-30 c-default animated" data-animation="fadeIn" data-animation-delay="300">
+                    <!-- Icon box -->
+                    <div class="hover-container relative d-inline-flex width-130 height-130 circle align-items-center justify-content-center b-1 b-solid b-gray5 bg-dark4-hover-item white-hover-item gray8 slow">
+                		<!-- Border animation -->
+                    	<div class="zoom-in-hover-item opacity-0 opacity-hover-item absolute radius-inherit bg-transparent left-0 top-0 bottom-0 right-0 slow zi-1 b-1 b-dark"></div>
+                		<!-- Icon -->
+                        <i class="ti-briefcase fs-25 relative zi-5"></i>
+                    </div>
+                    <!-- Subtitle -->
+                    <h5 class="fs-20 font-secondary gray7 uppercase mt-25">FOR MOVING COMPANIES</h5>
+                    <!-- Desc -->
+                    <p class="gray6 fs-16 lh-25 mt-15">
+                        Marketplace + SaaS in one<br/>Access a wider market, win more jobs, manage operations digitally, and use GetMoved as your business operating system.
+                    </p>
+                </div>
+                <!-- End box col -->
+
+                <!-- Box col -->
+                <div class="col-xl col-lg-6 col-md-6 col-12 hover-container c-info mt-30 c-default animated" data-animation="fadeIn" data-animation-delay="500">
+                    <!-- Icon box -->
+                    <div class="relative d-inline-flex width-130 height-130 circle align-items-center justify-content-center b-1 b-solid b-gray5 bg-dark4-hover-item white-hover-item gray8 slow">
+                		<!-- Border animation -->
+                    	<div class="zoom-in-hover-item opacity-0 opacity-hover-item absolute radius-inherit bg-transparent left-0 top-0 bottom-0 right-0 slow zi-1 b-1 b-dark"></div>
+                		<!-- Icon -->
+                        <i class="ti-settings fs-20 relative zi-5"></i>
+                    </div>
+                    <!-- Subtitle -->
+                    <h5 class="fs-20 font-secondary gray7 uppercase mt-25">INTELLIGENT AUTOMATION</h5>
+                    <!-- Desc -->
+                    <p class="gray6 fs-16 lh-25 mt-15">
+                        AI-powered precision<br/>Walkthrough videos are transformed into structured inventories with quantities, room grouping, and accurate volume estimates.
+                    </p>
+                </div>
+                <!-- End box col -->
+
+
+                <!-- Box col -->
+                <div class="col-xl col-lg-6 col-md-6 col-12 hover-container c-info mt-30 c-default animated" data-animation="fadeIn" data-animation-delay="700">
+                    <!-- Icon box -->
+                    <div class="relative d-inline-flex width-130 height-130 circle align-items-center justify-content-center b-1 b-solid b-gray5 bg-dark4-hover-item white-hover-item gray8 slow">
+                		<!-- Border animation -->
+                    	<div class="zoom-in-hover-item opacity-0 opacity-hover-item absolute radius-inherit bg-transparent left-0 top-0 bottom-0 right-0 slow zi-1 b-1 b-dark"></div>
+                		<!-- Icon -->
+                        <i class="ti-plug fs-20 relative zi-5"></i>
+                    </div>
+                    <!-- Subtitle -->
+                    <h5 class="fs-20 font-secondary gray7 uppercase mt-25">BUILT FOR SCALE</h5>
+                    <!-- Desc -->
+                    <p class="gray6 fs-16 lh-25 mt-15">
+                        Platform &amp; API ready<br/>Use the full platform or integrate our automation engine into your own systems via API.
+                    </p>
+                </div>
+                <!-- End box col -->
+                
+            </div>
+            <!-- End row for template -->
+        </div>
+        <!-- End container for template -->
+    </section>
+    <!-- End about section -->
+
+
+
+
+
+
+	<!-- How It Works Section -->
+    <section id="how-it-works" class="py-100 has-parallax bg-soft-75 bg-soft-dark3">
+        <div class="parallax bg-top" data-anchor-target="#how-it-works" data-bottom-top="transform:translate3d(0, -200px, 0px);" data-top-bottom="transform:translate3d(0px, 200px, 0px);" data-bg="images/pozadina.png"></div>
+
+        <div class="container">
+        	<div class="row">
+            	<div class="col-12 mb-40 d-flex flex-column align-items-center t-center">
+					<h1 class="fs-60 fs-40-sm uppercase white font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
+						HOW IT WORKS
+					</h1>
+					<div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
+					<p class="mxw-900 fs-16 lh-30 white animated" data-animation="fadeIn" data-animation-delay="100">
+						Click each step to preview the full workflow.
+					</p>
+            	</div>
+            </div>
+
+            <div class="row font-secondary uppercase fs-18 animated-container mt-20">
+                <div class="col-lg-3 col-sm-6 col-6 my-20 d-flex justify-content-center" data-animation="zoomIn" data-animation-delay="100">
+                    <div data-filter=".step-quote" data-target-layout="#hiw-content" class="active bg-soft-3 bg-soft-dark4 bg-gray8-active bg-gray8-hover white width-100 height-100 radius-md b-1 b-dashed b-gray6 d-flex align-items-center justify-content-center rotate-45 c-pointer slow">
+                        <span class="gray3 d-block rotate--45 hiw-step-label">Quote</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-6 my-20 d-flex justify-content-center" data-animation="zoomIn" data-animation-delay="200">
+                    <div data-filter=".step-ai" data-target-layout="#hiw-content" class="bg-soft-3 bg-soft-dark4 bg-gray8-active bg-gray8-hover white width-100 height-100 radius-md b-1 b-dashed b-gray6 d-flex align-items-center justify-content-center rotate-45 c-pointer slow">
+                        <span class="gray3 d-block rotate--45 hiw-step-label">AI</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-6 my-20 d-flex justify-content-center" data-animation="zoomIn" data-animation-delay="300">
+                    <div data-filter=".step-offers" data-target-layout="#hiw-content" class="bg-soft-3 bg-soft-dark4 bg-gray8-active bg-gray8-hover white width-100 height-100 radius-md b-1 b-dashed b-gray6 d-flex align-items-center justify-content-center rotate-45 c-pointer slow">
+                        <span class="gray3 d-block rotate--45 hiw-step-label">Matching</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-6 my-20 d-flex justify-content-center" data-animation="zoomIn" data-animation-delay="400">
+                    <div data-filter=".step-book" data-target-layout="#hiw-content" class="bg-soft-3 bg-soft-dark4 bg-gray8-active bg-gray8-hover white width-100 height-100 radius-md b-1 b-dashed b-gray6 d-flex align-items-center justify-content-center rotate-45 c-pointer slow">
+                        <span class="gray3 d-block rotate--45 hiw-step-label">Execute</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-25">
+                <div class="col-12">
+                    <div id="hiw-content" class="grid-layout isotope" data-default-filter=".step-quote">
+                        <div class="step-quote item py-30 px-25 fullwidth bg-soft-3 bg-soft-dark4 b-1 b-dashed b-gray7 radius-md white">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 col-12">
+                                    <h4 class="fs-26 font-secondary uppercase gray3">01 — Quote</h4>
+                                    <p class="mt-15 gray3 lh-30 fs-17">Start your move request in minutes.</p>
+                                    <ul class="mt-10 gray3 lh-30 fs-17" style="padding-left:20px; list-style:disc;">
+                                        <li>Select your origin and destination</li>
+                                        <li>Choose your preferred moving date</li>
+                                        <li>Define the type of move (local, long-distance, etc.)</li>
+                                        <li>Select required services (packing, storage, special items, etc.)</li>
+                                        <li>Create your inventory manually or with AI assistance</li>
+                                        <li>Submit your request to all qualified movers in your area</li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4 col-12 mt-20 mt-lg-0">
+                                    <img src="assets/img/Usluge.jpg" alt="Usluge image" class="hiw-step-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-ai item py-30 px-25 fullwidth bg-soft-3 bg-soft-dark4 b-1 b-dashed b-gray7 radius-md white">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 col-12">
+                                    <h4 class="fs-26 font-secondary uppercase gray3">02 — AI</h4>
+                                    <p class="mt-15 gray3 lh-30 fs-17">By analyzing uploaded video, AI does the following:</p>
+                                    <ul class="mt-10 gray3 lh-30 fs-17" style="padding-left:20px; list-style:disc;">
+                                        <li>Generates a complete, room-by-room inventory list</li>
+                                        <li>Detects and groups items with accurate quantities</li>
+                                        <li>Calculates estimated volume and weight</li>
+                                        <li>Determines the appropriate vehicle type and size</li>
+                                        <li>Identifies special handling requirements (fragile, bulky, etc.)</li>
+                                        <li>Creates clear, written instructions for movers</li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4 col-12 mt-20 mt-lg-0">
+                                    <img src="assets/img/AIslika.jpg" alt="AI step image" class="hiw-step-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-offers item py-30 px-25 fullwidth bg-soft-3 bg-soft-dark4 b-1 b-dashed b-gray7 radius-md white">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 col-12">
+                                    <h4 class="fs-26 font-secondary uppercase gray3">03 — Smart Matching</h4>
+                                    <p class="mt-15 gray3 lh-30 fs-17">Once your quote is submitted, GetMoved handles the rest:</p>
+                                    <ul class="mt-10 gray3 lh-30 fs-17" style="padding-left:20px; list-style:disc;">
+                                        <li>Identifies all moving companies that meet your criteria (services offered, geographic coverage, availability)</li>
+                                        <li>Sends a precisely structured move request to qualified movers</li>
+                                        <li>Enables movers to submit their offers via a secure link within 24 hours</li>
+                                        <li>Collects and organizes all offers in one clear comparison view</li>
+                                        <li>Highlights key differences in pricing, services, and timing</li>
+                                        <li>Allows you to choose a mover independently or with AI assistant recommendations</li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4 col-12 mt-20 mt-lg-0">
+                                    <img src="assets/img/Kompletiranje.jpg" alt="Matching step image" class="hiw-step-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-book item py-30 px-25 fullwidth bg-soft-3 bg-soft-dark4 b-1 b-dashed b-gray7 radius-md white">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 col-12">
+                                    <h4 class="fs-26 font-secondary uppercase gray3">04 — Seamless Execution</h4>
+                                    <p class="mt-15 gray3 lh-30 fs-17">From confirmation to payment — fully managed and automated:</p>
+                                    <ul class="mt-10 gray3 lh-30 fs-17" style="padding-left:20px; list-style:disc;">
+                                        <li>Once selected, the mover assigns required vehicles and crew based on structured instructions</li>
+                                        <li>The move is executed according to the defined inventory and plan</li>
+                                        <li>Both customer and mover confirm job completion via the mobile app</li>
+                                        <li>The system automatically generates the final invoice</li>
+                                        <li>Payment is securely processed from the customer</li>
+                                        <li>Funds are transferred directly to the moving company</li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4 col-12 mt-20 mt-lg-0">
+                                    <video class="hiw-step-image" autoplay muted loop playsinline preload="metadata" aria-label="AI process video preview">
+                                        <source src="assets/img/AIVideo2.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End How It Works Section -->
+
+
+
+
+
+
+
+
+    
+
+
+    <!-- Demo Section -->
+    <section id="demo" class="pt-100 pb-60 bg-gray bt-1 bb-1 b-gray1 b-solid d-none" style="display:none !important;">
+        <div class="container">
+            <div class="row mt-30">
+                <div class="col-lg-6 col-12 mt-20">
+                    <div class="b-1 b-gray2 bg-white p-25 h-100">
+                        <h4 class="uppercase font-secondary fs-18">Before</h4>
+                        <p class="fs-15 gray6 mt-10">Walkthrough video input</p>
+                        <img src="assets/img/demo-before.svg" alt="Before video placeholder" class="d-block fullwidth mt-15">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12 mt-20">
+                    <div id="demo-after-panel" class="b-1 b-gray2 bg-white p-25 h-100">
+                        <h4 class="uppercase font-secondary fs-18">After</h4>
+                        <p class="fs-15 gray6 mt-10">Inventory preview</p>
+                        <img src="assets/img/demo-after.svg" alt="After inventory placeholder" class="d-block fullwidth mt-15">
+
+                        <div class="mt-20">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Qty</th>
+                                        <th>Est. Volume</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Sofa (3-seat)</td><td>1</td><td>75 ft³</td></tr>
+                                    <tr><td>Dining table</td><td>1</td><td>48 ft³</td></tr>
+                                    <tr><td>Dining chairs</td><td>4</td><td>32 ft³</td></tr>
+                                    <tr><td>Queen mattress</td><td>1</td><td>55 ft³</td></tr>
+                                    <tr><td>Nightstand</td><td>2</td><td>12 ft³</td></tr>
+                                    <tr><td>Boxes (med)</td><td>10</td><td>40 ft³</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="fs-15 gray6 mb-5">Totals: 262 ft³ / 7.4 m³, 1,120 lbs / 508 kg</p>
+                            <p class="fs-15 gray6 mb-10">Recommended vehicle: 16ft truck</p>
+                            <pre class="gm-code-block"><code>{
+  "move_id": "demo-1842",
+  "rooms": 5,
+  "items": 42,
+  "volume_ft3": 262,
+  "weight_lbs": 1120,
+  "vehicle": "16ft"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End legacy demo section -->
+
+    <!-- Legacy Demo Section (hidden) -->
+    <section id="demo-legacy" class="pt-100 pb-60 bg-gray bt-1 bb-1 b-gray1 b-solid d-none">
+        <!-- Container for template -->
+        <div class="container">
+            <!-- Row for template -->
+            <div class="row t-center">
+                <!-- Column for title -->
+            	<div class="col-12 mb-40 d-flex flex-column align-items-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">
+						Demo Results
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-18 lh-30 animated" data-animation="fadeIn" data-animation-delay="100">
+						Example gallery (legacy template content).
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+				<!-- Column for filters -->
+                <div class="col-12">
+                	
+					<!-- Keeper for filters and global text options -->
+            		<div class="font-secondary uppercase dark2">
+
+						<!-- Filter item -->
+	                	<button data-filter="*"
+	                		data-target-layout="#works"
+	                		class="bg-white active b-1 b-dark bg-dark-active bg-dark-hover white-hover white-active slow uppercase mx-5 mt-10-sm" type="button">
+	                			Show all
+	            		</button>
+
+	            		<!-- Filter item -->
+	                	<button data-filter=".design"
+	                		data-target-layout="#works"
+	                		class="bg-white b-1 b-dark bg-dark-active bg-dark-hover white-hover white-active slow uppercase mx-5 mt-10-sm" type="button">
+	                			Design
+	            		</button>
+
+	            		<!-- Filter item -->
+	                	<button data-filter=".branding"
+	                		data-target-layout="#works"
+	                		class="bg-white b-1 b-dark bg-dark-active bg-dark-hover white-hover white-active slow uppercase mx-5 mt-10-sm" type="button">
+	                			Branding
+	            		</button>
+
+	            		<!-- Filter item -->
+	                	<button data-filter=".video"
+	                		data-target-layout="#works"
+	                		class="bg-white b-1 b-dark bg-dark-active bg-dark-hover white-hover white-active slow uppercase mx-5 mt-10-sm" type="button">
+	                			Video
+	            		</button>
+
+	            		<!-- Filter item -->
+	                	<button data-filter=".photography"
+	                		data-target-layout="#works"
+	                		class="bg-white b-1 b-dark bg-dark-active bg-dark-hover white-hover white-active slow uppercase mx-5 mt-10-sm" type="button">
+	                			Photography
+	            		</button>
+
+            		</div>
+					<!-- End keeper for filters and global text options -->
+
+                </div>
+				<!-- End column for filters -->
+
+
+				<!-- Column for portfolio items -->
+				<div class="col-12 mt-50">
+					<!-- Works start -->
+					<div id="works" class="isotope grid-layout row" data-default-filter="">
+						<!-- Your URL or image link -->
+						<a href="project-01.html" class="branding item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<!-- Figure for all -->
+							<figure class="has-overlay-hover hover-container">
+								<!-- Your image -->
+								<img data-src="images/portfolio/015.jpg" src="images/portfolio/portfolio-loader.svg" alt="portfolio image template" class="d-block fullwidth zoom-in-hover-item slow-xl">
+								<!-- Caption -->
+								<figcaption class="overlay-hover bg-soft-dark9 slow-xl d-flex flex-column align-items-center justify-content-center">
+									<!-- Title with animation -->
+									<h2 class="font-secondary slow uppercase white fs-30 animated-hover fast" data-animation="fadeInUp" data-animation-delay="0">Red paint</h2>
+									<!-- Strips on the middle -->
+									<div class="width-30 height-5 mt-15 slow bg-transparent bt-1 bb-1 b-white animated-hover fast" data-animation="fadeIn" data-animation-delay="0"></div>
+									<!-- #hashtag -->
+									<p class="font-secondary slow uppercase gray3 fs-17 mt-15 animated-hover fast" data-animation="fadeInDown" data-animation-delay="0">Branding</p>
+								</figcaption>
+								<!-- End caption -->
+							</figure>
+							<!-- End figure for all -->
+						</a>
+						<!-- End a tag -->
+
+						<!-- Your URL or image link -->
+						<a href="images/portfolio/001b.jpg" data-fslightbox="portfolio" data-type="image" class="video photography item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<!-- Figure for all -->
+							<figure class="has-overlay-hover hover-container">
+								<!-- Your image -->
+								<img data-src="images/portfolio/001.jpg" src="images/portfolio/portfolio-loader.svg" alt="portfolio image template" class="d-block fullwidth zoom-in-hover-item slow-xl">
+								<!-- Caption -->
+								<figcaption class="overlay-hover bg-soft-dark9 slow-xl d-flex flex-column align-items-center justify-content-center">
+									<!-- Title with animation -->
+									<h2 class="font-secondary slow uppercase white fs-30 animated-hover fast" data-animation="fadeInUp" data-animation-delay="0">Red & Gray</h2>
+									<!-- Strips on the middle -->
+									<div class="width-30 height-5 mt-15 slow bg-transparent bt-1 bb-1 b-white animated-hover fast" data-animation="fadeIn" data-animation-delay="0"></div>
+									<!-- #hashtag -->
+									<p class="font-secondary slow uppercase gray3 fs-17 mt-15 animated-hover fast" data-animation="fadeInDown" data-animation-delay="0">Video, Photography</p>
+								</figcaption>
+								<!-- End caption -->
+							</figure>
+							<!-- End figure for all -->
+						</a>
+						<!-- End a tag -->
+
+						<!-- Your URL or image link -->
+						<a href="project-02.html" class="design item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<!-- Figure for all -->
+							<figure class="has-overlay-hover hover-container">
+								<!-- Your image -->
+								<img data-src="images/portfolio/008.jpg" src="images/portfolio/portfolio-loader.svg" alt="portfolio image template" class="d-block fullwidth zoom-in-hover-item slow-xl">
+								<!-- Caption -->
+								<figcaption class="overlay-hover bg-soft-dark9 slow-xl d-flex flex-column align-items-center justify-content-center">
+									<!-- Title with animation -->
+									<h2 class="font-secondary slow uppercase white fs-30 animated-hover fast" data-animation="fadeInUp" data-animation-delay="0">Music</h2>
+									<!-- Strips on the middle -->
+									<div class="width-30 height-5 mt-15 slow bg-transparent bt-1 bb-1 b-white animated-hover fast" data-animation="fadeIn" data-animation-delay="0"></div>
+									<!-- #hashtag -->
+									<p class="font-secondary slow uppercase gray3 fs-17 mt-15 animated-hover fast" data-animation="fadeInDown" data-animation-delay="0">Design</p>
+								</figcaption>
+								<!-- End caption -->
+							</figure>
+							<!-- End figure for all -->
+						</a>
+						<!-- End a tag -->
+
+						<!-- Your URL or image link -->
+						<a href="project-03.html" class="design item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<!-- Figure for all -->
+							<figure class="has-overlay-hover hover-container">
+								<!-- Your image -->
+								<img data-src="images/portfolio/012.jpg" src="images/portfolio/portfolio-loader.svg" alt="portfolio image template" class="d-block fullwidth zoom-in-hover-item slow-xl">
+								<!-- Caption -->
+								<figcaption class="overlay-hover bg-soft-dark9 slow-xl d-flex flex-column align-items-center justify-content-center">
+									<!-- Title with animation -->
+									<h2 class="font-secondary slow uppercase white fs-30 animated-hover fast" data-animation="fadeInUp" data-animation-delay="0">Forest</h2>
+									<!-- Strips on the middle -->
+									<div class="width-30 height-5 mt-15 slow bg-transparent bt-1 bb-1 b-white animated-hover fast" data-animation="fadeIn" data-animation-delay="0"></div>
+									<!-- #hashtag -->
+									<p class="font-secondary slow uppercase gray3 fs-17 mt-15 animated-hover fast" data-animation="fadeInDown" data-animation-delay="0">design</p>
+								</figcaption>
+								<!-- End caption -->
+							</figure>
+							<!-- End figure for all -->
+						</a>
+						<!-- End a tag -->
+
+						<!-- Your URL or image link -->
+						<a href="project-01.html" class="photography design item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<!-- Figure for all -->
+							<figure class="has-overlay-hover hover-container">
+								<!-- Your image -->
+								<img data-src="images/portfolio/004.jpg" src="images/portfolio/portfolio-loader.svg" alt="portfolio image template" class="d-block fullwidth zoom-in-hover-item slow-xl">
+								<!-- Caption -->
+								<figcaption class="overlay-hover bg-soft-dark9 slow-xl d-flex flex-column align-items-center justify-content-center">
+									<!-- Title with animation -->
+									<h2 class="font-secondary slow uppercase white fs-30 animated-hover fast" data-animation="fadeInUp" data-animation-delay="0">Tennis</h2>
+									<!-- Strips on the middle -->
+									<div class="width-30 height-5 mt-15 slow bg-transparent bt-1 bb-1 b-white animated-hover fast" data-animation="fadeIn" data-animation-delay="0"></div>
+									<!-- #hashtag -->
+									<p class="font-secondary slow uppercase gray3 fs-17 mt-15 animated-hover fast" data-animation="fadeInDown" data-animation-delay="0">Photography, design</p>
+								</figcaption>
+								<!-- End caption -->
+							</figure>
+							<!-- End figure for all -->
+						</a>
+						<!-- End a tag -->
+
+						<!-- Your URL or image link -->
+						<a href="https://www.youtube.com/watch?v=4N9Vpv7UAIo" data-fslightbox="portfolio" data-type="youtube" class="branding video item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<!-- Figure for all -->
+							<figure class="has-overlay-hover hover-container">
+								<!-- Your image -->
+								<img data-src="images/portfolio/005.jpg" src="images/portfolio/portfolio-loader.svg" alt="portfolio image template" class="d-block fullwidth zoom-in-hover-item slow-xl">
+								<!-- Caption -->
+								<figcaption class="overlay-hover bg-soft-dark9 slow-xl d-flex flex-column align-items-center justify-content-center">
+									<!-- Title with animation -->
+									<h2 class="font-secondary slow uppercase white fs-30 animated-hover fast" data-animation="fadeInUp" data-animation-delay="0">Dawn</h2>
+									<!-- Strips on the middle -->
+									<div class="width-30 height-5 mt-15 slow bg-transparent bt-1 bb-1 b-white animated-hover fast" data-animation="fadeIn" data-animation-delay="0"></div>
+									<!-- #hashtag -->
+									<p class="font-secondary slow uppercase gray3 fs-17 mt-15 animated-hover fast" data-animation="fadeInDown" data-animation-delay="0">Branding, video</p>
+								</figcaption>
+								<!-- End caption -->
+							</figure>
+							<!-- End figure for all -->
+						</a>
+						<!-- End a tag -->
+
+						<!-- Your URL or image link -->
+						<a href="project-02.html" class="photography design item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<!-- Figure for all -->
+							<figure class="has-overlay-hover hover-container">
+								<!-- Your image -->
+								<img data-src="images/portfolio/013.jpg" src="images/portfolio/portfolio-loader.svg" alt="portfolio image template" class="d-block fullwidth zoom-in-hover-item slow-xl">
+								<!-- Caption -->
+								<figcaption class="overlay-hover bg-soft-dark9 slow-xl d-flex flex-column align-items-center justify-content-center">
+									<!-- Title with animation -->
+									<h2 class="font-secondary slow uppercase white fs-30 animated-hover fast" data-animation="fadeInUp" data-animation-delay="0">Inventory preview</h2>
+									<!-- Strips on the middle -->
+									<div class="width-30 height-5 mt-15 slow bg-transparent bt-1 bb-1 b-white animated-hover fast" data-animation="fadeIn" data-animation-delay="0"></div>
+									<!-- #hashtag -->
+									<p class="font-secondary slow uppercase gray3 fs-17 mt-15 animated-hover fast" data-animation="fadeInDown" data-animation-delay="0">Photography, design</p>
+								</figcaption>
+								<!-- End caption -->
+							</figure>
+							<!-- End figure for all -->
+						</a>
+						<!-- End a tag -->
+
+						<!-- Your URL or image link -->
+						<a href="https://www.youtube.com/watch?v=eMEH6LG9_iQ" data-fslightbox="portfolio" data-type="youtube" class="branding photography item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<!-- Figure for all -->
+							<figure class="has-overlay-hover hover-container">
+								<!-- Your image -->
+								<img data-src="images/portfolio/014.jpg" src="images/portfolio/portfolio-loader.svg" alt="portfolio image template" class="d-block fullwidth zoom-in-hover-item slow-xl">
+								<!-- Caption -->
+								<figcaption class="overlay-hover bg-soft-dark9 slow-xl d-flex flex-column align-items-center justify-content-center">
+									<!-- Title with animation -->
+									<h2 class="font-secondary slow uppercase white fs-30 animated-hover fast" data-animation="fadeInUp" data-animation-delay="0">Red dress</h2>
+									<!-- Strips on the middle -->
+									<div class="width-30 height-5 mt-15 slow bg-transparent bt-1 bb-1 b-white animated-hover fast" data-animation="fadeIn" data-animation-delay="0"></div>
+									<!-- #hashtag -->
+									<p class="font-secondary slow uppercase gray3 fs-17 mt-15 animated-hover fast" data-animation="fadeInDown" data-animation-delay="0">Branding, photogpraphy</p>
+								</figcaption>
+								<!-- End caption -->
+							</figure>
+							<!-- End figure for all -->
+						</a>
+						<!-- End a tag -->
+
+						<!-- Your URL or image link -->
+						<a href="images/portfolio/006b.jpg" data-fslightbox="portfolio" data-type="image" class="branding item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+							<!-- Figure for all -->
+							<figure class="has-overlay-hover hover-container">
+								<!-- Your image -->
+								<img data-src="images/portfolio/006.jpg" src="images/portfolio/portfolio-loader.svg" alt="portfolio image template" class="d-block fullwidth zoom-in-hover-item slow-xl">
+								<!-- Caption -->
+								<figcaption class="overlay-hover bg-soft-dark9 slow-xl d-flex flex-column align-items-center justify-content-center">
+									<!-- Title with animation -->
+									<h2 class="font-secondary slow uppercase white fs-30 animated-hover fast" data-animation="fadeInUp" data-animation-delay="0">Red paint</h2>
+									<!-- Strips on the middle -->
+									<div class="width-30 height-5 mt-15 slow bg-transparent bt-1 bb-1 b-white animated-hover fast" data-animation="fadeIn" data-animation-delay="0"></div>
+									<!-- #hashtag -->
+									<p class="font-secondary slow uppercase gray3 fs-17 mt-15 animated-hover fast" data-animation="fadeInDown" data-animation-delay="0">Branding</p>
+								</figcaption>
+								<!-- End caption -->
+							</figure>
+							<!-- End figure for all -->
+						</a>
+						<!-- End a tag -->
+
+					</div>
+					<!-- Works end -->
+
+					<a href="portfolio.html" class="icon-xl circle bg-gray4 white bg-colored-hover mt-50 bs-colored b-colored-hover slow">
+						<i class="ti-plus fs-24"></i>
+					</a>
+					
+				</div>
+				<!-- End column for portfolio items -->
+                
+                
+            </div>
+            <!-- End row for template -->
+        </div>
+        <!-- End container for template -->
+    </section>
+    <!-- End demo section -->
+
+
+
+
+
+
+
+
+
+	<!-- Team Section (removed for MVP) -->
+	<section id="team" class="py-100 d-none">
+
+		<!-- Container for team members and title -->
+        <div class="container">
+        	
+        	<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">
+						OUR CREATIVE TEAM
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-16 lh-30">
+						Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in piece of classical Latin literature from 45 BC, it a old.
+
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+                <!-- Carousel arrows -->
+                <div class="col-12 d-flex justify-content-center mt-20">
+                	<!-- Previous button -->
+                	<button type="button" class="icon-md mx-5 bg-gray6 circle white bg-gray7-hover"
+                		data-slider-control="#employee-carousel"
+                		data-slider-dir="prev">
+                		<i class="ti-angle-left"></i>
+                	</button>
+                	<!-- Next button -->
+                	<button type="button" class="icon-md mx-5 bg-gray6 circle white bg-gray7-hover"
+                		data-slider-control="#employee-carousel"
+                		data-slider-dir="next">
+                		<i class="ti-angle-right"></i>
+                	</button>
+                </div>
+                <!-- End carousel arrows -->
+
+            	<!-- Fullwidth column for slider -->
+                <div class="col-12 mt-10">
+                	
+                	<!-- Slider -->
+		            <div id="employee-carousel" class="custom-slider block-img dots-strip dots-close row" 
+		                data-slick='{"dots": false, "speed":600, "arrows": false, "fade": false, "draggable":false, "slidesToShow": 4, "slidesToScroll": 1, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2,"slidesToScroll": 2}},{"breakpoint": 768,"settings":{"slidesToShow": 1,"slidesToScroll": 1}}]}' >
+
+		                <!-- Slide / Member start -->
+		                <div class="p-3">
+
+		                	<!-- Keeper for member details -->
+		                	<div class="team-member p-0 b-1 b-gray1">
+
+			                	<!-- Team Member Image -->
+								<img src="images/team/1.jpg" alt="Team Member" class="d-block fullwidth"/>
+
+								<!-- Positioning supporter div -->
+								<div class="height-75"></div>
+
+								<!-- Team Member Details -->
+								<div class="member-details px-15 bg-white fullheight t-center slow-md">
+									<!-- Name and Position -->
+									<div class="fullwidth">
+										<!-- Member Name -->
+										<h1 class="font-secondary fs-22 dark uppercase">
+											jessica doen
+										</h1>
+										<!-- Member Position -->
+										<h3 class="fs-16 mt-3 gray8 font-secondary uppercase">
+											ceo & founder
+										</h3>
+									</div>
+									<!-- End Team Member Details -->
+
+									<!-- Member Details -->
+									<div class="fullwidth mt-15">
+										<!-- Description -->
+										<p class="fs-16 gray8 mb-15">
+											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+										</p>
+										<!-- Member Socials, Facebook -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-facebook-hover mx-2">
+											<i class="ti-facebook"></i>
+										</a>
+										<!-- Twitter -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-twitter-hover mx-2">
+											<i class="ti-twitter-alt"></i>
+										</a>
+										<!-- Pinterest -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-pinterest-hover mx-2">
+											<i class="ti-pinterest"></i>
+										</a>
+										<!-- Linkedin -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-linkedin-hover mx-2">
+											<i class="ti-linkedin"></i>
+										</a>
+										<!-- Button trigger modal -->
+										<button type="button" class="d-block mx-auto mt-30 icon-lg b-1 b-gray4 gray4 circle bg-colored-hover white-hover" data-bs-toggle="modal" data-bs-target="#modal-01">
+											<i class="ti-plus"></i>
+										</button>
+									</div><!-- End Member Details -->
+								</div>
+								<!-- End Team Member Details -->
+
+							</div>
+		                	<!-- End keeper for member details -->
+		                	
+		                </div>
+		        		<!-- End slide / member -->
+
+		        		<!-- Slide / Member start -->
+		                <div class="p-3">
+
+		                	<!-- Keeper for member details -->
+		                	<div class="team-member p-0 b-1 b-gray1">
+
+			                	<!-- Team Member Image -->
+								<img src="images/team/2.jpg" alt="Team Member" class="d-block fullwidth"/>
+
+								<!-- Positioning supporter div -->
+								<div class="height-75"></div>
+
+								<!-- Team Member Details -->
+								<div class="member-details px-15 bg-white fullheight t-center slow-md">
+									<!-- Name and Position -->
+									<div class="fullwidth">
+										<!-- Member Name -->
+										<h1 class="font-secondary fs-22 dark uppercase">
+											Barney Clore
+										</h1>
+										<!-- Member Position -->
+										<h3 class="fs-16 mt-3 gray8 font-secondary uppercase">
+											Director
+										</h3>
+									</div>
+									<!-- End Team Member Details -->
+
+									<!-- Member Details -->
+									<div class="fullwidth mt-15">
+										<!-- Description -->
+										<p class="fs-16 gray8 mb-15">
+											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+										</p>
+										<!-- Member Socials, Facebook -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-facebook-hover mx-2">
+											<i class="ti-facebook"></i>
+										</a>
+										<!-- Twitter -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-twitter-hover mx-2">
+											<i class="ti-twitter-alt"></i>
+										</a>
+										<!-- Pinterest -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-pinterest-hover mx-2">
+											<i class="ti-pinterest"></i>
+										</a>
+										<!-- Linkedin -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-linkedin-hover mx-2">
+											<i class="ti-linkedin"></i>
+										</a>
+										<!-- Button trigger modal -->
+										<button type="button" class="d-block mx-auto mt-30 icon-lg b-1 b-gray4 gray4 circle bg-colored-hover white-hover" data-bs-toggle="modal" data-bs-target="#modal-02">
+											<i class="ti-plus"></i>
+										</button>
+									</div><!-- End Member Details -->
+								</div>
+								<!-- End Team Member Details -->
+
+							</div>
+		                	<!-- End keeper for member details -->
+		                	
+		                </div>
+		        		<!-- End slide / member -->
+
+		        		<!-- Slide / Member start -->
+		                <div class="p-3">
+
+		                	<!-- Keeper for member details -->
+		                	<div class="team-member p-0 b-1 b-gray1">
+
+			                	<!-- Team Member Image -->
+								<img src="images/team/3.jpg" alt="Team Member" class="d-block fullwidth"/>
+
+								<!-- Positioning supporter div -->
+								<div class="height-75"></div>
+
+								<!-- Team Member Details -->
+								<div class="member-details px-15 bg-white fullheight t-center slow-md">
+									<!-- Name and Position -->
+									<div class="fullwidth">
+										<!-- Member Name -->
+										<h1 class="font-secondary fs-22 dark uppercase">
+											Adriana Doen
+										</h1>
+										<!-- Member Position -->
+										<h3 class="fs-16 mt-3 gray8 font-secondary uppercase">
+											Graphic Designer
+										</h3>
+									</div>
+									<!-- End Team Member Details -->
+
+									<!-- Member Details -->
+									<div class="fullwidth mt-15">
+										<!-- Description -->
+										<p class="fs-16 gray8 mb-15">
+											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+										</p>
+										<!-- Member Socials, Facebook -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-facebook-hover mx-2">
+											<i class="ti-facebook"></i>
+										</a>
+										<!-- Twitter -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-twitter-hover mx-2">
+											<i class="ti-twitter-alt"></i>
+										</a>
+										<!-- Pinterest -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-pinterest-hover mx-2">
+											<i class="ti-pinterest"></i>
+										</a>
+										<!-- Linkedin -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-linkedin-hover mx-2">
+											<i class="ti-linkedin"></i>
+										</a>
+										<!-- Button trigger modal -->
+										<button type="button" class="d-block mx-auto mt-30 icon-lg b-1 b-gray4 gray4 circle bg-colored-hover white-hover" data-bs-toggle="modal" data-bs-target="#modal-03">
+											<i class="ti-plus"></i>
+										</button>
+									</div><!-- End Member Details -->
+								</div>
+								<!-- End Team Member Details -->
+
+							</div>
+		                	<!-- End keeper for member details -->
+		                	
+		                </div>
+		        		<!-- End slide / member -->
+
+		        		<!-- Slide / Member start -->
+		                <div class="p-3">
+
+		                	<!-- Keeper for member details -->
+		                	<div class="team-member p-0 b-1 b-gray1">
+
+			                	<!-- Team Member Image -->
+								<img src="images/team/4.jpg" alt="Team Member" class="d-block fullwidth"/>
+
+								<!-- Positioning supporter div -->
+								<div class="height-75"></div>
+
+								<!-- Team Member Details -->
+								<div class="member-details px-15 bg-white fullheight t-center slow-md">
+									<!-- Name and Position -->
+									<div class="fullwidth">
+										<!-- Member Name -->
+										<h1 class="font-secondary fs-22 dark uppercase">
+											Sarah Tron
+										</h1>
+										<!-- Member Position -->
+										<h3 class="fs-16 mt-3 gray8 font-secondary uppercase">
+											Human Resources
+										</h3>
+									</div>
+									<!-- End Team Member Details -->
+
+									<!-- Member Details -->
+									<div class="fullwidth mt-15">
+										<!-- Description -->
+										<p class="fs-16 gray8 mb-15">
+											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+										</p>
+										<!-- Member Socials, Facebook -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-facebook-hover mx-2">
+											<i class="ti-facebook"></i>
+										</a>
+										<!-- Twitter -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-twitter-hover mx-2">
+											<i class="ti-twitter-alt"></i>
+										</a>
+										<!-- Pinterest -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-pinterest-hover mx-2">
+											<i class="ti-pinterest"></i>
+										</a>
+										<!-- Linkedin -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-linkedin-hover mx-2">
+											<i class="ti-linkedin"></i>
+										</a>
+										<!-- Button trigger modal -->
+										<button type="button" class="d-block mx-auto mt-30 icon-lg b-1 b-gray4 gray4 circle bg-colored-hover white-hover" data-bs-toggle="modal" data-bs-target="#modal-04">
+											<i class="ti-plus"></i>
+										</button>
+									</div><!-- End Member Details -->
+								</div>
+								<!-- End Team Member Details -->
+
+							</div>
+		                	<!-- End keeper for member details -->
+		                	
+		                </div>
+		        		<!-- End slide / member -->
+
+		        		<!-- Slide / Member start -->
+		                <div class="p-3">
+
+		                	<!-- Keeper for member details -->
+		                	<div class="team-member p-0 b-1 b-gray1">
+
+			                	<!-- Team Member Image -->
+								<img src="images/team/5.jpg" alt="Team Member" class="d-block fullwidth"/>
+
+								<!-- Positioning supporter div -->
+								<div class="height-75"></div>
+
+								<!-- Team Member Details -->
+								<div class="member-details px-15 bg-white fullheight t-center slow-md">
+									<!-- Name and Position -->
+									<div class="fullwidth">
+										<!-- Member Name -->
+										<h1 class="font-secondary fs-22 dark uppercase">
+											Matt Kollen
+										</h1>
+										<!-- Member Position -->
+										<h3 class="fs-16 mt-3 gray8 font-secondary uppercase">
+											Web Designer
+										</h3>
+									</div>
+									<!-- End Team Member Details -->
+
+									<!-- Member Details -->
+									<div class="fullwidth mt-15">
+										<!-- Description -->
+										<p class="fs-16 gray8 mb-15">
+											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+										</p>
+										<!-- Member Socials, Facebook -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-facebook-hover mx-2">
+											<i class="ti-facebook"></i>
+										</a>
+										<!-- Twitter -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-twitter-hover mx-2">
+											<i class="ti-twitter-alt"></i>
+										</a>
+										<!-- Pinterest -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-pinterest-hover mx-2">
+											<i class="ti-pinterest"></i>
+										</a>
+										<!-- Linkedin -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-linkedin-hover mx-2">
+											<i class="ti-linkedin"></i>
+										</a>
+										<!-- Button trigger modal -->
+										<button type="button" class="d-block mx-auto mt-30 icon-lg b-1 b-gray4 gray4 circle bg-colored-hover white-hover" data-bs-toggle="modal" data-bs-target="#modal-05">
+											<i class="ti-plus"></i>
+										</button>
+									</div><!-- End Member Details -->
+								</div>
+								<!-- End Team Member Details -->
+
+							</div>
+		                	<!-- End keeper for member details -->
+		                	
+		                </div>
+		        		<!-- End slide / member -->
+
+		        		<!-- Slide / Member start -->
+		                <div class="p-3">
+
+		                	<!-- Keeper for member details -->
+		                	<div class="team-member p-0 b-1 b-gray1">
+
+			                	<!-- Team Member Image -->
+								<img src="images/team/6.jpg" alt="Team Member" class="d-block fullwidth"/>
+
+								<!-- Positioning supporter div -->
+								<div class="height-75"></div>
+
+								<!-- Team Member Details -->
+								<div class="member-details px-15 bg-white fullheight t-center slow-md">
+									<!-- Name and Position -->
+									<div class="fullwidth">
+										<!-- Member Name -->
+										<h1 class="font-secondary fs-22 dark uppercase">
+											Ariella Davenport
+										</h1>
+										<!-- Member Position -->
+										<h3 class="fs-16 mt-3 gray8 font-secondary uppercase">
+											Graphic designer
+										</h3>
+									</div>
+									<!-- End Team Member Details -->
+
+									<!-- Member Details -->
+									<div class="fullwidth mt-15">
+										<!-- Description -->
+										<p class="fs-16 gray8 mb-15">
+											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+										</p>
+										<!-- Member Socials, Facebook -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-facebook-hover mx-2">
+											<i class="ti-facebook"></i>
+										</a>
+										<!-- Twitter -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-twitter-hover mx-2">
+											<i class="ti-twitter-alt"></i>
+										</a>
+										<!-- Pinterest -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-pinterest-hover mx-2">
+											<i class="ti-pinterest"></i>
+										</a>
+										<!-- Linkedin -->
+										<a href="#" class="icon-xs circle white bg-gray6 bg-linkedin-hover mx-2">
+											<i class="ti-linkedin"></i>
+										</a>
+										<!-- Button trigger modal -->
+										<button type="button" class="d-block mx-auto mt-30 icon-lg b-1 b-gray4 gray4 circle bg-colored-hover white-hover" data-bs-toggle="modal" data-bs-target="#modal-06">
+											<i class="ti-plus"></i>
+										</button>
+									</div><!-- End Member Details -->
+								</div>
+								<!-- End Team Member Details -->
+
+							</div>
+		                	<!-- End keeper for member details -->
+		                	
+		                </div>
+		        		<!-- End slide / member -->
+
+
+		            </div>
+		            <!-- End Slider -->
+
+                </div>
+            	<!-- Slider end -->
+
+            </div>
+        	<!-- Row end -->
+
+        </div>
+		<!-- End container for team members and title -->
+
+	</section>
+	<!-- End Team Section -->
+
+
+
+	<!-- Modal -->
+    <div id="modal-01" class="modal fade fade-scale d-none" tabindex="-1" role="dialog">
+        <!-- Box template container -->
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <!-- Modal Details -->
+            <div class="modal-content">
+                <!-- Modal close button for mobile and large screens -->
+                <button type="button" class="modal-close close visible-lg white right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <button type="button" class="modal-close close hidden-lg right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <!-- Modal details -->
+                <div class="row mx-0 row-eq-height">
+                    <div class="col-lg-7 col-12 px-50 px-30-sm py-60">
+                        <!-- Employee Name -->
+                        <h4 class="uppercase font-secondary medium fs-24 colored">
+                            Jessica Doen
+                        </h4>
+                        <!-- Employee Name -->
+                        <h6 class="gray6 fs-16 mt-5">
+                            Ceo &amp; Founder
+                        </h6>
+                        <!-- About -->
+                        <p class="mt-30 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Curabitur vitae dignissim libero, sed lobortis sem. Vestibulum bibendum quis purus at eleifend. Curabitur ex est, vulputate vitae augue at, gravida ullamcorper justo. In fringilla hendrerit commodo. Duis id eleifend eros, in sodales turpis. Integer ultrices tellus lacinia, bibendum mi quis, convallis urna.
+                        </p>
+                        <p class="mt-15 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Sed id viverra felis, a feugiat ipsum. Vivamus non purus eu neque aliquet sagittis. Duis vitae dolor interdum, cursus erat vel, dictum felis. Curabitur hendrerit placerat fermentum.
+                        </p>
+                        <!-- Networks -->
+                        <div class="mt-40">
+                            <a href="#" class="icon-sm opacity-8-hover bg-twitter white mr-5 slow-sm">
+                                <i class="ti-twitter-alt"></i>
+                            </a>
+                            <a href="#" class="icon-sm opacity-8-hover bg-mail white mr-5 slow-sm">
+                                <i class="ti-email"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12 mnh-400" data-bg="images/team/1b.jpg"></div>
+                </div>
+            </div>
+            <!-- End Modal Details -->
+        </div>
+        <!-- End box template container -->
+    </div>
+    <!-- End Modal -->
+
+
+
+    <!-- Modal -->
+    <div id="modal-02" class="modal fade fade-scale d-none" tabindex="-1" role="dialog">
+        <!-- Box template container -->
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <!-- Modal Details -->
+            <div class="modal-content">
+                <!-- Modal close button for mobile and large screens -->
+                <button type="button" class="modal-close close visible-lg white right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <button type="button" class="modal-close close hidden-lg right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <!-- Modal details -->
+                <div class="row mx-0 row-eq-height">
+                    <div class="col-lg-7 col-12 px-50 px-30-sm py-60">
+                        <!-- Employee Name -->
+                        <h4 class="uppercase font-secondary medium fs-24 colored">
+                            Barney Clore
+                        </h4>
+                        <!-- Employee Name -->
+                        <h6 class="gray6 fs-16 mt-5">
+                            Director
+                        </h6>
+                        <!-- About -->
+                        <p class="mt-30 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Curabitur vitae dignissim libero, sed lobortis sem. Vestibulum bibendum quis purus at eleifend. Curabitur ex est, vulputate vitae augue at, gravida ullamcorper justo. In fringilla hendrerit commodo. Duis id eleifend eros, in sodales turpis. Integer ultrices tellus lacinia, bibendum mi quis, convallis urna.
+                        </p>
+                        <p class="mt-15 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Sed id viverra felis, a feugiat ipsum. Vivamus non purus eu neque aliquet sagittis. Duis vitae dolor interdum, cursus erat vel, dictum felis. Curabitur hendrerit placerat fermentum.
+                        </p>
+                        <!-- Networks -->
+                        <div class="mt-40">
+                            <a href="#" class="icon-sm opacity-8-hover bg-twitter white mr-5 slow-sm">
+                                <i class="ti-twitter-alt"></i>
+                            </a>
+                            <a href="#" class="icon-sm opacity-8-hover bg-mail white mr-5 slow-sm">
+                                <i class="ti-email"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12 mnh-400" data-bg="images/team/2b.jpg"></div>
+                </div>
+            </div>
+            <!-- End Modal Details -->
+        </div>
+        <!-- End box template container -->
+    </div>
+    <!-- End Modal -->
+
+
+
+    <!-- Modal -->
+    <div id="modal-03" class="modal fade fade-scale d-none" tabindex="-1" role="dialog">
+        <!-- Box template container -->
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <!-- Modal Details -->
+            <div class="modal-content">
+                <!-- Modal close button for mobile and large screens -->
+                <button type="button" class="modal-close close visible-lg white right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <button type="button" class="modal-close close hidden-lg right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <!-- Modal details -->
+                <div class="row mx-0 row-eq-height">
+                    <div class="col-lg-7 col-12 px-50 px-30-sm py-60">
+                        <!-- Employee Name -->
+                        <h4 class="uppercase font-secondary medium fs-24 colored">
+                            Adriana Doen
+                        </h4>
+                        <!-- Employee Name -->
+                        <h6 class="gray6 fs-16 mt-5">
+                            Graphic Designer
+                        </h6>
+                        <!-- About -->
+                        <p class="mt-30 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Curabitur vitae dignissim libero, sed lobortis sem. Vestibulum bibendum quis purus at eleifend. Curabitur ex est, vulputate vitae augue at, gravida ullamcorper justo. In fringilla hendrerit commodo. Duis id eleifend eros, in sodales turpis. Integer ultrices tellus lacinia, bibendum mi quis, convallis urna.
+                        </p>
+                        <p class="mt-15 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Sed id viverra felis, a feugiat ipsum. Vivamus non purus eu neque aliquet sagittis. Duis vitae dolor interdum, cursus erat vel, dictum felis. Curabitur hendrerit placerat fermentum.
+                        </p>
+                        <!-- Networks -->
+                        <div class="mt-40">
+                            <a href="#" class="icon-sm opacity-8-hover bg-twitter white mr-5 slow-sm">
+                                <i class="ti-twitter-alt"></i>
+                            </a>
+                            <a href="#" class="icon-sm opacity-8-hover bg-mail white mr-5 slow-sm">
+                                <i class="ti-email"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12 mnh-400" data-bg="images/team/3b.jpg"></div>
+                </div>
+            </div>
+            <!-- End Modal Details -->
+        </div>
+        <!-- End box template container -->
+    </div>
+    <!-- End Modal -->
+
+
+
+    <!-- Modal -->
+    <div id="modal-04" class="modal fade fade-scale d-none" tabindex="-1" role="dialog">
+        <!-- Box template container -->
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <!-- Modal Details -->
+            <div class="modal-content">
+                <!-- Modal close button for mobile and large screens -->
+                <button type="button" class="modal-close close visible-lg white right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <button type="button" class="modal-close close hidden-lg right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <!-- Modal details -->
+                <div class="row mx-0 row-eq-height">
+                    <div class="col-lg-7 col-12 px-50 px-30-sm py-60">
+                        <!-- Employee Name -->
+                        <h4 class="uppercase font-secondary medium fs-24 colored">
+                            Sarah Tron
+                        </h4>
+                        <!-- Employee Name -->
+                        <h6 class="gray6 fs-16 mt-5">
+                            Human Resources
+                        </h6>
+                        <!-- About -->
+                        <p class="mt-30 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Curabitur vitae dignissim libero, sed lobortis sem. Vestibulum bibendum quis purus at eleifend. Curabitur ex est, vulputate vitae augue at, gravida ullamcorper justo. In fringilla hendrerit commodo. Duis id eleifend eros, in sodales turpis. Integer ultrices tellus lacinia, bibendum mi quis, convallis urna.
+                        </p>
+                        <p class="mt-15 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Sed id viverra felis, a feugiat ipsum. Vivamus non purus eu neque aliquet sagittis. Duis vitae dolor interdum, cursus erat vel, dictum felis. Curabitur hendrerit placerat fermentum.
+                        </p>
+                        <!-- Networks -->
+                        <div class="mt-40">
+                            <a href="#" class="icon-sm opacity-8-hover bg-twitter white mr-5 slow-sm">
+                                <i class="ti-twitter-alt"></i>
+                            </a>
+                            <a href="#" class="icon-sm opacity-8-hover bg-mail white mr-5 slow-sm">
+                                <i class="ti-email"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12 mnh-400" data-bg="images/team/4b.jpg"></div>
+                </div>
+            </div>
+            <!-- End Modal Details -->
+        </div>
+        <!-- End box template container -->
+    </div>
+    <!-- End Modal -->
+
+
+
+    <!-- Modal -->
+    <div id="modal-05" class="modal fade fade-scale d-none" tabindex="-1" role="dialog">
+        <!-- Box template container -->
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <!-- Modal Details -->
+            <div class="modal-content">
+                <!-- Modal close button for mobile and large screens -->
+                <button type="button" class="modal-close close visible-lg white right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <button type="button" class="modal-close close hidden-lg right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <!-- Modal details -->
+                <div class="row mx-0 row-eq-height">
+                    <div class="col-lg-7 col-12 px-50 px-30-sm py-60">
+                        <!-- Employee Name -->
+                        <h4 class="uppercase font-secondary medium fs-24 colored">
+                            Matt Kollen
+                        </h4>
+                        <!-- Employee Name -->
+                        <h6 class="gray6 fs-16 mt-5">
+                            Web Designer
+                        </h6>
+                        <!-- About -->
+                        <p class="mt-30 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Curabitur vitae dignissim libero, sed lobortis sem. Vestibulum bibendum quis purus at eleifend. Curabitur ex est, vulputate vitae augue at, gravida ullamcorper justo. In fringilla hendrerit commodo. Duis id eleifend eros, in sodales turpis. Integer ultrices tellus lacinia, bibendum mi quis, convallis urna.
+                        </p>
+                        <p class="mt-15 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Sed id viverra felis, a feugiat ipsum. Vivamus non purus eu neque aliquet sagittis. Duis vitae dolor interdum, cursus erat vel, dictum felis. Curabitur hendrerit placerat fermentum.
+                        </p>
+                        <!-- Networks -->
+                        <div class="mt-40">
+                            <a href="#" class="icon-sm opacity-8-hover bg-twitter white mr-5 slow-sm">
+                                <i class="ti-twitter-alt"></i>
+                            </a>
+                            <a href="#" class="icon-sm opacity-8-hover bg-mail white mr-5 slow-sm">
+                                <i class="ti-email"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12 mnh-400" data-bg="images/team/5b.jpg"></div>
+                </div>
+            </div>
+            <!-- End Modal Details -->
+        </div>
+        <!-- End box template container -->
+    </div>
+    <!-- End Modal -->
+
+
+
+    <!-- Modal -->
+    <div id="modal-06" class="modal fade fade-scale d-none" tabindex="-1" role="dialog">
+        <!-- Box template container -->
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <!-- Modal Details -->
+            <div class="modal-content">
+                <!-- Modal close button for mobile and large screens -->
+                <button type="button" class="modal-close close visible-lg white right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <button type="button" class="modal-close close hidden-lg right-15" data-bs-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                <!-- Modal details -->
+                <div class="row mx-0 row-eq-height">
+                    <div class="col-lg-7 col-12 px-50 px-30-sm py-60">
+                        <!-- Employee Name -->
+                        <h4 class="uppercase font-secondary medium fs-24 colored">
+                            Ariella Davenport
+                        </h4>
+                        <!-- Employee Name -->
+                        <h6 class="gray6 fs-16 mt-5">
+                            Graphic Designer
+                        </h6>
+                        <!-- About -->
+                        <p class="mt-30 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Curabitur vitae dignissim libero, sed lobortis sem. Vestibulum bibendum quis purus at eleifend. Curabitur ex est, vulputate vitae augue at, gravida ullamcorper justo. In fringilla hendrerit commodo. Duis id eleifend eros, in sodales turpis. Integer ultrices tellus lacinia, bibendum mi quis, convallis urna.
+                        </p>
+                        <p class="mt-15 dark1 fs-18 lh-30 fs-16-sm lh-30-sm">
+                            Sed id viverra felis, a feugiat ipsum. Vivamus non purus eu neque aliquet sagittis. Duis vitae dolor interdum, cursus erat vel, dictum felis. Curabitur hendrerit placerat fermentum.
+                        </p>
+                        <!-- Networks -->
+                        <div class="mt-40">
+                            <a href="#" class="icon-sm opacity-8-hover bg-twitter white mr-5 slow-sm">
+                                <i class="ti-twitter-alt"></i>
+                            </a>
+                            <a href="#" class="icon-sm opacity-8-hover bg-mail white mr-5 slow-sm">
+                                <i class="ti-email"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12 mnh-400" data-bg="images/team/6b.jpg"></div>
+                </div>
+            </div>
+            <!-- End Modal Details -->
+        </div>
+        <!-- End box template container -->
+    </div>
+    <!-- End Modal -->
+
+
+
+
+	<!-- Features section -->
+    <section id="features" class="features-section py-100 relative">
+
+		<!-- Background image, you can find height options in css/style.css file > .features-section .features-background{...} -->
+    	<div id="features-parallax" class="has-parallax features-background fai bg-soft-85 bg-soft-dark4">
+    		<!-- Background image - you can choose parallax ratio and offset -->
+        	<div class="parallax bg-top" data-anchor-target="#features" data-bottom-top="transform:translate3d(0, -200px, 0px);" data-top-bottom="transform:translate3d(0px, 200px, 0px);" data-bg="images/i2.jpg"></div>
+    	</div>
+
+        
+
+    	<!-- Container -->
+        <div class="container-lg relative zi-10">
+
+        	<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase white font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
+						Key Features
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-16 lh-30 white animated" data-animation="fadeIn" data-animation-delay="100">
+						From smart quotes to secure payouts — everything in one moving platform.
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+
+                <!-- Column for boxes and mobile -->
+            	<div class="col-12 mt-70 mt-30-sm">
+
+                	<!-- Row for all items -->
+            		<div class="row align-items-start">
+            			<div class="col-xl-4 col-lg-6 col-12">
+            				<div class="row align-items-center mb-35">
+            					<div class="col-9 text-xl-end text-lg-center text-center white">
+            						<h4 class="fs-22 medium font-secondary uppercase">Intelligent Quoting</h4>
+            						<ul class="list list-sm mt-5 fs-15 lh-22">
+            							<li>Video-based inventory generation</li>
+            							<li>Accurate volume &amp; weight calculations</li>
+            							<li>Transparent, data-driven pricing</li>
+            							<li>Structured, quote-ready outputs</li>
+            						</ul>
+            					</div>
+            					<div class="col-3 t-center">
+            						<button class="icon-xl bg-white b-double dark white-hover-item bg-colored-hover-item b-white b-colored-hover-item circle" type="button">
+            							<i class="ti-clipboard fs-24"></i>
+            						</button>
+            					</div>
+            				</div>
+
+            				<div class="row align-items-center mb-35">
+            					<div class="col-9 text-xl-end text-lg-center text-center white">
+            						<h4 class="fs-22 medium font-secondary uppercase">Work Order Management</h4>
+            						<ul class="list list-sm mt-5 fs-15 lh-22">
+            							<li>Centralized job dashboard</li>
+            							<li>Status tracking (Booked → In Progress → Completed)</li>
+            							<li>Real-time updates</li>
+            							<li>Customer &amp; crew coordination</li>
+            						</ul>
+            					</div>
+            					<div class="col-3 t-center">
+            						<button class="icon-xl bg-white b-double dark white-hover-item bg-colored-hover-item b-white b-colored-hover-item circle" type="button">
+            							<i class="ti-briefcase fs-24"></i>
+            						</button>
+            					</div>
+            				</div>
+
+            				<div class="row align-items-center">
+            					<div class="col-9 text-xl-end text-lg-center text-center white">
+            						<h4 class="fs-22 medium font-secondary uppercase">Automated Invoicing &amp; Billing</h4>
+            						<ul class="list list-sm mt-5 fs-15 lh-22">
+            							<li>Auto-generated invoices</li>
+            							<li>Volume-based billing logic</li>
+            							<li>Digital confirmations</li>
+            							<li>Financial reporting ready</li>
+            						</ul>
+            					</div>
+            					<div class="col-3 t-center">
+            						<button class="icon-xl bg-white b-double dark white-hover-item bg-colored-hover-item b-white b-colored-hover-item circle" type="button">
+            							<i class="ti-receipt fs-24"></i>
+            						</button>
+            					</div>
+            				</div>
+            			</div>
+
+            			<div class="col-xl-4 d-none d-xl-flex justify-content-center mt-0">
+                			<img src="assets/img/slider/mobilni2.png" alt="GetMoved mobile preview" class="d-block fullwidth">
+            			</div>
+
+            			<div class="col-xl-4 col-lg-6 col-12">
+            				<div class="row align-items-center mb-35">
+            					<div class="col-3 t-center">
+            						<button class="icon-xl bg-white b-double dark white-hover-item bg-colored-hover-item b-white b-colored-hover-item circle" type="button">
+            							<i class="ti-target fs-24"></i>
+            						</button>
+            					</div>
+            					<div class="col-9 text-xl-start text-lg-center text-center white">
+            						<h4 class="fs-22 medium font-secondary uppercase">Marketplace &amp; Job Matching</h4>
+            						<ul class="list list-sm mt-5 fs-15 lh-22">
+            							<li>Qualified lead distribution</li>
+            							<li>Service &amp; geo-based filtering</li>
+            							<li>Direct digital quote submission</li>
+            							<li>Win more verified jobs</li>
+            						</ul>
+            					</div>
+            				</div>
+
+            				<div class="row align-items-center mb-35">
+            					<div class="col-3 t-center">
+            						<button class="icon-xl bg-white b-double dark white-hover-item bg-colored-hover-item b-white b-colored-hover-item circle" type="button">
+            							<i class="ti-truck fs-24"></i>
+            						</button>
+            					</div>
+            					<div class="col-9 text-xl-start text-lg-center text-center white">
+            						<h4 class="fs-22 medium font-secondary uppercase">Fleet &amp; Crew Optimization</h4>
+            						<ul class="list list-sm mt-5 fs-15 lh-22">
+            							<li>Vehicle size recommendations</li>
+            							<li>Crew planning &amp; assignment</li>
+            							<li>Load optimization</li>
+            							<li>Schedule coordination</li>
+            						</ul>
+            					</div>
+            				</div>
+
+            				<div class="row align-items-center">
+            					<div class="col-3 t-center">
+            						<button class="icon-xl bg-white b-double dark white-hover-item bg-colored-hover-item b-white b-colored-hover-item circle" type="button">
+            							<i class="ti-wallet fs-24"></i>
+            						</button>
+            					</div>
+            					<div class="col-9 text-xl-start text-lg-center text-center white">
+            						<h4 class="fs-22 medium font-secondary uppercase">Secure Payments &amp; Payouts</h4>
+            						<ul class="list list-sm mt-5 fs-15 lh-22">
+            							<li>Protected transactions</li>
+            							<li>Automated customer payments</li>
+            							<li>Scheduled company payouts</li>
+            							<li>Transparent fee structure</li>
+            						</ul>
+            					</div>
+            				</div>
+            			</div>
+
+            		</div>
+                	<!-- End row for all items -->
+            		
+            	</div>
+
+            </div>
+        	<!-- Row end -->
+
+        </div>
+    	<!-- End container -->
+
+    </section>
+    <!-- End features section -->
+
+
+
+
+
+
+
+
+
+	<!-- Testimonials -->
+	<section id="testimonials-1512324" class="has-parallax pt-120 pb-110 bg-soft-85 bg-soft-dark3 d-none">
+
+		<!-- Background image - you can choose parallax ratio and offset -->
+    	<div class="parallax bg-top" data-anchor-target="#testimonials-1512324" data-bottom-top="transform:translate3d(0, -200px, 0px);" data-top-bottom="transform:translate3d(0px, 200px, 0px);" data-bg="images/i7.jpg"></div>
+
+		<!-- Top arrow -->
+		<div class="absolute fai zi-2 d-flex justify-content-center">
+			<svg width="70px" height="35px" viewBox="0 0 70 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+			        <polygon fill="#FFFFFF" transform="translate(35.000000, 17.500000) rotate(-180.000000) translate(-35.000000, -17.500000) " points="35 1.13686838e-13 70 35 -6.82121026e-13 35"></polygon>
+			    </g>
+			</svg>
+		</div>
+
+		<!-- Container for slider -->
+        <div class="container-md t-center">
+
+        	<!-- Quote icon -->
+			<div class="fullwidth d-flex justify-content-center">
+				<svg width="35px" height="28px" viewBox="0 0 35 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.703170422">
+				        <path d="M2.96932021,4.00973937 C5.42379854,1.34882594 9.13788086,0 14.0066002,0 L15.7560502,0 L15.7560502,4.93169951 L14.3494924,5.21336096 C11.9527459,5.69271025 10.28552,6.6356638 9.39330056,8.01947874 C8.9277587,8.76497112 8.66372707,9.61855284 8.62704146,10.4966999 L14.0066002,10.4966999 C14.9727947,10.4966999 15.7560502,11.2799554 15.7560502,12.2461499 L15.7560502,24.4922998 C15.7560502,26.4219431 14.1867935,27.9911998 12.2571502,27.9911998 L1.76045027,27.9911998 C0.79425572,27.9911998 0.0110002824,27.2079443 0.0110002824,26.2417498 L0.0110002824,17.4944999 L0.0162486323,12.3878554 C0.000503582436,12.1936664 -0.331891915,7.59261294 2.96932021,4.00973937 Z M31.5011,27.9911998 L21.0044001,27.9911998 C20.0382056,27.9911998 19.2549501,27.2079443 19.2549501,26.2417498 L19.2549501,17.4944999 L19.2601985,12.3878554 C19.2444534,12.1936664 18.9120579,7.59261294 22.2132701,4.00973937 C24.6677484,1.34882594 28.3818307,0 33.25055,0 L35,0 L35,4.93169951 L33.5934422,5.21336096 C31.1966957,5.69271025 29.5294699,6.6356638 28.6372504,8.01947874 C28.1717085,8.76497112 27.9076769,9.61855284 27.8709913,10.4966999 L33.25055,10.4966999 C34.2167446,10.4966999 35,11.2799554 35,12.2461499 L35,24.4922998 C35,26.4219431 33.4307434,27.9911998 31.5011,27.9911998 Z" id="quote_testimonials" fill="#FFFFFF" fill-rule="nonzero"></path>
+				    </g>
+				</svg>
+			</div>
+        	<!-- End quote icon -->
+
+
+            <!-- Slider start -->
+            <div id="testimonials-slider-1512324" class="custom-slider fullwidth c-default mt-40" 
+            data-slick='{"dots": false, "speed":600, "arrows": false, "fade": true, "draggable":false, "slidesToShow": 1, "slidesToScroll": 1, "responsive":[{"breakpoint": 1350,"settings":{"slidesToShow": 1}},{"breakpoint": 1024,"settings":{"slidesToShow": 1}},{"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                <!-- Slide -->
+                <div class="px-30 pt-25 relative">
+                    <!-- Desc -->
+                    <q cite="http://quadra.goldeyestheme.com/" class="white fs-30 fs-24-sm medium lh-40">
+                        Informed decision-making comes from a long tradition of guessing and then blaming <span class="colored">others</span> for inadequate results.
+                    </q>
+                    <!-- Subtitle -->
+                    <h5 class="fs-14 gray3 uppercase mt-25">SCOTT ADAMS</h5>
+                </div>
+                <!-- End slide -->
+                <!-- Slide -->
+                <div class="px-30 pt-25 relative">
+                    <!-- Desc -->
+                    <q cite="http://quadra.goldeyestheme.com/" class="white fs-30 fs-24-sm medium lh-40">
+                        Engineers like to solve problems. If there are <span class="colored">no problems</span> handily available, they will create their own problems.
+                    </q>
+                    <!-- Subtitle -->
+                    <h5 class="fs-14 gray3 uppercase mt-25">SCOTT ADAMS</h5>
+                </div>
+                <!-- End slide -->
+                <!-- Slide -->
+                <div class="px-30 pt-25 relative">
+                    <!-- Desc -->
+                    <q cite="http://quadra.goldeyestheme.com/" class="white fs-30 fs-24-sm medium lh-40">
+                        Remind people that profit is the difference between <span class="colored">revenue and expense.</span> This makes you look smart.
+                    </q>
+                    <!-- Subtitle -->
+                    <h5 class="fs-14 gray3 uppercase mt-25">SCOTT ADAMS</h5>
+                </div>
+                <!-- End slide -->
+            </div>
+            <!-- Slider end -->
+
+            <!-- Carousel arrows -->
+            <div class="col-12 d-flex justify-content-center mt-40">
+            	<!-- Previous button -->
+            	<button type="button" class="icon-md mx-5 bg-dark1 circle white bg-colored-hover"
+            		data-slider-control="#testimonials-slider-1512324"
+            		data-slider-dir="prev">
+            		<i class="ti-angle-left"></i>
+            	</button>
+            	<!-- Next button -->
+            	<button type="button" class="icon-md mx-5 bg-dark1 circle white bg-colored-hover"
+            		data-slider-control="#testimonials-slider-1512324"
+            		data-slider-dir="next">
+            		<i class="ti-angle-right"></i>
+            	</button>
+            </div>
+            <!-- End carousel arrows -->
+
+
+        </div>
+        <!-- End container for slider -->
+
+		
+	</section>
+	<!-- End Testimonials -->
+
+
+
+
+
+	<!-- Clients Section -->
+	<section id="clients" class="pt-100 pb-150 d-none">
+
+		<!-- Clients Inner -->
+		<div class="container">
+
+
+			<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
+						WHAT CLIENTS SAYS
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-16 lh-30 animated" data-animation="fadeIn" data-animation-delay="100">
+						Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in piece of classical Latin literature from 45 BC, it a old.
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+
+                <!-- Fullwidth column for slider -->
+                <div class="col-12 mt-50 animated" data-animation="fadeIn" data-animation-delay="300">
+                	
+                	<!-- Slider -->
+		            <div id="customer-comments-slider" class="custom-slider block-img dots-circle controls-mouseover row" 
+		                data-slick='{"dots": true, "speed":600, "arrows": false, "fade": false, "draggable":false, "slidesToShow": 3, "slidesToScroll": 2, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2,"slidesToScroll": 2}},{"breakpoint": 768,"settings":{"slidesToShow": 1,"slidesToScroll": 1}}]}' >
+
+		                <!-- Slide / comment start -->
+		                <div class="p-3 d-flex align-items-center text-center flex-column">
+		                	<!-- image -->
+		                	<img src="images/clients/1.jpg" alt="client image" class="width-120 height-120 circle b-1 b-dashed b-gray5">
+		                	<!-- Name -->
+		                	<h4 class="font-secondary fs-22 medium uppercase gray6 mt-25">Jonathan Peterson</h4>
+		                	<!-- Job title -->
+		                	<p class="fs-14 uppercase medium gray7 mt-10">Forward Applications Designer</p>
+		                	<!-- Message -->
+		                	<p class="fs-16 gray6 mt-10 lh-25">Contrary to popular belief, Lorem Ipsum is a not simply It has roots in a piece of classical Latin literature making it over 2000 years.</p>
+		                </div>
+		        		<!-- End slide / comment -->
+
+		        		<!-- Slide / comment start -->
+		                <div class="p-3 d-flex align-items-center text-center flex-column">
+		                	<!-- image -->
+		                	<img src="images/clients/2.jpg" alt="client image" class="width-120 height-120 circle b-1 b-dashed b-gray5">
+		                	<!-- Name -->
+		                	<h4 class="font-secondary fs-22 medium uppercase gray6 mt-25">Spencer Lamb</h4>
+		                	<!-- Job title -->
+		                	<p class="fs-14 uppercase medium gray7 mt-10">Internal Implementation Engineer</p>
+		                	<!-- Message -->
+		                	<p class="fs-16 gray6 mt-10 lh-25">Contrary to popular belief, Lorem Ipsum is a not simply It has roots in a piece of classical Latin literature making it over 2000 years.</p>
+		                </div>
+		        		<!-- End slide / comment -->
+
+		        		<!-- Slide / comment start -->
+		                <div class="p-3 d-flex align-items-center text-center flex-column">
+		                	<!-- image -->
+		                	<img src="images/clients/3.jpg" alt="client image" class="width-120 height-120 circle b-1 b-dashed b-gray5">
+		                	<!-- Name -->
+		                	<h4 class="font-secondary fs-22 medium uppercase gray6 mt-25">Chandler Hays</h4>
+		                	<!-- Job title -->
+		                	<p class="fs-14 uppercase medium gray7 mt-10">Dynamic Communications Supervisor</p>
+		                	<!-- Message -->
+		                	<p class="fs-16 gray6 mt-10 lh-25">Contrary to popular belief, Lorem Ipsum is a not simply It has roots in a piece of classical Latin literature making it over 2000 years.</p>
+		                </div>
+		        		<!-- End slide / comment -->
+
+		        		<!-- Slide / comment start -->
+		                <div class="p-3 d-flex align-items-center text-center flex-column">
+		                	<!-- image -->
+		                	<img src="images/clients/4.jpg" alt="client image" class="width-120 height-120 circle b-1 b-dashed b-gray5">
+		                	<!-- Name -->
+		                	<h4 class="font-secondary fs-22 medium uppercase gray6 mt-25">Corrie Huerta</h4>
+		                	<!-- Job title -->
+		                	<p class="fs-14 uppercase medium gray7 mt-10">Senior Research Planner</p>
+		                	<!-- Message -->
+		                	<p class="fs-16 gray6 mt-10 lh-25">Contrary to popular belief, Lorem Ipsum is a not simply It has roots in a piece of classical Latin literature making it over 2000 years.</p>
+		                </div>
+		        		<!-- End slide / comment -->
+
+		        		<!-- Slide / comment start -->
+		                <div class="p-3 d-flex align-items-center text-center flex-column">
+		                	<!-- image -->
+		                	<img src="images/clients/5.jpg" alt="client image" class="width-120 height-120 circle b-1 b-dashed b-gray5">
+		                	<!-- Name -->
+		                	<h4 class="font-secondary fs-22 medium uppercase gray6 mt-25">Darnell Sadler</h4>
+		                	<!-- Job title -->
+		                	<p class="fs-14 uppercase medium gray7 mt-10">Product Program Director</p>
+		                	<!-- Message -->
+		                	<p class="fs-16 gray6 mt-10 lh-25">Contrary to popular belief, Lorem Ipsum is a not simply It has roots in a piece of classical Latin literature making it over 2000 years.</p>
+		                </div>
+		        		<!-- End slide / comment -->
+
+		        		<!-- Slide / comment start -->
+		                <div class="p-3 d-flex align-items-center text-center flex-column">
+		                	<!-- image -->
+		                	<img src="images/clients/6.jpg" alt="client image" class="width-120 height-120 circle b-1 b-dashed b-gray5">
+		                	<!-- Name -->
+		                	<h4 class="font-secondary fs-22 medium uppercase gray6 mt-25">Gurdeep Odom</h4>
+		                	<!-- Job title -->
+		                	<p class="fs-14 uppercase medium gray7 mt-10">Customer Branding Facilitator</p>
+		                	<!-- Message -->
+		                	<p class="fs-16 gray6 mt-10 lh-25">Contrary to popular belief, Lorem Ipsum is a not simply It has roots in a piece of classical Latin literature making it over 2000 years.</p>
+		                </div>
+		        		<!-- End slide / comment -->
+		            </div>
+		            <!-- End Slider -->
+                </div>
+            	<!-- Slider end -->
+
+            </div>
+			<!-- Row end -->
+
+		</div>
+		<!-- Clients Inner end -->
+
+	</section>
+	<!-- End clients Section -->
+
+
+
+	<!-- Client slider area -->
+	<div id="client-logos" class="bg-dark d-none" style="display:none !important;">
+		<!-- Container for slider -->
+        <div class="container">
+        	<!-- Slider -->
+            <div id="client-logos-slider" class="custom-slider block-img row c-grab height-100 align-items-center" 
+                data-slick='{"dots": false, "speed":600, "arrows": false, "fade": false, "draggable":true, "slidesToShow": 5, "slidesToScroll": 2, "responsive":[{"breakpoint": 1400,"settings":{"slidesToShow": 4,"slidesToScroll": 2}},{"breakpoint": 1200,"settings":{"slidesToShow": 3,"slidesToScroll": 2}},{"breakpoint": 640,"settings":{"slidesToShow": 2,"slidesToScroll": 1}}]}' >
+
+                <!-- Image -->
+                <div class="height-100 d-flex align-items-center justify-content-center opacity-7-hover slow">
+                	<img src="images/clients/logo1.png" alt="client image" class="mxw-110">
+                </div>
+        		<!-- End image -->
+
+        		<!-- Image -->
+                <div class="height-100 d-flex align-items-center justify-content-center opacity-7-hover slow">
+                	<img src="images/clients/logo2.png" alt="client image" class="mxw-110">
+                </div>
+        		<!-- End image -->
+
+        		<!-- Image -->
+                <div class="height-100 d-flex align-items-center justify-content-center opacity-7-hover slow">
+                	<img src="images/clients/logo3.png" alt="client image" class="mxw-110">
+                </div>
+        		<!-- End image -->
+
+        		<!-- Image -->
+                <div class="height-100 d-flex align-items-center justify-content-center opacity-7-hover slow">
+                	<img src="images/clients/logo4.png" alt="client image" class="mxw-110">
+                </div>
+        		<!-- End image -->
+
+        		<!-- Image -->
+                <div class="height-100 d-flex align-items-center justify-content-center opacity-7-hover slow">
+                	<img src="images/clients/logo5.png" alt="client image" class="mxw-110">
+                </div>
+        		<!-- End image -->
+
+        		<!-- Image -->
+                <div class="height-100 d-flex align-items-center justify-content-center opacity-7-hover slow">
+                	<img src="images/clients/logo6.png" alt="client image" class="mxw-110">
+                </div>
+        		<!-- End image -->
+
+            </div>
+            <!-- End Slider -->
+        </div>
+    	<!-- Container end -->
+	</div>
+	<!-- End client slider area -->
+
+
+
+
+
+
+
+
+
+	<!-- FAQ section -->
+	<section id="faq" class="pt-100 pb-150 d-none" style="display:none !important;">
+
+		<!-- Clients Inner -->
+		<div class="container">
+
+
+			<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">
+						FAQ
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-16 lh-30 animated" data-animation="fadeIn" data-animation-delay="100">
+						Quick answers to the most common questions from moving teams.
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+
+
+                <!-- Col -->
+                <div class="col-lg-6 col-12 t-left mt-100 mt-50-sm d-none">
+                    <!-- Nav tabs -->
+                    <div>
+                        <ul class="nav justify-content-center d-inline-flex width-auto bl-1 b-gray2" role="tablist">
+                            <li role="presentation" class="d-flex">
+                                <button type="button" data-bs-target="#tab10a" aria-selected="true" aria-controls="tab10a" role="tab" data-bs-toggle="pill"
+                                class="tab-filter show active font-secondary mr-3 ml--1 btn-md px-15-sm bg-gray2 bg-gray3-hover bg-white-active fs-15 uppercase slow-sm">
+                                    Design
+                               </button>
+                            </li>
+                            <li role="presentation" class="d-flex">
+                                <button type="button" data-bs-target="#tab10b" aria-selected="false" aria-controls="tab10b" role="tab" data-bs-toggle="pill"
+                                class="tab-filter font-secondary mr-3 btn-md px-15-sm bg-gray2 bg-gray3-hover bg-white-active dark4 fs-15 uppercase slow-sm">
+                                    Company
+                               </button>
+                            </li>
+                            <li role="presentation" class="d-flex">
+                                <button type="button" data-bs-target="#tab10c" aria-selected="false" aria-controls="tab10c" role="tab" data-bs-toggle="pill"
+                                class="tab-filter font-secondary mr-3 btn-md px-15-sm bg-gray2 bg-gray3-hover bg-white-active dark4 fs-15 uppercase slow-sm">
+                                    Support
+                               </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content t-left px-30 py-30 fs-17 gray7 lh-30">
+                        <!-- Tab -->
+                        <div id="tab10a" role="tabpanel" class="tab-pane fade show active">
+                            <div class="tab-container t-justify">
+                            	<img src="images/mini-phone.png" alt="mini phone png" class="f-left mr-20">
+                                Integer feugiat scelerisque varius morbi enim. Accumsan tortor posuere ac ut consequat semper viverra nam. Fringilla urna porttitor rhoncus dolor purus non enim. Nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Facilisi morbi tempus iaculis urna. Turpis massa tincidunt dui ut ornare lectus sit amet est. Fringilla est ullamcorper eget nulla facilisi etiam.
+                            </div>
+                        </div>
+                        <!-- Tab -->
+                        <div id="tab10b" role="tabpanel" class="tab-pane fade">
+                            <div class="tab-container d-flex justify-content-between t-justify">
+                                Integer feugiat scelerisque varius morbi enim. Accumsan tortor posuere ac ut consequat semper viverra nam. Fringilla urna porttitor rhoncus dolor purus non enim. Nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Facilisi morbi tempus iaculis urna. Turpis massa tincidunt dui ut ornare lectus sit amet est.
+                            	<img src="images/mini-phone1.png" alt="mini phone alternative png" class="ml-20">
+                            </div>
+                        </div>
+                        <!-- Tab -->
+                        <div id="tab10c" role="tabpanel" class="tab-pane fade">
+                            <div class="tab-container t-justify">
+                                Integer feugiat scelerisque varius morbi enim. Accumsan tortor posuere ac ut consequat semper viverra nam. Fringilla urna porttitor rhoncus dolor purus non enim. Nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Facilisi morbi tempus iaculis urna. Turpis massa tincidunt dui ut ornare lectus sit amet est. Fringilla est ullamcorper eget nulla facilisi etiam.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Tab panes -->
+                </div>
+                <!-- End col -->
+
+
+                <div class="col-12 t-left mt-50">
+                	<!-- Accordion -->
+		            <div id="one">
+		                <!-- Accordion bar -->
+		                <div data-bs-target="#acc-01" aria-controls="acc-01" aria-expanded="true" data-bs-toggle="collapse" role="button"
+		                    class="acc-bar b-1 b-solid b-gray2 d-flex align-items-center black bg-gray2-hover bg-gray2-active c-pointer flex-wrap slow">
+		                    <!-- Left icon and texts -->
+		                    <div class="py-20 px-30 px-20-sm">
+		                        <h4 class="font-secondary gray8 fs-18 fs-14-sm">What videos work best?</h4>
+		                    </div>
+		                    <!-- Right icons -->
+		                    <div class="ml-auto px-40 px-20-sm">
+		                        <i class="ti-plus gray6"></i>
+		                        <i class="ti-minus gray6"></i>
+		                    </div>
+		                </div>
+		                <!-- End accordion bar -->
+		                <!-- End left icon and texts -->
+		                <!-- Card body -->
+		                <div id="acc-01" class="collapse show active fullwidth b-1 b-gray2 bt-0 fs-14 gray7" data-bs-parent="#one">
+		                    <div class="px-30 py-20">
+		                        <!-- Paragraph -->
+		                        <p class="fs-17 fs-16-sm gray8 lh-30">
+		                            A slow, steady phone walkthrough with good lighting and open doors. Pan rooms left to right and avoid rapid cuts for best tracking.
+		                        </p>
+		                    </div>
+		                </div>
+		                <!-- End card body -->
+		                <!-- Accordion bar -->
+		                <div data-bs-target="#acc-02" aria-controls="acc-02" aria-expanded="false" data-bs-toggle="collapse" role="button"
+		                    class="acc-bar b-1 b-solid b-gray2 d-flex align-items-center black bg-gray2-hover bg-gray2-active c-pointer flex-wrap slow mt-10">
+		                    <!-- Left icon and texts -->
+		                    <div class="py-20 px-30 px-20-sm">
+		                        <h4 class="font-secondary gray8 fs-18 fs-14-sm">How accurate is inventory?</h4>
+		                    </div>
+		                    <!-- Right icons -->
+		                    <div class="ml-auto px-40 px-20-sm">
+		                        <i class="ti-plus gray6"></i>
+		                        <i class="ti-minus gray6"></i>
+		                    </div>
+		                </div>
+		                <!-- End accordion bar -->
+		                <!-- End left icon and texts -->
+		                <!-- Card body -->
+		                <div id="acc-02" class="collapse fullwidth b-1 b-gray2 bt-0 fs-14 gray7" data-bs-parent="#one">
+		                    <div class="px-30 py-20">
+		                        <!-- Paragraph -->
+		                        <p class="fs-17 fs-16-sm gray8 lh-30">
+		                            Typical accuracy is 85–95% on common furniture. You can review snapshots and adjust quantities before exporting.
+		                        </p>
+		                    </div>
+		                </div>
+		                <!-- End card body -->
+		                <!-- Accordion bar -->
+		                <div data-bs-target="#acc-03" aria-controls="acc-03" aria-expanded="false" data-bs-toggle="collapse" role="button"
+		                    class="acc-bar b-1 b-solid b-gray2 d-flex align-items-center black bg-gray2-hover bg-gray2-active bg-gray2-active c-pointer flex-wrap slow mt-10">
+		                    <!-- Left icon and texts -->
+		                    <div class="py-20 px-30 px-20-sm">
+		                        <h4 class="font-secondary gray8 fs-18 fs-14-sm">Do you support custom item classes?</h4>
+		                    </div>
+		                    <!-- Right icons -->
+		                    <div class="ml-auto px-40 px-20-sm">
+		                        <i class="ti-plus gray6"></i>
+		                        <i class="ti-minus gray6"></i>
+		                    </div>
+		                </div>
+		                <!-- End accordion bar -->
+		                <!-- End left icon and texts -->
+		                <!-- Card body -->
+		                <div id="acc-03" class="collapse fullwidth b-1 b-gray2 bt-0 fs-14 gray7" data-bs-parent="#one">
+		                    <div class="px-30 py-20">
+		                        <!-- Paragraph -->
+		                        <p class="fs-17 fs-16-sm gray8 lh-30">
+		                            Yes. We can train custom classes with labeled examples and add them to your model.
+		                        </p>
+		                    </div>
+		                </div>
+		                <!-- End card body -->
+		                <!-- Accordion bar -->
+		                <div data-bs-target="#acc-04" aria-controls="acc-04" aria-expanded="false" data-bs-toggle="collapse" role="button"
+		                    class="acc-bar b-1 b-solid b-gray2 d-flex align-items-center black bg-gray2-hover bg-gray2-active c-pointer flex-wrap slow mt-10">
+		                    <div class="py-20 px-30 px-20-sm">
+		                        <h4 class="font-secondary gray8 fs-18 fs-14-sm">How do you estimate volume/weight?</h4>
+		                    </div>
+		                    <div class="ml-auto px-40 px-20-sm">
+		                        <i class="ti-plus gray6"></i>
+		                        <i class="ti-minus gray6"></i>
+		                    </div>
+		                </div>
+		                <div id="acc-04" class="collapse fullwidth b-1 b-gray2 bt-0 fs-14 gray7" data-bs-parent="#one">
+		                    <div class="px-30 py-20">
+		                        <p class="fs-17 fs-16-sm gray8 lh-30">
+		                            We combine depth estimation with physics-based priors per item category to generate volume and weight ranges.
+		                        </p>
+		                    </div>
+		                </div>
+		                <!-- Accordion bar -->
+		                <div data-bs-target="#acc-05" aria-controls="acc-05" aria-expanded="false" data-bs-toggle="collapse" role="button"
+		                    class="acc-bar b-1 b-solid b-gray2 d-flex align-items-center black bg-gray2-hover bg-gray2-active c-pointer flex-wrap slow mt-10">
+		                    <div class="py-20 px-30 px-20-sm">
+		                        <h4 class="font-secondary gray8 fs-18 fs-14-sm">Can I export to my TMS/CRM?</h4>
+		                    </div>
+		                    <div class="ml-auto px-40 px-20-sm">
+		                        <i class="ti-plus gray6"></i>
+		                        <i class="ti-minus gray6"></i>
+		                    </div>
+		                </div>
+		                <div id="acc-05" class="collapse fullwidth b-1 b-gray2 bt-0 fs-14 gray7" data-bs-parent="#one">
+		                    <div class="px-30 py-20">
+		                        <p class="fs-17 fs-16-sm gray8 lh-30">
+		                            Yes. Export JSON/CSV today, and we support API integrations for common systems.
+		                        </p>
+		                    </div>
+		                </div>
+		                <!-- Accordion bar -->
+		                <div data-bs-target="#acc-06" aria-controls="acc-06" aria-expanded="false" data-bs-toggle="collapse" role="button"
+		                    class="acc-bar b-1 b-solid b-gray2 d-flex align-items-center black bg-gray2-hover bg-gray2-active c-pointer flex-wrap slow mt-10">
+		                    <div class="py-20 px-30 px-20-sm">
+		                        <h4 class="font-secondary gray8 fs-18 fs-14-sm">Where does processing run?</h4>
+		                    </div>
+		                    <div class="ml-auto px-40 px-20-sm">
+		                        <i class="ti-plus gray6"></i>
+		                        <i class="ti-minus gray6"></i>
+		                    </div>
+		                </div>
+		                <div id="acc-06" class="collapse fullwidth b-1 b-gray2 bt-0 fs-14 gray7" data-bs-parent="#one">
+		                    <div class="px-30 py-20">
+		                        <p class="fs-17 fs-16-sm gray8 lh-30">
+		                            Processing runs on our HPC stack in secure cloud regions. Enterprise on-prem options are available.
+		                        </p>
+		                    </div>
+		                </div>
+		            </div>
+		            <!-- End accordion -->
+                </div>
+
+            </div>
+			<!-- Row end -->
+
+		</div>
+		<!-- Clients Inner end -->
+
+
+	</section>
+	<!-- End FAQ section -->
+
+
+
+
+
+
+
+
+	<!-- Testimonials -->
+	<section id="featured-works" class="has-parallax py-100 bg-soft-85 bg-soft-dark4 d-none">
+
+		<!-- Background image - you can choose parallax ratio and offset -->
+    	<div class="parallax bg-top" data-anchor-target="#featured-works" data-bottom-top="transform:translate3d(0, -200px, 0px);" data-top-bottom="transform:translate3d(0px, 200px, 0px);" data-bg="images/i3.jpg"></div>
+
+
+        <!-- Container -->
+        <div class="container-fluid relative zi-10">
+
+        	<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase white font-secondary">
+						OUR FEATURED WORKS
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-16 lh-30 white">
+						Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in piece of classical. There are many variations of passages of Lorem Ipsum available.
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+
+                <!-- Column for slider -->
+                <div class="col-12">
+                	
+                	<!-- Slider start -->
+		            <div id="featured-works-slider" class="custom-slider fullwidth c-default block-img mt-40" 
+		            data-slick='{ "autoplay": true, "autoplaySpeed":7000, "dots": false, "speed":600, "arrows": false, "fade": false, "draggable":false, "slidesToShow": 4, "slidesToScroll": 1, "responsive":[{"breakpoint": 1350,"settings":{"slidesToShow": 3}},{"breakpoint": 1024,"settings":{"slidesToShow": 2}},{"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+
+		                <!-- Slide -->
+		                <div class="px-10 hover-container animated-hover-container has-overlay-hover">
+		                	<!-- Image -->
+		                	<div class="opacity-5 opacity-hover-item slow-xl">
+		                		<img src="images/portfolio/f1.jpg" alt="featured work image">
+		                	</div>
+		                	<!-- Overlay for title and tags -->
+		                	<div class="overlay px-35 py-20 align-items-start justify-content-start flex-column opacity-7 opacity-hover-item slow-xl">
+		                		<!-- Title -->
+	                			<h2 class="font-secondary fs-30 uppercase white t-shadow">
+	                				Girl on park
+		                		</h2>
+		                		<!-- Desc -->
+		                		<p class="fs-16 white medium t-shadow">
+		                			Design, photography
+		                		</p>
+		                	</div>
+		                	<!-- Icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                	<div class="fw-icon-container overlay px-30 py-15 align-items-end justify-content-end">
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="images/portfolio/f1-b.jpg" data-fslightbox="featured-works" data-type="image" class="fw-icon fs-18 icon-lg mr-10 circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-plus"></i>
+			                		</a>
+		                		</div>
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="project-01.html" class="fw-icon fs-18 icon-lg circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-arrow-right"></i>
+			                		</a>
+		                		</div>
+		                	</div>
+		                	<!-- End icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                </div>
+		                <!-- End slide -->
+
+		                <!-- Slide -->
+		                <div class="px-10 hover-container animated-hover-container has-overlay-hover">
+		                	<!-- Image -->
+		                	<div class="opacity-5 opacity-hover-item slow-xl">
+		                		<img src="images/portfolio/f2.jpg" alt="featured work image">
+		                	</div>
+		                	<!-- Overlay for title and tags -->
+		                	<div class="overlay px-35 py-20 align-items-start justify-content-start flex-column opacity-7 opacity-hover-item slow-xl">
+		                		<!-- Title -->
+	                			<h2 class="font-secondary fs-30 uppercase white t-shadow">
+	                				Vintage look
+		                		</h2>
+		                		<!-- Desc -->
+		                		<p class="fs-16 white medium t-shadow">
+		                			Design, photography
+		                		</p>
+		                	</div>
+		                	<!-- Icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                	<div class="fw-icon-container overlay px-30 py-15 align-items-end justify-content-end">
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="images/portfolio/f2-b.jpg" data-fslightbox="featured-works" data-type="image" class="fw-icon fs-18 icon-lg mr-10 circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-plus"></i>
+			                		</a>
+		                		</div>
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="project-02.html" class="fw-icon fs-18 icon-lg circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-arrow-right"></i>
+			                		</a>
+		                		</div>
+		                	</div>
+		                	<!-- End icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                </div>
+		                <!-- End slide -->
+
+		                <!-- Slide -->
+		                <div class="px-10 hover-container animated-hover-container has-overlay-hover">
+		                	<!-- Image -->
+		                	<div class="opacity-5 opacity-hover-item slow-xl">
+		                		<img src="images/portfolio/f3.jpg" alt="featured work image">
+		                	</div>
+		                	<!-- Overlay for title and tags -->
+		                	<div class="overlay px-35 py-20 align-items-start justify-content-start flex-column opacity-7 opacity-hover-item slow-xl">
+		                		<!-- Title -->
+	                			<h2 class="font-secondary fs-30 uppercase white t-shadow">
+	                				Red & Fire
+		                		</h2>
+		                		<!-- Desc -->
+		                		<p class="fs-16 white medium t-shadow">
+		                			Design, photography
+		                		</p>
+		                	</div>
+		                	<!-- Icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                	<div class="fw-icon-container overlay px-30 py-15 align-items-end justify-content-end">
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="images/portfolio/f3-b.jpg" data-fslightbox="featured-works" data-type="image" class="fw-icon fs-18 icon-lg mr-10 circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-plus"></i>
+			                		</a>
+		                		</div>
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="project-03.html" class="fw-icon fs-18 icon-lg circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-arrow-right"></i>
+			                		</a>
+		                		</div>
+		                	</div>
+		                	<!-- End icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                </div>
+		                <!-- End slide -->
+
+		                <!-- Slide -->
+		                <div class="px-10 hover-container animated-hover-container has-overlay-hover">
+		                	<!-- Image -->
+		                	<div class="opacity-5 opacity-hover-item slow-xl">
+		                		<img src="images/portfolio/f4.jpg" alt="featured work image">
+		                	</div>
+		                	<!-- Overlay for title and tags -->
+		                	<div class="overlay px-35 py-20 align-items-start justify-content-start flex-column opacity-7 opacity-hover-item slow-xl">
+		                		<!-- Title -->
+	                			<h2 class="font-secondary fs-30 uppercase white t-shadow">
+	                				Fashion
+		                		</h2>
+		                		<!-- Desc -->
+		                		<p class="fs-16 white medium t-shadow">
+		                			Design, photography
+		                		</p>
+		                	</div>
+		                	<!-- Icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                	<div class="fw-icon-container overlay px-30 py-15 align-items-end justify-content-end">
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="images/portfolio/f4-b.jpg" data-fslightbox="featured-works" data-type="image" class="fw-icon fs-18 icon-lg mr-10 circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-plus"></i>
+			                		</a>
+		                		</div>
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="project-01.html" class="fw-icon fs-18 icon-lg circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-arrow-right"></i>
+			                		</a>
+		                		</div>
+		                	</div>
+		                	<!-- End icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                </div>
+		                <!-- End slide -->
+
+		                <!-- Slide -->
+		                <div class="px-10 hover-container animated-hover-container has-overlay-hover">
+		                	<!-- Image -->
+		                	<div class="opacity-5 opacity-hover-item slow-xl">
+		                		<img src="images/portfolio/f5.jpg" alt="featured work image">
+		                	</div>
+		                	<!-- Overlay for title and tags -->
+		                	<div class="overlay px-35 py-20 align-items-start justify-content-start flex-column opacity-7 opacity-hover-item slow-xl">
+		                		<!-- Title -->
+	                			<h2 class="font-secondary fs-30 uppercase white t-shadow">
+	                				Desert & Red
+		                		</h2>
+		                		<!-- Desc -->
+		                		<p class="fs-16 white medium t-shadow">
+		                			Design, photography
+		                		</p>
+		                	</div>
+		                	<!-- Icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                	<div class="fw-icon-container overlay px-30 py-15 align-items-end justify-content-end">
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="images/portfolio/f5-b.jpg" data-fslightbox="featured-works" data-type="image" class="fw-icon fs-18 icon-lg mr-10 circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-plus"></i>
+			                		</a>
+		                		</div>
+		                		<!-- Icon -->
+		                		<div class="fw-icon">
+			                		<a href="project-02.html" class="fw-icon fs-18 icon-lg circle bg-white dark white-hover bg-colored-hover slow">
+			                			<i class="ti-arrow-right"></i>
+			                		</a>
+		                		</div>
+		                	</div>
+		                	<!-- End icon container, you can find animations in css/style.css > .fw-icon-container -->
+		                </div>
+		                <!-- End slide -->
+
+		            </div>
+		            <!-- Slider end -->
+
+                </div>
+                <!-- End column for slider -->
+
+            	<!-- Carousel arrows -->
+	            <div class="col-12 d-flex justify-content-center mt-40">
+	            	<!-- Previous button -->
+	            	<button type="button" class="icon-md mx-5 bg-dark5 circle white bg-colored-hover"
+	            		data-slider-control="#featured-works-slider"
+	            		data-slider-dir="prev">
+	            		<i class="ti-angle-left"></i>
+	            	</button>
+	            	<!-- Next button -->
+	            	<button type="button" class="icon-md mx-5 bg-dark5 circle white bg-colored-hover"
+	            		data-slider-control="#featured-works-slider"
+	            		data-slider-dir="next">
+	            		<i class="ti-angle-right"></i>
+	            	</button>
+	            </div>
+	            <!-- End carousel arrows -->
+
+
+
+	            <!-- Bottom texts -->
+	            <div class="col-12 t-center mt-30 d-flex align-items-center flex-column">
+
+	            	<!-- Title -->
+	            	<h2 class="fs-30 white">super responsive, clean and creative theme</h2>
+
+	            	<!-- Paragraph -->
+	            	<p class="fs-16 gray3 mt-10">
+	            		This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin.
+	            	</p>
+
+	            	<!-- Buttons -->
+	            	<div class="mt-50">
+
+	            		<!-- Button -->
+	            		<a href="#portfolio" class="btn-sm py-10 bg-white dark white-hover flex-column medium bg-colored-hover ml-15 mx-5-sm slow">
+							<span class="lh-20 fs-20 uppercase font-secondary">Our portfolio</span>
+							<span class="fs-12">Click for our all works</span>
+						</a>
+
+						<!-- Button -->
+	            		<a href="#contact" class="btn-sm py-10 bg-white dark white-hover flex-column medium bg-colored-hover ml-15 mt-10-sm mx-5-sm slow">
+							<span class="lh-20 fs-20 uppercase font-secondary">Keep in touch</span>
+							<span class="fs-12">Send us a message</span>
+						</a>
+						
+	            	</div>
+	            	<!-- End buttons -->
+	            </div>
+	            <!-- End bottom texts -->
+
+
+            </div>
+        	<!-- Row end -->
+
+        </div>
+        <!-- End container for slider -->
+		
+	</section>
+	<!-- End Testimonials -->
+
+
+
+
+
+
+
+	<!-- Skills Section -->
+	<section id="skills" class="py-100 d-none">
+
+		<!-- Container for skills and title -->
+        <div class="container">
+        	
+        	<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
+						OUR SKILLS
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-16 lh-30 animated" data-animation="fadeIn" data-animation-delay="100">
+						Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in piece of classical Latin literature from 45 BC, it a old.
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+
+            	<!-- Fullwidth column for skills -->
+                <div class="col-12 mt-30">
+                	
+                	<!-- Row for bar cols -->
+		            <div class="row">
+
+		                <!-- Col for bar -->
+		                <div class="col-lg-6 col-12 mt-40 mt-20-sm">
+		                    <!-- Progress bar -->
+		                    <div class="bg-gray2">
+		                        <!-- Value and details -->
+		                        <div data-value="50" class="progress-bar font-secondary white bg-dark1 height-40 px-15 d-flex flex-row align-items-center lh-normal justify-content-between">
+		                            <p class="fs-18">DESIGN</p>
+		                            <p class="fs-16">50%</p>
+		                        </div>
+		                    </div>
+		                    <!-- End Progress bar -->
+		                </div>
+		                <!-- End col for bar -->
+
+		                <!-- Col for bar -->
+		                <div class="col-lg-6 col-12 mt-40 mt-20-sm">
+		                    <!-- Progress bar -->
+		                    <div class="bg-gray2">
+		                        <!-- Value and details -->
+		                        <div data-value="70" class="progress-bar font-secondary white bg-dark1 height-40 px-15 d-flex flex-row align-items-center lh-normal justify-content-between">
+		                            <p class="fs-18">PHOTOGRAPHY</p>
+		                            <p class="fs-16">70%</p>
+		                        </div>
+		                    </div>
+		                    <!-- End Progress bar -->
+		                </div>
+		                <!-- End col for bar -->
+
+		                <!-- Col for bar -->
+		                <div class="col-lg-6 col-12 mt-40 mt-20-sm">
+		                    <!-- Progress bar -->
+		                    <div class="bg-gray2">
+		                        <!-- Value and details -->
+		                        <div data-value="85" class="progress-bar font-secondary white bg-dark1 height-40 px-15 d-flex flex-row align-items-center lh-normal justify-content-between">
+		                            <p class="fs-18">WORDPRESS</p>
+		                            <p class="fs-16">85%</p>
+		                        </div>
+		                    </div>
+		                    <!-- End Progress bar -->
+		                </div>
+		                <!-- End col for bar -->
+
+		                <!-- Col for bar -->
+		                <div class="col-lg-6 col-12 mt-40 mt-20-sm">
+		                    <!-- Progress bar -->
+		                    <div class="bg-gray2">
+		                        <!-- Value and details -->
+		                        <div data-value="75" class="progress-bar font-secondary white bg-dark1 height-40 px-15 d-flex flex-row align-items-center lh-normal justify-content-between">
+		                            <p class="fs-18">WEB DESIGN</p>
+		                            <p class="fs-16">75%</p>
+		                        </div>
+		                    </div>
+		                    <!-- End Progress bar -->
+		                </div>
+		                <!-- End col for bar -->
+
+		                <!-- Col for bar -->
+		                <div class="col-lg-6 col-12 mt-40 mt-20-sm">
+		                    <!-- Progress bar -->
+		                    <div class="bg-gray2">
+		                        <!-- Value and details -->
+		                        <div data-value="75" class="progress-bar font-secondary white bg-dark1 height-40 px-15 d-flex flex-row align-items-center lh-normal justify-content-between">
+		                            <p class="fs-18">HTML &amp; CSS </p>
+		                            <p class="fs-16">75%</p>
+		                        </div>
+		                    </div>
+		                    <!-- End Progress bar -->
+		                </div>
+		                <!-- End col for bar -->
+
+		                <!-- Col for bar -->
+		                <div class="col-lg-6 col-12 mt-40 mt-20-sm">
+		                    <!-- Progress bar -->
+		                    <div class="bg-gray2">
+		                        <!-- Value and details -->
+		                        <div data-value="80" class="progress-bar font-secondary white bg-dark1 height-40 px-15 d-flex flex-row align-items-center lh-normal justify-content-between">
+		                            <p class="fs-18">PHOTOSHOP</p>
+		                            <p class="fs-16">80%</p>
+		                        </div>
+		                    </div>
+		                    <!-- End Progress bar -->
+		                </div>
+		                <!-- End col for bar -->
+
+		            </div>
+                	<!-- End row for bar cols -->
+
+                </div>
+            	<!-- Skills column end -->
+
+            </div>
+        	<!-- Row end -->
+
+        </div>
+		<!-- End container for skills -->
+
+	</section>
+	<!-- End skills Section -->
+
+
+
+
+
+
+
+	<!-- Services Section -->
+	<section id="use-cases" class="has-parallax py-100 bg-soft-95 bg-soft-white">
+
+		<!-- Background image - you can choose parallax ratio and offset -->
+    	<div class="parallax bg-top d-none" style="display:none !important;" data-anchor-target="#use-cases" data-bottom-top="transform:translate3d(0, -200px, 0px);" data-top-bottom="transform:translate3d(0px, 200px, 0px);" data-bg="images/i4.jpg"></div>
+
+		<!-- Services Inner -->
+		<div class="container">
+
+
+			<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">
+						Become a Partner
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-16 lh-30">
+						Building the operating system for the global moving industry.
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+                <div class="col-lg-6 col-12 mt-40">
+                    <div class="hover-container p-3 d-flex align-items-center text-center flex-column b-1 b-solid b-gray2 bg-white h-100">
+                        <div class="relative d-inline-flex width-130 height-130 circle align-items-center justify-content-center b-1 b-solid b-gray5 bg-dark4-hover-item white-hover-item gray8 slow">
+                            <div class="zoom-in-hover-item opacity-0 opacity-hover-item absolute radius-inherit bg-transparent left-0 top-0 bottom-0 right-0 slow zi-1 b-1 b-dark"></div>
+                            <i class="ti-truck fs-25 relative zi-5"></i>
+                        </div>
+                        <h4 class="font-secondary fs-24 medium uppercase gray6 mt-20">For Moving Companies (EU, USA &amp; Middle East)</h4>
+                        <p class="fs-17 gray6 mt-10 lh-25"><strong>Scale faster. Win smarter. Operate digitally.</strong></p>
+                        <p class="fs-16 gray6 mt-15 lh-25">GetMoved is expanding across the EU, USA, and the Middle East — onboarding forward-thinking moving companies ready to lead the digital transformation of relocation services.</p>
+                        <p class="fs-16 gray6 mt-10 lh-25">Whether you join our marketplace to access structured demand or adopt GetMoved as your full SaaS operating infrastructure, you gain:</p>
+                        <ul class="list list-sm mt-10 fs-15 gray7 lh-24 text-start w-100 px-25">
+                            <li>Access to high-intent, qualified move requests</li>
+                            <li>Data-driven quoting powered by automated inventory</li>
+                            <li>Centralized work order, fleet, and crew management</li>
+                            <li>Integrated invoicing and secure payment processing</li>
+                            <li>AI-enhanced operational efficiency</li>
+                        </ul>
+                        <p class="fs-16 gray6 mt-10 lh-25">We are selectively onboarding strategic partners in key markets.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-12 mt-40">
+                    <div class="hover-container p-3 d-flex align-items-center text-center flex-column b-1 b-solid b-gray2 bg-white h-100">
+                        <div class="relative d-inline-flex width-130 height-130 circle align-items-center justify-content-center b-1 b-solid b-gray5 bg-dark4-hover-item white-hover-item gray8 slow">
+                            <div class="zoom-in-hover-item opacity-0 opacity-hover-item absolute radius-inherit bg-transparent left-0 top-0 bottom-0 right-0 slow zi-1 b-1 b-dark"></div>
+                            <i class="ti-stats-up fs-25 relative zi-5"></i>
+                        </div>
+                        <h4 class="font-secondary fs-24 medium uppercase gray6 mt-20">For Investors &amp; Strategic Partners</h4>
+                        <p class="fs-17 gray6 mt-10 lh-25"><strong>A rare opportunity to enter at the foundational stage.</strong></p>
+                        <p class="fs-16 gray6 mt-15 lh-25">GetMoved is building scalable digital infrastructure for a fragmented, multi-billion-dollar global moving industry — combining marketplace network effects, recurring SaaS revenue, and AI-driven automation.</p>
+                        <p class="fs-16 gray6 mt-10 lh-25">We are currently in a preliminary seed round, offering early investors a unique opportunity to participate at the ground floor as we expand across the EU, USA, and Middle East.</p>
+                        <p class="fs-16 gray6 mt-10 lh-25">We are engaging:</p>
+                        <ul class="list list-sm mt-10 fs-15 gray7 lh-24 text-start w-100 px-25">
+                            <li>Venture capital funds</li>
+                            <li>Angel investors</li>
+                        </ul>
+                        <p class="fs-16 gray6 mt-10 lh-25">Join us at the start of category creation.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 text-center mt-30">
+                    <a href="#contact" class="btn-lg bg-colored white white-hover bg-dark1-hover rounded-0 slow">Contact US</a>
+                </div>
+            </div>
+			<!-- Row end -->
+
+		</div>
+		<!-- Services Inner end -->
+
+	</section>
+	<!-- End services Section -->
+
+
+
+
+	<!-- Prices -->
+	<section id="pricing" class="has-parallax unselectable py-100 bg-soft-85 bg-soft-dark4">
+
+		<!-- Background image - you can choose parallax ratio and offset -->
+    	<div class="parallax bg-top" data-anchor-target="#pricing" data-bottom-top="transform:translate3d(0, -200px, 0px);" data-top-bottom="transform:translate3d(0px, 200px, 0px);" data-bg="images/slide3.jpg"></div>
+
+
+        <!-- Container -->
+        <div class="container relative zi-10">
+
+        	<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase white font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
+						Release Plan
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-16 lh-30 white animated" data-animation="fadeIn" data-animation-delay="100">
+						Structured rollout across EU, USA and Middle East.
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+
+                <!-- Column 1 -->
+                <div class="col-lg-3 col-md-6 col-12 mt-70 animated" data-animation="fadeIn" data-animation-delay="200">
+                    <div class="font-secondary medium gray4 bl-1 b-gray9 px-20 py-20 h-100">
+                        <h2 class="uppercase fw-inherit fs-24 white lh-30">Q3 2026 - Platform and Marketplace Launch (EU and USA)</h2>
+                        <p class="fs-15 gray6 mt-10"><strong>Commercial launch phase</strong></p>
+                        <p class="fs-15 gray6 mt-10 lh-26">GetMoved officially launches its core ecosystem:</p>
+                        <ul class="mt-10 list pl-0 fs-16 normal list-lg">
+                            <li class="white">Mobile application (Customer and Mover)</li>
+                            <li class="white">Web portal</li>
+                            <li class="white">Live marketplace for EU and USA markets</li>
+                        </ul>
+                        <p class="fs-15 gray6 mt-15 lh-26">This phase activates real transactions, onboarded moving companies, and early revenue generation across two major regions.</p>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="col-lg-3 col-md-6 col-12 mt-70 animated" data-animation="fadeIn" data-animation-delay="300">
+                    <div class="font-secondary medium gray4 bl-1 b-gray9 px-20 py-20 h-100">
+                        <h2 class="uppercase fw-inherit fs-24 white lh-30">Q4 2026 - AI Inventory and SaaS Expansion (EU and USA)</h2>
+                        <p class="fs-15 gray6 mt-10"><strong>Operational intelligence phase</strong></p>
+                        <p class="fs-15 gray6 mt-10 lh-26">Advanced fine-tuning is being completed on EuroHPC resources to maximize detection accuracy, structured inventory precision, and volume estimation performance.</p>
+                        <p class="fs-15 gray6 mt-10 lh-26">Launch includes:</p>
+                        <ul class="mt-10 list pl-0 fs-16 normal list-lg">
+                            <li class="white">AI-powered Inventory Tool (video to structured inventory)</li>
+                            <li class="white">Intelligent volume-based quoting engine</li>
+                            <li class="white">Full SaaS platform for movers (work orders, fleet, invoicing, payments)</li>
+                            <li class="white">Scaled deployment across EU and USA</li>
+                        </ul>
+                        <p class="fs-15 gray6 mt-15 lh-26">This phase positions GetMoved as both a marketplace and a full operational backbone for moving companies.</p>
+                    </div>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="col-lg-3 col-md-6 col-12 mt-70 animated" data-animation="fadeIn" data-animation-delay="400">
+                    <div class="font-secondary medium gray4 bl-1 b-gray9 px-20 py-20 h-100">
+                        <h2 class="uppercase fw-inherit fs-24 white lh-30">Q1 2027 - Advanced AI and Middle East Expansion</h2>
+                        <p class="fs-15 gray6 mt-10"><strong>Precision automation and regional scale</strong></p>
+                        <p class="fs-15 gray6 mt-10 lh-26">This milestone introduces next-generation automation and geographic expansion:</p>
+                        <ul class="mt-10 list pl-0 fs-16 normal list-lg">
+                            <li class="white">AI Instructions Engine (automated job instructions for crews)</li>
+                            <li class="white">Precise Weight and Volume AI tools</li>
+                            <li class="white">Advanced vehicle and load optimization</li>
+                            <li class="white">Complete platform rollout for the Middle East market</li>
+                        </ul>
+                        <p class="fs-15 gray6 mt-15 lh-26">By Q1 2027, GetMoved becomes a multi-region, AI-driven relocation operating system.</p>
+                    </div>
+                </div>
+
+                <!-- Column 4 -->
+                <div class="col-lg-3 col-md-6 col-12 mt-70 animated" data-animation="fadeIn" data-animation-delay="500">
+                    <div class="font-secondary medium gray4 bl-1 b-gray9 px-20 py-20 h-100">
+                        <h2 class="uppercase fw-inherit fs-24 white lh-30">Growth Strategy and Investment Vision</h2>
+                        <p class="fs-15 gray6 mt-10"><strong>Seed to Scale to Series A</strong></p>
+                        <p class="fs-15 gray6 mt-10 lh-26"><strong>Seed Phase (2026):</strong> Product-market validation across EU and USA, marketplace activation, early SaaS adoption, AI infrastructure stabilization.</p>
+                        <p class="fs-15 gray6 mt-10 lh-26"><strong>Scaling Phase (2026-2027):</strong> Revenue growth through SaaS subscriptions and transaction-based marketplace fees, regional expansion, operational automation.</p>
+                        <p class="fs-15 gray6 mt-10 lh-26"><strong>Series A Readiness (2027-2028):</strong> Multi-region deployment (EU, USA, Middle East), mature AI toolset, predictable recurring revenue, and strong network effects.</p>
+                        <p class="fs-15 gray6 mt-15 lh-26">GetMoved is positioned to evolve into category-defining infrastructure for the global moving industry, combining marketplace dynamics, recurring SaaS revenue, and AI-powered operational automation.</p>
+                    </div>
+                </div>
+
+            </div>
+        	<!-- Row end -->
+
+        </div>
+        <!-- End container for slider -->
+
+	</section>
+	<!-- End Prices -->
+
+
+
+
+
+
+
+	
+	<!-- Contact Section -->
+	<section id="contact" class="py-100">
+
+		<!-- Container for contact and title -->
+        <div class="container">
+        	
+        	<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		<!-- Header -->
+					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">
+						Contact US
+					</h1>
+					<!-- Header Strip -->
+					<div class="width-70 height-1 my-20 bg-gray4"></div>
+					<!-- Header Description -->
+					<p class="mxw-800 fs-24 fs-20-sm lh-30">
+						Let's connect.
+					</p>
+            	</div>
+                <!-- End column for title -->
+
+
+            	<!-- Contact details -->
+                <div class="col-12 mt-30 d-flex flex-column align-items-center t-center">
+                    <p class="mxw-900 fs-18 lh-30 gray6">
+                        Whether you're a moving company, strategic partner, or investor - we're ready to talk.
+                    </p>
+
+                    <h3 class="font-secondary uppercase fs-24 dark mt-30">CYBER CO.</h3>
+
+                    <p class="fs-18 gray6 mt-20 mb-0"><strong>Address:</strong></p>
+                    <p class="fs-18 dark mt-5 lh-30">
+                        Studentska 6, Stan 13<br>
+                        81000 Podgorica<br>
+                        Montenegro
+                    </p>
+
+                    <h3 class="font-secondary uppercase fs-24 dark mt-25">Email</h3>
+                    <a href="mailto:bdjakovic@cyberco.me" class="fs-22 dark colored-hover slow mt-5">bdjakovic@cyberco.me</a>
+
+                    <h3 class="font-secondary uppercase fs-24 dark mt-25">Phone / Viber / WhatsApp</h3>
+                    <a href="tel:+38268040359" class="fs-22 dark colored-hover slow mt-5">+382 68 040 359</a>
+
+                    <p class="fs-17 gray6 mt-30">We respond to all inquiries within 24-48 hours.</p>
+                </div>
+
+            </div>
+        	<!-- Row end -->
+
+        </div>
+		<!-- End container for contact -->
+
+	</section>
+	<!-- End contact Section -->
+
+    <!-- Sample video modal -->
+    <div id="sample-modal" class="gm-modal" aria-hidden="true">
+        <div class="gm-modal-overlay js-close-sample"></div>
+        <div class="gm-modal-dialog">
+            <button type="button" class="gm-modal-close js-close-sample" aria-label="Close">×</button>
+            <h3 class="font-secondary uppercase fs-24">Try a sample video</h3>
+            <p class="fs-15 gray6 mt-10">Run a sample walkthrough to see the output.</p>
+            <div class="mt-20">
+                <img src="assets/img/demo-before.svg" alt="Sample walkthrough preview" class="d-block fullwidth">
+                <button type="button" id="run-sample" class="btn-sm mt-20 bg-gray8 bg-colored-hover white white-hover bg-opacity-75 rounded-2 bs-sm font-secondary uppercase slow">
+                    Run sample
+                </button>
+                <div id="sample-status" class="fs-14 gray6 mt-10" aria-live="polite"></div>
+                <div id="sample-after" class="mt-20 d-none"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+	<!-- Address section -->
+	<section id="address" class="has-parallax unselectable py-100 bg-soft-85 bg-soft-dark4 d-none">
+
+		<!-- Background image - you can choose parallax ratio and offset -->
+    	<div class="parallax bg-top" data-anchor-target="#address" data-bottom-top="transform:translate3d(0, -200px, 0px);" data-top-bottom="transform:translate3d(0px, 200px, 0px);" data-bg="images/i6.jpg"></div>
+
+
+        <!-- Container -->
+        <div class="container-sm relative zi-10">
+
+        	<!-- Row start -->
+        	<div class="row">
+
+        		<!-- Column for title -->
+            	<div class="col-12 d-flex flex-column align-items-center t-center">
+            		
+            		<div class="fullwidth bg-soft-05 bg-soft-white py-55 px-50 px-20-sm mxw-900 d-flex align-items-center justify-content-center flex-column t-center">
+            			<h1 class="fs-55 fs-35-sm medium font-secondary white mt-5">CONTACT US</h1>
+            			<p class="fs-26 fs-20-sm white mt-10">Let's connect.</p>
+            			<p class="fs-18 lh-30 gray3 mt-15 mxw-800">
+            				Whether you're a moving company, strategic partner, or investor - we're ready to talk.
+            			</p>
+
+            			<h3 class="font-secondary uppercase fs-22 white mt-35">Company Information</h3>
+
+            			<p class="fs-18 gray3 mt-20 mb-0"><strong>Address:</strong></p>
+            			<address class="fs-18 white mt-5 lh-30">
+            				Studentska 6, Stan 13<br>
+            				81000 Podgorica<br>
+            				Montenegro
+            			</address>
+
+            			<h3 class="font-secondary uppercase fs-22 white mt-25">Email</h3>
+            			<a href="mailto:bdjakovic@cyberco.me" class="fs-22 fs-18-sm white colored-hover slow mt-5">bdjakovic@cyberco.me</a>
+
+            			<h3 class="font-secondary uppercase fs-22 white mt-25">Phone / Viber / WhatsApp</h3>
+            			<a href="tel:+38268040359" class="fs-24 fs-20-sm white colored-hover slow mt-5">+382 68 040 359</a>
+
+            			<p class="fs-17 gray3 mt-30">We respond to all inquiries within 24-48 hours.</p>
+            		</div>
+
+            	</div>
+                <!-- End column for title -->
+
+
+            </div>
+        	<!-- Row end -->
+
+        </div>
+        <!-- End container for slider -->
+		
+	</section>
+	<!-- End address section -->
+
+
+
+
+
+
+	<!-- Container for template -->
+    <div id="hotspots_on_map" class="hotspots fullwidth d-none">
+        <!-- Your map image -->
+        <a href="https://www.google.com.tr/maps/place/Place+du+Trocadero/@48.8622259,2.2867585,18.35z/data=!4m13!1m7!3m6!1s0x47e6701f7e8337b5:0xa2cb58dd28914524!2sEiffel+Tower,+Paris,+Fransa!3b1!8m2!3d48.8560934!4d2.2930458!3m4!1s0x47e66fe3405d7ecf:0xc03ac392486d25b5!8m2!3d48.8629697!4d2.2871786" target="_blank" class="d-block fullwidth c-plus">
+            <!-- You can select your position with same map: https://snazzymaps.com/style/38/shades-of-grey -->
+            <img src="images/map_loader.svg" data-src="images/map_01.jpg" alt="map image template" class="fullwidth">
+        </a>
+        <!-- Items -->
+        <div class="items pointer-events-none">
+            <!-- Item -->
+            <div style="right:41.2%; bottom:43.8%;" class="item animated fast" data-animation="blurIn" data-animation-delay="100">
+                <div class="c-pointer pointer-events-all"
+                data-bs-toggle="popover"
+                data-bs-trigger="click"
+                data-bs-placement="top"
+                data-bs-html="true"
+                data-show="true"
+                title="<h4 class='fs-19'>New york Office</h4>"
+                data-bs-content="<p class='mt-10 lh-25 fs-15'>2962 Bedford Street Connecticut CT 10011 New York</p>">
+                    <img src="images/pin_01.svg" alt="pin design on map image">
+                </div>
+            </div>
+        </div>
+        <!-- End items -->
+    </div>
+    <!-- End container for template -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="py-50 d-flex flex-column align-items-center justify-content-center">
+        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300">
+    	<p class="fs-12 mt-15 t-center-sm">
+    		© 2026 GetMoved. All rights reserved.
+    	</p>
+    </footer>
+    <!-- End footer -->
+
+
+
+    <!-- Back To Top -->
+    <a id="back-to-top" href="#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
+        <i class="ti-angle-double-up fs-18"></i>
+    </a>
+
+
+
+    <!-- Back To Top -->
+    <a id="back-to-top" href="#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
+        <i class="ti-angle-double-up fs-18"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- JS Files -->
+    <script src="js/bs.js"></script>
+    <script src="js/plugins.min.js"></script>
+	<!-- REVOLUTION SLIDER -->
+    <script src="js/revslider/jquery.themepunch.revolution.min.js"></script>
+    <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
+	<!-- End REVOLUTION SLIDER -->
+	<script src="js/functions.js"></script>
+	<script src="js/getmoved.js?v=1"></script>
+
+	<script>
+		var tpj=jQuery;
+	    var revapi1050;
+	    tpj(document).ready(function() {
+	    if(tpj("#home-slider").revolution == undefined){
+	    	revslider_showDoubleJqueryError("#home-slider");
+	    }else{
+	        revapi1050 = tpj("#home-slider").show().revolution({
+	            sliderType:"standard",
+	            jsFileLocation:"js/revslider/",
+	            sliderLayout:"fullwidth",
+	            dottedOverlay:"none",
+	            delay:9000,
+	            navigation: {
+	                keyboardNavigation:"on",
+	                keyboard_direction: "vertical",
+	                mouseScrollNavigation:"off",
+	                mouseScrollReverse:"default",
+	                onHoverStop:"off",
+	                arrows: {
+				        enable: true,
+				        style: 'gyges',
+				    },
+	                touch:{
+	                    touchenabled:"on",
+	                    swipe_threshold: 75,
+	                    swipe_min_touches: 50,
+	                    swipe_direction: "vertical",
+	                    drag_block_vertical: false
+	                },
+	                bullets: {
+	                    enable:true,
+	                    hide_onmobile:true,
+	                    hide_under:1024,
+	                    style:"hesperiden",
+	                    hide_onleave:true,
+	                    direction:"horizontal",
+	                    h_align:"center",
+	                    v_align:"bottom",
+	                    h_offset:0,
+	                    v_offset:20,
+	                    space:5,
+	                    tmp:''
+	                }
+	            },
+	            responsiveLevels:[1400,1350,1200,1024,750],
+	            visibilityLevels:[1320,1140,960,720,540],
+	            gridwidth:[1320,1140,960,720,540],
+	            gridheight:[610,568,512,600],
+	            lazyType:"none",
+	            shadow:0,
+	            spinner:"spinner2",
+	            stopLoop:"off",
+	            stopAfterLoops:-1,
+	            stopAtSlide:-1,
+	            shuffle:"off",
+	            autoHeight:"off",
+	            fullScreenAutoWidth:"off",
+	            fullScreenAlignForce:"off",
+	            fullScreenOffsetContainer: "",
+	            fullScreenOffset: "0px",
+	            disableProgressBar:"off",
+	            hideThumbsOnMobile:"off",
+	            fullWidth:"on",
+				fullScreen:"off",
+	            hideSliderAtLimit:0,
+	            hideCaptionAtLimit:0,
+	            hideAllCaptionAtLilmit:0,
+	            debugMode:false,
+	            fallbacks: {
+	                simplifyAll:"off",
+	                nextSlideOnWindowFocus:"off",
+	                disableFocusListener:false,
+	            }
+	        });
+	        }
+	    });	/*ready*/
+	</script>
+
+
+</body>
+
+</html>

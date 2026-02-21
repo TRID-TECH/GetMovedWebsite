@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Documentation | NORTH Creative HTML Template</title>
+    <meta name="description" content="NORTH Template Documentation" />
+    <!--Keywords -->
+    <meta name="author" content="GoldEyes"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <!--Favicon -->
+	<link rel="icon" type="image/png" href="../../images/favicon.png" />
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png"/>
+
+	<!-- CSS Files -->
+    <link rel="stylesheet" href="../../css/plugins.min.css?v=2.0"/>
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="../../css/style.css?v=2.0"/>
+    <!-- Prettify -->
+    <link rel="stylesheet" href="css/prettify.css" />
+    <link rel="stylesheet" href="css/sidenav.css" />
+    <link rel="stylesheet" href="css/documentation.css" />
+	<!-- End Page Styles -->
+
+</head>
+
+<!-- BODY START -->
+<body>
+
+
+    <!-- Top nav for mobile -->
+    <header class="cd-main-header d-block d-lg-none d-md-none">
+        <a href="#" class="cd-logo"><img src="../../images/logo-white.svg" alt="logo"></a>
+        <a href="#" class="cd-nav-trigger"><span></span></a>
+    </header>
+    <!-- End Top nav for mobile -->
+
+    <!-- Left nav and wrapper -->
+    <main class="cd-main-content">
+
+
+        <!-- Left Navigation -->
+        <nav id="navigation" class="cd-side-nav nav-menu bg-dark5" data-offset="0">
+            <ul>
+                <li class="website-logo mxw-200"><img src="../../images/logo-white.svg" alt="logo" class="d-block fullwidth"></li>
+                <li><a href="#top">Start</a></li>
+                <li><a href="#skins">Skins and colors</a></li>
+                <li><a href="#menus-title">Navigation</a></li>
+                <li><a href="#responsive-title">Responsive</a></li>
+                <li><a href="#sliders-title">Sliders and Carousels</a></li>
+                <li><a href="#lightbox-title">Lightbox</a></li>
+                <li><a href="#backgrounds-title">Backgrounds and Images</a></li>
+                <li><a href="#parallax-title">Parallax Animations</a></li>
+                <li><a href="#contactform-title">Contact Forms</a></li>
+                <li><a href="#mailchimp">Mailchimp</a></li>
+                <li><a href="#credits-title">Credits and Sources</a></li>
+            </ul>
+        </nav>
+        <!-- End Left Navigation -->
+
+
+
+
+
+
+
+
+
+
+        <!-- Documentation details -->
+        <div class="content-wrapper text-left">
+
+
+
+
+            <!-- home -->
+            <section id="home" class="pb-5 border-bottom">
+
+                <div class="py-50">
+                    <h4 class="colored  text-left">Welcome to North Documentation</h4>
+                    <h2 class="font-secondary text-uppercase ls-lg text-dark mt-15">
+                        North Creative Template Documentation
+                    </h2>
+                    <p class="mt-15 fs-17">
+                        You can find examples and descriptions about all theme in this page. 
+                    </p>
+                </div>
+            </section>
+            <!-- End home -->
+
+
+
+
+
+
+            <!-- SECTION -->
+            <section class="border-bottom">
+                <div class="mt-50">
+
+                    <h2 id="installation" class="section-header font-secondary">Installation</h2>
+
+                    <ul class="list list-disc">
+                        <li>Unzip the downloaded zip file and extract North files. You will see all html, css, javascript and php files in North folder. We recommend you work on localhost with these files.</li>
+                        <li>You can edit your tags at the top of your HTML file. For example;
+                            <ul class="list list-disc xxs-mt">
+                                <li><code>&lt;title&gt; Your Title &lt;/title&gt;</code> Your Page Title</li>
+                                <li><code>&lt;meta name=&quot;description&quot; content=&quot;Your description&quot; /&gt;</code> - Your Website's Description</li>
+                                <li><code>&lt;meta name=&quot;keywords&quot; content=&quot;example, example&quot; /&gt;</code> - Your Website's Keywords</li>
+                                <li><code>&lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;images/favicon.png&quot; /&gt;</code> - Your Website's Favicon</li>
+                                <li><code>&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;images/apple-touch-icon.png&quot;/&gt;</code> - Apple Touch Icon</li>
+                                <li><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/plugins.css&quot; /&gt;</code> - CSS Files</li>
+                                <li><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot; /&gt;</code> - Styles</li>
+                            </ul>
+                        </li>
+                        <li>You can edit your tags at the top of your HTML file. For example;
+                            <ul class="list list-disc xxs-mt">
+                                <li><code>North/css</code> - CSS files and fonts of all theme.</li>
+                                <li><code>North/images</code> - All assets. Images, backgrounds, icons, videos, and sound files.</li>
+                                <li><code>North/js</code> - All javascript files, theme panel files, ajax files and extra components.</li>
+                                <li><code>North/php</code> - PHP support for social modules, contact form types and mailchimp.</li>
+                            </ul>
+                        </li>
+                        <li>You should use an editor for customize theme and add your contents, images .etc.</li>
+                        <li>You should use an application for upload your website to server.</li>
+                    </ul>
+
+                </div>
+            </section>
+            <!-- END SECTION -->
+
+
+
+
+
+
+
+
+
+
+
+            <section id="page-type" class="border-bottom">
+                <div class="py-50">
+                    <h2 id="page-type-title" class="section-header font-secondary">Example html page</h2>
+
+                    <pre class="prettyprint lang-html linenums">
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        &lt;head&gt;
+            &lt;meta charset=&quot;utf-8&quot; /&gt;
+            &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+            <span>&lt;!-- Title, description, keywords --&gt;</span>
+            &lt;title&gt;Your Title&lt;/title&gt;
+            &lt;meta name=&quot;description&quot; content=&quot;Your description&quot; /&gt;
+            &lt;meta name=&quot;keywords&quot; content=&quot;example, example&quot; /&gt;
+            <span>&lt;!-- Favicon, Touch icon --&gt;</span>
+            &lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;images/favicon.png&quot; /&gt;
+            &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;images/apple-touch-icon.png&quot;/&gt;
+
+            <span>&lt;!-- CSS Files --&gt;</span>
+        &lt;/head&gt;
+        <span>&lt;!-- BODY START --&gt;</span>
+        &lt;body&gt;
+
+            <span>&lt;!-- NAVIGATION --&gt;</span>
+            &lt;nav id=&quot;navigation&quot; class=&quot;modern-nav fixed bs-xs link-hover-01 nav-white nav-lg&quot; data-offset=&quot;0&quot;&gt;
+                ...
+            &lt;/nav&gt;
+            &lt;!-- END NAVIGATION --&gt;
+            <span>&lt;!-- NAVIGATION --&gt;</span>
+
+            <span>&lt;!-- Home --&gt;</span>
+            &lt;section id=&quot;home&quot; class=&quot;fullwidth&quot;&gt;
+                <span>&lt;!-- Start slider for home section - you can customize all details --&gt;</span>
+                &lt;div class=&quot;custom-slider fullwidth height-80vh height-60vh-sm mxh-1000 mnh-550 mnh-350-sm relative zi-2&quot;&gt;
+                    <span>&lt;!-- Wrapper for slider --&gt;</span>
+                    &lt;div class=&quot;swiper-wrapper&quot;&gt;
+
+                        <span>&lt;!-- Slide --&gt;</span>
+                        &lt;div class=&quot;swiper-slide nav-to--white&quot;&gt;
+                            <i>All details in a slide</i>
+                        &lt;/div&gt;
+                        <span>&lt;!-- End slide --&gt;</span>
+
+                        <span>&lt;!-- Slide --&gt;</span>
+                        &lt;div class=&quot;swiper-slide nav-to--dark&quot;&gt;
+                            <i>All details in a slide</i>
+                        &lt;/div&gt;
+                        <span>&lt;!-- End slide --&gt;</span>
+
+                        <span>&lt;!-- Slide --&gt;</span>
+                        &lt;div class=&quot;swiper-slide nav-to--white&quot;&gt;
+                            <i>All details in a slide</i>
+                        &lt;/div&gt;
+                        <span>&lt;!-- End slide --&gt;</span>
+
+                    &lt;/div&gt;
+                    <span>&lt;!-- End wrapper for slider --&gt;</span>
+                &lt;/div&gt;
+                <span>&lt;!-- End slider for home section --&gt;</span>
+                
+            &lt;/section&gt;
+            <span>&lt;!-- End Home --&gt;</span>
+
+            <span>&lt;!-- Page Details --&gt;</span>
+            &lt;section&gt;
+                ...
+            &lt;/section&gt;
+
+            <span>&lt;!-- FOOTER --&gt;</span>
+            &lt;footer id=&quot;footer&quot; class=&quot;bg-dark3&quot;&gt;
+                ...
+            &lt;/footer&gt;
+            <span>&lt;!-- END FOOTER --&gt;</span>
+
+            <span>&lt;!-- JS Files --&gt;</span>
+
+        &lt;/body&gt;
+        <span>&lt;!-- Body End --&gt;</span>
+    &lt;/html&gt;
+                    </pre>
+                    <p>
+                       You can find a lot of example pages <span class="playfair italic">in the North.</span>
+                    </p>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+            <!-- Skins -->
+            <section id="skins" class="border-bottom">
+                <div class="py-50">
+                    <h2 id="skins-title" class="section-header font-secondary">Skins and Colors</h2>
+
+                    <ul class="list list-disc">
+                        <li>North does not have the file for the skins. In the css/style.css file, there are variations of .colored, .colored1, and .colored2. And you just need to change them. All colors depend on these 3 styles. </li>
+                        <li>You can see <code>:root</code> style code in the css/style.css and line 43.</li>
+                        <li>You can use Bootstrap or North colors for elements like <code>.bg-warning</code> - <code>.bg-secondary</code> - <code>.bg-colored</code> - <code>.bg-colored2</code> - <code>.bg-dark4</code> - <code>.bg-gray7</code> - <code>.bg-gradient3</code> .etc</li>
+                    </ul>
+
+                    <h4 class="dark mt-5 pt-5">A Few Examples:</h4>
+
+                    <div class="row text-white">
+                        <div class="col-sm-3 col-6"><div class="bg-colored px-15 py-15 mt-5">.bg-colored</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-colored1 px-15 py-15 mt-5">.bg-colored1</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-dark px-15 py-15 mt-5">.bg-dark</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-white border text-dark px-15 py-15 mt-5">.bg-white .text-dark .border</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-warning px-15 py-15 mt-5">.bg-warning</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-danger px-15 py-15 mt-5">.bg-danger</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-success px-15 py-15 mt-5">.bg-success</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-secondary px-15 py-15 mt-5">.bg-secondary</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-info px-15 py-15 mt-5">.bg-info</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-primary px-15 py-15 mt-5">.bg-primary</div></div>
+                        <div class="col-sm-3 col-6"><div class="bg-html5 px-15 py-15 mt-5">.bg-html5</div></div>
+                    </div>
+                    <p class="mt-30">Code example of this page</p>
+                    <pre class="prettyprint lang-html linenums">
+    &lt;div class=&quot;row text-white&quot;&gt;
+        &lt;div class=&quot;col-sm-3 col-6&quot;&gt;&lt;div class=&quot;bg-colored px-15 py-15 mt-5&quot;&gt;.bg-colored&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;col-sm-3 col-6&quot;&gt;&lt;div class=&quot;bg-colored1 px-15 py-15 mt-5&quot;&gt;.bg-colored1&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;col-sm-3 col-6&quot;&gt;&lt;div class=&quot;bg-dark px-15 py-15 mt-5&quot;&gt;.bg-dark&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;col-sm-3 col-6&quot;&gt;&lt;div class=&quot;bg-info px-15 py-15 mt-5&quot;&gt;.bg-info&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;col-sm-3 col-6&quot;&gt;&lt;div class=&quot;bg-dark-gradient px-15 py-15 mt-5&quot;&gt;.bg-dark-gradient&lt;/div&gt;&lt;/div&gt;
+        ...
+    &lt;/div&gt;</pre>
+
+                </div>
+            </section>
+            <!-- End Skins -->
+
+
+
+            <!-- menus -->
+            <section id="menus" class="border-bottom">
+                <div class="py-50">
+                    <h2 id="menus-title" class="section-header font-secondary">Navigation Types</h2>
+
+                    <p>North's navigations is ready to use and changeable easily to fixed or static types. You only need use <code>.fixed</code> class for fixed navigation type and <code>.static</code> class for navigation style. There is available sticky navigation also with <code>.sticky</code></p> class.
+
+                    <h4 id="fixed-nav" class="mt-15"><code>#01</code> Fixed Navigation </h4>
+
+                    <p class="mt-15">
+                        Fixed navigation is stays on the top when you are on home or scrolled to bottom. Its getting <code>.scrolled</code> class when scroll down page. And you can customize easily first and scrolled styles in the style.css file.
+                    </p>
+
+                    <p class="colored mt-15">
+                        Here is an example code for fixed navigation;
+                    </p>     
+
+                    <pre class="prettyprint lang-html linenums">
+    &lt;nav id="navigation" class="modern-nav fixed hover-dark nav-dark" data-offset="0"&gt;
+        &lt;div class="container-fluid nav-container"&gt;
+            &lt;div class="row nav-wrapper"&gt;
+                Your navigation cols
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</pre>
+
+
+                    <h4 id="sticky-nav" class="mt-15"><code>#02</code> Sticky Navigation <a href="../../index-01.html" target="_blank" class="underline-hover colored">Visit example</a></h4>
+
+                    <p class="mt-15">
+                        Sticky navigation can be positioned anywhere. And when you scroll down the page, it is fixed above. Its getting <code>.scrolled</code> class when scroll down page. And you can customize easily first and scrolled styles in the style.css file.
+                    </p>
+
+                    <p class="colored mt-15">
+                        Here is an example code for sticky navigation;
+                    </p>     
+
+                    <pre class="prettyprint lang-html linenums">
+    &lt;nav id="navigation" class="modern-nav sticky hover-dark nav-dark" data-offset="0"&gt;
+        &lt;div class="container-fluid nav-container"&gt;
+            &lt;div class="row nav-wrapper"&gt;
+                Your navigation cols
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</pre>
+
+
+
+
+                    <h4 id="static-nav" class="mt-5 pt-5"><code>#03</code> Static Navigation <a href="../../blog-classic.html" target="_blank" class="underline-hover colored">Visit example</a></h4>
+
+                    <p class="mt-15">
+                        Static navigation is usable on everywhere like sticky. This navigation will keep position when scroll down.
+                    </p>
+
+                    <p class="colored mt-15">
+                        Here is an example code for statc navigation;
+                    </p>     
+
+                    <pre class="prettyprint lang-html linenums">
+    &lt;nav id="navigation" class="modern-nav hover-dark nav-dark" data-offset="0"&gt;
+        &lt;div class="container-fluid nav-container"&gt;
+            &lt;div class="row nav-wrapper"&gt;
+                Your navigation cols
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</pre>
+
+                    <p class=" mt-15">
+                        NOTE: This nav type is no need any <code>.fixed</code> class or <code>.sticky</code> class.
+                    </p>  
+
+
+
+
+                </div>
+            </section>
+            <!-- End menus -->
+
+
+
+
+
+
+
+            <!-- responsive -->
+            <section id="responsive" class="border-bottom">
+                <div class="py-50">
+                    <h2 id="responsive-title" class="section-header font-secondary">Responsive Options</h2>
+
+                    <p>You can use Bootstrap 4x columns for responsive options directly. Please follow for examples:</p>
+
+
+                    <h4 class="mt-15 pt-5">How it works:</h4>
+
+
+
+                    <div class="mt-15">
+                        <div class="row mx-0">
+                            <div class="col-sm border">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm border">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm border">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <p class="mt-15">Code example of this page</p>
+                    <pre class="prettyprint lang-html linenums">
+    &lt;div class="row"&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</pre>
+
+                    You can see documentation on here for bootstrap columns; <a href="https://getbootstrap.com/docs/5.2/layout/grid/" target="_blank" class="colored"><ins>Bootstrap Grid System</ins>.</a> Or you can check using examples.
+
+
+
+                    <h4 id="grid-options" class="mt-15 pt-5">Grid Options:</h4>
+
+
+                    <table class="table table-bordered table-striped mt-15 table-lg">
+                        <thead>
+                        <tr>
+                        <th></th>
+                        <th class="text-center">
+                        Extra small<br>
+                        <small>&lt;576px</small>
+                        </th>
+                        <th class="text-center">
+                        Small<br>
+                        <small>≥576px</small>
+                        </th>
+                        <th class="text-center">
+                        Medium<br>
+                        <small>≥768px</small>
+                        </th>
+                        <th class="text-center">
+                        Large<br>
+                        <small>≥992px</small>
+                        </th>
+                        <th class="text-center">
+                        Extra large<br>
+                        <small>≥1200px</small>
+                        </th>
+                        <th class="text-center">
+                        XXL<br>
+                        <small>≥1400px</small>
+                        </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <th class="text-nowrap" scope="row">Max container width</th>
+                        <td>None (auto)</td>
+                        <td>540px</td>
+                        <td>720px</td>
+                        <td>960px</td>
+                        <td>1140px</td>
+                        <td>1320px</td>
+                        </tr>
+                        <tr>
+                        <th class="text-nowrap" scope="row">Class prefix</th>
+                        <td><code>.col-</code></td>
+                        <td><code>.col-sm-</code></td>
+                        <td><code>.col-md-</code></td>
+                        <td><code>.col-lg-</code></td>
+                        <td><code>.col-xl-</code></td>
+                        <td><code>.col-xxl-</code></td>
+                        </tr>
+                        <tr>
+                        <th class="text-nowrap" scope="row"># of columns</th>
+                        <td colspan="6">12</td>
+                        </tr>
+                        <tr>
+                        <th class="text-nowrap" scope="row">Gutter width</th>
+                        <td colspan="6">1.5rem (.75rem on left and right)</td>
+                        </tr>
+                        <tr>
+                        <th class="text-nowrap" scope="row">Nestable</th>
+                        <td colspan="6">Yes</td>
+                        </tr>
+                        <tr>
+                        <th class="text-nowrap" scope="row">Column ordering</th>
+                        <td colspan="6">Yes</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+                    <h4 id="equal-width" class="mt-5 pt-5">Equal Width:</h4>
+
+                    <div class="container-fluid mt-3">
+                        <div class="row">
+                            <div class="col border">
+                                <p class="p-4">1 of 2</p>
+                            </div>
+                            <div class="col border">
+                                <p class="p-4">2 of 2</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col border">
+                                <p class="p-4">1 of 3</p>
+                            </div>
+                            <div class="col border">
+                                <p class="p-4">2 of 3</p>
+                            </div>
+                            <div class="col border">
+                                <p class="p-4">3 of 3</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <pre class="prettyprint lang-html linenums">
+    &lt;div class=&quot;container-fluid mt-15&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col&quot;&gt;
+                &lt;p class=&quot;p-4&quot;&gt;1 of 2&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col&quot;&gt;
+                &lt;p class=&quot;p-4&quot;&gt;2 of 2&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col&quot;&gt;
+                &lt;p class=&quot;p-4&quot;&gt;1 of 3&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col&quot;&gt;
+                &lt;p class=&quot;p-4&quot;&gt;2 of 3&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col&quot;&gt;
+                &lt;p class=&quot;p-4&quot;&gt;3 of 3&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+                    </pre>
+
+                    <p class="mt-15">Equal width system will calculate widths of items automatically.</p>
+
+
+
+
+                    <h4 id="vertical-align" class="mt-30 pt-5">Vertical alignment:</h4>
+
+                    <div class="mt-15">
+                        <div class="row mx-0 align-items-start" style="background-color: #ddd; height: 150px;">
+                            <div class="col-sm border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                        </div>
+                        <div class="row mx-0 mt-15 align-items-center" style="background-color: #ddd; height: 150px;">
+                            <div class="col-sm border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                        </div>
+                        <div class="row mx-0 mt-15 align-items-end" style="background-color: #ddd; height: 150px;">
+                            <div class="col-sm border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <p class="mt-50">Code example of this page</p>
+                    <pre class="prettyprint lang-html linenums">
+    &lt;div class="row align-items-start"&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="row align-items-center"&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="row align-items-end"&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm border"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</pre>
+
+                    <p class="mt-15">You can align the cols equal to row class. You can move them with <code>.align-items-start</code>, <code>.align-items-center</code> and <code>.align-items-end</code> classes.</p>
+
+
+
+
+
+
+
+
+
+
+
+                    <h4 id="self-align" class="mt-30 pt-5">Self align:</h4>
+
+                    <div class="mt-15">
+                        <div class="row mx-0" style="background-color: #ddd; height: 170px;">
+                            <div class="col-sm align-self-start border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm align-self-center border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                            <div class="col-sm align-self-end border" style="background-color: #bbb;">
+                                <p class="p-4">One of three columns</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <pre class="prettyprint lang-html linenums">
+    &lt;div class="row"&gt;
+        &lt;div class="col-sm align-self-start"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm align-self-center"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-sm align-self-end"&gt;
+            &lt;p class="p-4"&gt;&lt;One of three columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</pre>
+
+                    <p class="mt-15">You can align the cols with adding <code>.align-self-start</code>, <code>.align-self-center</code> and <code>.align-self-end</code> classes.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                    <h4 id="horizontal-align" class="mt-30 pt-5">Horizontal alignment:</h4>
+
+                    <div class="mt-15">
+                        <div class="row mx-0 justify-content-start">
+                            <div class="col-4 bg-gray3 border b-gray3 border-right-0">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                            <div class="col-4 bg-gray3 border b-gray3">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                        </div>
+                        <div class="row mx-0 mt-4 justify-content-center">
+                            <div class="col-4 bg-gray3 border b-gray3 border-right-0">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                            <div class="col-4 bg-gray3 border b-gray3">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                        </div>
+                        <div class="row mx-0 mt-4 justify-content-end">
+                            <div class="col-4 bg-gray3 border b-gray3 border-right-0">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                            <div class="col-4 bg-gray3 border b-gray3">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                        </div>
+                        <div class="row mx-0 mt-4 justify-content-around">
+                            <div class="col-4 bg-gray3 border b-gray3">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                            <div class="col-4 bg-gray3 border b-gray3">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                        </div>
+                        <div class="row mx-0 mt-4 justify-content-between">
+                            <div class="col-4 bg-gray3 border b-gray3">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                            <div class="col-4 bg-gray3 border b-gray3">
+                                <p class="p-4">One of two columns</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <p class="mt-30">Code example of this page</p>
+                    <pre class="prettyprint lang-html linenums">
+    &lt;div class="row justify-content-start"&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row justify-content-center"&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+        &lt;div class="row justify-content-end"&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row justify-content-around"&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+        &lt;div class="row justify-content-between"&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="col-4"&gt;
+            &lt;p class="p-4"&gt;&lt;One of two columns&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</pre>
+
+
+                You can see documentation on here for bootstrap columns; <a href="https://getbootstrap.com/docs/5.2/layout/grid/" target="_blank" class="colored"><ins>Bootstrap Grid System</ins>.</a> 
+
+
+
+
+                </div>
+            </section>
+            <!-- End responsive -->
+                
+
+
+
+
+
+
+
+
+
+
+
+             <!-- Sliders -->
+            <section class="border-bottom mt-100">
+                    <h1 id="sliders-title" class="section-header font-secondary">Sliders</h1>
+                    <h5 class="mt-5">
+                        <span class="badge bg-warning">Featured Sliders</span>
+                        North is have stunning and super customizable sliders. There is 2 perfect and premium sliders and super customizable and fast Scick slider;
+                    </h5>
+
+                    <ul class="list list-md list-disc mt-15">
+                        <li>
+                            <a href="https://www.themepunch.com/revsliderjquery-doc/slider-revolution-jquery-5-x-documentation/" target="_blank" class="underline-dashed colored1-hover">Revolution Slider Documentation</a>
+                        </li>
+                        <li>
+                            <a href="../LayerSlider/documentation.html" target="_blank" class="underline-dashed colored1-hover">Layer Slider Documentation</a>
+                        </li>
+                        <li>
+                            <a href="https://kenwheeler.github.io/slick/" target="_blank" class="underline-dashed colored1-hover">Slick Slider Documentation</a>
+                        </li>
+                    </ul>
+
+
+                    <h3 id="revolution-slider" class="bold-title dark mt-50">Revolution Slider</h3>
+
+                    <p class="mt-15">
+                        This slider example belongs to the
+                        <a href="https://goldeyes.net/north/index-01.html" target="_blank" class="underline-dashed colored1-hover">Revolution slider demo</a>. Images and some styles can be used on this demo.
+                    </p>
+
+                    <pre class="mt-30 prettyprint lang-html linenums">
+    &lt;!-- HOME SECTION --&gt;
+    &lt;section id=&quot;home&quot; class=&quot;rev_slider_wrapper fullscreen-container&quot; &gt;
+        &lt;!-- Start Slider --&gt;
+        &lt;div id=&quot;home_slider&quot; class=&quot;rev_slider fullscreenbanner lightbox_gallery&quot;&gt;
+            &lt;!-- Slider Container --&gt;
+            &lt;ul&gt;
+                &lt;!-- Slide --&gt;
+                &lt;li data-masterspeed=&quot;400&quot; data-transition=&quot;fade&quot; data-thumb=&quot;content/helios/images/home_01.jpg&quot; data-saveperformance=&quot;off&quot;  data-title=&quot;Office&quot; data-description=&quot;Home Slider&quot;&gt;
+                    &lt;!-- Background Image --&gt;
+                    &lt;img src=&quot;content/helios/images/home_01.jpg&quot;  alt=&quot;Image Background&quot;  data-bgposition=&quot;center center&quot; data-bgfit=&quot;cover&quot; data-bgrepeat=&quot;no-repeat&quot; data-bgparallax=&quot;9&quot; class=&quot;rev-slidebg&quot; data-no-retina&gt;
+                    &lt;!-- Layer --&gt;
+                    &lt;div class=&quot;tp-caption extrabold colored rs-parallaxlevel-8&quot;
+                    data-x=&quot;['center','center','center','center']&quot;
+                    data-y=&quot;['middle','middle','middle','middle']&quot;
+                    data-fontsize=&quot;['40','37','33','23']&quot;
+                    data-lineheight=&quot;60&quot;
+                    data-letterspacing=&quot;['-2','-2','-1.5','-0.5']&quot;
+                    data-frames='[{&quot;delay&quot;:&quot;+1000&quot;,&quot;speed&quot;:2000,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:50px;opacity:0;fb:20px;&quot;,&quot;to&quot;:&quot;o:1;fb:0;&quot;,&quot;ease&quot;:&quot;Power4.easeOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:300,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;opacity:0;fb:0;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]'
+                    data-hoffset=&quot;['0','0','0','0']&quot;
+                    data-voffset=&quot;['-20','-15','-14','-10']&quot;&gt;
+                        Your some text
+                    &lt;/div&gt;
+                    &lt;!-- Layer --&gt;
+                    &lt;div class=&quot;tp-caption extrabold white rs-parallaxlevel-8&quot;
+                    data-x=&quot;['center','center','center','center']&quot;
+                    data-y=&quot;['middle','middle','middle','middle']&quot;
+                    data-fontsize=&quot;['40','37','33','23']&quot;
+                    data-lineheight=&quot;60&quot;
+                    data-letterspacing=&quot;['-2','-2','-1.5','-0.5']&quot;
+                    data-frames='[{&quot;delay&quot;:&quot;+1200&quot;,&quot;speed&quot;:2000,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:50px;opacity:0;fb:20px;&quot;,&quot;to&quot;:&quot;o:1;fb:0;&quot;,&quot;ease&quot;:&quot;Power4.easeOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:300,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;opacity:0;fb:0;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]'
+                    data-hoffset=&quot;['0','0','0','0']&quot;
+                    data-voffset=&quot;['27','24','18','15']&quot;&gt;
+                        Your some text for description
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;!-- End Slide --&gt;
+
+                &lt;!-- Slide --&gt;
+                &lt;li data-masterspeed=&quot;400&quot; data-transition=&quot;fade&quot; data-thumb=&quot;content/helios/images/home_02.jpg&quot; data-saveperformance=&quot;off&quot;  data-title=&quot;Office&quot; data-description=&quot;Home Slider&quot;&gt;
+                    &lt;!-- Background Image --&gt;
+                    &lt;img src=&quot;content/helios/images/home_02.jpg&quot;  alt=&quot;Image Background&quot;  data-bgposition=&quot;center center&quot; data-bgfit=&quot;cover&quot; data-bgrepeat=&quot;no-repeat&quot; data-bgparallax=&quot;9&quot; class=&quot;rev-slidebg&quot; data-no-retina&gt;
+                    &lt;!-- Layer --&gt;
+                    &lt;div class=&quot;tp-caption extrabold colored rs-parallaxlevel-8&quot;
+                    data-x=&quot;['center','center','center','center']&quot;
+                    data-y=&quot;['middle','middle','middle','middle']&quot;
+                    data-fontsize=&quot;['40','37','33','23']&quot;
+                    data-lineheight=&quot;60&quot;
+                    data-letterspacing=&quot;['-2','-2','-1.5','-0.5']&quot;
+                    data-frames='[{&quot;delay&quot;:&quot;+1000&quot;,&quot;speed&quot;:2000,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:50px;opacity:0;fb:20px;&quot;,&quot;to&quot;:&quot;o:1;fb:0;&quot;,&quot;ease&quot;:&quot;Power4.easeOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:300,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;opacity:0;fb:0;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]'
+                    data-hoffset=&quot;['0','0','0','0']&quot;
+                    data-voffset=&quot;['-20','-15','-14','-10']&quot;&gt;
+                        Your some text
+                    &lt;/div&gt;
+                    &lt;!-- Layer --&gt;
+                    &lt;div class=&quot;tp-caption extrabold white rs-parallaxlevel-8&quot;
+                    data-x=&quot;['center','center','center','center']&quot;
+                    data-y=&quot;['middle','middle','middle','middle']&quot;
+                    data-fontsize=&quot;['40','37','33','23']&quot;
+                    data-lineheight=&quot;60&quot;
+                    data-letterspacing=&quot;['-2','-2','-1.5','-0.5']&quot;
+                    data-frames='[{&quot;delay&quot;:&quot;+1200&quot;,&quot;speed&quot;:2000,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:50px;opacity:0;fb:20px;&quot;,&quot;to&quot;:&quot;o:1;fb:0;&quot;,&quot;ease&quot;:&quot;Power4.easeOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:300,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;opacity:0;fb:0;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]'
+                    data-hoffset=&quot;['0','0','0','0']&quot;
+                    data-voffset=&quot;['27','24','18','15']&quot;&gt;
+                        Your some text for description
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;!-- End Slide --&gt;
+            &lt;/ul&gt;
+            &lt;!-- End Container --&gt;
+        &lt;/div&gt;
+        &lt;!-- End Slider --&gt;
+
+    &lt;/section&gt;
+    &lt;!-- END HOME SECTION --&gt;
+                    </pre>
+
+                    <p>
+                        Slider options with Javascript:
+                    </p>
+
+
+                    <pre class="prettyprint lang-js linenums">
+//*********************************************
+//  REVOLUTION SLIDER FOR HOME
+//*********************************************
+
+    var tpj=jQuery;
+    var revapi2;
+    if(tpj("#home_slider").revolution == undefined){
+        revslider_showDoubleJqueryError("#home_slider");
+    }else{
+        revapi2 = tpj("#home_slider").show().revolution({
+            sliderType:"standard",
+            jsFileLocation:"js/revolutionslider/",
+            sliderLayout:"fullwidth",
+            delay:9000,
+            navigation: {
+                keyboardNavigation: "on",
+                keyboard_direction: "horizontal",
+                mouseScrollNavigation: "off",
+                onHoverStop: "off",
+                touch: {
+                    touchenabled: "on",
+                    swipe_threshold: 75,
+                    swipe_min_touches: 1,
+                    swipe_direction: "horizontal",
+                    drag_block_vertical: false
+                },
+                arrows: {
+                    style: "uranus",
+                    enable: true,
+                    hide_onmobile: true,
+                    hide_onleave: true,
+                    tmp: '',
+                    left: {
+                        h_align: "left",
+                        v_align: "center",
+                        h_offset: 0,
+                        v_offset: 0
+                    },
+                    right: {
+                        h_align: "right",
+                        v_align: "center",
+                        h_offset: 0,
+                        v_offset: 0
+                    }
+                },
+                bullets: {
+                    enable: true,
+                    hide_onmobile: true,
+                    style: "uranus",
+                    hide_onleave: false,
+                    direction: "horizontal",
+                    h_align: "center",
+                    v_align: "bottom",
+                    h_offset: 0,
+                    v_offset: 50,
+                    space: 7,
+                    tmp: '&lt;span class=&quot;tp-bullet-inner&quot;&gt;&lt;/span&gt;'
+                }
+            },
+            responsiveLevels:[1240,1240,778,480],
+            visibilityLevels:[1240,1240,778,480],
+            gridwidth:[1240,1240,778,480],
+            gridheight:[840,700,480,440],
+            parallax: {
+                type:"scroll",
+                origo:"slidercenter",
+                speed:2000,
+                levels:[2,3,4,5,8,10,12,16,30],
+            },
+            shadow:0,
+            spinner:"off",
+            stopLoop:"off",
+            stopAfterLoops:0,
+            stopAtSlide:0,
+            disableProgressBar:"on",
+            shuffle:"off",
+        });
+    }
+                    </pre>
+
+
+
+
+
+                    <h3 id="slick-slider" class="bold-title dark mt-50">Slick Slider</h3>
+
+                    <pre class="mt-30 prettyprint lang-html linenums">
+    &lt;!-- CONTENT --&gt;
+    &lt;section id=&quot;home&quot; class=&quot;t-center white fullwidth&quot;&gt;
+        &lt;!-- Hero Slider --&gt;
+        &lt;div class=&quot;hero-slider height-760 custom-slider c-grab&quot; data-slick='{&quot;dots&quot;: true, &quot;arrows&quot;: true, &quot;autoplay&quot;: true, &quot;autoplaySpeed&quot;: 6000, &quot;pauseOnHover&quot;: false, &quot;speed&quot;: 700, &quot;draggable&quot;:true, &quot;slidesToShow&quot;: 1, &quot;slidesToScroll&quot;: 1, &quot;responsive&quot;:[{&quot;breakpoint&quot;: 1024,&quot;settings&quot;:{&quot;slidesToShow&quot;: 1}}]}'&gt;
+            &lt;!-- Slide --&gt;
+            &lt;div class=&quot;slide moving-container&quot;&gt;
+                &lt;!-- Your Image --&gt;
+                &lt;div class=&quot;slide-img bg-soft bg-soft-dark2&quot; data-background=&quot;images/backgrounds/background_21.jpg&quot;&gt;&lt;/div&gt;
+                &lt;!-- Details --&gt;
+                &lt;div class=&quot;details&quot;&gt;
+                    &lt;!-- Centered Container --&gt;
+                    &lt;div class=&quot;container v-center&quot;&gt;
+                        &lt;div class=&quot;skrollr moving&quot; data-0=&quot;opacity:1;&quot; data-200=&quot;opacity:0;&quot;&gt;
+                            &lt;div class=&quot;translatez-sm&quot;&gt;
+                                &lt;h4 class=&quot;font-secondary animated fs-16-sm&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;600&quot;&gt;
+                                    Some texts for your slider
+                                &lt;/h4&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;translatez-xs&quot;&gt;
+                                &lt;h1 class=&quot;bold-title mini-mt animated font-16-mobile&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;800&quot;&gt;
+                                    Description text for your slider
+                                &lt;/h1&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;translatez-md&quot;&gt;
+                                &lt;a href=&quot;#&quot; class=&quot;hero-slider-next lg-btn mt-15 inline-block border-btn border-dashed b-gray3 radius-lg bold-subtitle font-12 white animated bg-colored1-hover border-colored1-hover slow&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;1000&quot;&gt;
+                                    Button template
+                                &lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Details --&gt;
+            &lt;/div&gt;
+            &lt;!-- End Slide --&gt;
+            &lt;!-- Slide --&gt;
+            &lt;div class=&quot;slide moving-container&quot;&gt;
+                &lt;!-- Your Image --&gt;
+                &lt;div class=&quot;slide-img bg-soft bg-soft-dark2&quot; data-background=&quot;images/backgrounds/background_19.jpg&quot;&gt;&lt;/div&gt;
+                &lt;!-- Details --&gt;
+                &lt;div class=&quot;details&quot;&gt;
+                    &lt;!-- Centered Container --&gt;
+                    &lt;div class=&quot;container v-center&quot;&gt;
+                        &lt;div class=&quot;skrollr moving&quot; data-0=&quot;opacity:1;&quot; data-200=&quot;opacity:0;&quot;&gt;
+                            &lt;div class=&quot;translatez-sm&quot;&gt;
+                                &lt;h4 class=&quot;font-secondary animated fs-16-sm&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;600&quot;&gt;
+                                    Some texts for your slider
+                                &lt;/h4&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;translatez-xs&quot;&gt;
+                                &lt;h1 class=&quot;bold-title mini-mt animated font-16-mobile&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;800&quot;&gt;
+                                    Description text for your slider
+                                &lt;/h1&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;translatez-md&quot;&gt;
+                                &lt;a href=&quot;#&quot; class=&quot;hero-slider-next lg-btn mt-15 inline-block border-btn border-dashed b-gray3 radius-lg bold-subtitle font-12 white animated bg-colored1-hover border-colored1-hover slow&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;1000&quot;&gt;
+                                    Button template
+                                &lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- End Details --&gt;
+            &lt;/div&gt;
+            &lt;!-- End Slide --&gt;
+            
+        &lt;/div&gt;
+        &lt;!-- End Hero Slider --&gt;
+    &lt;/section&gt;
+    &lt;!-- END CONTENT --&gt;</pre>
+
+
+                    <p class="paragraph mt-30">
+                        You can select your slider's height via helper classes. <span class="bg-gray2 padding-4">North's reader plugin is read your classes automatically.</span> Just a few examples for helper classes;
+                    </p>
+                    <p class="paragraph mt-30">
+                        <strong class="gray8">.height-500 - </strong> Slider's height will be <strong class="gray8"> 500px</strong> automatically. You can set it what you want from 0 to 999.
+                    </p>
+                    <p class="paragraph mt-15">
+                        <strong class="gray8">.height-full - </strong> This option will be full screen according to the device. <span class="bg-gray2 padding-4"> And will be responsived to screen resizes.</span>
+                    </p>
+                    <p class="paragraph mt-15">
+                        <strong class="gray8">.c-grab - </strong> <strong class="gray8">.c-pointer, .c-default, .c-disabled, .c-hand, .c-resize, .c-move</strong> Options for cursor options on the slider.
+                    </p>
+
+                    <!-- Divider -->
+                    <div class="font-12 uppercase bold mt-50 xs-mb">
+                        <span>Example Item Animate</span>
+                    </div>
+
+                    <pre class="prettyprint lang-html linenums">
+&lt;h4 class=&quot;font-secondary animate fs-16-sm&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;600&quot;&gt;
+    We dreaming of the future. Join us!
+&lt;/h4&gt;</pre>
+
+                    <p class="paragraph">
+                        You can add <code>data-animation=&quot;fadeInUp&quot;</code> for animate and <code>data-animation-delay=&quot;600&quot;&gt;</code> for animation delay. And you can move the elements with using North elements.
+                    </p>
+
+
+                    <!-- Divider -->
+                    <div class="font-12 uppercase bold mt-50 xs-mb">
+                        <span>Carousels</span>
+                    </div>
+
+                    <p class="paragraph">
+                        You can use <code>.custom-slider</code> for all sliders and <code>data-slick</code> attribute for customize each sliders. Possible to edit all slider options on this attribute. An example is here;
+                    </p>
+
+                    <pre class="prettyprint lang-html linenums">
+&lt;!-- Slider --&gt;
+&lt;div class=&quot;custom-slider container block-img c-move&quot;
+data-slick='{&quot;dots&quot;: false, &quot;autoplay&quot;: true, &quot;autoplaySpeed&quot;: 1500, &quot;arrows&quot;: true, &quot;fade&quot;: false, &quot;draggable&quot;:true, &quot;slidesToShow&quot;: 4, &quot;slidesToScroll&quot;: 1}'&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_01.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_02.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_03.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_04.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_05.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_06.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_07.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_08.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                    <p class="paragraph">
+                        Also you can edit responsive settings in <code>breakpoint</code> code. For example;
+                    </p>
+
+                    <pre class="prettyprint lang-html linenums">
+&lt;!-- Slider --&gt;
+&lt;div class=&quot;custom-slider container block-img c-grab&quot;
+data-slick='{&quot;slidesToShow&quot;: 5, &quot;slidesToScroll&quot;: 2, <span class="extrabold">&quot;responsive&quot;:[{&quot;breakpoint&quot;: 1024,&quot;settings&quot;:{&quot;slidesToShow&quot;: 3}},{&quot;breakpoint&quot;: 600,&quot;settings&quot;:{&quot;slidesToShow&quot;: 1}}]}'&gt;</span>
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_01.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_02.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;px-10&quot;&gt;&lt;img src=&quot;images/blocks/block_03.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                    <p class="paragraph">
+                        You can visit the plugin page on here: <a href="http://kenwheeler.github.io/slick/" target="_blank" class="underline-dashed colored1-hover">Slick Slider By Kenwheeler.</a>
+                    </p>
+
+            </section>
+            <!-- End Sliders -->
+
+
+
+
+
+
+            <!-- lightbox -->
+            <section id="lightbox" class="border-bottom">
+                <div class="py-50">
+                    <h2 id="lightbox-title" class="section-header font-secondary">Lightbox Using</h2>
+
+
+                    <p class="mt-15">North comes with a perfect lightbox plugin. You can see all details on <a href="https://fslightbox.com/" target="_blank" class="colored"><ins>this page.</ins></a> This lightbox plugin can be used on galleries, single items easily and can be used with images, google maps, local&online videos, websites. Also this plugin works according to portfolio filters. And you do not need any customization for this feature. It'll get updated filters automatically. </p>
+
+
+
+
+
+                    <h4 id="lightbox-gallery" class="dark mt-5 pt-5">Gallery Type:</h4>
+
+                    <pre class="prettyprint lang-html linenums">
+&lt;div class=&quot;your-container&quot;&gt;
+    &lt;div class=&quot;item&quot;&gt;
+        &lt;a href=&quot;image path&quot; data-fslightbox=&quot;anyGalleryName&quot; data-type=&quot;image&quot;&gt;
+            &lt;img src=&quot;image path&quot; alt=&quot;lightbox image&quot;&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;
+        &lt;a href=&quot;image path&quot; data-fslightbox=&quot;anyGalleryName&quot; data-type=&quot;image&quot;&gt;
+            &lt;img src=&quot;image path&quot; alt=&quot;lightbox image&quot;&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;
+        &lt;a href=&quot;image path&quot; data-fslightbox=&quot;anyGalleryName&quot; data-type=&quot;image&quot;&gt;
+            &lt;img src=&quot;image path&quot; alt=&quot;lightbox image&quot;&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;
+        &lt;a href=&quot;image path&quot; data-fslightbox=&quot;anyGalleryName&quot; data-type=&quot;image&quot;&gt;
+            &lt;img src=&quot;image path&quot; alt=&quot;lightbox image&quot;&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;
+        &lt;a href=&quot;image path&quot; data-fslightbox=&quot;anyGalleryName&quot; data-type=&quot;image&quot;&gt;
+            &lt;img src=&quot;image path&quot; alt=&quot;lightbox image&quot;&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+                    <p>You should add <code>data-fslightbox</code> attribute to "a" tag. And you can add any group name to this attribute. And you need add <code>data-type</code> attribute for media type. You can add image, video, youtube to this attribute.
+
+
+
+
+
+
+
+
+
+
+                    <h4 id="lightbox-single" class="dark mt-30 pt-5">Single Item:</h4>
+
+                    <pre class="prettyprint lang-html linenums">
+&lt;div class=&quot;item&quot;&gt;
+    &lt;a href=&quot;image path&quot; data-fslightbox=&quot;thisIsNotaGallery&quot; data-type=&quot;image&quot;&gt;
+        &lt;img src=&quot;image path&quot; alt=&quot;lightbox image&quot;&gt;
+    &lt;/a&gt;
+&lt;/div&gt;</pre>
+                    <p>You can add any random name to <code>data-fslightbox</code> attribute for single item.</p>
+
+
+
+
+                </div>
+            </section>
+            <!-- End lightbox -->
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- backgrounds -->
+            <section id="backgrounds" class="border-bottom">
+                <div class="py-50">
+                    <h2 id="backgrounds-title" class="section-header font-secondary">Background color and images</h2>
+
+
+                    <p>You can use <code>data</code> attributes for background colors, text colors and background images. Please follow for the examples;</p>
+
+                    <h4 id="background-images" class="dark mt-30 pt-5">Background Images:</h4>
+
+                    <p class="mt-15">Here is example for cover sized and right-top aligned background image;</p>
+                    <pre class="prettyprint lang-html linenums">
+&lt;div class="bg-cover bg-top bg-right" data-background=&quot;your-background-image-path.jpg&quot;&gt;&lt;/div&gt;</pre>
+
+
+
+
+                    <p id="background-mobile" class="mt-30">And customized mobile and desktops;</p>
+                    <pre class="prettyprint lang-html linenums">
+&lt;div class="bg-cover bg-top bg-right bg-mobile-center" data-background=&quot;your-background-image-path.jpg&quot; data-mobile-background=&quot;your-mobile-background-image-path.jpg&quot;&gt;&lt;/div&gt;</pre>
+
+
+
+
+                    <p id="background-mobile" class="mt-30">You can use background images with lazy load;</p>
+                    <pre class="prettyprint lang-html linenums">
+&lt;div class="bg-cover bg-top bg-right bg-mobile-center" data-bg=&quot;your-background-image-path.jpg&quot;&gt;&lt;/div&gt;</pre>
+
+
+
+
+                    <h4 id="background-colors" class="dark mt-50 pt-5">Background Colors:</h4>
+
+                    <div class="p-4 mt-30 text-white d-inline-block bg-colored">.bg-colored</div>
+                    <div class="p-4 mt-30 text-white d-inline-block bg-colored1">.bg-colored1</div>
+                    <div class="p-4 mt-30 text-white d-inline-block bg-colored2">.bg-colored2</div>
+                    <div class="p-4 mt-30 text-white d-inline-block bg-night1">.bg-night1</div>
+                    <div class="p-4 mt-30 text-white d-inline-block bg-dark3">.bg-dark3</div>
+                    <div class="p-4 mt-30 text-white d-inline-block bg-purple">.bg-purple</div>
+                    <div class="p-4 mt-30 text-white d-inline-block bg-facebook">.bg-facebook</div>
+                    <div class="p-4 mt-30 text-white d-inline-block bg-youtube">.bg-youtube</div>
+                    <pre class="prettyprint lang-html linenums">
+&lt;div class="text-white p-4 bg-colored"&gt;.bg-colored&lt;/div&gt;</pre>
+
+
+
+
+
+
+                    <h4 id="text-colors" class="dark mt-50 pt-5">Text Colors:</h4>
+
+                    <div class="p-4 mt-30 bg-dark1 d-inline-block color-gold">color-gold</div>
+                    <div class="p-4 mt-30 bg-dark1 d-inline-block color-pink">color-pink</div>
+                    <div class="p-4 mt-30 bg-dark1 d-inline-block color-violet">color-violet</div>
+                    <div class="p-4 mt-30 bg-dark1 d-inline-block color-purple">color-purple</div>
+                    <div class="p-4 mt-30 bg-dark1 d-inline-block color-orange">color-orange</div>
+                    <pre class="prettyprint lang-html linenums">
+&lt;div class="bg-dark1 p-4 color-orange"&gt;color-orange&lt;/div&gt;</pre>
+
+
+           
+                    
+
+                </div>
+            </section>
+            <!-- End backgrounds -->
+
+
+
+
+
+
+
+
+
+
+            <!-- parallax -->
+            <section id="parallax" class="border-bottom">
+                <div class="py-50">
+                    <h2 id="parallax-title" class="section-header font-secondary">Parallax animations</h2>
+
+
+                    <p>You can give horizontal, vertical or diagonal parallax effects and all css animations to elements with scroll. Here is how to use them:</p>
+
+                    <h4 id="skrollr" class="dark mt-30">Skrollr animations:</h4>
+
+                    <p class="mt-15">This parallax plugin is making possible unlimited animations with scroll. You can change all css options of an element with scroll. <a href="https://prinzhorn.github.io/skrollr/" target="_blank" class="colored1-hover">skrollr.js by Prinzhorn</a></p>
+
+                    <p class="mt-15">For parallax image on home page;</p>
+
+                    <pre class="prettyprint lang-html linenums">
+&lt;div class=&quot;bg-parallax&quot; data-background=&quot;images/backgrounds/background_01.jpg&quot; data-anchor-target=&quot;#home&quot; data-0=&quot;transform:translate3d(0, 0px, 0px);&quot; data-900=&quot;transform:translate3d(0px, 250px, 0px);&quot;&gt;&lt;/div&gt;</pre>
+
+                    <p class="mt-30">And for elements;</p>
+                    <pre class="prettyprint lang-html linenums">
+&lt;div class=&quot;some-element&quot; data-0=&quot;transform:translate3d(0, 0px, 0px); opacity: 1;&quot; data-450=&quot;transform:translate3d(0px, 125px, 0px); opacity: 0;&quot;&gt;</pre>
+
+
+                    <p class="mt-30">According to parent section;</p>
+                    <pre class="prettyprint lang-html linenums">
+&lt;section id=&quot;parallax-section&quot;&gt;
+    &lt;div class=&quot;some-element&quot; data-anchor-target=&quot;#parallax-section&quot; data-bottom-top=&quot;transform:translate3d(0, -50px, 0px);&quot; data-top-bottom=&quot;transform:translate3d(0px, 100px, 0px);&quot;&gt;Some element&lt;/div&gt;
+&lt;/section&gt;</pre>
+
+                    
+                    <p class="mt-30">
+                        <span class="badge text-white bold bg-colored mr-10">NOTE</span>You can use this plugin on slider layers. An example is here <a href="../../index-04.html" target="_blank" class="colored"><ins>North Demo 04</ins></a></p>
+
+                </div>
+            </section>
+            <!-- End parallax -->
+
+
+
+
+
+
+
+
+
+            <!-- contactform -->
+            <section id="contactform" class="border-bottom">
+                <div class="py-50">
+                    <h2 id="contactform-title" class="section-header font-secondary">Contact Forms</h2>
+
+
+                    <p>North is comes with working beautiful contact form, 2 type validation systems and mailchimp system. You can use math or Google Re-Captcha on your forms. You can see validations on here: <a href="http://North.goldeyestheme.com/elements-form-validations.html" target="_blank" class="colored colored1-hover"><ins>North Validation Systems</ins></a></p>
+
+
+                    <h4 class="mt-30">Contact form:</h4>
+
+
+                    <p class="mt-15">Example contact form is here;</p>
+
+                    <pre class="prettyprint lang-html linenums">
+&lt;!-- Start contact form --&gt;
+&lt;form id=&quot;contact-form&quot; name=&quot;contact-form&quot; class=&quot;contact-form validate-me&quot; method=&quot;post&quot; action=&quot;php/mail.php&quot; autocomplete=&quot;off&quot;&gt;
+
+    &lt;!-- Row for inputs --&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        
+        &lt;!-- Name --&gt;
+        &lt;div class=&quot;col-md-6 col-12 ml-0 animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;0&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; required class=&quot;py-25 px-25 b-transparent fs-18 bg-gray2 dark-placeholder mt-30&quot;&gt;
+            &lt;div class=&quot;invalid-tooltip top-3 mt-0 bg-transparent p-0 text-danger fs-16 font-main&quot;&gt;
+                Please enter your name.
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- E-mail address --&gt;
+        &lt;div class=&quot;col-md-6 col-12 mr-0 animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;0&quot;&gt;
+            &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot; required class=&quot;py-25 px-25 b-transparent fs-18 bg-gray2 dark-placeholder mt-30&quot;&gt;
+            &lt;div class=&quot;invalid-tooltip top-3 mt-0 bg-transparent p-0 text-danger fs-16 font-main&quot;&gt;
+                Please enter a valid e-mail.
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Subject --&gt;
+        &lt;div class=&quot;col-md-6 col-12 ml-0 animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;100&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;subject&quot; id=&quot;subject&quot; class=&quot;py-25 px-25 b-transparent fs-18 bg-gray2 dark-placeholder mt-30&quot;&gt;
+            &lt;div class=&quot;invalid-tooltip top-3 mt-0 bg-transparent p-0 text-danger fs-16 font-main&quot;&gt;
+                Please enter a valid e-mail.
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Verify --&gt;
+        &lt;div class=&quot;col-md-6 col-12 mr-0 animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;100&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;verify&quot; id=&quot;verify&quot; class=&quot;py-25 px-25 b-transparent fs-18 bg-gray2 dark-placeholder mt-30&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Message --&gt;
+        &lt;div class=&quot;col-12 mr-0 ml-0 animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;200&quot;&gt;
+            &lt;textarea name=&quot;message&quot; id=&quot;message&quot; class=&quot;py-25 px-25 b-transparent fs-18 bg-gray2 dark-placeholder mt-30&quot;&gt;&lt;/textarea&gt;
+            &lt;div class=&quot;invalid-tooltip top-3 mt-0 bg-transparent p-0 text-danger fs-16 font-main&quot;&gt;
+                Please type your message.
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Send Button --&gt;
+        &lt;div class=&quot;col-12 text-center animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;300&quot;&gt;
+            &lt;button type=&quot;submit&quot; id=&quot;submit&quot; class=&quot;send-button&quot;&gt;SEND MESSAGE&lt;/button&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+    &lt;!-- End Row for inputs --&gt;
+&lt;/form&gt;
+&lt;!-- End contact form --&gt;</pre>
+
+                    
+
+                </div>
+            </section>
+            <!-- End contactform -->
+
+
+
+
+
+
+
+
+
+
+            <!-- customizeContactForm -->
+            <section id="customizeContactForm" class="border-bottom">
+                <div class="py-50">
+                    <h2 id="customizeContactForm-title" class="section-header font-secondary">Customize Contact Forms</h2>
+
+
+                    <p>North is comes with working beautiful contact form, 2 type validation systems and mailchimp system. You can use math or Google Re-Captcha on your forms. You can see validations on here: <a href="http://North.goldeyestheme.com/elements-form-validations.html" target="_blank" class="colored colored1-hover"><ins>North Validation Systems</ins></a></p>
+
+                    <h4 class="mt-5">Contact form:</h4>
+
+
+                    <p class="mt-5">Example contact form is here;</p>
+
+                    <pre class="prettyprint lang-html linenums">
+&lt;!-- Start contact form --&gt;
+&lt;form id=&quot;contact-form&quot; name=&quot;contact-form&quot; class=&quot;contact-form&quot; method=&quot;post&quot; <span class="h3 px-0"><span class="badge bold bg-danger circle">1</span> action=&quot;php/mail.php&quot; </span>autocomplete=&quot;off&quot;&gt;
+
+    &lt;!-- Row for inputs --&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        
+        &lt;!-- Name --&gt;
+        &lt;div class=&quot;input-wrapper col-md-6 col-12 ml-0 animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;0&quot;&gt;
+            &lt;input type=&quot;text&quot; <span class="h3 px-0"><span class="badge bold bg-danger rounded-circle">2</span> name=&quot;name&quot;</span> id=&quot;name&quot; required class=&quot;contact-input&quot;&gt;
+            &lt;div class=&quot;invalid-tooltip top-3 mt-0 bg-transparent p-0 text-danger fs-16 font-main&quot;&gt;
+                Please enter your name.
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- E-mail address --&gt;
+        &lt;div class=&quot;input-wrapper col-md-6 col-12 mr-0 animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;0&quot;&gt;
+            &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot; <span class="h3 px-0 position-relative"><span class="badge bold bg-danger rounded-circle">3</span> required</span> class=&quot;contact-input&quot;&gt;
+            &lt;div class=&quot;invalid-tooltip top-3 mt-0 bg-transparent p-0 text-danger fs-16 font-main&quot;&gt;
+                Please enter a valid e-mail.
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Subject --&gt;
+        &lt;div class=&quot;input-wrapper col-md-6 col-12 ml-0 animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;100&quot;&gt;
+            &lt;input <span class="h3 px-0 position-relative"><span class="badge bold bg-danger rounded-circle">4</span> type=&quot;text&quot;</span> name=&quot;subject&quot; id=&quot;subject&quot; class=&quot;contact-input&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Message --&gt;
+        &lt;div class=&quot;input-wrapper textarea-wrapper col-12 mr-0 ml-0 animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;200&quot;&gt;
+            &lt;textarea name=&quot;message&quot; id=&quot;message&quot; class=&quot;contact-input&quot;&gt;&lt;/textarea&gt;
+            <span class="badge bold bg-danger rounded-circle">5</span>&lt;div class=&quot;<span class="h3 px-0 position-relative">invalid-tooltip</span> top-3 mt-0 bg-transparent p-0 text-danger fs-16 font-main&quot;&gt;
+                Please type your message.
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Send Button --&gt;
+        &lt;div class=&quot;col-12 text-center animated&quot; data-animation=&quot;fadeInUp&quot; data-animation-delay=&quot;300&quot;&gt;
+            &lt;button type=&quot;submit&quot; id=&quot;submit&quot; class=&quot;send-button&quot;&gt;SEND MESSAGE&lt;/button&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+    &lt;!-- End Row for inputs --&gt;
+&lt;/form&gt;
+&lt;!-- End contact form --&gt;</pre>
+
+                    <h4 id="important-points" class="mt-50 pt-5">Important and selected points:</h4>
+
+
+                    <ul class="list list-number list-lg mt-15">
+                        <li>
+                            <span class="badge bg-warning text-white">Action</span>
+                            You should point to your contact form is where to transfers the form datas. Classic forms transfers to php/mail.php file, but there is more ready to use php files for use another form types like anvanced.
+                        </li>
+
+
+                        <li>
+                            <span class="badge bg-warning text-white">Name</span>
+                            Php scripts getting datas from name areas. So, if you add more inputs, you should give new names to them and add this names to php script. For example:
+                        
+                            <pre class="prettyprint lang-html linenums">
+&lt;!-- Address --&gt;
+&lt;input type=&quot;text&quot; name=&quot;address&quot; id=&quot;address&quot; required class=&quot;contact-input&quot;&gt;</pre>
+
+                            <p>
+                                You should add <code>$address = $_POST['address'];</code> code to your mail php file, line 17. Also you should add this input to your mail body. For example;
+                            </p>
+                            <pre class="prettyprint lang-html linenums">
+&lt;p&gt;&lt;strong&gt;Phone: &lt;/strong&gt; {$phone} &lt;/p&gt;
+<div class="extrabold font-15">&lt;p&gt;&lt;strong&gt;Address: &lt;/strong&gt; {$address} &lt;/p&gt;</div>
+&lt;p&gt;&lt;strong&gt;Subject: &lt;/strong&gt; {$subject} &lt;/p&gt;</pre>
+                            <p>
+                                You can add or remove a lot of form elements to your contact form.
+                            </p>
+                        </li>
+
+                        <li>
+                            <span class="badge bg-warning text-white">Required</span>
+                            You can add required attribute to important inputs. Forms can not be submitted without filling correct them.
+                        </li>
+                        <li>
+                            <span class="badge bg-warning text-white">Type</span>
+                             If you use correct type for inputs, your form is works better on mobile and large devices. For example, email type for E-mail inputs, or numbers type for number inputs.
+                        </li>
+                        <li>
+                            <span class="badge bg-warning text-white">Tooltips</span>
+                            These elements are invisible first. If you click on send button with missing fields, these warnings will be visible on missing inputs. They will be invisible after they filled.
+                        </li>
+                        
+                    </ul>
+
+
+
+
+                    <h4 id="how-to-work" class="mt-50 pt-5">How to work contact forms:</h4>
+
+                    <p class="mt-15">
+                        <span class="badge bg-warning text-white">PHP</span>
+                        You need add your smtp address, a mailer (noreply) address, password of mailer address and your own address. Please follow:
+                    </p>
+
+                    <ul class="list list-lg mt-15 list-number mt-5">
+                        <li>
+                            <code>$mail->Host = "smtp.example.com";</code> - Set the hostname of the mail server.
+                        </li>
+                        <li>
+                            <code>$mail->Port = 587;</code> - Set the SMTP port number - likely to be 25, 465 or 587
+                        </li>
+                        <li>
+                            <code>$mail->Username = "noreply@example.com";</code> - Username to use for SMTP authentication, your noreply address.
+                        </li>
+                        <li>
+                            <code>$mail->Password = "noreplyPassword";</code> - Password to use for SMTP authentication. Password of noreply address, not your address.
+                        </li>
+                        <li>
+                            <code>$mail->addAddress('whoto@example.com', 'John Doe');</code> - Set who the message is to be sent to - Your Address
+                        </li>
+                    </ul>
+
+                    <p class="mt-15">
+                        <span class="badge bg-danger text-white">Note</span>
+                        All codes have detailed descriptions in the php files.
+                    </p>
+
+
+
+
+
+
+                    <h4 id="mailchimp" class="mt-15 pt-5">Mailchimp:</h4>
+
+                    <p class="mt-15">
+                        You can use MailChimp With North, on the footer. Example MailChimp form is here:
+                    </p>
+
+                    <pre class="prettyprint lang-html linenums">
+&lt;div id=&quot;footer-newsletter&quot; class=&quot;footer-newsletter&quot;&gt;
+    &lt;form id=&quot;newsletter-form&quot; name=&quot;newsletter-form&quot; class=&quot;newsletter-form&quot; method=&quot;post&quot; action=&quot;php/newsletter.php&quot;&gt;
+        &lt;input type=&quot;email&quot; name=&quot;n-email&quot; id=&quot;n-email&quot; required placeholder=&quot;Add your E-Mail address&quot;&gt;
+        &lt;button type=&quot;submit&quot; id=&quot;n-submit&quot; name=&quot;submit&quot; class=&quot;send-button&quot;&gt;SUBSCRIBE&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;div class=&quot;success-message&quot;&gt;
+        &lt;h4 class=&quot;title font-secondary&quot;&gt;Thank you!&lt;/h4&gt;
+        &lt;p class=&quot;desc&quot;&gt;
+            Your subscription is successfully! &lt;br&gt;
+            Thanks for being part of the community.
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                    <p class="semibold-subtitle lh-lg mt-15">
+                        PHP editings - Open php/newsletter.php file and please follow:
+                    </p>
+
+                    <p class="semibold-subtitle lh-lg mt-15">
+                        Step 1 - Put your MailChimp API - How get your Mailchimp API KEY -
+                        <a href="http://kb.mailchimp.com/article/where-can-i-find-my-api-key" target="_blank" class="underline-dashed colored1-hover">Gen an API Key</a>
+                    </p>
+
+                    <pre class="prettyprint lang-php linenums">
+$api_key = 'your_api_key_goes_here';</pre>
+
+                    <p class="semibold-subtitle lh-lg mt-4">
+                        Step 2 - Put your list Id here - How get your Mailchimp LIST ID - 
+                        <a href="http://kb.mailchimp.com/article/how-can-i-find-my-list-id" target="_blank" class="underline-dashed colored1-hover">Get Your Lis ID</a>
+                    </p>
+
+                    <pre class="prettyprint lang-php linenums">
+$list_id = 'your_list_ID_goes_here';</pre>
+
+                    <p class="semibold-subtitle lh-lg mt-4">
+                        You can also edit your success message on line 22 - newsletter.php file.
+                    </p>
+
+
+                </div>
+            </section>
+            <!-- End customizeContactForm -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Credits -->
+            <section class="pb bt-1 border-gray2">
+                <!-- Container For Credits -->
+                <div class="py-50">
+                    <h2 id="credits-title" class="section-header font-secondary">Credits And Sources</h2>
+                    <p class="mt-5">
+                        We would love to thank the guys who helped make the North creative template. We really appreciate that. Big thanks to those guys:
+                    </p>
+
+                    <div class="row clearfix mt-5 pt-5">
+                        <div class="col-lg-6 col-12">
+                            <!-- Divider -->
+                            <div class="divider text-left mt-30">
+                                <span>Images And Videos</span>
+                            </div>
+                            <ul class="list list-disc">
+                                <li><a href="https://www.shutterstock.com/home" target="_blank" class="colored-hover">ShutterStock</a></li>
+                                <li><a href="https://pixabay.com/" target="_blank" class="colored-hover">Pixabay</a></li>
+                                <li><a href="https://unsplash.com/" target="_blank" class="colored-hover">Unsplash</a></li>
+                                <li><a href="https://www.pexels.com/" target="_blank" class="colored-hover">Pexels</a></li>
+                            </ul>
+
+                            <!-- Divider -->
+                            <div class="divider text-left mt-30">
+                                <span>Icons And Fonts</span>
+                            </div>
+                            <ul class="list list-disc">
+                                <li><a href="https://themify.me/themify-icons" target="_blank" class="colored-hover">Themify Icons - Icon</a></li>
+                                <li><a href="https://fonts.google.com/" target="_blank" class="colored-hover">Google Fonts - Font</a></li>
+                            </ul>
+
+                        </div>
+         
+
+                        <div class="col-lg-6 col-12">
+                            <!-- Divider -->
+                            <div class="divider text-left mt-30">
+                                <span>JS Plugins</span>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-4 col-xs-12">
+                                    <ul class="list list-disc list-xs">
+                                        <li><a href="http://getbootstrap.com/" target="_blank" class="colored-hover">Bootstrap</a></li>
+                                        <li><a href="https://codecanyon.net/item/slider-revolution-responsive-jquery-plugin/2580848?_ga=2.64559145.72520880.1664787608-1361875684.1654819561" target="_blank" class="colored-hover">Revolution Slider</a></li>
+                                        <li><a href="https://codecanyon.net/item/kreatura-slider-plugin-for-jquery/922100?_ga=2.64559145.72520880.1664787608-1361875684.1654819561" target="_blank" class="colored-hover">Kreatura (Layer) Slider</a></li>
+                                        <li><a href="https://kenwheeler.github.io/slick/" target="_blank" class="colored-hover">Slick Slider</a></li>
+                                        <li><a href="https://jquery.com/" target="_blank" class="colored-hover">jQuery</a></li>
+                                        <li><a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank" class="colored-hover">jQuery Easing</a></li>
+                                        <li><a href="https://isotope.metafizzy.co/" target="_blank" class="colored-hover">Isotope</a></li>
+                                        <li><a href="https://github.com/verlok/vanilla-lazyload" target="_blank" class="colored-hover">Vanilla Lazy Load</a></li>
+                                        <li><a href="https://camwiegert.github.io/in-view" target="_blank" class="colored-hover">Inview JS</a></li>
+                                        <li><a href="https://vestride.github.io/Shuffle/" target="_blank" class="colored-hover">Shuffle JS</a></li>
+                                        <li><a href="https://fslightbox.com/" target="_blank" class="colored-hover">FS Lightbox</a></li>
+                                        <li><a href="https://prinzhorn.github.io/skrollr/" target="_blank" class="colored-hover">Skrollr Parallax </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- End Container For Credits -->
+            </section>
+            <!-- End Credits -->
+
+
+
+
+
+
+
+        </div> 
+
+
+
+
+    </main> <!-- .cd-main-content -->
+    <!-- End Left nav and wrapper -->
+
+
+
+
+
+
+
+
+
+	<!-- jQuery -->
+    <script type="text/javascript" src="../../js/plugins.min.js?v=2.0"></script>
+    <!-- MAIN SCRIPTS - Classic scripts for all theme -->
+    <script type="text/javascript" src="../../js/functions.js?v=2.0"></script>
+    <!-- Prettify -->
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script type="text/javascript" src="js/documentation.js"></script>
+    
+    <!-- END JS FILES -->
+
+    <script type="text/javascript">
+        prettyPrint();
+    </script>
+
+</body>
+<!-- Body End -->
+</html>

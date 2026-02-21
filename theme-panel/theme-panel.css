@@ -1,0 +1,63 @@
+
+
+	/* Panel */
+	.panel{ position: fixed; width: 40px; left: -300px; background-color: #fff; padding: 12px 0; pointer-events: none; box-shadow: 1px 1px 23px 2px rgba(0,0,0,0.09); top:15%; border-top-right-radius: 6px; border-bottom-right-radius: 6px; transform: translateZ(0); -webkit-transform: translateZ(0); z-index: 1100; -webkit-transition: all 0.45s; -moz-transition: all 0.45s; transition: all 0.45s; -webkit-transition-delay: 0.1s; transition-delay: 0.1s; }
+	.panel.hiding-panel{ opacity: 0; visibility: hidden; }
+	.panel.ready{ left: 0px; }
+	.panel-backdrop{ position: fixed; left: 0; top: 0; bottom: 0; right: 0; background-color: rgba(0,0,0,0.16); transform: translateZ(0); -webkit-transform: translateZ(0); z-index: 1099; opacity: 0; visibility: hidden; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; }
+	.panel:hover + .panel-backdrop,.panel-backdrop.active{ opacity: 1; visibility: visible; }
+	.panel .panel-button{ display: block; padding: 0; width: 240px; height: 38px; text-transform: uppercase; color: #505050; -webkit-transition: all 0.45s; -moz-transition: all 0.45s; transition: all 0.45s; }
+	.rtl .panel .panel-button{ text-align: right; }
+	.panel .panel-button:hover{ -webkit-transform: translateX(0); -moz-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); }
+	.panel .panel-button div{ display: inline-block; width: 150px; height: 30px; line-height: 32px; margin-left: 8px; border-radius: 60px; visibility: hidden; opacity: 0; text-align: center; font-size: 14px; background-color: #fff; -webkit-transform: translateX(15px); -moz-transform: translateX(15px); -ms-transform: translateX(15px); transform: translateX(15px); -webkit-transition: all 0.45s; -moz-transition: all 0.45s; transition: all 0.45s; }
+	.panel .panel-button i{ display: inline-block; background-color: transparent; pointer-events: auto; border-radius: 100%; margin: 0; text-align: center; width: 38px; height: 38px; line-height: 38px; font-size: 15px; -webkit-transform: scale(1) translateZ(0); -moz-transform: scale(1) translateZ(0px); -ms-transform: scale(1) translateZ(0); transform: scale(1) translateZ(0); -webkit-transition: all 0.45s; -moz-transition: all 0.45s; transition: all 0.45s; }
+		
+	/* Panel Hover Effect */
+	.panel:hover{ pointer-events: auto; -webkit-transition-delay: 0s; transition-delay: 0s; }
+	.panel .panel-button:hover div{ opacity: 1; visibility: visible; -webkit-transform: translateX(0px); -moz-transform: translateX(0px); -ms-transform: translateX(0px); transform: translateX(0px); }
+	.panel .panel-button:active i, .panel .panel-button:active div{ -webkit-transform: scale(0.95) translateZ(0); -moz-transform: scale(0.95) translateZ(0px); -ms-transform: scale(0.95) translateZ(0); transform: scale(0.95) translateZ(0); }
+	/* Panel Switcher */
+	.panel-switcher{ display: none; width: 330px; z-index: 1500; position: fixed; opacity: 0; visibility: hidden; right: 0px; height: 100%; text-align: center; overflow-y: auto; padding: 0; top:0; background-color: #f2f2f2; box-shadow: 3px 5px 60px 0 rgba(0,0,0,0.06); -webkit-transform: translateX(330px) translateZ(0); -moz-transform: translateX(330px) translateZ(0); -ms-transform: translateX(330px) translateZ(0); transform: translateX(330px) translateZ(0); -webkit-transition: transform 0.66s 0s, opacity 0s 0.7s, visibility 0s 0.7s; -moz-transition: transform 0.66s 0s, opacity 0s 0.7s, visibility 0s 0.7s; transition: transform 0.66s 0s, opacity 0s 0.7s, visibility 0s 0.7s; }
+	.panel-switcher.active{ opacity: 1; visibility: visible; -webkit-transform: translateX(0px) translateZ(0); -moz-transform: translateX(0px) translateZ(0px); -ms-transform: translateX(0px) translateZ(0); transform: translateX(0px) translateZ(0); -webkit-transition: transform 0.66s 0s, opacity 0.4s 0.3s, visibility 0.4s 0.3s; -moz-transition: transform 0.66s 0s, opacity 0s 0s, visibility 0s 0s; transition: transform 0.66s 0s, opacity 0s 0s, visibility 0s 0s; }
+	.panel-switcher.loaded{ display: block; }
+	.panel-switcher .switcher-part{ padding: 25px 30px; border-bottom: 1px solid #F1F1F1; }
+	.panel-switcher .switcher-part-wrapper{ display: -ms-flexbox; display: flex; -ms-flex-direction: row; flex-flow: row; }
+	.panel-switcher .switcher-part .large-btn{ width: 100%; height: auto; padding: 16px 15px; text-transform: uppercase; font-size: 16px; display: block; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; }
+	.panel-switcher .switcher-part .large-btn.buy{ color: white; }
+	.panel-switcher .switcher-part .part-title{ color: #505050; font-size: 16px; margin-bottom: 24px; }
+	.panel-switcher .switcher-part .switcher-button{ width: 100%; height: 40px; margin-right: 5px; line-height: 32px; background-color: transparent; border: 1px solid #D3D3D3; color: #2F2F2F; font-size: 13px; text-transform: uppercase; font-weight: 300; outline: none; opacity: 1; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; }
+	.panel-switcher .switcher-part .switcher-button:hover{ opacity: .85; }
+	.panel-switcher .switcher-part .switcher-button:last-child{ margin-right: 0; }
+	.panel-switcher .switcher-part .color-button{ width: 100%; height: 25px; border: 1px solid #D3D3D3; outline: none; margin: 0 5px 5px 0; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; }
+	.panel-switcher .switcher-part .color-button:last-child{ margin: 0 0 5px 0; }
+	.panel-switcher .switcher-part.demos{ padding:25px 15px; }
+	.panel-switcher .switcher-part.demos .switcher-part-wrapper{ display:block; }
+	.panel-switcher .switcher-part.demos a{ display: block; margin-right: 5px; }
+	.panel-switcher .switcher-part.demos img{ max-width: 100%; margin-top: 5px; border:1px solid #f1f1f1; }
+		@media only screen and (max-width: 992px){ 
+			.panel, .panel-switcher{ display: none !important; }
+		}
+	/* Switcher Colors */
+	.panel-switcher .switcher-part .switcher-button.layout-dark.active,
+	.panel-switcher .switcher-part .switcher-button.layout-dark:hover{ background-color: #252525; color: #fff; border-color: transparent; }
+	.panel-switcher .switcher-part .switcher-button.layout-night.active,
+	.panel-switcher .switcher-part .switcher-button.layout-night:hover{ background-color: #3A404B; color: #fff; border-color: transparent; }
+	.panel-switcher .switcher-part .switcher-button.menu-dark.active,
+	.panel-switcher .switcher-part .switcher-button.menu-dark:hover{ background-color: #252525; color: #fff; border-color: transparent; }
+	.panel-switcher .switcher-part .switcher-button.menu-white.active,
+	.panel-switcher .switcher-part .switcher-button.menu-white:hover{ opacity: .7; }
+	/* Color button colors */
+	.panel-switcher .color-red{ background-color:#D93333; }
+	.panel-switcher .color-dodgerblue{ background-color:#0C73D8; }
+	.panel-switcher .color-gold{ background-color:#D1A707; }
+	.panel-switcher .color-lightcoral{ background-color:lightcoral; }
+	.panel-switcher .color-lightsteelblue{ background-color:#74A4E1; }
+	.panel-switcher .color-yellowgreen{ background-color:#587E2D; }
+	.panel-switcher .color-fuchsia{ background-color:#B645B6; }
+	.panel-switcher .color-orange{ background-color:#E99E15; }
+	.panel-switcher .color-palevioletred{ background-color:palevioletred; }
+	.panel-switcher .color-steelblue{ background-color:steelblue; }
+	.panel-switcher .color-mediumpurple{ background-color:mediumpurple; }
+	.panel-switcher .color-lightslategray{ background-color:lightslategray; }
+
+

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#f6f7f9"/>
+  <rect x="40" y="40" width="720" height="420" rx="18" fill="#ffffff" stroke="#d2d9df" stroke-width="2"/>
+  <rect x="90" y="120" width="620" height="220" rx="12" fill="#e7f2f2"/>
+  <circle cx="220" cy="235" r="34" fill="#c6e8d9"/>
+  <polygon points="200,275 270,275 235,215" fill="#b7dfcf"/>
+  <rect x="120" y="380" width="180" height="18" rx="6" fill="#dbe6ea"/>
+  <rect x="320" y="380" width="120" height="18" rx="6" fill="#dbe6ea"/>
+  <text x="120" y="90" font-family="Arial, sans-serif" font-size="20" fill="#4b5563">Before: walkthrough video</text>
+</svg>
