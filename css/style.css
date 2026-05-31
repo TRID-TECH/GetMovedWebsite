@@ -189,9 +189,10 @@
 .gm-pricing-eco-result{font-size:14px;color:#0f5f4a;letter-spacing:.04em;}
 .gm-pricing-eco-tagline{font-size:15px;color:#4f6f65;}
 .gm-pricing-eco-price .gm-pricing-price-label{display:inline;margin-right:8px;}
-.gm-pricing-eco-cta{display:flex;flex-direction:column;align-items:center;width:100%;}
+.gm-pricing-eco-badge-row{border-top:1px solid #e2ece7;width:100%;}
 .gm-pricing-eco-badge{display:inline-block;background:#0f5f4a;color:#fff;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;margin:0;text-align:center;}
 .gm-pricing-eco-badge i{margin-right:6px;}
+.gm-pricing-section-footer{width:100%;}
 .gm-pricing-download-btn{display:inline-block;background:#0f5f4a;color:#fff !important;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:12px 28px;border-radius:999px;border:0;text-decoration:none;transition:background .2s ease,transform .2s ease;}
 .gm-pricing-download-btn:hover{background:#007867;color:#fff !important;text-decoration:none;transform:translateY(-1px);}
 .gm-pricing-features--eco{margin-top:0;}
