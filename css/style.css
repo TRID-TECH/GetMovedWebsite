@@ -147,16 +147,65 @@
 #use-cases ul,
 #use-cases li{text-align:center !important;}
 #use-cases ul{padding-left:0 !important;list-style-position:inside;}
-#pricing .gray4,
-#pricing .gray6{color:#5BE49B !important;}
-#partners{border:none;}
-.partners-ribbon{display:inline-flex;align-items:center;justify-content:center;background:#00A76F;color:#ffffff;padding:12px 34px;font-size:30px;line-height:1;letter-spacing:.02em;border-radius:2px;}
-.partners-logos-row{display:grid;grid-template-columns:repeat(4,minmax(170px,1fr));gap:30px;align-items:center;}
-.partners-logo-card{min-height:110px;border:none;background:transparent;display:flex;align-items:center;justify-content:center;padding:4px;}
-.partners-logo-card img{display:block;width:auto;height:auto;max-width:260px;max-height:82px;object-fit:contain;}
-@media only screen and (max-width:991px){.partners-logos-row{grid-template-columns:repeat(2,minmax(160px,1fr));gap:22px;}}
-@media only screen and (max-width:575px){.partners-ribbon{font-size:24px;padding:10px 20px;}.partners-logos-row{grid-template-columns:1fr;}}
-
+.gm-pricing-section{background:#f3f5f4;color:#1b3d32;position:relative;overflow:hidden;}
+.gm-pricing-section::before{content:"";position:absolute;inset:0;background:url("../assets/img/pricing-reference.png") center top / cover no-repeat;opacity:.06;pointer-events:none;}
+.gm-pricing-section > .container{position:relative;z-index:1;}
+.gm-pricing-header-logo{max-width:220px;width:100%;height:auto;}
+.gm-pricing-tagline{font-size:13px;letter-spacing:.28em;color:#5a7a70;}
+.gm-pricing-cards{margin-top:0 !important;}
+.gm-pricing-card{background:#fff;border:1px solid #d8e5df;border-radius:14px;padding:32px 28px 26px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,55,40,.06);}
+.gm-pricing-card--featured{background:#0f5f4a;border-color:#0f5f4a;color:#fff;box-shadow:0 14px 36px rgba(15,95,74,.28);}
+.gm-pricing-card-icon{width:72px;height:72px;border-radius:50%;border:2px solid #0f5f4a;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:30px;color:#0f5f4a;}
+.gm-pricing-card--featured .gm-pricing-card-icon{border-color:#fff;color:#fff;}
+.gm-pricing-card-title{font-size:22px;line-height:1.25;margin:0 0 10px;color:#0f5f4a;text-align:center;}
+.gm-pricing-card--featured .gm-pricing-card-title{color:#fff;}
+.gm-pricing-card-desc{font-size:15px;line-height:1.5;color:#4f6f65;text-align:center;margin:0 0 22px;min-height:44px;}
+.gm-pricing-card--featured .gm-pricing-card-desc{color:rgba(255,255,255,.9);}
+.gm-pricing-price-label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6b8a80;text-align:center;margin:0;}
+.gm-pricing-card--featured .gm-pricing-price-label{color:rgba(255,255,255,.85);}
+.gm-pricing-price{text-align:center;margin:6px 0 22px;line-height:1;}
+.gm-pricing-price-value{font-size:52px;font-weight:700;color:#0f5f4a;line-height:1;}
+.gm-pricing-card--featured .gm-pricing-price-value{color:#fff;}
+.gm-pricing-price-value--lg{font-size:46px;}
+.gm-pricing-price-unit{font-size:18px;color:#4f6f65;margin-left:4px;}
+.gm-pricing-card--featured .gm-pricing-price-unit{color:rgba(255,255,255,.9);}
+.gm-pricing-price--ai .gm-pricing-price-value{font-size:56px;letter-spacing:.02em;}
+.gm-pricing-features{list-style:none;padding:0;margin:0 0 22px;flex:1 1 auto;}
+.gm-pricing-features li{position:relative;padding:7px 0 7px 28px;font-size:14px;line-height:1.45;color:#2f4f44;}
+.gm-pricing-card--featured .gm-pricing-features li{color:#fff;}
+.gm-pricing-features li::before{content:"✓";position:absolute;left:0;top:7px;color:#0f5f4a;font-size:14px;font-weight:700;line-height:1;}
+.gm-pricing-card--featured .gm-pricing-features li::before{color:#fff;}
+.gm-pricing-card-foot{margin:0;padding-top:14px;border-top:1px solid #e2ece7;font-size:12px;line-height:1.5;color:#4f6f65;text-align:center;}
+.gm-pricing-card-foot i{margin-right:6px;color:#0f5f4a;}
+.gm-pricing-card--featured .gm-pricing-card-foot{border-top-color:rgba(255,255,255,.25);color:rgba(255,255,255,.92);}
+.gm-pricing-card--featured .gm-pricing-card-foot i{color:#fff;}
+.gm-pricing-ecosystem{background:#fff;border:1px solid #d8e5df;border-radius:14px;padding:34px 30px;box-shadow:0 8px 28px rgba(0,55,40,.06);}
+.gm-pricing-eco-logo{max-width:150px;width:100%;height:auto;}
+.gm-pricing-eco-title{font-size:18px;line-height:1.35;color:#0f5f4a;}
+.gm-pricing-eco-formula{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 10px;font-size:13px;color:#2f4f44;}
+.gm-pricing-eco-item{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+.gm-pricing-eco-item i{font-size:16px;color:#0f5f4a;}
+.gm-pricing-eco-plus,.gm-pricing-eco-eq{font-weight:700;color:#0f5f4a;font-size:16px;}
+.gm-pricing-eco-result{font-size:14px;color:#0f5f4a;letter-spacing:.04em;}
+.gm-pricing-eco-tagline{font-size:15px;color:#4f6f65;}
+.gm-pricing-eco-price .gm-pricing-price-label{display:inline;margin-right:8px;}
+.gm-pricing-eco-cta{display:flex;flex-direction:column;align-items:center;width:100%;}
+.gm-pricing-eco-badge{display:inline-block;background:#0f5f4a;color:#fff;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;margin:0;text-align:center;}
+.gm-pricing-eco-badge i{margin-right:6px;}
+.gm-pricing-download-btn{display:inline-block;background:#0f5f4a;color:#fff !important;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:12px 28px;border-radius:999px;border:0;text-decoration:none;transition:background .2s ease,transform .2s ease;}
+.gm-pricing-download-btn:hover{background:#007867;color:#fff !important;text-decoration:none;transform:translateY(-1px);}
+.gm-pricing-features--eco{margin-top:0;}
+@media only screen and (max-width:991px){
+	.gm-pricing-card{max-width:420px;margin-left:auto;margin-right:auto;}
+	.gm-pricing-eco-formula{font-size:12px;}
+	.gm-pricing-price-value{font-size:44px;}
+}
+@media only screen and (max-width:575px){
+	.gm-pricing-card{padding:26px 20px 22px;}
+	.gm-pricing-ecosystem{padding:24px 18px;}
+	.gm-pricing-eco-formula{flex-direction:column;align-items:flex-start;}
+	.gm-pricing-eco-plus,.gm-pricing-eco-eq{display:none;}
+}
 	/* Colored variants */
 	.colored,.colored-hover:hover,.colored-active.active,.hover-container:hover .colored-hover-item{color: var(--colored)!important;}
 	/* Colored1 variants */
