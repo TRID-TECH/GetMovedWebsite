@@ -73,6 +73,92 @@
     });
   }
 
+  // Quick Quote form -> posts directly to the backend, which emails the team.
+  const quoteForm = document.getElementById("quick-quote-form");
+  if (quoteForm) {
+    const quoteStatus = document.getElementById("quick-quote-status");
+    const quoteSubmit = quoteForm.querySelector(".gm-qq-submit");
+
+    // Backend base URL: local dev hits the dev backend directly; in production
+    // we route through portal.getmoved.app which proxies /api/v1 to the backend.
+    const getApiBase = () => {
+      const host = window.location.hostname;
+      const isLocal =
+        host === "localhost" ||
+        host === "127.0.0.1" ||
+        host === "::1" ||
+        host.endsWith(".local");
+      if (isLocal) {
+        return window.location.protocol + "//127.0.0.1:3000";
+      }
+      return "https://portal.getmoved.app";
+    };
+
+    const setStatus = (message, isError) => {
+      if (!quoteStatus) return;
+      quoteStatus.textContent = message;
+      quoteStatus.classList.toggle("is-error", Boolean(isError));
+    };
+
+    quoteForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!quoteForm.reportValidity()) {
+        return;
+      }
+
+      const data = new FormData(quoteForm);
+      const payload = {
+        fullName: (data.get("full_name") || "").toString().trim(),
+        email: (data.get("email") || "").toString().trim(),
+        phone: (data.get("phone") || "").toString().trim(),
+        moveFrom: (data.get("move_from") || "").toString().trim(),
+        moveTo: (data.get("move_to") || "").toString().trim(),
+        movingDate: (data.get("moving_date") || "").toString().trim(),
+        propertyType: (data.get("property_type") || "").toString().trim(),
+        details: (data.get("details") || "").toString().trim(),
+        website: (data.get("website") || "").toString().trim(), // honeypot
+      };
+
+      if (quoteSubmit) {
+        quoteSubmit.disabled = true;
+        quoteSubmit.textContent = "Sending...";
+      }
+      setStatus("", false);
+
+      fetch(getApiBase() + "/api/v1/email/quick-quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Request failed with status " + response.status);
+          }
+          return response.json().catch(() => ({}));
+        })
+        .then(() => {
+          quoteForm.reset();
+          setStatus(
+            "Thank you! Your request has been sent. Our team will contact you shortly.",
+            false
+          );
+        })
+        .catch(() => {
+          setStatus(
+            "Sorry, something went wrong. Please email us directly at jack@getmoved.app.",
+            true
+          );
+        })
+        .finally(() => {
+          if (quoteSubmit) {
+            quoteSubmit.disabled = false;
+            quoteSubmit.textContent = "Submit Request";
+          }
+        });
+    });
+  }
+
   const form = document.getElementById("contact-form");
   const formWrapper = document.getElementById("contact-form-wrapper");
   const successWrapper = document.getElementById("contact-success");
