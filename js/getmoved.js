@@ -159,6 +159,35 @@
     });
   }
 
+  // Google Maps Places autocomplete for the Move From / Move To fields. Accepts a
+  // ZIP code or City, State (US regions only — no street addresses). Exposed on
+  // window so the Maps script's `callback=gmInitPlacesAutocomplete` invokes it once ready.
+  window.gmInitPlacesAutocomplete = function () {
+    if (!(window.google && window.google.maps && window.google.maps.places)) return;
+    ["qq-move-from", "qq-move-to"].forEach((id) => {
+      const input = document.getElementById(id);
+      if (!input || input.dataset.acInit === "1") return;
+      input.dataset.acInit = "1";
+      try {
+        const ac = new google.maps.places.Autocomplete(input, {
+          types: ["(regions)"], // cities, states, ZIP/postal codes
+          componentRestrictions: { country: ["us"] },
+          fields: ["formatted_address", "name"],
+        });
+        ac.addListener("place_changed", () => {
+          const place = ac.getPlace();
+          input.value = (place && (place.formatted_address || place.name)) || input.value;
+        });
+      } catch (e) {
+        /* Maps unavailable — the field still accepts free-typed ZIP / city, state */
+      }
+      // Don't let Enter (choosing a suggestion) submit the form.
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") e.preventDefault();
+      });
+    });
+  };
+
   const form = document.getElementById("contact-form");
   const formWrapper = document.getElementById("contact-form-wrapper");
   const successWrapper = document.getElementById("contact-success");

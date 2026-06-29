@@ -603,11 +603,11 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 						<div class="gm-qq-row">
 							<div class="gm-qq-field">
 								<i class="ti-location-pin"></i>
-								<input type="text" name="move_from" placeholder="Move From (City, State)" required>
+								<input type="text" id="qq-move-from" name="move_from" placeholder="Move From (City, State or ZIP)" autocomplete="off" required>
 							</div>
 							<div class="gm-qq-field">
 								<i class="ti-location-pin"></i>
-								<input type="text" name="move_to" placeholder="Move To (City, State)" required>
+								<input type="text" id="qq-move-to" name="move_to" placeholder="Move To (City, State or ZIP)" autocomplete="off" required>
 							</div>
 						</div>
 
@@ -3701,8 +3701,12 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=3"></script>
+	<script src="js/getmoved.js?v=4"></script>
 	<script src="js/visit-counter.js?v=1"></script>
+	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
+	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnXM-U_nxnVA-4Gb2TXYH80rv6aQJB_iY&libraries=places&callback=gmInitPlacesAutocomplete&loading=async"></script>
 
 	<script>
 		var tpj=jQuery;
