@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<!--
+SECTION MAP (Template -> GetMoved)
+Template file: getmoved-landing/index.html
+
+ASSETS
+- CSS: css/plugins.min.css, css/revslider/settings.css, css/style.css?v=2.4
+- JS: js/bs.js, js/plugins.min.js, js/revslider/jquery.themepunch.revolution.min.js, js/revslider/jquery.themepunch.tools.min.js, js/functions.js
+- Images: images/ (key subfolders: images/portfolio/)
+- Logo: assets/img/logo_png.png
+
+SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
+1) Home / Hero slider -> section#home.rev_slider_wrapper -> GetMoved Hero
+2) Quick Quote -> section#quick-quote -> Get a free moving quote (video walkthrough)
+3) Home page content strip -> section#home-page-content.bg-dark4 -> Value strip
+4) About -> section#about -> What is GetMoved
+5) How it works -> section#how-it-works -> Steps
+6) Features -> section#features -> Key product features
+7) Mobile app -> section#mobile-app -> App promo
+8) Use cases -> section#use-cases -> Use cases
+9) Pricing -> section#pricing -> Commercial pricing (SaaS, Leads, AI, Ecosystem)
+10) Contact -> section#contact -> Contact US
+11) Footer -> footer -> Footer / legal
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>New Jersey Movers — Find & Compare Trusted Moving Companies | GetMoved</title>
+    <meta name="description" content="Compare binding quotes from trusted New Jersey movers across Jersey City, Hoboken, Newark, Edison and North/Central NJ. Film a walkthrough, get an AI inventory, and pay only after your move." />
+    <meta property="og:title" content="GetMoved — The Operating System for Modern Moving Companies" />
+    <meta property="og:description" content="GetMoved gives moving companies a complete digital backbone — quoting, dispatch, crew, fleet, invoicing, and payments — while connecting them to customers ready to book." />
+    <meta property="og:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="684" />
+    <meta property="og:image:height" content="684" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--Favicon -->
+	<link rel="icon" type="image/png" href="assets/img/favicon-128.png" />
+	<!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"/>
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/plugins.min.css" />
+	<!-- Revolution Slider -->
+    <link rel="stylesheet" href="css/revslider/settings.css" />
+	<!-- Page Styles -->
+	<link rel="stylesheet" href="css/style.css?v=2.4" />
+	<!-- End CSS Files -->
+
+	<!-- Quick Quote Section Styles -->
+	<style>
+		#quick-quote.gm-qq-section {
+			background: #f4f7f6;
+			padding: 90px 0;
+		}
+		.gm-qq-grid {
+			display: grid;
+			grid-template-columns: 1.05fr 0.95fr;
+			gap: 50px;
+			align-items: start;
+		}
+		.gm-qq-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			background: #e3f2ed;
+			color: #00875a;
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			padding: 8px 16px;
+			border-radius: 30px;
+		}
+		.gm-qq-title {
+			font-size: 46px;
+			line-height: 1.1;
+			color: #15202b;
+			margin: 22px 0 16px;
+		}
+		.gm-qq-lead {
+			font-size: 17px;
+			line-height: 1.6;
+			color: #5c6b73;
+			max-width: 480px;
+			margin: 0;
+		}
+		.gm-qq-features {
+			display: flex;
+			gap: 50px;
+			margin: 35px 0 25px;
+		}
+		.gm-qq-feature {
+			text-align: center;
+		}
+		.gm-qq-feature-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 54px;
+			height: 54px;
+			border-radius: 50%;
+			background: #e3f2ed;
+			color: #00A76F;
+			font-size: 22px;
+			margin-bottom: 12px;
+		}
+		.gm-qq-feature-label {
+			display: block;
+			font-size: 14px;
+			font-weight: 600;
+			color: #15202b;
+			line-height: 1.3;
+		}
+		.gm-qq-note {
+			font-size: 15px;
+			color: #15202b;
+			margin: 0;
+		}
+		.gm-qq-note i {
+			color: #00A76F;
+			margin-right: 6px;
+		}
+		.gm-qq-how {
+			margin-top: 45px;
+			padding-top: 35px;
+			border-top: 1px solid #e1e8e5;
+		}
+		.gm-qq-how-title {
+			font-size: 22px;
+			color: #15202b;
+			text-align: center;
+			margin: 0 0 28px;
+		}
+		.gm-qq-steps {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 10px;
+		}
+		.gm-qq-step {
+			flex: 1;
+			text-align: center;
+		}
+		.gm-qq-step-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 46px;
+			height: 46px;
+			color: #00A76F;
+			font-size: 26px;
+			margin-bottom: 10px;
+		}
+		.gm-qq-step-title {
+			font-size: 14px;
+			font-weight: 700;
+			color: #15202b;
+			margin: 0 0 4px;
+		}
+		.gm-qq-step-title span {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 18px;
+			height: 18px;
+			border-radius: 50%;
+			background: #00A76F;
+			color: #fff;
+			font-size: 11px;
+			margin-right: 4px;
+		}
+		.gm-qq-step-text {
+			font-size: 13px;
+			color: #7a8891;
+			line-height: 1.4;
+			margin: 0;
+		}
+		.gm-qq-step-arrow {
+			color: #c2cdc8;
+			font-size: 16px;
+			padding-top: 12px;
+		}
+		/* Card */
+		.gm-qq-card {
+			background: #fff;
+			border-radius: 16px;
+			box-shadow: 0 18px 50px rgba(20, 32, 43, 0.10);
+			padding: 38px 36px;
+		}
+		.gm-qq-card-title {
+			font-size: 26px;
+			color: #15202b;
+			margin: 0 0 6px;
+		}
+		.gm-qq-card-sub {
+			font-size: 14px;
+			color: #7a8891;
+			margin: 0 0 24px;
+		}
+		.gm-qq-field {
+			position: relative;
+			margin-bottom: 14px;
+		}
+		.gm-qq-field > i {
+			position: absolute;
+			left: 14px;
+			top: 15px;
+			color: #9aa7af;
+			font-size: 15px;
+			pointer-events: none;
+		}
+		.gm-qq-field input,
+		.gm-qq-field select,
+		.gm-qq-field textarea {
+			width: 100%;
+			border: 1px solid #e1e8e5;
+			border-radius: 10px;
+			background: #fbfdfc;
+			padding: 13px 14px 13px 40px;
+			font-size: 14px;
+			color: #15202b;
+			outline: none;
+			transition: border-color .2s, box-shadow .2s;
+			font-family: inherit;
+		}
+		.gm-qq-field select {
+			appearance: none;
+			-webkit-appearance: none;
+			cursor: pointer;
+			color: #15202b;
+		}
+		.gm-qq-field textarea {
+			resize: vertical;
+			min-height: 90px;
+			padding-top: 13px;
+		}
+		.gm-qq-field-area > i {
+			top: 14px;
+		}
+		.gm-qq-field input::placeholder,
+		.gm-qq-field textarea::placeholder {
+			color: #9aa7af;
+		}
+		.gm-qq-field input:focus,
+		.gm-qq-field select:focus,
+		.gm-qq-field textarea:focus {
+			border-color: #00A76F;
+			box-shadow: 0 0 0 3px rgba(0, 167, 111, 0.12);
+		}
+		.gm-qq-row {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 12px;
+		}
+		.gm-qq-row .gm-qq-field {
+			margin-bottom: 14px;
+		}
+		.gm-qq-submit {
+			width: 100%;
+			border: none;
+			border-radius: 10px;
+			background: #1e8e4e;
+			color: #fff;
+			font-size: 16px;
+			font-weight: 600;
+			text-transform: none;
+			padding: 15px;
+			cursor: pointer;
+			margin-top: 6px;
+			transition: background .2s;
+		}
+		.gm-qq-submit:hover {
+			background: #00A76F;
+		}
+		.gm-qq-submit:disabled {
+			opacity: .6;
+			cursor: default;
+		}
+		.gm-qq-secure {
+			text-align: center;
+			font-size: 12px;
+			color: #9aa7af;
+			margin: 14px 0 0;
+		}
+		.gm-qq-status {
+			text-align: center;
+			font-size: 14px;
+			margin: 12px 0 0;
+			color: #00875a;
+			font-weight: 600;
+		}
+		.gm-qq-status.is-error {
+			color: #c0392b;
+		}
+		.gm-qq-hp {
+			position: absolute;
+			left: -9999px;
+			top: -9999px;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+		}
+		@media (max-width: 991px) {
+			.gm-qq-grid {
+				grid-template-columns: 1fr;
+				gap: 40px;
+			}
+			.gm-qq-title { font-size: 36px; }
+		}
+		@media (max-width: 575px) {
+			#quick-quote.gm-qq-section { padding: 60px 0; }
+			.gm-qq-features { gap: 26px; justify-content: space-between; }
+			.gm-qq-steps { flex-direction: column; align-items: stretch; gap: 18px; }
+			.gm-qq-step-arrow { display: none; }
+			.gm-qq-row { grid-template-columns: 1fr; }
+			.gm-qq-card { padding: 28px 22px; }
+		}
+	</style>
+	<!-- End Quick Quote Section Styles -->
+</head>
+
+<body>
+
+    <!-- Page loader -->
+	<div class="page-loader loader-wrapper bg-white">
+		<div class="loader">
+			<div class="outter b-dark3">
+				<div class="mid b-dark3"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+    <!-- Start Navigation -->
+    <nav id="navigation" class="modern-nav sticky nav-lg fs-15 bordered link-hover-01 nav-white font-secondary fixed-height" data-offset="75">
+        <!-- Navigation container - You can chnage container type and paddding value -->
+        <div class="container nav-container">
+            <!-- Row for cols in the nav -->
+            <div class="row nav-wrapper justify-content-end">
+                <!-- Column for logo -->
+                <div class="col">
+                    <a href="index.html#home" class="logo d-flex align-items-center">
+                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
+                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-dark mxw-140">
+                    </a>
+                </div>
+                <!-- Column for Navigation -->
+                <div id="nav-menu" class="col ml-auto nav-menu">
+                    <!-- Navigation links, you can add nav-links-centered class for centered links -->
+                    <ul class="nav-links justify-content-end">
+                        <!-- Logo for mobile navigation -->
+                        <li class="logo-for-mobile-navigation">
+                            <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
+                        </li>
+                        <li><a href="index.html#home" class="nav-link">Home</a></li>
+                        <li><a href="index.html#quick-quote" class="nav-link">Quick Quote</a></li>
+                        <li><a href="index.html#how-it-works" class="nav-link">How It Works</a></li>
+                        <li><a href="index.html#features" class="nav-link">For Movers</a></li>
+                        <li class="d-none" style="display:none !important;"><a href="https://test.getmoved.app" class="nav-link" target="_blank" rel="noopener noreferrer">Demo</a></li>
+                        <li><a href="index.html#mobile-app" class="nav-link">Mobile App</a></li>
+                        <li><a href="index.html#use-cases" class="nav-link">Partner</a></li>
+                        <li><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+                        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                        <li><a href="new-york-movers.html" class="nav-link">New York</a></li>
+                        <li><a href="new-jersey-movers.html" class="nav-link">New Jersey</a></li>
+                        <li><a href="https://portal.getmoved.app/login/" class="nav-link">Login</a></li>
+                    </ul>
+                </div>
+                <!-- End Column for Navigation -->
+                <!-- Mobile navigation trigger button -->
+                <div class="mobile-nb">
+                    <div class="hamburger-menu">
+                        <div class="top-bun"></div>
+                        <div class="meat"></div>
+                        <div class="bottom-bun"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Row for cols in the nav -->
+        </div>
+        <!-- End Navigation container -->
+        <div class="mobile-nav-bg"></div>
+    </nav>
+    <!-- End Navigation -->
+
+
+
+
+	
+	<!-- ===== New Jersey Movers landing ===== -->
+	<section class="pt-150 pb-60">
+		<div class="container">
+			<div class="row t-center">
+				<div class="col-12 d-flex flex-column align-items-center">
+					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">Find &amp; Compare Trusted Movers in New Jersey</h1>
+					<div class="width-70 height-1 my-25 bg-gray4"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-10 mx-auto">
+					<p class="fs-18 lh-30 gray6 mb-20">New Jersey moves come in every shape — a high-rise one-bedroom in Jersey City, a family home in Edison, a Hoboken walk-up two blocks from the PATH. Whether you're moving across town or across the Hudson, GetMoved makes booking a mover simple and transparent.</p>
+					<p class="fs-18 lh-30 gray6 mb-20">Film a short walkthrough of your place on your phone and our AI builds a complete inventory in minutes — furniture counted, boxes estimated, and truck size calculated automatically. Trusted New Jersey movers use that inventory to send you binding quotes you can compare in one place, without scheduling a single in-home estimate.</p>
+					<p class="fs-18 lh-30 gray6 mb-20">Pick the mover, date, and price that work for you. Your payment is held securely and released only after the move is finished, so what you compare up front is what you actually pay. No moving-day markups, no vague “we'll see when we get there” pricing — just a clear, honest quote for your New Jersey move.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Quote CTA -->
+	<section class="py-90 bg-dark4">
+		<div class="container t-center">
+			<h3 class="fs-40 fs-28-sm uppercase white font-secondary mb-15">Get your free moving quote</h3>
+			<p class="mxw-800 mx-auto fs-18 lh-30 gray3 mb-30">Tell us about your move, film a quick walkthrough, and compare binding quotes from trusted New Jersey movers. No phone calls, no obligation — and you only pay after your move is done.</p>
+			<a href="index.html#quick-quote" class="btn-md bg-colored white font-secondary uppercase fs-16 slow">Get my free quote</a>
+		</div>
+	</section>
+
+	<!-- Areas We Cover -->
+	<section class="py-100 bg-soft-95 bg-soft-white">
+		<div class="container">
+			<div class="row t-center"><div class="col-12 d-flex flex-column align-items-center mb-20">
+				<h2 class="fs-45 fs-30-sm uppercase dark font-secondary">Areas We Cover in New Jersey</h2>
+				<div class="width-70 height-1 my-20 bg-gray4"></div>
+				<p class="mxw-800 fs-18 lh-30 gray6">GetMoved connects you with movers across North and Central New Jersey, including:</p>
+			</div></div>
+			<div class="row">
+				<div class="col-lg-9 mx-auto">
+					<ul class="fs-17 lh-30 gray6">
+						<li class="mb-10"><strong class="dark">Jersey City</strong> &amp; <strong class="dark">Hoboken</strong> — high-rise and waterfront buildings</li>
+						<li class="mb-10"><strong class="dark">Newark</strong> &amp; the surrounding Essex County towns</li>
+						<li class="mb-10"><strong class="dark">Weehawken</strong>, <strong class="dark">Union City</strong> and the PATH-corridor towns</li>
+						<li class="mb-10"><strong class="dark">Edison</strong>, <strong class="dark">Woodbridge</strong> and Central Jersey suburbs</li>
+						<li class="mb-10"><strong class="dark">Paramus</strong> and the Bergen County commuter belt</li>
+						<li class="mb-10">Plus the wider North Jersey metro</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Common Moves -->
+	<section class="py-100">
+		<div class="container">
+			<div class="row t-center"><div class="col-12 d-flex flex-column align-items-center mb-30">
+				<h2 class="fs-45 fs-30-sm uppercase dark font-secondary">Common New Jersey Moves We Handle</h2>
+				<div class="width-70 height-1 my-20 bg-gray4"></div>
+			</div></div>
+			<div class="row col-lg-11 mx-auto">
+				<div class="col-lg-6 col-12 mb-35">
+					<h5 class="fs-20 font-secondary gray7 uppercase mb-10">High-rise &amp; apartment moves</h5>
+					<p class="gray6 fs-16 lh-27">Buildings in Jersey City and Hoboken often require a Certificate of Insurance and a reserved freight elevator — just like across the river. Trusted movers handle the COI and book within your building’s window.</p>
+				</div>
+				<div class="col-lg-6 col-12 mb-35">
+					<h5 class="fs-20 font-secondary gray7 uppercase mb-10">House &amp; suburban moves</h5>
+					<p class="gray6 fs-16 lh-27">More square footage, garages, basements, and attics mean more to inventory. A full video walkthrough captures it all so your quotes reflect the real size of the job.</p>
+				</div>
+				<div class="col-lg-6 col-12 mb-35">
+					<h5 class="fs-20 font-secondary gray7 uppercase mb-10">New Jersey to New York City moves</h5>
+					<p class="gray6 fs-16 lh-27">One of the most common local routes in the region. Compare movers who quote the crossing — tunnels, tolls, and both-sides parking — as a single, transparent price.</p>
+				</div>
+				<div class="col-lg-6 col-12 mb-35">
+					<h5 class="fs-20 font-secondary gray7 uppercase mb-10">Storage-in-transit moves</h5>
+					<p class="gray6 fs-16 lh-27">Closing dates that don't line up? Compare movers who can hold your belongings in storage between pickup and delivery, quoted up front.</p>
+				</div>
+				<div class="col-lg-6 col-12 mb-35">
+					<h5 class="fs-20 font-secondary gray7 uppercase mb-10">Long-distance moves from New Jersey</h5>
+					<p class="gray6 fs-16 lh-27">Leaving the state? Get binding quotes for interstate moves based on an accurate AI inventory, not a rough phone estimate.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- How It Works -->
+	<section class="py-100 bg-soft-95 bg-soft-white">
+		<div class="container">
+			<div class="row t-center"><div class="col-12 d-flex flex-column align-items-center mb-20">
+				<h2 class="fs-45 fs-30-sm uppercase dark font-secondary">How It Works</h2>
+				<div class="width-70 height-1 my-20 bg-gray4"></div>
+			</div></div>
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-12 mt-30 t-center d-flex flex-column align-items-center">
+					<div class="d-inline-flex width-70 height-70 circle align-items-center justify-content-center bg-colored white fs-24 font-secondary mb-20">1</div>
+					<h5 class="fs-18 font-secondary gray7 uppercase mb-10">Tell us about your move</h5>
+					<p class="gray6 fs-15 lh-25">Pickup and delivery addresses, date, and any special requests.</p>
+				</div>
+				<div class="col-lg-3 col-md-6 col-12 mt-30 t-center d-flex flex-column align-items-center">
+					<div class="d-inline-flex width-70 height-70 circle align-items-center justify-content-center bg-colored white fs-24 font-secondary mb-20">2</div>
+					<h5 class="fs-18 font-secondary gray7 uppercase mb-10">Film a quick walkthrough</h5>
+					<p class="gray6 fs-15 lh-25">Our AI builds your inventory in minutes and estimates volume and truck size.</p>
+				</div>
+				<div class="col-lg-3 col-md-6 col-12 mt-30 t-center d-flex flex-column align-items-center">
+					<div class="d-inline-flex width-70 height-70 circle align-items-center justify-content-center bg-colored white fs-24 font-secondary mb-20">3</div>
+					<h5 class="fs-18 font-secondary gray7 uppercase mb-10">Compare binding quotes</h5>
+					<p class="gray6 fs-15 lh-25">Trusted New Jersey movers send prices you can review side by side.</p>
+				</div>
+				<div class="col-lg-3 col-md-6 col-12 mt-30 t-center d-flex flex-column align-items-center">
+					<div class="d-inline-flex width-70 height-70 circle align-items-center justify-content-center bg-colored white fs-24 font-secondary mb-20">4</div>
+					<h5 class="fs-18 font-secondary gray7 uppercase mb-10">Move and pay securely</h5>
+					<p class="gray6 fs-15 lh-25">Track your move in real time; payment is released only after it's done.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Why -->
+	<section class="py-100">
+		<div class="container">
+			<div class="row t-center"><div class="col-12 d-flex flex-column align-items-center mb-30">
+				<h2 class="fs-45 fs-30-sm uppercase dark font-secondary">Why New Jersey Movers Choose GetMoved</h2>
+				<div class="width-70 height-1 my-20 bg-gray4"></div>
+			</div></div>
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<ul class="list-unstyled">
+				<li class="mb-15 fs-17 lh-28 gray6"><i class="ti-check colored mr-10"></i><strong class="dark">Binding quotes</strong> — no vague estimates that balloon on moving day.</li>
+				<li class="mb-15 fs-17 lh-28 gray6"><i class="ti-check colored mr-10"></i><strong class="dark">No in-home visit</strong> — a short video does the job.</li>
+				<li class="mb-15 fs-17 lh-28 gray6"><i class="ti-check colored mr-10"></i><strong class="dark">Pay after your move</strong> — funds held securely until it’s complete.</li>
+				<li class="mb-15 fs-17 lh-28 gray6"><i class="ti-check colored mr-10"></i><strong class="dark">Trusted movers</strong> — compare trusted options in one place.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Quote CTA -->
+	<section class="py-90 bg-dark4">
+		<div class="container t-center">
+			<h3 class="fs-40 fs-28-sm uppercase white font-secondary mb-15">Get your free moving quote</h3>
+			<p class="mxw-800 mx-auto fs-18 lh-30 gray3 mb-30">Tell us about your move, film a quick walkthrough, and compare binding quotes from trusted New Jersey movers. No phone calls, no obligation — and you only pay after your move is done.</p>
+			<a href="index.html#quick-quote" class="btn-md bg-colored white font-secondary uppercase fs-16 slow">Get my free quote</a>
+		</div>
+	</section>
+
+
+    <!-- Footer -->
+    <footer class="py-50 d-flex flex-column align-items-center justify-content-center">
+        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300">
+        <p class="fs-14 gray6 mt-10 t-center-sm">The operating platform for modern moving companies.</p>
+    	<p class="fs-13 mt-15 t-center-sm">
+    		<a href="new-york-movers.html" class="gray6 colored-hover mr-10">New York Movers</a>
+    		<a href="new-jersey-movers.html" class="gray6 colored-hover">New Jersey Movers</a>
+    	</p>
+    	<p class="fs-12 mt-15 t-center-sm">
+    		© 2026 GetMoved. All rights reserved.
+    	</p>
+    	<p class="fs-12 mt-10 t-center-sm">
+    		<a href="terms.html" class="gray6 colored-hover mr-10">Terms &amp; Conditions</a>
+    		<a href="privacy.html" class="gray6 colored-hover">Privacy Policy</a>
+    	</p>
+    </footer>
+    <!-- End footer -->
+
+
+
+    <!-- Back To Top -->
+    <a id="back-to-top" href="index.html#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
+        <i class="ti-angle-double-up fs-18"></i>
+    </a>
+
+
+
+    <!-- Back To Top -->
+    <a id="back-to-top" href="index.html#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
+        <i class="ti-angle-double-up fs-18"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- JS Files -->
+    <script src="js/bs.js"></script>
+    <script src="js/plugins.min.js"></script>
+	<!-- REVOLUTION SLIDER -->
+    <script src="js/revslider/jquery.themepunch.revolution.min.js"></script>
+    <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
+	<!-- End REVOLUTION SLIDER -->
+	<script src="js/functions.js"></script>
+	<script src="js/getmoved.js?v=5"></script>
+	<script src="js/visit-counter.js?v=1"></script>
+	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
+	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnXM-U_nxnVA-4Gb2TXYH80rv6aQJB_iY&libraries=places&callback=gmInitPlacesAutocomplete&loading=async"></script>
+
+	<script>
+		var tpj=jQuery;
+	    var revapi1050;
+	    tpj(document).ready(function() {
+	    if(tpj("#home-slider").revolution == undefined){
+	    	revslider_showDoubleJqueryError("#home-slider");
+	    }else{
+	        revapi1050 = tpj("#home-slider").show().revolution({
+	            sliderType:"standard",
+	            jsFileLocation:"js/revslider/",
+	            sliderLayout:"fullwidth",
+	            dottedOverlay:"none",
+	            delay:9000,
+	            navigation: {
+	                keyboardNavigation:"on",
+	                keyboard_direction: "vertical",
+	                mouseScrollNavigation:"off",
+	                mouseScrollReverse:"default",
+	                onHoverStop:"off",
+	                arrows: {
+				        enable: true,
+				        style: 'gyges',
+				    },
+	                touch:{
+	                    touchenabled:"on",
+	                    swipe_threshold: 75,
+	                    swipe_min_touches: 50,
+	                    swipe_direction: "vertical",
+	                    drag_block_vertical: false
+	                },
+	                bullets: {
+	                    enable:true,
+	                    hide_onmobile:true,
+	                    hide_under:1024,
+	                    style:"hesperiden",
+	                    hide_onleave:true,
+	                    direction:"horizontal",
+	                    h_align:"center",
+	                    v_align:"bottom",
+	                    h_offset:0,
+	                    v_offset:20,
+	                    space:5,
+	                    tmp:''
+	                }
+	            },
+	            responsiveLevels:[1400,1350,1200,1024,750],
+	            visibilityLevels:[1320,1140,960,720,540],
+	            gridwidth:[1320,1140,960,720,540],
+	            gridheight:[610,568,512,600],
+	            lazyType:"none",
+	            shadow:0,
+	            spinner:"spinner2",
+	            stopLoop:"off",
+	            stopAfterLoops:-1,
+	            stopAtSlide:-1,
+	            shuffle:"off",
+	            autoHeight:"off",
+	            fullScreenAutoWidth:"off",
+	            fullScreenAlignForce:"off",
+	            fullScreenOffsetContainer: "",
+	            fullScreenOffset: "0px",
+	            disableProgressBar:"off",
+	            hideThumbsOnMobile:"off",
+	            fullWidth:"on",
+				fullScreen:"off",
+	            hideSliderAtLimit:0,
+	            hideCaptionAtLimit:0,
+	            hideAllCaptionAtLilmit:0,
+	            debugMode:false,
+	            fallbacks: {
+	                simplifyAll:"off",
+	                nextSlideOnWindowFocus:"off",
+	                disableFocusListener:false,
+	            }
+	        });
+	        }
+	    });	/*ready*/
+	</script>
+
+
+</body>
+
+</html>
