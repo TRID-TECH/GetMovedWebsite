@@ -73,12 +73,15 @@
     });
   }
 
-  // Quick Quote form -> sends via site PHP handler (Amazon SES SMTP, no Node backend).
+  // Quick Quote form -> sends via the GetMoved backend API (Amazon SES).
+  // NOTE: the site is hosted statically (S3/CloudFront) which does NOT execute
+  // PHP, so the old php/quick-quote-mail.php handler silently never ran. The
+  // backend endpoint below is CORS-enabled for getmoved.app + www.getmoved.app.
   const quoteForm = document.getElementById("quick-quote-form");
   if (quoteForm) {
     const quoteStatus = document.getElementById("quick-quote-status");
     const quoteSubmit = quoteForm.querySelector(".gm-qq-submit");
-    const mailEndpoint = "php/quick-quote-mail.php";
+    const mailEndpoint = "https://portal.getmoved.app/api/v1/email/quick-quote";
 
     const setStatus = (message, isError) => {
       if (!quoteStatus) return;
