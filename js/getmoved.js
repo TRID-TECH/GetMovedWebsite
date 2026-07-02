@@ -73,26 +73,12 @@
     });
   }
 
-  // Quick Quote form -> posts directly to the backend, which emails the team.
+  // Quick Quote form -> sends via site PHP handler (Amazon SES SMTP, no Node backend).
   const quoteForm = document.getElementById("quick-quote-form");
   if (quoteForm) {
     const quoteStatus = document.getElementById("quick-quote-status");
     const quoteSubmit = quoteForm.querySelector(".gm-qq-submit");
-
-    // Backend base URL: local dev hits the dev backend directly; in production
-    // we route through portal.getmoved.app which proxies /api/v1 to the backend.
-    const getApiBase = () => {
-      const host = window.location.hostname;
-      const isLocal =
-        host === "localhost" ||
-        host === "127.0.0.1" ||
-        host === "::1" ||
-        host.endsWith(".local");
-      if (isLocal) {
-        return window.location.protocol + "//127.0.0.1:3000";
-      }
-      return "https://portal.getmoved.app";
-    };
+    const mailEndpoint = "php/quick-quote-mail.php";
 
     const setStatus = (message, isError) => {
       if (!quoteStatus) return;
@@ -126,7 +112,7 @@
       }
       setStatus("", false);
 
-      fetch(getApiBase() + "/api/v1/email/quick-quote", {
+      fetch(mailEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -137,7 +123,10 @@
           }
           return response.json().catch(() => ({}));
         })
-        .then(() => {
+        .then((result) => {
+          if (result && result.success === false) {
+            throw new Error(result.message || "Send failed");
+          }
           quoteForm.reset();
           setStatus(
             "Thank you! Your request has been sent. Our team will contact you shortly.",
