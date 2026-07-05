@@ -73,41 +73,39 @@
     });
   }
 
+  // --- Shared funnel analytics (surface = 'web'): GA4 for all events; our DB (POST /track)
+  // only for the "started" events (begin_quote, begin_signup). Completions (generate_lead,
+  // sign_up) are written server-side, so no double count. ---
+  var trackEndpoint = "https://portal.getmoved.app/api/v1/track";
+  function gmSessionId() {
+    try {
+      var v = sessionStorage.getItem("gm_session_id");
+      if (!v) { v = "s_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10); sessionStorage.setItem("gm_session_id", v); }
+      return v;
+    } catch (e) { return ""; }
+  }
+  function gmTrack(eventName, params) {
+    params = params || {};
+    var payload = Object.assign({ surface: "web" }, params);
+    if (typeof window.gtag === "function") { window.gtag("event", eventName, payload); }
+    if (eventName === "begin_quote" || eventName === "begin_signup") {
+      try {
+        fetch(trackEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(Object.assign({ event_name: eventName, session_id: gmSessionId() }, payload)),
+          keepalive: true,
+        }).catch(function () {});
+      } catch (e) {}
+    }
+  }
+
   // Quick Quote form -> sends via the GetMoved backend API (Amazon SES).
-  // NOTE: the site is hosted statically (S3/CloudFront) which does NOT execute
-  // PHP, so the old php/quick-quote-mail.php handler silently never ran. The
-  // backend endpoint below is CORS-enabled for getmoved.app + www.getmoved.app.
   const quoteForm = document.getElementById("quick-quote-form");
   if (quoteForm) {
     const quoteStatus = document.getElementById("quick-quote-status");
     const quoteSubmit = quoteForm.querySelector(".gm-qq-submit");
     const mailEndpoint = "https://portal.getmoved.app/api/v1/email/quick-quote";
-    const trackEndpoint = "https://portal.getmoved.app/api/v1/track";
-
-    // --- Funnel analytics (surface = 'web'): GA4 for all events; our DB only for begin_quote
-    // (generate_lead is written server-side by the quick-quote endpoint, so no double count). ---
-    function gmSessionId() {
-      try {
-        var v = sessionStorage.getItem("gm_session_id");
-        if (!v) { v = "s_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10); sessionStorage.setItem("gm_session_id", v); }
-        return v;
-      } catch (e) { return ""; }
-    }
-    function gmTrack(eventName, params) {
-      params = params || {};
-      var payload = Object.assign({ surface: "web" }, params);
-      if (typeof window.gtag === "function") { window.gtag("event", eventName, payload); }
-      if (eventName === "begin_quote") {
-        try {
-          fetch(trackEndpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(Object.assign({ event_name: eventName, session_id: gmSessionId() }, payload)),
-            keepalive: true,
-          }).catch(function () {});
-        } catch (e) {}
-      }
-    }
 
     // begin_quote: fire once per session the first time the visitor focuses the form.
     quoteForm.addEventListener("focusin", function () {
@@ -181,6 +179,67 @@
             quoteSubmit.disabled = false;
             quoteSubmit.textContent = "Submit Request";
           }
+        });
+    });
+  }
+
+  // Register-as-Mover form -> posts to the same backend endpoint as the portal registration.
+  const moverForm = document.getElementById("mover-registration-form");
+  if (moverForm) {
+    const moverStatus = document.getElementById("mover-registration-status");
+    const moverSubmit = moverForm.querySelector(".gm-qq-submit");
+    const moverEndpoint = "https://portal.getmoved.app/api/v1/mover-registrations";
+
+    const setMoverStatus = function (msg, isError) {
+      if (!moverStatus) return;
+      moverStatus.textContent = msg;
+      moverStatus.style.color = isError ? "#e03131" : "#2f9e44";
+    };
+
+    // begin_signup: fire once per session the first time the visitor focuses the form.
+    moverForm.addEventListener("focusin", function () {
+      try { if (sessionStorage.getItem("gm_begin_signup_web")) return; sessionStorage.setItem("gm_begin_signup_web", "1"); } catch (e) {}
+      gmTrack("begin_signup", { source: "landing" });
+    });
+
+    var MR_TEXT = ["companyLegalName", "tradingName", "email", "country", "city", "businessAddress", "companyRegistrationNumber", "vatTaxId", "yearsInOperation", "companyWebsite", "regionsCitiesCovered", "maxMovingDistance", "numberOfVansTrucks", "vehicleTypes", "maxLoadCapacity", "numberOfFullTimeMovers", "insuranceCoverage", "liabilityInsuranceAmount"];
+    var MR_BOOL = ["residentialMoving", "commercialMoving", "packingServices", "storage", "furnitureDisassembly", "pianoSpecialItems", "internationalRelocation"];
+
+    moverForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!moverForm.reportValidity()) return;
+      var data = new FormData(moverForm);
+      var payload = {};
+      MR_TEXT.forEach(function (k) { payload[k] = (data.get(k) || "").toString().trim(); });
+      MR_BOOL.forEach(function (k) { var el = moverForm.querySelector('[name="' + k + '"]'); payload[k] = !!(el && el.checked); });
+      var cs = (data.get("countriesServed") || "").toString().trim();
+      payload.countriesServed = cs ? cs.split(",").map(function (s) { return s.trim(); }).filter(Boolean) : [];
+      payload.hp = (data.get("hp") || "").toString().trim();
+      payload.utm = { source: "landing" };
+
+      if (moverSubmit) { moverSubmit.disabled = true; moverSubmit.textContent = "Submitting..."; }
+      setMoverStatus("", false);
+
+      fetch(moverEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+        .then(function (response) {
+          return response.json().catch(function () { return {}; }).then(function (j) { return { ok: response.ok, j: j }; });
+        })
+        .then(function (r) {
+          if (!r.ok || (r.j && r.j.success === false)) { throw new Error((r.j && (r.j.error || r.j.message)) || "Submission failed"); }
+          // sign_up is logged server-side by the endpoint; fire GA4 here for Ads attribution.
+          gmTrack("sign_up", { method: "email", source: "landing" });
+          moverForm.reset();
+          setMoverStatus("Thank you! Your registration has been submitted. Our team will review it and get back to you.", false);
+        })
+        .catch(function (err) {
+          setMoverStatus((err && err.message) || "Sorry, something went wrong. Please try again or email jack@getmoved.app.", true);
+        })
+        .finally(function () {
+          if (moverSubmit) { moverSubmit.disabled = false; moverSubmit.textContent = "Submit Registration"; }
         });
     });
   }

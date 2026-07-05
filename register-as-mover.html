@@ -38,8 +38,8 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
         gtag("config", window.GA_MEASUREMENT_ID);
       }
     </script>
-    <title>GetMoved Mobile App | GetMoved</title>
-    <meta name="description" content="Manage moves on the go with the GetMoved mobile app — quotes, jobs, crew and payments from your phone." />
+    <title>Register as a Mover | GetMoved</title>
+    <meta name="description" content="Register your moving company on GetMoved. Get matched with customers ready to book — quoting, dispatch, invoicing and payments in one platform." />
     <meta property="og:title" content="GetMoved — The Operating System for Modern Moving Companies" />
     <meta property="og:description" content="GetMoved gives moving companies a complete digital backbone — quoting, dispatch, crew, fleet, invoicing, and payments — while connecting them to customers ready to book." />
     <meta property="og:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
@@ -404,107 +404,82 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
 
 
-		<div class="pt-100"></div>
-<section id="mobile-app" class="py-100 bg-white">
-        <div class="container">
+	
+	<div class="pt-100"></div>
+	<style>
+	  .gm-mr-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+	  @media (max-width:640px) { .gm-mr-grid, .gm-mr-checks { grid-template-columns:1fr; } }
+	  .gm-mr-checks { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:6px; }
+	  .gm-mr-checks label { display:flex; align-items:center; gap:8px; font-size:15px; color:#6b7280; cursor:pointer; }
+	  .gm-mr-checks input { width:18px; height:18px; }
+	</style>
+	<section class="pt-60 pb-100">
+		<div class="container">
+			<div class="row t-center"><div class="col-12 d-flex flex-column align-items-center mb-30">
+				<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">Register as a Mover</h1>
+				<div class="width-70 height-1 my-20 bg-gray4"></div>
+				<p class="mxw-800 fs-18 lh-30 gray6">Join the GetMoved network. Fill in your company details and services and our team will review your application and get back to you.</p>
+			</div></div>
+			<div class="row"><div class="col-lg-9 mx-auto">
+				<form id="mover-registration-form" novalidate>
+					<h5 class="fs-20 font-secondary gray7 uppercase mb-15 mt-10">Company information</h5>
+					<div class="gm-mr-grid">
+          <div class="gm-qq-field"><i class="ti-briefcase"></i><input type="text" name="companyLegalName" placeholder="Company Legal Name *" required></div>
+          <div class="gm-qq-field"><i class="ti-tag"></i><input type="text" name="tradingName" placeholder="Trading Name (if different)"></div>
+          <div class="gm-qq-field"><i class="ti-email"></i><input type="email" name="email" placeholder="Email *" required></div>
+          <div class="gm-qq-field"><i class="ti-world"></i><select name="country" required><option value="">Country *</option>
+                <option>United States</option>
+                <option>Canada</option>
+                <option>United Kingdom</option>
+                <option>Ireland</option>
+                <option>Australia</option>
+                <option>Germany</option>
+                <option>France</option>
+                <option>Netherlands</option>
+                <option>Spain</option>
+                <option>Italy</option>
+                <option>United Arab Emirates</option>
+                <option>Other</option>
+</select></div>
+          <div class="gm-qq-field"><i class="ti-location-pin"></i><input type="text" name="city" placeholder="City *" required></div>
+          <div class="gm-qq-field"><i class="ti-home"></i><input type="text" name="businessAddress" placeholder="Business Address *" required></div>
+          <div class="gm-qq-field"><i class="ti-id-badge"></i><input type="text" name="companyRegistrationNumber" placeholder="Company Registration Number"></div>
+          <div class="gm-qq-field"><i class="ti-receipt"></i><input type="text" name="vatTaxId" placeholder="VAT / Tax ID"></div>
+          <div class="gm-qq-field"><i class="ti-calendar"></i><input type="number" name="yearsInOperation" placeholder="Years in operation *" required min="0"></div>
+          <div class="gm-qq-field"><i class="ti-link"></i><input type="url" name="companyWebsite" placeholder="Company website (optional)"></div>
+					</div>
 
-            <!-- Title -->
-            <div class="row t-center">
-                <div class="col-12 d-flex flex-column align-items-center">
-                    <h1 class="fs-60 fs-40-sm uppercase dark font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
-                        Available on Mobile
-                    </h1>
-                    <div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
-                    <p class="mxw-800 fs-18 lh-30 animated" data-animation="fadeIn" data-animation-delay="100">
-                        The full GetMoved experience — in your pocket. Customers book moves and track jobs. Moving companies manage quotes, crew, fleet, and payments. All from the same app.
-                    </p>
-                </div>
-            </div>
+					<h5 class="fs-20 font-secondary gray7 uppercase mb-15 mt-40">Services &amp; coverage</h5>
+					<div class="gm-mr-grid">
+          <div class="gm-qq-field"><i class="ti-world"></i><input type="text" name="countriesServed" placeholder="Countries served (comma-separated)"></div>
+          <div class="gm-qq-field"><i class="ti-map"></i><input type="text" name="regionsCitiesCovered" placeholder="Regions / cities covered"></div>
+          <div class="gm-qq-field"><i class="ti-direction"></i><input type="text" name="maxMovingDistance" placeholder="Max moving distance (mi/km)"></div>
+          <div class="gm-qq-field"><i class="ti-truck"></i><input type="number" name="numberOfVansTrucks" placeholder="Number of vans / trucks" min="0"></div>
+          <div class="gm-qq-field"><i class="ti-car"></i><input type="text" name="vehicleTypes" placeholder="Vehicle types (e.g. box truck, van)"></div>
+          <div class="gm-qq-field"><i class="ti-package"></i><input type="text" name="maxLoadCapacity" placeholder="Max load capacity"></div>
+          <div class="gm-qq-field"><i class="ti-user"></i><input type="number" name="numberOfFullTimeMovers" placeholder="Number of full-time movers" min="0"></div>
+          <div class="gm-qq-field"><i class="ti-shield"></i><input type="text" name="insuranceCoverage" placeholder="Insurance coverage"></div>
+          <div class="gm-qq-field"><i class="ti-money"></i><input type="text" name="liabilityInsuranceAmount" placeholder="Liability insurance amount"></div>
+					</div>
 
-            <!-- Two columns: Customer + Mover -->
-            <div class="row mt-60 align-items-start">
+					<p class="fs-16 gray7 medium mt-30 mb-5">Services offered</p>
+					<div class="gm-mr-checks">
+          <label><input type="checkbox" name="residentialMoving"> Residential moving</label>
+          <label><input type="checkbox" name="commercialMoving"> Commercial moving</label>
+          <label><input type="checkbox" name="packingServices"> Packing services</label>
+          <label><input type="checkbox" name="storage"> Storage</label>
+          <label><input type="checkbox" name="furnitureDisassembly"> Furniture disassembly</label>
+          <label><input type="checkbox" name="pianoSpecialItems"> Piano / special items</label>
+          <label><input type="checkbox" name="internationalRelocation"> International relocation</label>
+					</div>
 
-                <!-- Customer column -->
-                <div class="col-lg-6 col-12 mt-30">
-                    <div class="b-1 b-gray2 bg-gray p-40 h-100">
-                        <div class="d-flex align-items-center mb-25">
-                            <div class="d-inline-flex width-60 height-60 circle align-items-center justify-content-center bg-colored white mr-20 flex-shrink-0">
-                                <i class="ti-user fs-22"></i>
-                            </div>
-                            <h3 class="fs-24 font-secondary uppercase dark mb-0">For Customers</h3>
-                        </div>
-                        <ul class="list list-sm fs-16 gray7 lh-28" style="padding-left:20px; list-style:disc;">
-                            <li>Request a quote in 4 simple steps — origin, services, inventory, send</li>
-                            <li>Upload a walkthrough video — AI builds your inventory automatically</li>
-                            <li>Add items manually or combine both methods for full accuracy</li>
-                            <li>Review quotes from trusted movers with full pricing breakdown</li>
-                            <li>Accept a quote and pay securely in one tap — card or bank</li>
-                            <li>Track your move and booking in real time</li>
-                            <li>Add extra services or items after booking without restarting</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Mover column -->
-                <div class="col-lg-6 col-12 mt-30">
-                    <div class="b-1 b-gray2 bg-gray p-40 h-100">
-                        <div class="d-flex align-items-center mb-25">
-                            <div class="d-inline-flex width-60 height-60 circle align-items-center justify-content-center bg-dark4 white mr-20 flex-shrink-0">
-                                <i class="ti-truck fs-22"></i>
-                            </div>
-                            <h3 class="fs-24 font-secondary uppercase dark mb-0">For Moving Companies</h3>
-                        </div>
-                        <ul class="list list-sm fs-16 gray7 lh-28" style="padding-left:20px; list-style:disc;">
-                            <li>View all incoming quote requests from your mobile dashboard</li>
-                            <li>Review full job details — route map, inventory, services, customer info</li>
-                            <li>Set itemized pricing per service and submit binding quotes</li>
-                            <li>Manage your vehicle roster and crew members from the app</li>
-                            <li>Confirm jobs, track bookings, and assign resources on the go</li>
-                            <li>Price and approve post-booking extras submitted by customers</li>
-                            <li>Full Finance tab — invoices, payments, and job history in one place</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Stats strip -->
-            <div class="row mt-60 t-center">
-                <div class="col-lg-4 col-md-4 col-12 mt-20">
-                    <h2 class="fs-50 font-secondary colored">4</h2>
-                    <p class="fs-16 gray6 mt-5">Steps to submit a quote request</p>
-                </div>
-                <div class="col-lg-4 col-md-4 col-12 mt-20">
-                    <h2 class="fs-50 font-secondary colored">2</h2>
-                    <p class="fs-16 gray6 mt-5">Apps in one — customer &amp; mover</p>
-                </div>
-                <div class="col-lg-4 col-md-4 col-12 mt-20">
-                    <h2 class="fs-50 font-secondary colored">0</h2>
-                    <p class="fs-16 gray6 mt-5">Phone calls needed to book a move</p>
-                </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="row mt-50 t-center">
-                <div class="col-12">
-                    <a href="https://portal.getmoved.app/register-as-mover/" class="btn-md bg-colored white font-secondary uppercase fs-16 slow mx-10" target="_blank" rel="noopener noreferrer">
-                        Register as a Mover
-                    </a>
-                    <a href="index.html#contact" class="btn-md bg-dark4 white font-secondary uppercase fs-16 slow mx-10">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-	<!-- Quote CTA -->
-	<section class="py-90 bg-dark4">
-		<div class="container t-center">
-			<h3 class="fs-40 fs-28-sm uppercase white font-secondary mb-15">Get your free moving quote</h3>
-			<p class="mxw-800 mx-auto fs-18 lh-30 gray3 mb-30">Tell us about your move, film a quick walkthrough, and compare binding quotes from trusted movers. No phone calls, no obligation — and you only pay after your move is done.</p>
-			<a href="index.html#quick-quote" class="btn-md bg-colored white font-secondary uppercase fs-16 slow">Get my free quote</a>
+					<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true" style="position:absolute;left:-9999px;">
+					<div class="mt-40 t-center">
+						<button type="submit" class="gm-qq-submit font-secondary">Submit Registration</button>
+						<p id="mover-registration-status" class="mt-15 fs-15"></p>
+					</div>
+				</form>
+			</div></div>
 		</div>
 	</section>
 
