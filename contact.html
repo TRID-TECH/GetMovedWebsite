@@ -25,18 +25,13 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <!-- Google Analytics 4 (gtag). Set GA_MEASUREMENT_ID to your "G-XXXXXXXXXX" to enable; no-op until then. -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED9B6NC03X"></script>
     <script>
-      window.GA_MEASUREMENT_ID = "G-ED9B6NC03X"; /* TODO: set to your GA4 Measurement ID after Part 1 */
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      if (window.GA_MEASUREMENT_ID) {
-        var _ga = document.createElement("script"); _ga.async = true;
-        _ga.src = "https://www.googletagmanager.com/gtag/js?id=" + window.GA_MEASUREMENT_ID;
-        document.head.appendChild(_ga);
-        gtag("js", new Date());
-        gtag("config", window.GA_MEASUREMENT_ID);
-      }
+      gtag('js', new Date());
+      gtag('config', 'G-ED9B6NC03X');
     </script>
     <title>Contact GetMoved | GetMoved</title>
     <meta name="description" content="Contact the GetMoved team. Questions about moving quotes or the platform for moving companies — we are here to help." />
