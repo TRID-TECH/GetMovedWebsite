@@ -212,8 +212,8 @@
       var payload = {};
       MR_TEXT.forEach(function (k) { payload[k] = (data.get(k) || "").toString().trim(); });
       MR_BOOL.forEach(function (k) { var el = moverForm.querySelector('[name="' + k + '"]'); payload[k] = !!(el && el.checked); });
-      var cs = (data.get("countriesServed") || "").toString().trim();
-      payload.countriesServed = cs ? cs.split(",").map(function (s) { return s.trim(); }).filter(Boolean) : [];
+      // Backend expects a string (it .trim()s it); the portal also joins to a comma string.
+      payload.countriesServed = (data.get("countriesServed") || "").toString().trim();
       payload.hp = (data.get("hp") || "").toString().trim();
       payload.utm = { source: "landing" };
 
