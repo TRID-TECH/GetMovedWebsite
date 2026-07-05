@@ -100,6 +100,39 @@
     }
   }
 
+  // --- Cookie consent banner (Consent Mode v2). Default is 'denied' (set in the <head>),
+  // so GA already sends cookieless pings; Accept upgrades to full (cookie) tracking. ---
+  (function () {
+    var KEY = "gm_cookie_consent";
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    function apply(state) {
+      try { localStorage.setItem(KEY, state); } catch (e) {}
+      if (typeof window.gtag === "function") {
+        window.gtag("consent", "update", { ad_storage: state, ad_user_data: state, ad_personalization: state, analytics_storage: state });
+      }
+    }
+    if (stored === "granted" || stored === "denied") return; // choice already made
+    function mount() {
+      if (document.getElementById("gm-cookie-banner")) return;
+      var bar = document.createElement("div");
+      bar.id = "gm-cookie-banner";
+      bar.setAttribute("role", "dialog");
+      bar.setAttribute("aria-label", "Cookie consent");
+      bar.style.cssText = "position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#0f1520;color:#e5e7eb;padding:16px 20px;box-shadow:0 -2px 18px rgba(0,0,0,.4);font-family:inherit;font-size:14px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;";
+      bar.innerHTML =
+        '<span style="max-width:720px;line-height:1.5;">We use cookies to analyze traffic and improve your experience. See our <a href="privacy.html" style="color:#22c55e;text-decoration:underline;">Privacy Policy</a>.</span>' +
+        '<span style="display:inline-flex;gap:10px;flex:none;">' +
+        '<button type="button" id="gm-cc-reject" style="cursor:pointer;border:1px solid #374151;background:transparent;color:#e5e7eb;padding:9px 18px;border-radius:6px;font-size:14px;">Reject</button>' +
+        '<button type="button" id="gm-cc-accept" style="cursor:pointer;border:0;background:#22c55e;color:#04120a;font-weight:700;padding:9px 22px;border-radius:6px;font-size:14px;">Accept</button>' +
+        '</span>';
+      document.body.appendChild(bar);
+      document.getElementById("gm-cc-accept").addEventListener("click", function () { apply("granted"); if (bar.parentNode) bar.parentNode.removeChild(bar); });
+      document.getElementById("gm-cc-reject").addEventListener("click", function () { apply("denied"); if (bar.parentNode) bar.parentNode.removeChild(bar); });
+    }
+    if (document.body) mount(); else document.addEventListener("DOMContentLoaded", mount);
+  })();
+
   // Quick Quote form -> sends via the GetMoved backend API (Amazon SES).
   const quoteForm = document.getElementById("quick-quote-form");
   if (quoteForm) {

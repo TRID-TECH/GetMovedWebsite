@@ -25,11 +25,21 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED9B6NC03X"></script>
+    <!-- Google tag (gtag.js) with Consent Mode v2 -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // Consent Mode v2: default denied (EU-safe). GA still sends cookieless pings so events
+      // are always measured; the cookie banner upgrades to granted on Accept.
+      gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update: 500 });
+      gtag('set', 'url_passthrough', true);
+      gtag('set', 'ads_data_redaction', true);
+      try { if (localStorage.getItem('gm_cookie_consent') === 'granted') {
+        gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      } } catch(e){}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED9B6NC03X"></script>
+    <script>
       gtag('js', new Date());
       gtag('config', 'G-ED9B6NC03X');
     </script>
@@ -628,7 +638,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=8"></script>
+	<script src="js/getmoved.js?v=9"></script>
 	<script src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
