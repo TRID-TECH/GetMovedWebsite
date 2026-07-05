@@ -82,6 +82,38 @@
     const quoteStatus = document.getElementById("quick-quote-status");
     const quoteSubmit = quoteForm.querySelector(".gm-qq-submit");
     const mailEndpoint = "https://portal.getmoved.app/api/v1/email/quick-quote";
+    const trackEndpoint = "https://portal.getmoved.app/api/v1/track";
+
+    // --- Funnel analytics (surface = 'web'): GA4 for all events; our DB only for begin_quote
+    // (generate_lead is written server-side by the quick-quote endpoint, so no double count). ---
+    function gmSessionId() {
+      try {
+        var v = sessionStorage.getItem("gm_session_id");
+        if (!v) { v = "s_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10); sessionStorage.setItem("gm_session_id", v); }
+        return v;
+      } catch (e) { return ""; }
+    }
+    function gmTrack(eventName, params) {
+      params = params || {};
+      var payload = Object.assign({ surface: "web" }, params);
+      if (typeof window.gtag === "function") { window.gtag("event", eventName, payload); }
+      if (eventName === "begin_quote") {
+        try {
+          fetch(trackEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(Object.assign({ event_name: eventName, session_id: gmSessionId() }, payload)),
+            keepalive: true,
+          }).catch(function () {});
+        } catch (e) {}
+      }
+    }
+
+    // begin_quote: fire once per session the first time the visitor focuses the form.
+    quoteForm.addEventListener("focusin", function () {
+      try { if (sessionStorage.getItem("gm_begin_quote_web")) return; sessionStorage.setItem("gm_begin_quote_web", "1"); } catch (e) {}
+      gmTrack("begin_quote", { source: "landing" });
+    });
 
     const setStatus = (message, isError) => {
       if (!quoteStatus) return;
@@ -130,6 +162,8 @@
           if (result && result.success === false) {
             throw new Error(result.message || "Send failed");
           }
+          // generate_lead: GA4 only (the DB row is written server-side by the quick-quote endpoint).
+          gmTrack("generate_lead", { source: "landing" });
           quoteForm.reset();
           setStatus(
             "Thank you! Your request has been sent. Our team will contact you shortly.",

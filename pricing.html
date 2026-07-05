@@ -25,6 +25,19 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
+    <!-- Google Analytics 4 (gtag). Set GA_MEASUREMENT_ID to your "G-XXXXXXXXXX" to enable; no-op until then. -->
+    <script>
+      window.GA_MEASUREMENT_ID = ""; /* TODO: set to your GA4 Measurement ID after Part 1 */
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      if (window.GA_MEASUREMENT_ID) {
+        var _ga = document.createElement("script"); _ga.async = true;
+        _ga.src = "https://www.googletagmanager.com/gtag/js?id=" + window.GA_MEASUREMENT_ID;
+        document.head.appendChild(_ga);
+        gtag("js", new Date());
+        gtag("config", window.GA_MEASUREMENT_ID);
+      }
+    </script>
     <title>Pricing | GetMoved</title>
     <meta name="description" content="GetMoved pricing for moving companies — SaaS, leads, AI inventory and ecosystem plans. Transparent commercial pricing." />
     <meta property="og:title" content="GetMoved — The Operating System for Modern Moving Companies" />
@@ -573,7 +586,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=6"></script>
+	<script src="js/getmoved.js?v=7"></script>
 	<script src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
