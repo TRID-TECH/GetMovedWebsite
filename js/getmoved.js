@@ -195,6 +195,14 @@
           }
           // generate_lead: GA4 only (the DB row is written server-side by the quick-quote endpoint).
           gmTrack("generate_lead", { source: "landing" });
+          // Google Ads "Request quote" conversion — fires on successful submit (not click).
+          if (typeof window.gtag === "function") {
+            window.gtag("event", "conversion", {
+              send_to: "AW-18301808532/Cd3sCNnGm8scEJTf_ZZE",
+              value: 1.0,
+              currency: "USD",
+            });
+          }
           quoteForm.reset();
           setStatus(
             "Thank you! Your request has been sent. Our team will contact you shortly.",
