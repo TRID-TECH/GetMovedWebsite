@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<!--
+SECTION MAP (Template -> GetMoved)
+Template file: getmoved-landing/index.html
+
+ASSETS
+- CSS: css/plugins.min.css, css/revslider/settings.css, css/style.css?v=2.4
+- JS: js/bs.js, js/plugins.min.js, js/revslider/jquery.themepunch.revolution.min.js, js/revslider/jquery.themepunch.tools.min.js, js/functions.js
+- Images: images/ (key subfolders: images/portfolio/)
+- Logo: assets/img/logo_png.png
+
+SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
+1) Home / Hero slider -> section#home.rev_slider_wrapper -> GetMoved Hero
+2) Quick Quote -> section#quick-quote -> Get a free moving quote (video walkthrough)
+3) Home page content strip -> section#home-page-content.bg-dark4 -> Value strip
+4) About -> section#about -> What is GetMoved
+5) How it works -> section#how-it-works -> Steps
+6) Features -> section#features -> Key product features
+7) Mobile app -> section#mobile-app -> App promo
+8) Use cases -> section#use-cases -> Use cases
+9) Pricing -> section#pricing -> Commercial pricing (SaaS, Leads, AI, Ecosystem)
+10) Contact -> section#contact -> Contact US
+11) Footer -> footer -> Footer / legal
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <base href="/">
+    <link rel="canonical" href="https://getmoved.app/free-moving-quote/" />
+    <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) with Consent Mode v2 -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent Mode v2: default denied (EU-safe). GA still sends cookieless pings so events
+      // are always measured; the cookie banner upgrades to granted on Accept.
+      gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update: 500 });
+      gtag('set', 'url_passthrough', true);
+      gtag('set', 'ads_data_redaction', true);
+      try { if (localStorage.getItem('gm_cookie_consent') === 'granted') {
+        gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      } } catch(e){}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED9B6NC03X"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-ED9B6NC03X');
+    </script>
+    <title>Get a Free Moving Quote | GetMoved</title>
+    <meta name="description" content="Get a free moving quote in minutes. Film a quick walkthrough, get an AI-built inventory, and compare binding quotes from trusted movers. Pay only after your move." />
+    <meta property="og:title" content="GetMoved — The Operating System for Modern Moving Companies" />
+    <meta property="og:description" content="GetMoved gives moving companies a complete digital backbone — quoting, dispatch, crew, fleet, invoicing, and payments — while connecting them to customers ready to book." />
+    <meta property="og:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="684" />
+    <meta property="og:image:height" content="684" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--Favicon -->
+	<link rel="icon" type="image/png" href="assets/img/favicon-128.png" />
+	<!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"/>
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/plugins.min.css" />
+	<!-- Revolution Slider -->
+    <link rel="stylesheet" href="css/revslider/settings.css" />
+	<!-- Page Styles -->
+	<link rel="stylesheet" href="css/style.css?v=2.4" />
+	<!-- End CSS Files -->
+
+	<!-- Quick Quote Section Styles -->
+	<style>
+		#quick-quote.gm-qq-section {
+			background: #f4f7f6;
+			padding: 90px 0;
+		}
+		.gm-qq-grid {
+			display: grid;
+			grid-template-columns: 1.05fr 0.95fr;
+			gap: 50px;
+			align-items: start;
+		}
+		.gm-qq-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			background: #e3f2ed;
+			color: #00875a;
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			padding: 8px 16px;
+			border-radius: 30px;
+		}
+		.gm-qq-title {
+			font-size: 46px;
+			line-height: 1.1;
+			color: #15202b;
+			margin: 22px 0 16px;
+		}
+		.gm-qq-lead {
+			font-size: 17px;
+			line-height: 1.6;
+			color: #5c6b73;
+			max-width: 480px;
+			margin: 0;
+		}
+		.gm-qq-features {
+			display: flex;
+			gap: 50px;
+			margin: 35px 0 25px;
+		}
+		.gm-qq-feature {
+			text-align: center;
+		}
+		.gm-qq-feature-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 54px;
+			height: 54px;
+			border-radius: 50%;
+			background: #e3f2ed;
+			color: #00A76F;
+			font-size: 22px;
+			margin-bottom: 12px;
+		}
+		.gm-qq-feature-label {
+			display: block;
+			font-size: 14px;
+			font-weight: 600;
+			color: #15202b;
+			line-height: 1.3;
+		}
+		.gm-qq-note {
+			font-size: 15px;
+			color: #15202b;
+			margin: 0;
+		}
+		.gm-qq-note i {
+			color: #00A76F;
+			margin-right: 6px;
+		}
+		.gm-qq-how {
+			margin-top: 45px;
+			padding-top: 35px;
+			border-top: 1px solid #e1e8e5;
+		}
+		.gm-qq-how-title {
+			font-size: 22px;
+			color: #15202b;
+			text-align: center;
+			margin: 0 0 28px;
+		}
+		.gm-qq-steps {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 10px;
+		}
+		.gm-qq-step {
+			flex: 1;
+			text-align: center;
+		}
+		.gm-qq-step-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 46px;
+			height: 46px;
+			color: #00A76F;
+			font-size: 26px;
+			margin-bottom: 10px;
+		}
+		.gm-qq-step-title {
+			font-size: 14px;
+			font-weight: 700;
+			color: #15202b;
+			margin: 0 0 4px;
+		}
+		.gm-qq-step-title span {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 18px;
+			height: 18px;
+			border-radius: 50%;
+			background: #00A76F;
+			color: #fff;
+			font-size: 11px;
+			margin-right: 4px;
+		}
+		.gm-qq-step-text {
+			font-size: 13px;
+			color: #7a8891;
+			line-height: 1.4;
+			margin: 0;
+		}
+		.gm-qq-step-arrow {
+			color: #c2cdc8;
+			font-size: 16px;
+			padding-top: 12px;
+		}
+		/* Card */
+		.gm-qq-card {
+			background: #fff;
+			border-radius: 16px;
+			box-shadow: 0 18px 50px rgba(20, 32, 43, 0.10);
+			padding: 38px 36px;
+		}
+		.gm-qq-card-title {
+			font-size: 26px;
+			color: #15202b;
+			margin: 0 0 6px;
+		}
+		.gm-qq-card-sub {
+			font-size: 14px;
+			color: #7a8891;
+			margin: 0 0 24px;
+		}
+		.gm-qq-field {
+			position: relative;
+			margin-bottom: 14px;
+		}
+		.gm-qq-field > i {
+			position: absolute;
+			left: 14px;
+			top: 15px;
+			color: #9aa7af;
+			font-size: 15px;
+			pointer-events: none;
+		}
+		.gm-qq-field input,
+		.gm-qq-field select,
+		.gm-qq-field textarea {
+			width: 100%;
+			border: 1px solid #e1e8e5;
+			border-radius: 10px;
+			background: #fbfdfc;
+			padding: 13px 14px 13px 40px;
+			font-size: 14px;
+			color: #15202b;
+			outline: none;
+			transition: border-color .2s, box-shadow .2s;
+			font-family: inherit;
+		}
+		.gm-qq-field select {
+			appearance: none;
+			-webkit-appearance: none;
+			cursor: pointer;
+			color: #15202b;
+		}
+		.gm-qq-field textarea {
+			resize: vertical;
+			min-height: 90px;
+			padding-top: 13px;
+		}
+		.gm-qq-field-area > i {
+			top: 14px;
+		}
+		.gm-qq-field input::placeholder,
+		.gm-qq-field textarea::placeholder {
+			color: #9aa7af;
+		}
+		.gm-qq-field input:focus,
+		.gm-qq-field select:focus,
+		.gm-qq-field textarea:focus {
+			border-color: #00A76F;
+			box-shadow: 0 0 0 3px rgba(0, 167, 111, 0.12);
+		}
+		.gm-qq-row {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 12px;
+		}
+		.gm-qq-row .gm-qq-field {
+			margin-bottom: 14px;
+		}
+		.gm-qq-submit {
+			width: 100%;
+			border: none;
+			border-radius: 10px;
+			background: #1e8e4e;
+			color: #fff;
+			font-size: 16px;
+			font-weight: 600;
+			text-transform: none;
+			padding: 15px;
+			cursor: pointer;
+			margin-top: 6px;
+			transition: background .2s;
+		}
+		.gm-qq-submit:hover {
+			background: #00A76F;
+		}
+		.gm-qq-submit:disabled {
+			opacity: .6;
+			cursor: default;
+		}
+		.gm-qq-secure {
+			text-align: center;
+			font-size: 12px;
+			color: #9aa7af;
+			margin: 14px 0 0;
+		}
+		.gm-qq-status {
+			text-align: center;
+			font-size: 14px;
+			margin: 12px 0 0;
+			color: #00875a;
+			font-weight: 600;
+		}
+		.gm-qq-status.is-error {
+			color: #c0392b;
+		}
+		.gm-qq-hp {
+			position: absolute;
+			left: -9999px;
+			top: -9999px;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+		}
+		@media (max-width: 991px) {
+			.gm-qq-grid {
+				grid-template-columns: 1fr;
+				gap: 40px;
+			}
+			.gm-qq-title { font-size: 36px; }
+		}
+		@media (max-width: 575px) {
+			#quick-quote.gm-qq-section { padding: 60px 0; }
+			.gm-qq-features { gap: 26px; justify-content: space-between; }
+			.gm-qq-steps { flex-direction: column; align-items: stretch; gap: 18px; }
+			.gm-qq-step-arrow { display: none; }
+			.gm-qq-row { grid-template-columns: 1fr; }
+			.gm-qq-card { padding: 28px 22px; }
+		}
+	</style>
+	<!-- End Quick Quote Section Styles -->
+</head>
+
+<body>
+
+    <!-- Page loader -->
+	<div class="page-loader loader-wrapper bg-white">
+		<div class="loader">
+			<div class="outter b-dark3">
+				<div class="mid b-dark3"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+    <!-- Start Navigation -->
+    <nav id="navigation" class="modern-nav sticky nav-lg fs-15 bordered link-hover-01 nav-white font-secondary fixed-height" data-offset="75">
+        <!-- Navigation container - You can chnage container type and paddding value -->
+        <div class="container nav-container">
+            <!-- Row for cols in the nav -->
+            <div class="row nav-wrapper justify-content-end">
+                <!-- Column for logo -->
+                <div class="col">
+                    <a href="index.html#home" class="logo d-flex align-items-center">
+                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
+                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-dark mxw-140">
+                    </a>
+                </div>
+                <!-- Column for Navigation -->
+                <div id="nav-menu" class="col ml-auto nav-menu">
+                    <!-- Navigation links, you can add nav-links-centered class for centered links -->
+                    <ul class="nav-links justify-content-end">
+                        <!-- Logo for mobile navigation -->
+                        <li class="logo-for-mobile-navigation">
+                            <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
+                        </li>
+                        <li><a href="index.html#home" class="nav-link">Home</a></li>
+                        <li><a href="index.html#quick-quote" class="nav-link">Quick Quote</a></li>
+                        <li><a href="index.html#how-it-works" class="nav-link">How It Works</a></li>
+                        <li><a href="index.html#features" class="nav-link">For Movers</a></li>
+                        <li class="d-none" style="display:none !important;"><a href="https://test.getmoved.app" class="nav-link" target="_blank" rel="noopener noreferrer">Demo</a></li>
+                        <li><a href="index.html#mobile-app" class="nav-link">Mobile App</a></li>
+                        <li><a href="index.html#use-cases" class="nav-link">Partner</a></li>
+                        <li><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+                        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                        <li><a href="https://portal.getmoved.app/login/" class="nav-link">Login</a></li>
+                    </ul>
+                </div>
+                <!-- End Column for Navigation -->
+                <!-- Mobile navigation trigger button -->
+                <div class="mobile-nb">
+                    <div class="hamburger-menu">
+                        <div class="top-bun"></div>
+                        <div class="meat"></div>
+                        <div class="bottom-bun"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Row for cols in the nav -->
+        </div>
+        <!-- End Navigation container -->
+        <div class="mobile-nav-bg"></div>
+    </nav>
+    <!-- End Navigation -->
+
+
+
+
+		<div class="pt-100"></div>
+<section id="quick-quote" class="gm-qq-section">
+		<div class="container">
+			<div class="gm-qq-grid">
+
+				<!-- Left: intro / value props -->
+				<div class="gm-qq-intro">
+					<span class="gm-qq-badge">
+						<i class="ti-user"></i> Dedicated Moving Specialists
+					</span>
+					<h2 class="gm-qq-title font-secondary">Get Your Free Moving Quote</h2>
+					<p class="gm-qq-lead">
+						Tell us about your move and our dedicated team will review your request and contact you with the best options.
+					</p>
+
+					<div class="gm-qq-features">
+						<div class="gm-qq-feature">
+							<span class="gm-qq-feature-icon"><i class="ti-user"></i></span>
+							<span class="gm-qq-feature-label">Personalized<br>Service</span>
+						</div>
+						<div class="gm-qq-feature">
+							<span class="gm-qq-feature-icon"><i class="ti-shield"></i></span>
+							<span class="gm-qq-feature-label">Trusted<br>Movers</span>
+						</div>
+						<div class="gm-qq-feature">
+							<span class="gm-qq-feature-icon"><i class="ti-time"></i></span>
+							<span class="gm-qq-feature-label">Fast<br>Response</span>
+						</div>
+					</div>
+
+					<p class="gm-qq-note">
+						<i class="ti-check-box"></i> <strong>No obligation.</strong> Free and personalized.
+					</p>
+
+					<!-- How it works -->
+					<div class="gm-qq-how">
+						<h4 class="gm-qq-how-title font-secondary">How It Works</h4>
+						<div class="gm-qq-steps">
+							<div class="gm-qq-step">
+								<span class="gm-qq-step-icon"><i class="ti-clipboard"></i></span>
+								<p class="gm-qq-step-title"><span>1</span> Submit Your Request</p>
+								<p class="gm-qq-step-text">Share a few details about your move.</p>
+							</div>
+							<span class="gm-qq-step-arrow"><i class="ti-arrow-right"></i></span>
+							<div class="gm-qq-step">
+								<span class="gm-qq-step-icon"><i class="ti-user"></i></span>
+								<p class="gm-qq-step-title"><span>2</span> Our Team Reviews It</p>
+								<p class="gm-qq-step-text">Our moving specialists find the best matches.</p>
+							</div>
+							<span class="gm-qq-step-arrow"><i class="ti-arrow-right"></i></span>
+							<div class="gm-qq-step">
+								<span class="gm-qq-step-icon"><i class="ti-check"></i></span>
+								<p class="gm-qq-step-title"><span>3</span> You Get Your Quote</p>
+								<p class="gm-qq-step-text">We contact you with the best options for your move.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End left -->
+
+				<!-- Right: form card -->
+				<div class="gm-qq-card">
+					<h3 class="gm-qq-card-title font-secondary">Request a Free Quote</h3>
+					<p class="gm-qq-card-sub">Please fill out the form and we'll be in touch.</p>
+
+					<form id="quick-quote-form" novalidate>
+						<div class="gm-qq-field">
+							<i class="ti-user"></i>
+							<input type="text" name="full_name" placeholder="Full Name" required>
+						</div>
+						<div class="gm-qq-field">
+							<i class="ti-email"></i>
+							<input type="email" name="email" placeholder="Email Address" required>
+						</div>
+						<div class="gm-qq-field">
+							<i class="ti-mobile"></i>
+							<input type="tel" name="phone" placeholder="Phone Number" required>
+						</div>
+
+						<div class="gm-qq-row">
+							<div class="gm-qq-field">
+								<i class="ti-location-pin"></i>
+								<input type="text" id="qq-move-from" name="move_from" placeholder="Move From (City, State or ZIP)" autocomplete="off" required>
+							</div>
+							<div class="gm-qq-field">
+								<i class="ti-location-pin"></i>
+								<input type="text" id="qq-move-to" name="move_to" placeholder="Move To (City, State or ZIP)" autocomplete="off" required>
+							</div>
+						</div>
+
+						<div class="gm-qq-field">
+							<i class="ti-calendar"></i>
+							<input type="text" name="moving_date" placeholder="Moving Date"
+								onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+						</div>
+
+						<div class="gm-qq-field">
+							<i class="ti-home"></i>
+							<select name="property_type" required>
+								<option value="" disabled selected hidden>Property Type</option>
+								<option value="Studio / 1 Bedroom">Studio / 1 Bedroom</option>
+								<option value="2 Bedrooms">2 Bedrooms</option>
+								<option value="3 Bedrooms">3 Bedrooms</option>
+								<option value="4+ Bedrooms">4+ Bedrooms</option>
+								<option value="Office / Commercial">Office / Commercial</option>
+								<option value="Other">Other</option>
+							</select>
+						</div>
+
+						<div class="gm-qq-field gm-qq-field-area">
+							<i class="ti-pencil-alt"></i>
+							<textarea name="details" rows="4" placeholder="Additional Details (Optional)"></textarea>
+						</div>
+
+						<!-- Honeypot: hidden from users, bots tend to fill it. Leave empty. -->
+						<div class="gm-qq-hp" aria-hidden="true">
+							<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
+						</div>
+
+						<button type="submit" class="gm-qq-submit font-secondary">Submit Request</button>
+
+						<p class="gm-qq-secure"><i class="ti-lock"></i> Your information is safe and secure.</p>
+						<p id="quick-quote-status" class="gm-qq-status" aria-live="polite"></p>
+					</form>
+				</div>
+				<!-- End right -->
+
+			</div>
+		</div>
+	</section>
+
+
+    <!-- Footer -->
+    <footer class="py-50 d-flex flex-column align-items-center justify-content-center">
+        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300">
+        <p class="fs-14 gray6 mt-10 t-center-sm">The operating platform for modern moving companies.</p>
+    	<p class="fs-13 mt-15 t-center-sm">
+    		<a href="free-moving-quote.html" class="gray6 colored-hover mr-10">Free Quote</a>
+    		<a href="how-it-works.html" class="gray6 colored-hover mr-10">How It Works</a>
+    		<a href="about.html" class="gray6 colored-hover mr-10">About</a>
+    		<a href="for-movers.html" class="gray6 colored-hover mr-10">For Movers</a>
+    		<a href="mobile-app.html" class="gray6 colored-hover mr-10">Mobile App</a>
+    		<a href="partners.html" class="gray6 colored-hover mr-10">Partners</a>
+    		<a href="pricing.html" class="gray6 colored-hover mr-10">Pricing</a>
+    		<a href="contact.html" class="gray6 colored-hover mr-10">Contact</a>
+    		<a href="register-as-mover.html" class="gray6 colored-hover">Become a Mover</a>
+    	</p>
+    	<p class="fs-13 mt-10 t-center-sm">
+    		<a href="new-york-movers.html" class="gray6 colored-hover mr-10">New York Movers</a>
+    		<a href="new-jersey-movers.html" class="gray6 colored-hover">New Jersey Movers</a>
+    	</p>
+    	<p class="fs-12 mt-15 t-center-sm">
+    		© 2026 GetMoved. All rights reserved.
+    	</p>
+    	<p class="fs-12 mt-10 t-center-sm">
+    		<a href="terms.html" class="gray6 colored-hover mr-10">Terms &amp; Conditions</a>
+    		<a href="privacy.html" class="gray6 colored-hover">Privacy Policy</a>
+    	</p>
+    </footer>
+    <!-- End footer -->
+
+
+
+    <!-- Back To Top -->
+    <a id="back-to-top" href="index.html#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
+        <i class="ti-angle-double-up fs-18"></i>
+    </a>
+
+
+
+    <!-- Back To Top -->
+    <a id="back-to-top" href="index.html#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
+        <i class="ti-angle-double-up fs-18"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- JS Files -->
+    <script src="js/bs.js"></script>
+    <script src="js/plugins.min.js"></script>
+	<!-- REVOLUTION SLIDER -->
+    <script src="js/revslider/jquery.themepunch.revolution.min.js"></script>
+    <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
+	<!-- End REVOLUTION SLIDER -->
+	<script src="js/functions.js"></script>
+	<script src="js/getmoved.js?v=9"></script>
+	<script src="js/visit-counter.js?v=1"></script>
+	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
+	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnXM-U_nxnVA-4Gb2TXYH80rv6aQJB_iY&libraries=places&callback=gmInitPlacesAutocomplete&loading=async"></script>
+
+	<script>
+		var tpj=jQuery;
+	    var revapi1050;
+	    tpj(document).ready(function() {
+	    if(tpj("#home-slider").revolution == undefined){
+	    	revslider_showDoubleJqueryError("#home-slider");
+	    }else{
+	        revapi1050 = tpj("#home-slider").show().revolution({
+	            sliderType:"standard",
+	            jsFileLocation:"js/revslider/",
+	            sliderLayout:"fullwidth",
+	            dottedOverlay:"none",
+	            delay:9000,
+	            navigation: {
+	                keyboardNavigation:"on",
+	                keyboard_direction: "vertical",
+	                mouseScrollNavigation:"off",
+	                mouseScrollReverse:"default",
+	                onHoverStop:"off",
+	                arrows: {
+				        enable: true,
+				        style: 'gyges',
+				    },
+	                touch:{
+	                    touchenabled:"on",
+	                    swipe_threshold: 75,
+	                    swipe_min_touches: 50,
+	                    swipe_direction: "vertical",
+	                    drag_block_vertical: false
+	                },
+	                bullets: {
+	                    enable:true,
+	                    hide_onmobile:true,
+	                    hide_under:1024,
+	                    style:"hesperiden",
+	                    hide_onleave:true,
+	                    direction:"horizontal",
+	                    h_align:"center",
+	                    v_align:"bottom",
+	                    h_offset:0,
+	                    v_offset:20,
+	                    space:5,
+	                    tmp:''
+	                }
+	            },
+	            responsiveLevels:[1400,1350,1200,1024,750],
+	            visibilityLevels:[1320,1140,960,720,540],
+	            gridwidth:[1320,1140,960,720,540],
+	            gridheight:[610,568,512,600],
+	            lazyType:"none",
+	            shadow:0,
+	            spinner:"spinner2",
+	            stopLoop:"off",
+	            stopAfterLoops:-1,
+	            stopAtSlide:-1,
+	            shuffle:"off",
+	            autoHeight:"off",
+	            fullScreenAutoWidth:"off",
+	            fullScreenAlignForce:"off",
+	            fullScreenOffsetContainer: "",
+	            fullScreenOffset: "0px",
+	            disableProgressBar:"off",
+	            hideThumbsOnMobile:"off",
+	            fullWidth:"on",
+				fullScreen:"off",
+	            hideSliderAtLimit:0,
+	            hideCaptionAtLimit:0,
+	            hideAllCaptionAtLilmit:0,
+	            debugMode:false,
+	            fallbacks: {
+	                simplifyAll:"off",
+	                nextSlideOnWindowFocus:"off",
+	                disableFocusListener:false,
+	            }
+	        });
+	        }
+	    });	/*ready*/
+	</script>
+
+
+</body>
+
+</html>
