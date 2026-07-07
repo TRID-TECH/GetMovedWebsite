@@ -31,7 +31,8 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
       function gtag(){dataLayer.push(arguments);}
       // Consent Mode v2: default denied (EU-safe). GA still sends cookieless pings so events
       // are always measured; the cookie banner upgrades to granted on Accept.
-      gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update: 500 });
+      gtag('consent', 'default', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update: 500, region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] });
       gtag('set', 'url_passthrough', true);
       gtag('set', 'ads_data_redaction', true);
       try { if (localStorage.getItem('gm_cookie_consent') === 'granted') {
@@ -427,6 +428,137 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		</div>
 	</section>
 
+<section id="quick-quote" class="gm-qq-section">
+		<div class="container">
+			<div class="gm-qq-grid">
+
+				<!-- Left: intro / value props -->
+				<div class="gm-qq-intro">
+					<span class="gm-qq-badge">
+						<i class="ti-user"></i> Dedicated Moving Specialists
+					</span>
+					<h2 class="gm-qq-title font-secondary">Get Your Free Moving Quote</h2>
+					<p class="gm-qq-lead">
+						Tell us about your move and our dedicated team will review your request and contact you with the best options.
+					</p>
+
+					<div class="gm-qq-features">
+						<div class="gm-qq-feature">
+							<span class="gm-qq-feature-icon"><i class="ti-user"></i></span>
+							<span class="gm-qq-feature-label">Personalized<br>Service</span>
+						</div>
+						<div class="gm-qq-feature">
+							<span class="gm-qq-feature-icon"><i class="ti-shield"></i></span>
+							<span class="gm-qq-feature-label">Trusted<br>Movers</span>
+						</div>
+						<div class="gm-qq-feature">
+							<span class="gm-qq-feature-icon"><i class="ti-time"></i></span>
+							<span class="gm-qq-feature-label">Fast<br>Response</span>
+						</div>
+					</div>
+
+					<p class="gm-qq-note">
+						<i class="ti-check-box"></i> <strong>No obligation.</strong> Free and personalized.
+					</p>
+
+					<!-- How it works -->
+					<div class="gm-qq-how">
+						<h4 class="gm-qq-how-title font-secondary">How It Works</h4>
+						<div class="gm-qq-steps">
+							<div class="gm-qq-step">
+								<span class="gm-qq-step-icon"><i class="ti-clipboard"></i></span>
+								<p class="gm-qq-step-title"><span>1</span> Submit Your Request</p>
+								<p class="gm-qq-step-text">Share a few details about your move.</p>
+							</div>
+							<span class="gm-qq-step-arrow"><i class="ti-arrow-right"></i></span>
+							<div class="gm-qq-step">
+								<span class="gm-qq-step-icon"><i class="ti-user"></i></span>
+								<p class="gm-qq-step-title"><span>2</span> Our Team Reviews It</p>
+								<p class="gm-qq-step-text">Our moving specialists find the best matches.</p>
+							</div>
+							<span class="gm-qq-step-arrow"><i class="ti-arrow-right"></i></span>
+							<div class="gm-qq-step">
+								<span class="gm-qq-step-icon"><i class="ti-check"></i></span>
+								<p class="gm-qq-step-title"><span>3</span> You Get Your Quote</p>
+								<p class="gm-qq-step-text">We contact you with the best options for your move.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End left -->
+
+				<!-- Right: form card -->
+				<div class="gm-qq-card">
+					<h3 class="gm-qq-card-title font-secondary">Request a Free Quote</h3>
+					<p class="gm-qq-card-sub">Please fill out the form and we'll be in touch.</p>
+
+					<form id="quick-quote-form" novalidate>
+						<div class="gm-qq-field">
+							<i class="ti-user"></i>
+							<input type="text" name="full_name" placeholder="Full Name" required>
+						</div>
+						<div class="gm-qq-field">
+							<i class="ti-email"></i>
+							<input type="email" name="email" placeholder="Email Address" required>
+						</div>
+						<div class="gm-qq-field">
+							<i class="ti-mobile"></i>
+							<input type="tel" name="phone" placeholder="Phone Number" required>
+						</div>
+
+						<div class="gm-qq-row">
+							<div class="gm-qq-field">
+								<i class="ti-location-pin"></i>
+								<input type="text" id="qq-move-from" name="move_from" placeholder="Move From (City, State or ZIP)" autocomplete="off" required>
+							</div>
+							<div class="gm-qq-field">
+								<i class="ti-location-pin"></i>
+								<input type="text" id="qq-move-to" name="move_to" placeholder="Move To (City, State or ZIP)" autocomplete="off" required>
+							</div>
+						</div>
+
+						<div class="gm-qq-field">
+							<i class="ti-calendar"></i>
+							<input type="text" name="moving_date" placeholder="Moving Date"
+								onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+						</div>
+
+						<div class="gm-qq-field">
+							<i class="ti-home"></i>
+							<select name="property_type" required>
+								<option value="" disabled selected hidden>Property Type</option>
+								<option value="Studio / 1 Bedroom">Studio / 1 Bedroom</option>
+								<option value="2 Bedrooms">2 Bedrooms</option>
+								<option value="3 Bedrooms">3 Bedrooms</option>
+								<option value="4+ Bedrooms">4+ Bedrooms</option>
+								<option value="Office / Commercial">Office / Commercial</option>
+								<option value="Other">Other</option>
+							</select>
+						</div>
+
+						<div class="gm-qq-field gm-qq-field-area">
+							<i class="ti-pencil-alt"></i>
+							<textarea name="details" rows="4" placeholder="Additional Details (Optional)"></textarea>
+						</div>
+
+						<!-- Honeypot: hidden from users, bots tend to fill it. Leave empty. -->
+						<div class="gm-qq-hp" aria-hidden="true">
+							<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
+						</div>
+
+						<button type="submit" class="gm-qq-submit font-secondary">Submit Request</button>
+
+						<p class="gm-qq-secure"><i class="ti-lock"></i> Your information is safe and secure.</p>
+						<p id="quick-quote-status" class="gm-qq-status" aria-live="polite"></p>
+					</form>
+				</div>
+				<!-- End right -->
+
+			</div>
+		</div>
+	</section>
+
+
 	<!-- Quote CTA -->
 	<section class="py-90 bg-dark4">
 		<div class="container t-center">
@@ -603,7 +735,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=10"></script>
+	<script src="js/getmoved.js?v=11"></script>
 	<script src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->

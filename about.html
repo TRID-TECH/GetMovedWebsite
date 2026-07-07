@@ -31,7 +31,8 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
       function gtag(){dataLayer.push(arguments);}
       // Consent Mode v2: default denied (EU-safe). GA still sends cookieless pings so events
       // are always measured; the cookie banner upgrades to granted on Accept.
-      gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update: 500 });
+      gtag('consent', 'default', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update: 500, region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] });
       gtag('set', 'url_passthrough', true);
       gtag('set', 'ads_data_redaction', true);
       try { if (localStorage.getItem('gm_cookie_consent') === 'granted') {
@@ -578,7 +579,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=10"></script>
+	<script src="js/getmoved.js?v=11"></script>
 	<script src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->

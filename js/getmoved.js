@@ -84,9 +84,29 @@
       return v;
     } catch (e) { return ""; }
   }
+  // Ad attribution captured once per session from the landing URL (gclid/gbraid/wbraid + UTM).
+  function gmAttribution() {
+    try { var st = sessionStorage.getItem("gm_attribution"); if (st) return JSON.parse(st); } catch (e) {}
+    var attr = { gclid: "", source: "", medium: "", campaign: "" };
+    try {
+      var qs = new URLSearchParams(window.location.search);
+      var g = qs.get("gclid") || qs.get("gbraid") || qs.get("wbraid") || "";
+      attr.gclid = g;
+      attr.source = qs.get("utm_source") || (g ? "google" : "");
+      attr.medium = qs.get("utm_medium") || (g ? "cpc" : "");
+      attr.campaign = qs.get("utm_campaign") || "";
+      if (g || attr.source) sessionStorage.setItem("gm_attribution", JSON.stringify(attr));
+    } catch (e) {}
+    return attr;
+  }
   function gmTrack(eventName, params) {
     params = params || {};
+    var attr = gmAttribution();
     var payload = Object.assign({ surface: "web" }, params);
+    if (attr.gclid) payload.gclid = attr.gclid;
+    if (attr.source) payload.source = attr.source;
+    if (attr.medium) payload.medium = attr.medium;
+    if (attr.campaign) payload.campaign = attr.campaign;
     if (typeof window.gtag === "function") { window.gtag("event", eventName, payload); }
     if (eventName === "begin_quote" || eventName === "begin_signup") {
       try {
@@ -171,6 +191,12 @@
         details: (data.get("details") || "").toString().trim(),
         hp: (data.get("hp") || "").toString().trim(), // honeypot (renamed from "website" — Chrome autofilled the old field and falsely tripped the bot filter)
       };
+      // Attach ad attribution so the server-side generate_lead row carries gclid/UTM.
+      var attribution = gmAttribution();
+      payload.gclid = attribution.gclid;
+      payload.source = attribution.source;
+      payload.medium = attribution.medium;
+      payload.campaign = attribution.campaign;
 
       if (quoteSubmit) {
         quoteSubmit.disabled = true;
@@ -197,6 +223,9 @@
           gmTrack("generate_lead", { source: "landing" });
           // Google Ads "Request quote" conversion — fires on successful submit (not click).
           if (typeof window.gtag === "function") {
+            // Enhanced Conversions: pass user-entered email/phone; Google hashes them client-side
+            // (requires Enhanced Conversions enabled on the Ads conversion action).
+            window.gtag("set", "user_data", { email: payload.email, phone_number: payload.phone });
             window.gtag("event", "conversion", {
               send_to: "AW-18301808532/Cd3sCNnGm8scEJTf_ZZE",
               value: 1.0,
