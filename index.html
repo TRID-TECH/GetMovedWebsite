@@ -609,7 +609,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					<form id="quick-quote-form" novalidate>
 						<div class="gm-qq-field">
 							<i class="ti-user"></i>
-							<input type="text" name="full_name" placeholder="Full Name" required>
+							<input type="text" name="full_name" placeholder="First Name" required>
 						</div>
 						<div class="gm-qq-field">
 							<i class="ti-email"></i>
@@ -623,11 +623,11 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 						<div class="gm-qq-row">
 							<div class="gm-qq-field">
 								<i class="ti-location-pin"></i>
-								<input type="text" id="qq-move-from" name="move_from" placeholder="Move From (City, State or ZIP)" autocomplete="off" required>
+								<input type="text" id="qq-move-from" name="move_from" placeholder="Moving From (ZIP)" autocomplete="off" required>
 							</div>
 							<div class="gm-qq-field">
 								<i class="ti-location-pin"></i>
-								<input type="text" id="qq-move-to" name="move_to" placeholder="Move To (City, State or ZIP)" autocomplete="off" required>
+								<input type="text" id="qq-move-to" name="move_to" placeholder="Moving To (ZIP)" autocomplete="off" required>
 							</div>
 						</div>
 
@@ -637,30 +637,12 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 								onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
 						</div>
 
-						<div class="gm-qq-field">
-							<i class="ti-home"></i>
-							<select name="property_type" required>
-								<option value="" disabled selected hidden>Property Type</option>
-								<option value="Studio / 1 Bedroom">Studio / 1 Bedroom</option>
-								<option value="2 Bedrooms">2 Bedrooms</option>
-								<option value="3 Bedrooms">3 Bedrooms</option>
-								<option value="4+ Bedrooms">4+ Bedrooms</option>
-								<option value="Office / Commercial">Office / Commercial</option>
-								<option value="Other">Other</option>
-							</select>
-						</div>
-
-						<div class="gm-qq-field gm-qq-field-area">
-							<i class="ti-pencil-alt"></i>
-							<textarea name="details" rows="4" placeholder="Additional Details (Optional)"></textarea>
-						</div>
-
-						<!-- Honeypot: hidden from users, bots tend to fill it. Leave empty. -->
+<!-- Honeypot: hidden from users, bots tend to fill it. Leave empty. -->
 						<div class="gm-qq-hp" aria-hidden="true">
 							<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
 						</div>
 
-						<button type="submit" class="gm-qq-submit font-secondary">Submit Request</button>
+						<button type="submit" class="gm-qq-submit font-secondary">Get My Free Quote</button>
 
 						<p class="gm-qq-secure"><i class="ti-lock"></i> Your information is safe and secure.</p>
 						<p id="quick-quote-status" class="gm-qq-status" aria-live="polite"></p>
@@ -843,9 +825,9 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
         <div class="container">
         	<div class="row">
             	<div class="col-12 mb-40 d-flex flex-column align-items-center t-center">
-					<h1 class="fs-60 fs-40-sm uppercase white font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
+					<h2 class="fs-60 fs-40-sm uppercase white font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
 						HOW IT WORKS
-					</h1>
+					</h2>
 					<div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
 					<p class="mxw-900 fs-16 lh-30 white animated" data-animation="fadeIn" data-animation-delay="100">
 						From first contact to final payment — the complete workflow for customers and moving companies alike.
@@ -1013,9 +995,9 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
         		<!-- Column for title -->
             	<div class="col-12 d-flex flex-column align-items-center t-center">
             		<!-- Header -->
-					<h1 class="fs-60 fs-40-sm uppercase white font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
+					<h2 class="fs-60 fs-40-sm uppercase white font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
 						Key Features
-					</h1>
+					</h2>
 					<!-- Header Strip -->
 					<div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
 					<!-- Header Description -->
@@ -1163,9 +1145,9 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
             <!-- Title -->
             <div class="row t-center">
                 <div class="col-12 d-flex flex-column align-items-center">
-                    <h1 class="fs-60 fs-40-sm uppercase dark font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
+                    <h2 class="fs-60 fs-40-sm uppercase dark font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
                         Available on Mobile
-                    </h1>
+                    </h2>
                     <div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
                     <p class="mxw-800 fs-18 lh-30 animated" data-animation="fadeIn" data-animation-delay="100">
                         The full GetMoved experience — in your pocket. Customers book moves and track jobs. Moving companies manage quotes, crew, fleet, and payments. All from the same app.
@@ -1276,9 +1258,9 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
         		<!-- Column for title -->
             	<div class="col-12 d-flex flex-column align-items-center t-center">
             		<!-- Header -->
-					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">
+					<h2 class="fs-60 fs-40-sm uppercase dark font-secondary">
 						Become a Partner
-					</h1>
+					</h2>
 					<!-- Header Strip -->
 					<div class="width-70 height-1 my-20 bg-gray4"></div>
 					<!-- Header Description -->
@@ -1478,9 +1460,9 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
         		<!-- Column for title -->
             	<div class="col-12 d-flex flex-column align-items-center t-center">
             		<!-- Header -->
-					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">
+					<h2 class="fs-60 fs-40-sm uppercase dark font-secondary">
 						Contact US
-					</h1>
+					</h2>
 					<!-- Header Strip -->
 					<div class="width-70 height-1 my-20 bg-gray4"></div>
 					<!-- Header Description -->
