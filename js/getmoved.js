@@ -404,4 +404,48 @@
         });
     });
   }
+
+  // --- Floating "Get a Quote" button: appears on every page. On pages that contain the
+  // quote form it shows only when the form is scrolled out of view (and scrolls to it on
+  // click); on pages without the form it stays visible and links to the quote page. ---
+  (function () {
+    function mountFloatQuote() {
+      if (document.getElementById("gm-float-quote")) return;
+      var section = document.getElementById("quick-quote");
+      var btn = document.createElement("a");
+      btn.id = "gm-float-quote";
+      btn.href = section ? "#quick-quote" : "free-moving-quote.html";
+      btn.setAttribute("aria-label", "Get a free moving quote");
+      btn.textContent = "Get a Quote";
+      btn.style.cssText =
+        "position:fixed;right:20px;bottom:20px;z-index:99998;background:#22c55e;color:#04120a;" +
+        "font-weight:700;font-family:inherit;font-size:15px;line-height:1;padding:15px 26px;" +
+        "border-radius:999px;box-shadow:0 8px 22px rgba(0,0,0,.28);text-decoration:none;" +
+        "display:none;cursor:pointer;transition:opacity .2s,transform .2s;";
+      btn.onmouseenter = function () { btn.style.transform = "translateY(-2px)"; };
+      btn.onmouseleave = function () { btn.style.transform = "translateY(0)"; };
+      if (section) {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+      document.body.appendChild(btn);
+
+      if (section && "IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            var visible = entries[0] && entries[0].isIntersecting;
+            btn.style.display = visible ? "none" : "inline-flex";
+          },
+          { threshold: 0.12 }
+        );
+        io.observe(section);
+      } else {
+        btn.style.display = "inline-flex"; // no quote form on this page -> always show
+      }
+    }
+    if (document.body) mountFloatQuote();
+    else document.addEventListener("DOMContentLoaded", mountFloatQuote);
+  })();
 })();
