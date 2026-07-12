@@ -462,11 +462,11 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 						<div class="gm-qq-row">
 							<div class="gm-qq-field">
 								<i class="ti-location-pin"></i>
-								<input type="text" id="qq-move-from" name="move_from" placeholder="Moving From (ZIP)" autocomplete="off" required>
+								<input type="text" id="qq-move-from" name="move_from" placeholder="Pick Up" autocomplete="off" required>
 							</div>
 							<div class="gm-qq-field">
 								<i class="ti-location-pin"></i>
-								<input type="text" id="qq-move-to" name="move_to" placeholder="Moving To (ZIP)" autocomplete="off" required>
+								<input type="text" id="qq-move-to" name="move_to" placeholder="Delivery" autocomplete="off" required>
 							</div>
 						</div>
 
@@ -475,6 +475,15 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 							<input type="text" name="moving_date" placeholder="Moving Date"
 								onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
 						</div>
+
+							<div class="gm-qq-field">
+								<i class="ti-comments"></i>
+								<select name="preferred_contact">
+									<option value="" disabled selected hidden>Preferred Contact</option>
+									<option value="Email">Email</option>
+									<option value="Phone">Phone</option>
+								</select>
+							</div>
 
 <!-- Honeypot: hidden from users, bots tend to fill it. Leave empty. -->
 						<div class="gm-qq-hp" aria-hidden="true">
@@ -1636,7 +1645,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=12"></script>
+	<script src="js/getmoved.js?v=13"></script>
 	<script src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->

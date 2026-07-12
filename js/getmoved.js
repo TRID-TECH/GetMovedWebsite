@@ -187,6 +187,7 @@
         moveFrom: (data.get("move_from") || "").toString().trim(),
         moveTo: (data.get("move_to") || "").toString().trim(),
         movingDate: (data.get("moving_date") || "").toString().trim(),
+        preferredContact: (data.get("preferred_contact") || "").toString().trim(),
         propertyType: (data.get("property_type") || "").toString().trim(),
         details: (data.get("details") || "").toString().trim(),
         hp: (data.get("hp") || "").toString().trim(), // honeypot (renamed from "website" — Chrome autofilled the old field and falsely tripped the bot filter)
