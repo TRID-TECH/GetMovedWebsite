@@ -331,6 +331,28 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 				border-color: #c2cdc8;
 			}
 			.gm-qq-nav .gm-qq-submit { margin-top: 6px; }
+			/* equal-height steps + inline calendar + contact radios */
+			.gm-qq-step { min-height: 460px; }
+			.gm-qq-calwrap { margin-bottom: 9px; }
+			.gm-qq-callabel { font-size: 13px; font-weight: 600; color: #48575f; margin: 2px 0 8px; }
+			.gm-qq-cal { border: 1px solid #e1e8e5; border-radius: 10px; background: #fbfdfc; padding: 10px 12px; }
+			.gm-qq-cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+			.gm-qq-cal-title { font-size: 14px; font-weight: 700; color: #15202b; }
+			.gm-qq-cal-nav { border: none; background: transparent; color: #48575f; font-size: 20px; line-height: 1; cursor: pointer; padding: 2px 10px; border-radius: 6px; }
+			.gm-qq-cal-nav:hover { background: #eef3f0; }
+			.gm-qq-cal-nav:disabled { opacity: .3; cursor: default; }
+			.gm-qq-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+			.gm-qq-cal-dow { text-align: center; font-size: 11px; font-weight: 700; color: #9aa7af; padding: 3px 0; }
+			.gm-qq-cal-day { text-align: center; font-size: 13px; padding: 7px 0; border: none; background: transparent; color: #15202b; border-radius: 8px; cursor: pointer; font-family: inherit; }
+			.gm-qq-cal-day:hover:not(:disabled) { background: #e7f4ee; }
+			.gm-qq-cal-day.is-selected { background: #1e8e4e; color: #fff; font-weight: 700; }
+			.gm-qq-cal-day:disabled { color: #cfd8d4; cursor: default; }
+			.gm-qq-cal-day.is-empty { visibility: hidden; }
+			.gm-qq-calerr { color: #c0392b; font-size: 12px; margin: 6px 0 0; }
+			.gm-qq-contactvia { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 12px; }
+			.gm-qq-contactvia-label { font-size: 14px; color: #48575f; font-weight: 600; }
+			.gm-qq-radio { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: #15202b; cursor: pointer; }
+			.gm-qq-radio input { accent-color: #1e8e4e; width: 16px; height: 16px; cursor: pointer; }
 			.gm-qq-secure {
 			text-align: center;
 			font-size: 12px;
@@ -644,9 +666,11 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 									<option value="" disabled selected hidden>Size of your move</option>
 								</select>
 							</div>
-							<div class="gm-qq-field">
-								<i class="ti-calendar"></i>
-								<input type="date" id="qq-date" name="moving_date" required>
+							<div class="gm-qq-calwrap">
+								<div class="gm-qq-callabel">Select move date</div>
+								<div id="qq-cal" class="gm-qq-cal" data-cal></div>
+								<input type="hidden" id="qq-date" name="moving_date">
+								<p class="gm-qq-calerr" data-cal-err></p>
 							</div>
 							<button type="button" class="gm-qq-submit gm-qq-next font-secondary">Next</button>
 						</div>
@@ -657,13 +681,10 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 								<i class="ti-pencil"></i>
 								<textarea name="details" rows="3" placeholder="Additional notes (optional)"></textarea>
 							</div>
-							<div class="gm-qq-field">
-								<i class="ti-comments"></i>
-								<select name="preferred_contact">
-									<option value="" disabled selected hidden>Preferred Contact</option>
-									<option value="Email">Email</option>
-									<option value="Phone">Phone</option>
-								</select>
+							<div class="gm-qq-contactvia">
+								<span class="gm-qq-contactvia-label">Contact me via:</span>
+								<label class="gm-qq-radio"><input type="radio" name="preferred_contact" value="Phone"> Phone</label>
+								<label class="gm-qq-radio"><input type="radio" name="preferred_contact" value="Email"> Email</label>
 							</div>
 							<div class="gm-qq-field">
 								<i class="ti-user"></i>
@@ -699,7 +720,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 	</section>
 
 	<!-- Value banner -->
-	<section style="padding:0 0 12px;">
+	<section style="padding:22px 0 12px;">
 		<div class="container">
 			<img src="images/DonjaSlika.png?v=2" alt="You relax. We handle the rest. We find. We compare. You choose. Premium service, zero cost, maximum peace of mind." style="width:100%;height:auto;display:block;">
 		</div>
@@ -790,7 +811,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=14"></script>
+	<script src="js/getmoved.js?v=15"></script>
 	<script src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->

@@ -176,15 +176,25 @@
       steps.forEach((s) => s.classList.toggle("is-hidden", s.getAttribute("data-step") !== String(n)));
       if (stepHint) stepHint.textContent = "Step " + n + " of 2";
     };
+    let resetCalendar = function () {};
     if (nextBtn) {
       nextBtn.addEventListener("click", () => {
         // Advance only when all visible Step-1 fields are valid. Validating (and thus
         // filling) them here means they stay valid when hidden at final submit, so the
         // native "hidden required field is not focusable" error can't fire.
         const step1 = quoteForm.querySelector('.gm-qq-step[data-step="1"]');
-        const fields = step1 ? step1.querySelectorAll("input, select, textarea") : [];
+        const fields = step1 ? step1.querySelectorAll("input:not([type=hidden]), select, textarea") : [];
         for (let i = 0; i < fields.length; i += 1) {
           if (!fields[i].checkValidity()) { fields[i].reportValidity(); return; }
+        }
+        // The move date comes from the inline calendar (a hidden input), so validate it here.
+        const dh = document.getElementById("qq-date");
+        const calErr = quoteForm.querySelector("[data-cal-err]");
+        if (dh && !dh.value) {
+          if (calErr) calErr.textContent = "Please select your move date.";
+          const c = quoteForm.querySelector("[data-cal]");
+          if (c && c.scrollIntoView) c.scrollIntoView({ block: "nearest" });
+          return;
         }
         showStep(2);
       });
@@ -235,9 +245,58 @@
         .catch(ensureSizes); // fail-soft: fall back to the static list
     }
 
-    // No past move dates.
-    const dateInput = document.getElementById("qq-date");
-    if (dateInput) { try { dateInput.min = new Date().toISOString().slice(0, 10); } catch (e) {} }
+    // Inline, always-open month calendar -> writes YYYY-MM-DD into the hidden #qq-date.
+    // Past days are disabled; a fixed 6-row grid keeps the height constant across months.
+    const calEl = quoteForm.querySelector("[data-cal]");
+    const dateHidden = document.getElementById("qq-date");
+    if (calEl && dateHidden) {
+      const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      const DOW = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const minTime = today.getTime();
+      let viewY = today.getFullYear();
+      let viewM = today.getMonth();
+      let selected = "";
+      const pad = (n) => (n < 10 ? "0" + n : "" + n);
+      const iso = (y, m, d) => y + "-" + pad(m + 1) + "-" + pad(d);
+      const render = () => {
+        const startDow = new Date(viewY, viewM, 1).getDay();
+        const daysInMonth = new Date(viewY, viewM + 1, 0).getDate();
+        const canPrev = viewY > today.getFullYear() || (viewY === today.getFullYear() && viewM > today.getMonth());
+        let html = '<div class="gm-qq-cal-head">';
+        html += '<button type="button" class="gm-qq-cal-nav" data-prev' + (canPrev ? "" : " disabled") + ">‹</button>";
+        html += '<span class="gm-qq-cal-title">' + MONTHS[viewM] + " " + viewY + "</span>";
+        html += '<button type="button" class="gm-qq-cal-nav" data-next>›</button>';
+        html += '</div><div class="gm-qq-cal-grid">';
+        DOW.forEach((d) => { html += '<div class="gm-qq-cal-dow">' + d + "</div>"; });
+        for (let i = 0; i < 42; i += 1) {
+          const dayNum = i - startDow + 1;
+          if (dayNum < 1 || dayNum > daysInMonth) {
+            html += '<button type="button" class="gm-qq-cal-day is-empty" disabled></button>';
+          } else {
+            const isPast = new Date(viewY, viewM, dayNum).getTime() < minTime;
+            const val = iso(viewY, viewM, dayNum);
+            html += '<button type="button" class="gm-qq-cal-day' + (val === selected ? " is-selected" : "") + '" data-day="' + val + '"' + (isPast ? " disabled" : "") + ">" + dayNum + "</button>";
+          }
+        }
+        html += "</div>";
+        calEl.innerHTML = html;
+      };
+      calEl.addEventListener("click", (e) => {
+        const t = e.target;
+        if (t.matches("[data-prev]") && !t.disabled) { if (viewM === 0) { viewM = 11; viewY -= 1; } else { viewM -= 1; } render(); return; }
+        if (t.matches("[data-next]")) { if (viewM === 11) { viewM = 0; viewY += 1; } else { viewM += 1; } render(); return; }
+        if (t.matches("[data-day]") && !t.disabled) {
+          selected = t.getAttribute("data-day");
+          dateHidden.value = selected;
+          const errEl = quoteForm.querySelector("[data-cal-err]");
+          if (errEl) errEl.textContent = "";
+          render();
+        }
+      });
+      resetCalendar = () => { selected = ""; dateHidden.value = ""; viewY = today.getFullYear(); viewM = today.getMonth(); render(); };
+      render();
+    }
 
     const setStatus = (message, isError) => {
       if (!quoteStatus) return;
@@ -307,6 +366,7 @@
             });
           }
           quoteForm.reset();
+          resetCalendar(); // clear the inline calendar selection too
           showStep(1); // back to the first step for any subsequent submission
           setStatus(
             "Thank you! Your request has been sent. Our team will contact you shortly.",
