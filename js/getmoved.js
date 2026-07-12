@@ -157,7 +157,8 @@
   const quoteForm = document.getElementById("quick-quote-form");
   if (quoteForm) {
     const quoteStatus = document.getElementById("quick-quote-status");
-    const quoteSubmit = quoteForm.querySelector(".gm-qq-submit");
+    // The final submit is button[type="submit"]; the Step-1 "Next" is type="button".
+    const quoteSubmit = quoteForm.querySelector('button[type="submit"]');
     const mailEndpoint = "https://portal.getmoved.app/api/v1/email/quick-quote";
 
     // begin_quote: fire once per session the first time the visitor focuses the form.
@@ -165,6 +166,78 @@
       try { if (sessionStorage.getItem("gm_begin_quote_web")) return; sessionStorage.setItem("gm_begin_quote_web", "1"); } catch (e) {}
       gmTrack("begin_quote", { source: "landing" });
     });
+
+    // --- 2-step wizard: Step 1 (move: origin/destination/size/date) -> Step 2 (contact). ---
+    const steps = quoteForm.querySelectorAll(".gm-qq-step");
+    const stepHint = quoteForm.querySelector("[data-step-hint]");
+    const nextBtn = quoteForm.querySelector(".gm-qq-next");
+    const backBtn = quoteForm.querySelector(".gm-qq-back");
+    const showStep = (n) => {
+      steps.forEach((s) => s.classList.toggle("is-hidden", s.getAttribute("data-step") !== String(n)));
+      if (stepHint) stepHint.textContent = "Step " + n + " of 2";
+    };
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        // Advance only when all visible Step-1 fields are valid. Validating (and thus
+        // filling) them here means they stay valid when hidden at final submit, so the
+        // native "hidden required field is not focusable" error can't fire.
+        const step1 = quoteForm.querySelector('.gm-qq-step[data-step="1"]');
+        const fields = step1 ? step1.querySelectorAll("input, select, textarea") : [];
+        for (let i = 0; i < fields.length; i += 1) {
+          if (!fields[i].checkValidity()) { fields[i].reportValidity(); return; }
+        }
+        showStep(2);
+      });
+    }
+    if (backBtn) { backBtn.addEventListener("click", () => showStep(1)); }
+
+    // The portal's size-of-move `name` is already a display label ("Studio - 297 CF").
+    // Only prettify legacy snake_case identifiers as a fallback.
+    function sizeLabel(row) {
+      let name = String((row && (row.display_name || row.name)) || "").trim();
+      if (!name) return "";
+      if (/_/.test(name) && !/\s/.test(name)) {
+        name = name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+      }
+      return name;
+    }
+
+    // Populate "Size of your move" from the same public endpoint the portal wizard uses.
+    // The endpoint returns { success, data: [...] } (some deployments a bare array).
+    const sizeSelect = document.getElementById("qq-size");
+    if (sizeSelect) {
+      // Mirrors the portal's SizeOfMove catalog; used only if the API is unreachable, so
+      // the required dropdown is never empty (which would trap the user on Step 1).
+      const SIZE_FALLBACK = [
+        "Room or Less - 153 CF", "Studio - 297 CF", "Small 1 Bedroom - 323 CF",
+        "Large 1 Bedroom - 452 CF", "Small 2 Bedroom - 650 CF", "Large 2 Bedroom - 689 CF",
+        "2 Bedroom House - 932 CF", "3 Bedroom Apartment - 1047 CF", "3 Bedroom House - 1199 CF",
+        "4+ Bedroom House - 1478 CF",
+      ];
+      const addSizeOption = (label) => {
+        if (!label) return;
+        const opt = document.createElement("option");
+        opt.value = label;
+        opt.textContent = label;
+        sizeSelect.appendChild(opt);
+      };
+      const ensureSizes = () => { if (sizeSelect.options.length <= 1) SIZE_FALLBACK.forEach(addSizeOption); };
+      fetch("https://portal.getmoved.app/api/v1/size-of-move?active=true")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((body) => {
+          const rows = Array.isArray(body) ? body : (body && Array.isArray(body.data) ? body.data : []);
+          rows
+            .filter((row) => row && (row.is_active === undefined || row.is_active))
+            .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
+            .forEach((row) => addSizeOption(sizeLabel(row)));
+          ensureSizes();
+        })
+        .catch(ensureSizes); // fail-soft: fall back to the static list
+    }
+
+    // No past move dates.
+    const dateInput = document.getElementById("qq-date");
+    if (dateInput) { try { dateInput.min = new Date().toISOString().slice(0, 10); } catch (e) {} }
 
     const setStatus = (message, isError) => {
       if (!quoteStatus) return;
@@ -234,6 +307,7 @@
             });
           }
           quoteForm.reset();
+          showStep(1); // back to the first step for any subsequent submission
           setStatus(
             "Thank you! Your request has been sent. Our team will contact you shortly.",
             false
@@ -248,7 +322,7 @@
         .finally(() => {
           if (quoteSubmit) {
             quoteSubmit.disabled = false;
-            quoteSubmit.textContent = "Submit Request";
+            quoteSubmit.textContent = "Submit and get offers";
           }
         });
     });

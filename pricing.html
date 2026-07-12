@@ -298,7 +298,40 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 			opacity: .6;
 			cursor: default;
 		}
-		.gm-qq-secure {
+		/* 2-step wizard */
+			.gm-qq-step.is-hidden { display: none; }
+			.gm-qq-stephint {
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: .05em;
+				text-transform: uppercase;
+				color: #00A76F;
+				margin: 0 0 12px;
+			}
+			.gm-qq-nav {
+				display: grid;
+				grid-template-columns: auto 1fr;
+				gap: 10px;
+				align-items: stretch;
+			}
+			.gm-qq-back {
+				border: 1px solid #d7e0dc;
+				background: #fff;
+				color: #48575f;
+				border-radius: 10px;
+				font-size: 15px;
+				font-weight: 600;
+				padding: 12px 20px;
+				cursor: pointer;
+				margin-top: 6px;
+				transition: background .2s, border-color .2s;
+			}
+			.gm-qq-back:hover {
+				background: #f4f7f5;
+				border-color: #c2cdc8;
+			}
+			.gm-qq-nav .gm-qq-submit { margin-top: 6px; }
+			.gm-qq-secure {
 			text-align: center;
 			font-size: 12px;
 			color: #9aa7af;
@@ -559,36 +592,39 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					<p class="gm-qq-card-sub">Please fill out the form and we'll be in touch.</p>
 
 					<form id="quick-quote-form" novalidate>
-						<div class="gm-qq-field">
-							<i class="ti-user"></i>
-							<input type="text" name="full_name" placeholder="First Name" required>
-						</div>
-						<div class="gm-qq-field">
-							<i class="ti-email"></i>
-							<input type="email" name="email" placeholder="Email Address" required>
-						</div>
-						<div class="gm-qq-field">
-							<i class="ti-mobile"></i>
-							<input type="tel" name="phone" placeholder="Phone Number" required>
-						</div>
+						<p class="gm-qq-stephint" data-step-hint>Step 1 of 2</p>
 
-						<div class="gm-qq-row">
-							<div class="gm-qq-field">
-								<i class="ti-location-pin"></i>
-								<input type="text" id="qq-move-from" name="move_from" placeholder="Pick Up" autocomplete="off" required>
+						<!-- Step 1: the move -->
+						<div class="gm-qq-step" data-step="1">
+							<div class="gm-qq-row">
+								<div class="gm-qq-field">
+									<i class="ti-location-pin"></i>
+									<input type="text" id="qq-move-from" name="move_from" placeholder="Pick Up" autocomplete="off" required>
+								</div>
+								<div class="gm-qq-field">
+									<i class="ti-location-pin"></i>
+									<input type="text" id="qq-move-to" name="move_to" placeholder="Delivery" autocomplete="off" required>
+								</div>
 							</div>
 							<div class="gm-qq-field">
-								<i class="ti-location-pin"></i>
-								<input type="text" id="qq-move-to" name="move_to" placeholder="Delivery" autocomplete="off" required>
+								<i class="ti-package"></i>
+								<select id="qq-size" name="property_type" required>
+									<option value="" disabled selected hidden>Size of your move</option>
+								</select>
 							</div>
+							<div class="gm-qq-field">
+								<i class="ti-calendar"></i>
+								<input type="date" id="qq-date" name="moving_date" required>
+							</div>
+							<button type="button" class="gm-qq-submit gm-qq-next font-secondary">Next</button>
 						</div>
 
-						<div class="gm-qq-field">
-							<i class="ti-calendar"></i>
-							<input type="text" name="moving_date" placeholder="Moving Date"
-								onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
-						</div>
-
+						<!-- Step 2: contact -->
+						<div class="gm-qq-step is-hidden" data-step="2">
+							<div class="gm-qq-field gm-qq-field-area">
+								<i class="ti-pencil"></i>
+								<textarea name="details" rows="3" placeholder="Additional notes (optional)"></textarea>
+							</div>
 							<div class="gm-qq-field">
 								<i class="ti-comments"></i>
 								<select name="preferred_contact">
@@ -597,13 +633,28 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 									<option value="Phone">Phone</option>
 								</select>
 							</div>
+							<div class="gm-qq-field">
+								<i class="ti-user"></i>
+								<input type="text" name="full_name" placeholder="First Name" required>
+							</div>
+							<div class="gm-qq-field">
+								<i class="ti-email"></i>
+								<input type="email" name="email" placeholder="Email Address" required>
+							</div>
+							<div class="gm-qq-field">
+								<i class="ti-mobile"></i>
+								<input type="tel" name="phone" placeholder="Phone Number" required>
+							</div>
+							<div class="gm-qq-nav">
+								<button type="button" class="gm-qq-back font-secondary">Back</button>
+								<button type="submit" class="gm-qq-submit font-secondary">Submit and get offers</button>
+							</div>
+						</div>
 
-<!-- Honeypot: hidden from users, bots tend to fill it. Leave empty. -->
+						<!-- Honeypot: hidden from users, bots tend to fill it. Leave empty. -->
 						<div class="gm-qq-hp" aria-hidden="true">
 							<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
 						</div>
-
-						<button type="submit" class="gm-qq-submit font-secondary">Get My Free Quote</button>
 
 						<p class="gm-qq-secure"><i class="ti-lock"></i> Your information is safe and secure.</p>
 						<p id="quick-quote-status" class="gm-qq-status" aria-live="polite"></p>
@@ -695,7 +746,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=13"></script>
+	<script src="js/getmoved.js?v=14"></script>
 	<script src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
