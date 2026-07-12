@@ -167,39 +167,8 @@
       gmTrack("begin_quote", { source: "landing" });
     });
 
-    // --- 2-step wizard: Step 1 (move: origin/destination/size/date) -> Step 2 (contact). ---
-    const steps = quoteForm.querySelectorAll(".gm-qq-step");
-    const stepHint = quoteForm.querySelector("[data-step-hint]");
-    const nextBtn = quoteForm.querySelector(".gm-qq-next");
-    const backBtn = quoteForm.querySelector(".gm-qq-back");
-    const showStep = (n) => {
-      steps.forEach((s) => s.classList.toggle("is-hidden", s.getAttribute("data-step") !== String(n)));
-      if (stepHint) stepHint.textContent = "Step " + n + " of 2";
-    };
+    // Single-step form. The inline calendar (optional) fills the hidden #qq-date.
     let resetCalendar = function () {};
-    if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
-        // Advance only when all visible Step-1 fields are valid. Validating (and thus
-        // filling) them here means they stay valid when hidden at final submit, so the
-        // native "hidden required field is not focusable" error can't fire.
-        const step1 = quoteForm.querySelector('.gm-qq-step[data-step="1"]');
-        const fields = step1 ? step1.querySelectorAll("input:not([type=hidden]), select, textarea") : [];
-        for (let i = 0; i < fields.length; i += 1) {
-          if (!fields[i].checkValidity()) { fields[i].reportValidity(); return; }
-        }
-        // The move date comes from the inline calendar (a hidden input), so validate it here.
-        const dh = document.getElementById("qq-date");
-        const calErr = quoteForm.querySelector("[data-cal-err]");
-        if (dh && !dh.value) {
-          if (calErr) calErr.textContent = "Please select your move date.";
-          const c = quoteForm.querySelector("[data-cal]");
-          if (c && c.scrollIntoView) c.scrollIntoView({ block: "nearest" });
-          return;
-        }
-        showStep(2);
-      });
-    }
-    if (backBtn) { backBtn.addEventListener("click", () => showStep(1)); }
 
     // The portal's size-of-move `name` is already a display label ("Studio - 297 CF").
     // Only prettify legacy snake_case identifiers as a fallback.
@@ -367,7 +336,6 @@
           }
           quoteForm.reset();
           resetCalendar(); // clear the inline calendar selection too
-          showStep(1); // back to the first step for any subsequent submission
           setStatus(
             "Thank you! Your request has been sent. Our team will contact you shortly.",
             false
@@ -382,7 +350,7 @@
         .finally(() => {
           if (quoteSubmit) {
             quoteSubmit.disabled = false;
-            quoteSubmit.textContent = "Submit and get offers";
+            quoteSubmit.textContent = "Submit quote";
           }
         });
     });
