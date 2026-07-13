@@ -350,7 +350,7 @@
         .finally(() => {
           if (quoteSubmit) {
             quoteSubmit.disabled = false;
-            quoteSubmit.textContent = "Submit quote";
+            quoteSubmit.textContent = "Compare My Free Quotes";
           }
         });
     });
