@@ -108,7 +108,7 @@
     if (attr.medium) payload.medium = attr.medium;
     if (attr.campaign) payload.campaign = attr.campaign;
     if (typeof window.gtag === "function") { window.gtag("event", eventName, payload); }
-    if (eventName === "begin_quote" || eventName === "begin_signup") {
+    if (["begin_quote", "begin_signup", "form_start", "form_step_complete", "form_error"].indexOf(eventName) !== -1) {
       try {
         fetch(trackEndpoint, {
           method: "POST",
@@ -157,128 +157,106 @@
   const quoteForm = document.getElementById("quick-quote-form");
   if (quoteForm) {
     const quoteStatus = document.getElementById("quick-quote-status");
-    // The final submit is button[type="submit"]; the Step-1 "Next" is type="button".
     const quoteSubmit = quoteForm.querySelector('button[type="submit"]');
     const mailEndpoint = "https://portal.getmoved.app/api/v1/email/quick-quote";
 
-    // begin_quote: fire once per session the first time the visitor focuses the form.
+    const setStatus = (message, isError) => {
+      if (!quoteStatus) return;
+      quoteStatus.textContent = message || "";
+      quoteStatus.classList.toggle("is-error", Boolean(isError));
+    };
+    const clearErrors = () => {
+      quoteForm.querySelectorAll(".gm-qq-err").forEach((el) => { el.textContent = ""; });
+      quoteForm.querySelectorAll(".gm-qq-field.has-error").forEach((el) => el.classList.remove("has-error"));
+    };
+    const showError = (input, key, msg, focus) => {
+      const field = input.closest(".gm-qq-field") || input.parentElement;
+      if (field) field.classList.add("has-error");
+      const errEl = quoteForm.querySelector('[data-err-for="' + key + '"]');
+      if (errEl) errEl.textContent = msg;
+      if (focus) {
+        try { input.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (e) {}
+        try { input.focus({ preventScroll: true }); } catch (e2) { try { input.focus(); } catch (e3) {} }
+      }
+    };
+    const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+    // form_start (+ begin_quote for the existing dashboard): once per session on first focus.
     quoteForm.addEventListener("focusin", function () {
-      try { if (sessionStorage.getItem("gm_begin_quote_web")) return; sessionStorage.setItem("gm_begin_quote_web", "1"); } catch (e) {}
+      try { if (sessionStorage.getItem("gm_form_start")) return; sessionStorage.setItem("gm_form_start", "1"); } catch (e) {}
       gmTrack("begin_quote", { source: "landing" });
+      gmTrack("form_start", { source: "landing" });
     });
 
-    // Single-step form. The inline calendar (optional) fills the hidden #qq-date.
-    let resetCalendar = function () {};
+    // Contact toggle: one field, user picks Phone or Email. The input name switches so the
+    // payload carries the chosen key; the backend needs only one contact method.
+    const contactInput = document.getElementById("qq-contact");
+    let contactMode = "phone";
+    quoteForm.querySelectorAll(".gm-qq-tog").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        contactMode = btn.getAttribute("data-contact");
+        quoteForm.querySelectorAll(".gm-qq-tog").forEach((b) => b.classList.toggle("is-active", b === btn));
+        if (contactInput) {
+          contactInput.value = "";
+          if (contactMode === "email") { contactInput.type = "email"; contactInput.name = "email"; contactInput.placeholder = "Email address"; contactInput.setAttribute("inputmode", "email"); }
+          else { contactInput.type = "tel"; contactInput.name = "phone"; contactInput.placeholder = "Phone number"; contactInput.setAttribute("inputmode", "tel"); }
+          const err = quoteForm.querySelector('[data-err-for="contact"]'); if (err) err.textContent = "";
+          const fld = contactInput.closest(".gm-qq-field"); if (fld) fld.classList.remove("has-error");
+        }
+      });
+    });
 
-    // The portal's size-of-move `name` is already a display label ("Studio - 297 CF").
-    // Only prettify legacy snake_case identifiers as a fallback.
-    function sizeLabel(row) {
-      let name = String((row && (row.display_name || row.name)) || "").trim();
-      if (!name) return "";
-      if (/_/.test(name) && !/\s/.test(name)) {
-        name = name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-      }
-      return name;
+    // Optional details expander.
+    const moreBtn = quoteForm.querySelector("[data-more]");
+    const detailsBox = quoteForm.querySelector("[data-details]");
+    if (moreBtn && detailsBox) {
+      moreBtn.addEventListener("click", () => {
+        const hidden = detailsBox.classList.toggle("is-hidden");
+        moreBtn.classList.toggle("is-open", !hidden);
+      });
     }
 
-    // Populate "Size of your move" from the same public endpoint the portal wizard uses.
-    // The endpoint returns { success, data: [...] } (some deployments a bare array).
+    // Size dropdown from the portal (public); static fallback so it is never empty.
     const sizeSelect = document.getElementById("qq-size");
     if (sizeSelect) {
-      // Mirrors the portal's SizeOfMove catalog; used only if the API is unreachable, so
-      // the required dropdown is never empty (which would trap the user on Step 1).
-      const SIZE_FALLBACK = [
-        "Room or Less - 153 CF", "Studio - 297 CF", "Small 1 Bedroom - 323 CF",
-        "Large 1 Bedroom - 452 CF", "Small 2 Bedroom - 650 CF", "Large 2 Bedroom - 689 CF",
-        "2 Bedroom House - 932 CF", "3 Bedroom Apartment - 1047 CF", "3 Bedroom House - 1199 CF",
-        "4+ Bedroom House - 1478 CF",
-      ];
-      const addSizeOption = (label) => {
-        if (!label) return;
-        const opt = document.createElement("option");
-        opt.value = label;
-        opt.textContent = label;
-        sizeSelect.appendChild(opt);
-      };
-      const ensureSizes = () => { if (sizeSelect.options.length <= 1) SIZE_FALLBACK.forEach(addSizeOption); };
+      const SIZE_FALLBACK = ["Room or Less - 153 CF", "Studio - 297 CF", "Small 1 Bedroom - 323 CF", "Large 1 Bedroom - 452 CF", "Small 2 Bedroom - 650 CF", "Large 2 Bedroom - 689 CF", "2 Bedroom House - 932 CF", "3 Bedroom Apartment - 1047 CF", "3 Bedroom House - 1199 CF", "4+ Bedroom House - 1478 CF"];
+      const addOpt = (label) => { if (!label) return; const o = document.createElement("option"); o.value = label; o.textContent = label; sizeSelect.appendChild(o); };
+      const ensure = () => { if (sizeSelect.options.length <= 1) SIZE_FALLBACK.forEach(addOpt); };
       fetch("https://portal.getmoved.app/api/v1/size-of-move?active=true")
         .then((r) => (r.ok ? r.json() : null))
         .then((body) => {
           const rows = Array.isArray(body) ? body : (body && Array.isArray(body.data) ? body.data : []);
-          rows
-            .filter((row) => row && (row.is_active === undefined || row.is_active))
+          rows.filter((row) => row && (row.is_active === undefined || row.is_active))
             .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
-            .forEach((row) => addSizeOption(sizeLabel(row)));
-          ensureSizes();
+            .forEach((row) => addOpt(String((row && (row.display_name || row.name)) || "").trim()));
+          ensure();
         })
-        .catch(ensureSizes); // fail-soft: fall back to the static list
+        .catch(ensure);
     }
-
-    // Inline, always-open month calendar -> writes YYYY-MM-DD into the hidden #qq-date.
-    // Past days are disabled; a fixed 6-row grid keeps the height constant across months.
-    const calEl = quoteForm.querySelector("[data-cal]");
-    const dateHidden = document.getElementById("qq-date");
-    if (calEl && dateHidden) {
-      const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      const DOW = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-      const today = new Date(); today.setHours(0, 0, 0, 0);
-      const minTime = today.getTime();
-      let viewY = today.getFullYear();
-      let viewM = today.getMonth();
-      let selected = "";
-      const pad = (n) => (n < 10 ? "0" + n : "" + n);
-      const iso = (y, m, d) => y + "-" + pad(m + 1) + "-" + pad(d);
-      const render = () => {
-        const startDow = new Date(viewY, viewM, 1).getDay();
-        const daysInMonth = new Date(viewY, viewM + 1, 0).getDate();
-        const canPrev = viewY > today.getFullYear() || (viewY === today.getFullYear() && viewM > today.getMonth());
-        let html = '<div class="gm-qq-cal-head">';
-        html += '<button type="button" class="gm-qq-cal-nav" data-prev' + (canPrev ? "" : " disabled") + ">‹</button>";
-        html += '<span class="gm-qq-cal-title">' + MONTHS[viewM] + " " + viewY + "</span>";
-        html += '<button type="button" class="gm-qq-cal-nav" data-next>›</button>';
-        html += '</div><div class="gm-qq-cal-grid">';
-        DOW.forEach((d) => { html += '<div class="gm-qq-cal-dow">' + d + "</div>"; });
-        for (let i = 0; i < 42; i += 1) {
-          const dayNum = i - startDow + 1;
-          if (dayNum < 1 || dayNum > daysInMonth) {
-            html += '<button type="button" class="gm-qq-cal-day is-empty" disabled></button>';
-          } else {
-            const isPast = new Date(viewY, viewM, dayNum).getTime() < minTime;
-            const val = iso(viewY, viewM, dayNum);
-            html += '<button type="button" class="gm-qq-cal-day' + (val === selected ? " is-selected" : "") + '" data-day="' + val + '"' + (isPast ? " disabled" : "") + ">" + dayNum + "</button>";
-          }
-        }
-        html += "</div>";
-        calEl.innerHTML = html;
-      };
-      calEl.addEventListener("click", (e) => {
-        const t = e.target;
-        if (t.matches("[data-prev]") && !t.disabled) { if (viewM === 0) { viewM = 11; viewY -= 1; } else { viewM -= 1; } render(); return; }
-        if (t.matches("[data-next]")) { if (viewM === 11) { viewM = 0; viewY += 1; } else { viewM += 1; } render(); return; }
-        if (t.matches("[data-day]") && !t.disabled) {
-          selected = t.getAttribute("data-day");
-          dateHidden.value = selected;
-          const errEl = quoteForm.querySelector("[data-cal-err]");
-          if (errEl) errEl.textContent = "";
-          render();
-        }
-      });
-      resetCalendar = () => { selected = ""; dateHidden.value = ""; viewY = today.getFullYear(); viewM = today.getMonth(); render(); };
-      render();
-    }
-
-    const setStatus = (message, isError) => {
-      if (!quoteStatus) return;
-      quoteStatus.textContent = message;
-      quoteStatus.classList.toggle("is-error", Boolean(isError));
-    };
 
     quoteForm.addEventListener("submit", (event) => {
       event.preventDefault();
+      clearErrors();
 
-      if (!quoteForm.reportValidity()) {
+      // Only 3 things are required: pickup, delivery, and one contact method.
+      const from = quoteForm.querySelector('[name="move_from"]');
+      const to = quoteForm.querySelector('[name="move_to"]');
+      const errors = [];
+      if (from && !from.value.trim()) errors.push([from, "move_from", "Enter your pickup ZIP code"]);
+      if (to && !to.value.trim()) errors.push([to, "move_to", "Enter your delivery ZIP code"]);
+      if (contactInput) {
+        const cv = contactInput.value.trim();
+        if (!cv) errors.push([contactInput, "contact", contactMode === "email" ? "Enter your email address" : "Enter your phone number"]);
+        else if (contactMode === "email" && !emailOk(cv)) errors.push([contactInput, "contact", "Enter a valid email address"]);
+      }
+      if (errors.length) {
+        errors.forEach((e, i) => showError(e[0], e[1], e[2], i === 0));
+        gmTrack("form_error", { source: "landing", field: errors[0][1] });
+        setStatus("Please complete the highlighted fields.", true);
         return;
       }
+
+      gmTrack("form_step_complete", { source: "landing", step: 1, name: "essentials" });
 
       const data = new FormData(quoteForm);
       const payload = {
@@ -288,71 +266,33 @@
         moveFrom: (data.get("move_from") || "").toString().trim(),
         moveTo: (data.get("move_to") || "").toString().trim(),
         movingDate: (data.get("moving_date") || "").toString().trim(),
-        preferredContact: (data.get("preferred_contact") || "").toString().trim(),
         propertyType: (data.get("property_type") || "").toString().trim(),
         details: (data.get("details") || "").toString().trim(),
-        hp: (data.get("hp") || "").toString().trim(), // honeypot (renamed from "website" — Chrome autofilled the old field and falsely tripped the bot filter)
+        hp: (data.get("hp") || "").toString().trim(),
       };
-      // Attach ad attribution so the server-side generate_lead row carries gclid/UTM.
       var attribution = gmAttribution();
       payload.gclid = attribution.gclid;
       payload.source = attribution.source;
       payload.medium = attribution.medium;
       payload.campaign = attribution.campaign;
 
-      if (quoteSubmit) {
-        quoteSubmit.disabled = true;
-        quoteSubmit.textContent = "Sending...";
-      }
+      if (quoteSubmit) { quoteSubmit.disabled = true; quoteSubmit.textContent = "Sending..."; }
       setStatus("", false);
 
-      fetch(mailEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Request failed with status " + response.status);
-          }
-          return response.json().catch(() => ({}));
-        })
+      fetch(mailEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+        .then((response) => { if (!response.ok) { throw new Error("Request failed with status " + response.status); } return response.json().catch(() => ({})); })
         .then((result) => {
-          if (result && result.success === false) {
-            throw new Error(result.message || "Send failed");
-          }
-          // generate_lead: GA4 only (the DB row is written server-side by the quick-quote endpoint).
+          if (result && result.success === false) { throw new Error(result.message || "Send failed"); }
           gmTrack("generate_lead", { source: "landing" });
-          // Google Ads "Request quote" conversion — fires on successful submit (not click).
           if (typeof window.gtag === "function") {
-            // Enhanced Conversions: pass user-entered email/phone; Google hashes them client-side
-            // (requires Enhanced Conversions enabled on the Ads conversion action).
             window.gtag("set", "user_data", { email: payload.email, phone_number: payload.phone });
-            window.gtag("event", "conversion", {
-              send_to: "AW-18301808532/Cd3sCNnGm8scEJTf_ZZE",
-              value: 1.0,
-              currency: "USD",
-            });
+            window.gtag("event", "conversion", { send_to: "AW-18301808532/Cd3sCNnGm8scEJTf_ZZE", value: 1.0, currency: "USD" });
           }
           quoteForm.reset();
-          resetCalendar(); // clear the inline calendar selection too
-          setStatus(
-            "Thank you! Your request has been sent. Our team will contact you shortly.",
-            false
-          );
+          setStatus("Thank you! Your request has been sent. Our team will contact you shortly.", false);
         })
-        .catch(() => {
-          setStatus(
-            "Sorry, something went wrong. Please email us directly at jack@getmoved.app.",
-            true
-          );
-        })
-        .finally(() => {
-          if (quoteSubmit) {
-            quoteSubmit.disabled = false;
-            quoteSubmit.textContent = "Compare My Free Quotes";
-          }
-        });
+        .catch(() => { setStatus("Sorry, something went wrong. Please email us directly at jack@getmoved.app.", true); })
+        .finally(() => { if (quoteSubmit) { quoteSubmit.disabled = false; quoteSubmit.textContent = "Compare My Free Quotes"; } });
     });
   }
 

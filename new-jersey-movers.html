@@ -95,7 +95,18 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		.gm-qq-status { text-align: center; font-size: 14px; margin: 12px 0 0; color: #00875a; font-weight: 600; }
 		.gm-qq-status.is-error { color: #c0392b; }
 		.gm-qq-hp { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
-		@media (max-width: 991px) { .gm-qq-grid { grid-template-columns: 1fr; gap: 34px; } .gm-qq-title { font-size: 32px; } }
+		.page-loader, .loader-wrapper { display: none !important; }
+		.gm-qq-err { color: #c0392b; font-size: 12px; margin: 4px 0 0; }
+		.gm-qq-field.has-error input, .gm-qq-field.has-error select { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192,57,43,.10); }
+		.gm-qq-contactpick { margin-top: 2px; }
+		.gm-qq-toggle { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
+		.gm-qq-toglabel { font-size: 13px; color: #7a8891; }
+		.gm-qq-tog { border: 1px solid #dfe6e3; background: #fff; color: #48575f; border-radius: 999px; font-size: 13px; font-weight: 600; padding: 5px 16px; cursor: pointer; }
+		.gm-qq-tog.is-active { background: #1e8e4e; border-color: #1e8e4e; color: #fff; }
+		.gm-qq-more { display: inline-block; border: none; background: transparent; color: #1e8e4e; font-size: 14px; font-weight: 600; cursor: pointer; padding: 8px 0; }
+		.gm-qq-more:hover { text-decoration: underline; }
+		.gm-qq-details.is-hidden { display: none; }
+		@media (max-width: 991px) { .gm-qq-grid { grid-template-columns: 1fr; gap: 30px; } .gm-qq-title { font-size: 32px; } .gm-qq-card { order: -1; } }
 		@media (max-width: 575px) { .gm-qq-grid2 { grid-template-columns: 1fr; } #quick-quote.gm-qq-section { padding: 30px 0 8px; } }
 	</style>
 	<!-- End Quick Quote Section Styles -->
@@ -210,18 +221,32 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					<h3 class="gm-qq-card-title font-secondary">Get Free Moving Quotes</h3>
 					<form id="quick-quote-form" novalidate>
 						<div class="gm-qq-grid2">
-							<div class="gm-qq-field"><input type="text" id="qq-move-from" name="move_from" placeholder="Pickup ZIP code" autocomplete="off" required></div>
-							<div class="gm-qq-field"><input type="text" id="qq-move-to" name="move_to" placeholder="Delivery ZIP code" autocomplete="off" required></div>
-							<div class="gm-qq-field"><input type="text" name="full_name" placeholder="First Name" required></div>
-							<div class="gm-qq-field"><input type="tel" name="phone" placeholder="Phone number" required></div>
-							<div class="gm-qq-field"><input type="email" name="email" placeholder="Email Address" required></div>
 							<div class="gm-qq-field">
-								<select id="qq-size" name="property_type">
-									<option value="" disabled selected hidden>Move Size (optional)</option>
-								</select>
+								<input type="text" id="qq-move-from" name="move_from" placeholder="Pickup ZIP code" autocomplete="off" required>
+								<p class="gm-qq-err" data-err-for="move_from"></p>
 							</div>
-							<div class="gm-qq-field"><input type="text" name="moving_date" placeholder="Move date (optional)" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"></div>
-							<div class="gm-qq-field"><input type="text" name="details" placeholder="Additional notes (optional)"></div>
+							<div class="gm-qq-field">
+								<input type="text" id="qq-move-to" name="move_to" placeholder="Delivery ZIP code" autocomplete="off" required>
+								<p class="gm-qq-err" data-err-for="move_to"></p>
+							</div>
+						</div>
+						<div class="gm-qq-field gm-qq-contactpick">
+							<div class="gm-qq-toggle">
+								<span class="gm-qq-toglabel">Contact me by</span>
+								<button type="button" class="gm-qq-tog is-active" data-contact="phone">Phone</button>
+								<button type="button" class="gm-qq-tog" data-contact="email">Email</button>
+							</div>
+							<input type="tel" id="qq-contact" name="phone" placeholder="Phone number" inputmode="tel" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="contact"></p>
+						</div>
+						<button type="button" class="gm-qq-more" data-more>+ Add move details (optional)</button>
+						<div class="gm-qq-details is-hidden" data-details>
+							<div class="gm-qq-grid2">
+								<div class="gm-qq-field"><input type="text" name="full_name" placeholder="First name (optional)"></div>
+								<div class="gm-qq-field"><select id="qq-size" name="property_type"><option value="" disabled selected hidden>Move size (optional)</option></select></div>
+								<div class="gm-qq-field"><input type="text" name="moving_date" placeholder="Move date (optional)" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"></div>
+								<div class="gm-qq-field"><input type="text" name="details" placeholder="Notes (optional)"></div>
+							</div>
 						</div>
 						<div class="gm-qq-hp" aria-hidden="true">
 							<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
@@ -438,7 +463,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=17"></script>
+	<script src="js/getmoved.js?v=18"></script>
 	<script src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
