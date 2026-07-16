@@ -97,6 +97,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		.gm-qq-hp { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
 		.page-loader, .loader-wrapper { display: none !important; }
 		.gm-qq-err { color: #c0392b; font-size: 12px; margin: 4px 0 0; }
+		.gm-qq-err.is-hint { color: #b7791f; }
 		.gm-qq-field.has-error input, .gm-qq-field.has-error select { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192,57,43,.10); }
 		.gm-qq-contactpick { margin-top: 2px; }
 		.gm-qq-toggle { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
@@ -301,7 +302,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 				<div class="gm-qq-intro">
 					<h2 class="gm-qq-title font-secondary">Tell Us About Your Move.<br>We&#39;ll Find the Best Movers for You.</h2>
 					<p class="gm-qq-lead">Fill out our quick form and our moving experts will contact trusted movers, compare quotes, and send you the best options &mdash; completely free.</p>
-					<img class="gm-qq-freeimg" src="images/FreeSLika.png?v=2" alt="It&#39;s completely FREE. Premium support from our moving experts.">
+					<img class="gm-qq-freeimg" loading="lazy" src="images/FreeSLika.png?v=3" alt="It&#39;s completely FREE. Premium support from our moving experts.">
 					<div class="gm-qq-trust">
 						<span><i class="ti-check-box"></i> Trusted movers</span>
 						<span><i class="ti-check-box"></i> No obligation</span>
@@ -363,7 +364,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 	<!-- Value banner -->
 	<section style="padding:22px 0 12px;">
 		<div class="container">
-			<img src="images/DonjaSlika.png?v=2" alt="You relax. We handle the rest. We find. We compare. You choose. Premium service, zero cost, maximum peace of mind." style="width:100%;height:auto;display:block;">
+			<img loading="lazy" src="images/DonjaSlika.png?v=3" alt="You relax. We handle the rest. We find. We compare. You choose. Premium service, zero cost, maximum peace of mind." style="width:100%;height:auto;display:block;">
 		</div>
 	</section>
 	<!-- End Value banner -->
@@ -440,8 +441,8 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=18"></script>
-	<script src="js/visit-counter.js?v=1"></script>
+	<script src="js/getmoved.js?v=19"></script>
+	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
 	<script async defer

@@ -166,7 +166,7 @@
       quoteStatus.classList.toggle("is-error", Boolean(isError));
     };
     const clearErrors = () => {
-      quoteForm.querySelectorAll(".gm-qq-err").forEach((el) => { el.textContent = ""; });
+      quoteForm.querySelectorAll(".gm-qq-err").forEach((el) => { el.textContent = ""; el.classList.remove("is-hint"); });
       quoteForm.querySelectorAll(".gm-qq-field.has-error").forEach((el) => el.classList.remove("has-error"));
     };
     const showError = (input, key, msg, focus) => {
@@ -215,6 +215,20 @@
         moreBtn.classList.toggle("is-open", !hidden);
       });
     }
+
+    // Soft out-of-area hint (we currently serve NY & NJ) — informational, never blocks submit.
+    const zipRegion = (v) => { const m = String(v || "").match(/\b(\d{5})\b/); if (!m) return null; const n = parseInt(m[1].slice(0, 3), 10); if (n >= 100 && n <= 149) return "NY"; if (n >= 70 && n <= 89) return "NJ"; return "other"; };
+    ["move_from", "move_to"].forEach((nm) => {
+      const el = quoteForm.querySelector('[name="' + nm + '"]');
+      if (!el) return;
+      el.addEventListener("blur", () => {
+        const errEl = quoteForm.querySelector('[data-err-for="' + nm + '"]');
+        const fld = el.closest(".gm-qq-field");
+        if (!errEl || (fld && fld.classList.contains("has-error"))) return; // never override a real error
+        if (zipRegion(el.value) === "other") { errEl.textContent = "Heads up: we currently serve New York & New Jersey."; errEl.classList.add("is-hint"); }
+        else if (errEl.classList.contains("is-hint")) { errEl.textContent = ""; errEl.classList.remove("is-hint"); }
+      });
+    });
 
     // Size dropdown from the portal (public); static fallback so it is never empty.
     const sizeSelect = document.getElementById("qq-size");
