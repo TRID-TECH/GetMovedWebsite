@@ -188,23 +188,8 @@
       gmTrack("form_start", { source: "landing" });
     });
 
-    // Contact toggle: one field, user picks Phone or Email. The input name switches so the
-    // payload carries the chosen key; the backend needs only one contact method.
-    const contactInput = document.getElementById("qq-contact");
-    let contactMode = "phone";
-    quoteForm.querySelectorAll(".gm-qq-tog").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        contactMode = btn.getAttribute("data-contact");
-        quoteForm.querySelectorAll(".gm-qq-tog").forEach((b) => b.classList.toggle("is-active", b === btn));
-        if (contactInput) {
-          contactInput.value = "";
-          if (contactMode === "email") { contactInput.type = "email"; contactInput.name = "email"; contactInput.placeholder = "Email address"; contactInput.setAttribute("inputmode", "email"); }
-          else { contactInput.type = "tel"; contactInput.name = "phone"; contactInput.placeholder = "Phone number"; contactInput.setAttribute("inputmode", "tel"); }
-          const err = quoteForm.querySelector('[data-err-for="contact"]'); if (err) err.textContent = "";
-          const fld = contactInput.closest(".gm-qq-field"); if (fld) fld.classList.remove("has-error");
-        }
-      });
-    });
+    // Contact: two separate fields — Email (above) and Phone (below), BOTH required.
+    // (Replaced the old "Contact me by" Phone/Email toggle.)
 
     // Optional details expander.
     const moreBtn = quoteForm.querySelector("[data-more]");
@@ -252,16 +237,22 @@
       event.preventDefault();
       clearErrors();
 
-      // Only 3 things are required: pickup, delivery, and one contact method.
+      // Required: pickup, delivery, email, and phone.
       const from = quoteForm.querySelector('[name="move_from"]');
       const to = quoteForm.querySelector('[name="move_to"]');
+      const emailInput = quoteForm.querySelector('[name="email"]');
+      const phoneInput = quoteForm.querySelector('[name="phone"]');
       const errors = [];
       if (from && !from.value.trim()) errors.push([from, "move_from", "Enter your pickup ZIP code"]);
       if (to && !to.value.trim()) errors.push([to, "move_to", "Enter your delivery ZIP code"]);
-      if (contactInput) {
-        const cv = contactInput.value.trim();
-        if (!cv) errors.push([contactInput, "contact", contactMode === "email" ? "Enter your email address" : "Enter your phone number"]);
-        else if (contactMode === "email" && !emailOk(cv)) errors.push([contactInput, "contact", "Enter a valid email address"]);
+      if (emailInput) {
+        const ev = emailInput.value.trim();
+        if (!ev) errors.push([emailInput, "email", "Enter your email address"]);
+        else if (!emailOk(ev)) errors.push([emailInput, "email", "Enter a valid email address"]);
+      }
+      if (phoneInput) {
+        const pv = phoneInput.value.trim();
+        if (!pv) errors.push([phoneInput, "phone", "Enter your phone number"]);
       }
       if (errors.length) {
         errors.forEach((e, i) => showError(e[0], e[1], e[2], i === 0));

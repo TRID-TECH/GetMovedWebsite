@@ -213,14 +213,13 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 								<p class="gm-qq-err" data-err-for="move_to"></p>
 							</div>
 						</div>
-						<div class="gm-qq-field gm-qq-contactpick">
-							<div class="gm-qq-toggle">
-								<span class="gm-qq-toglabel">Contact me by</span>
-								<button type="button" class="gm-qq-tog is-active" data-contact="phone">Phone</button>
-								<button type="button" class="gm-qq-tog" data-contact="email">Email</button>
-							</div>
-							<input type="tel" id="qq-contact" name="phone" placeholder="Phone number" inputmode="tel" autocomplete="off" required>
-							<p class="gm-qq-err" data-err-for="contact"></p>
+						<div class="gm-qq-field">
+							<input type="email" id="qq-email" name="email" placeholder="Email address" inputmode="email" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="email"></p>
+						</div>
+						<div class="gm-qq-field">
+							<input type="tel" id="qq-phone" name="phone" placeholder="Phone number" inputmode="tel" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="phone"></p>
 						</div>
 						<button type="button" class="gm-qq-more" data-more>+ Add move details (optional)</button>
 						<div class="gm-qq-details is-hidden" data-details>
@@ -1391,7 +1390,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=19"></script>
+	<script src="js/getmoved.js?v=20"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
