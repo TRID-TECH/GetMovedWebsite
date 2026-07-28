@@ -45,8 +45,8 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
       gtag('config', 'G-ED9B6NC03X');
       gtag('config', 'AW-18301808532');
     </script>
-    <title>Contact GetMoved | GetMoved</title>
-    <meta name="description" content="Contact the GetMoved team. Questions about moving quotes or the platform for moving companies — we are here to help." />
+    <title>Get Your Free Moving Quote | GetMoved</title>
+    <meta name="description" content="Tell us about your move and get real quotes from licensed movers. Upload a walkthrough video and our AI builds your exact inventory for a precise quote." />
     <meta property="og:title" content="GetMoved — The Operating System for Modern Moving Companies" />
     <meta property="og:description" content="GetMoved gives moving companies a complete digital backbone — quoting, dispatch, crew, fleet, invoicing, and payments — while connecting them to customers ready to book." />
     <meta property="og:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
@@ -70,273 +70,45 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
 	<!-- Quick Quote Section Styles -->
 	<style>
-		#quick-quote.gm-qq-section {
-			background: #f4f7f6;
-			padding: 90px 0;
-		}
-		.gm-qq-grid {
-			display: grid;
-			grid-template-columns: 1.05fr 0.95fr;
-			gap: 50px;
-			align-items: start;
-		}
-		.gm-qq-badge {
-			display: inline-flex;
-			align-items: center;
-			gap: 8px;
-			background: #e3f2ed;
-			color: #00875a;
-			font-size: 12px;
-			font-weight: 700;
-			letter-spacing: 1px;
-			text-transform: uppercase;
-			padding: 8px 16px;
-			border-radius: 30px;
-		}
-		.gm-qq-title {
-			font-size: 46px;
-			line-height: 1.1;
-			color: #15202b;
-			margin: 22px 0 16px;
-		}
-		.gm-qq-lead {
-			font-size: 17px;
-			line-height: 1.6;
-			color: #5c6b73;
-			max-width: 480px;
-			margin: 0;
-		}
-		.gm-qq-features {
-			display: flex;
-			gap: 50px;
-			margin: 35px 0 25px;
-		}
-		.gm-qq-feature {
-			text-align: center;
-		}
-		.gm-qq-feature-icon {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			width: 54px;
-			height: 54px;
-			border-radius: 50%;
-			background: #e3f2ed;
-			color: #00A76F;
-			font-size: 22px;
-			margin-bottom: 12px;
-		}
-		.gm-qq-feature-label {
-			display: block;
-			font-size: 14px;
-			font-weight: 600;
-			color: #15202b;
-			line-height: 1.3;
-		}
-		.gm-qq-note {
-			font-size: 15px;
-			color: #15202b;
-			margin: 0;
-		}
-		.gm-qq-note i {
-			color: #00A76F;
-			margin-right: 6px;
-		}
-		.gm-qq-how {
-			margin-top: 45px;
-			padding-top: 35px;
-			border-top: 1px solid #e1e8e5;
-		}
-		.gm-qq-how-title {
-			font-size: 22px;
-			color: #15202b;
-			text-align: center;
-			margin: 0 0 28px;
-		}
-		.gm-qq-steps {
-			display: flex;
-			align-items: flex-start;
-			justify-content: space-between;
-			gap: 10px;
-		}
-		.gm-qq-step {
-			flex: 1;
-			text-align: center;
-		}
-		.gm-qq-step-icon {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			width: 46px;
-			height: 46px;
-			color: #00A76F;
-			font-size: 26px;
-			margin-bottom: 10px;
-		}
-		.gm-qq-step-title {
-			font-size: 14px;
-			font-weight: 700;
-			color: #15202b;
-			margin: 0 0 4px;
-		}
-		.gm-qq-step-title span {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			width: 18px;
-			height: 18px;
-			border-radius: 50%;
-			background: #00A76F;
-			color: #fff;
-			font-size: 11px;
-			margin-right: 4px;
-		}
-		.gm-qq-step-text {
-			font-size: 13px;
-			color: #7a8891;
-			line-height: 1.4;
-			margin: 0;
-		}
-		.gm-qq-step-arrow {
-			color: #c2cdc8;
-			font-size: 16px;
-			padding-top: 12px;
-		}
-		/* Card */
-		.gm-qq-card {
-			background: #fff;
-			border-radius: 16px;
-			box-shadow: 0 18px 50px rgba(20, 32, 43, 0.10);
-			padding: 38px 36px;
-		}
-		.gm-qq-card-title {
-			font-size: 26px;
-			color: #15202b;
-			margin: 0 0 6px;
-		}
-		.gm-qq-card-sub {
-			font-size: 14px;
-			color: #7a8891;
-			margin: 0 0 24px;
-		}
-		.gm-qq-field {
-			position: relative;
-			margin-bottom: 14px;
-		}
-		.gm-qq-field > i {
-			position: absolute;
-			left: 14px;
-			top: 15px;
-			color: #9aa7af;
-			font-size: 15px;
-			pointer-events: none;
-		}
-		.gm-qq-field input,
-		.gm-qq-field select,
-		.gm-qq-field textarea {
-			width: 100%;
-			border: 1px solid #e1e8e5;
-			border-radius: 10px;
-			background: #fbfdfc;
-			padding: 13px 14px 13px 40px;
-			font-size: 14px;
-			color: #15202b;
-			outline: none;
-			transition: border-color .2s, box-shadow .2s;
-			font-family: inherit;
-		}
-		.gm-qq-field select {
-			appearance: none;
-			-webkit-appearance: none;
-			cursor: pointer;
-			color: #15202b;
-		}
-		.gm-qq-field textarea {
-			resize: vertical;
-			min-height: 90px;
-			padding-top: 13px;
-		}
-		.gm-qq-field-area > i {
-			top: 14px;
-		}
-		.gm-qq-field input::placeholder,
-		.gm-qq-field textarea::placeholder {
-			color: #9aa7af;
-		}
-		.gm-qq-field input:focus,
-		.gm-qq-field select:focus,
-		.gm-qq-field textarea:focus {
-			border-color: #00A76F;
-			box-shadow: 0 0 0 3px rgba(0, 167, 111, 0.12);
-		}
-		.gm-qq-row {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 12px;
-		}
-		.gm-qq-row .gm-qq-field {
-			margin-bottom: 14px;
-		}
-		.gm-qq-submit {
-			width: 100%;
-			border: none;
-			border-radius: 10px;
-			background: #1e8e4e;
-			color: #fff;
-			font-size: 16px;
-			font-weight: 600;
-			text-transform: none;
-			padding: 15px;
-			cursor: pointer;
-			margin-top: 6px;
-			transition: background .2s;
-		}
-		.gm-qq-submit:hover {
-			background: #00A76F;
-		}
-		.gm-qq-submit:disabled {
-			opacity: .6;
-			cursor: default;
-		}
-		.gm-qq-secure {
-			text-align: center;
-			font-size: 12px;
-			color: #9aa7af;
-			margin: 14px 0 0;
-		}
-		.gm-qq-status {
-			text-align: center;
-			font-size: 14px;
-			margin: 12px 0 0;
-			color: #00875a;
-			font-weight: 600;
-		}
-		.gm-qq-status.is-error {
-			color: #c0392b;
-		}
-		.gm-qq-hp {
-			position: absolute;
-			left: -9999px;
-			top: -9999px;
-			width: 1px;
-			height: 1px;
-			overflow: hidden;
-		}
-		@media (max-width: 991px) {
-			.gm-qq-grid {
-				grid-template-columns: 1fr;
-				gap: 40px;
-			}
-			.gm-qq-title { font-size: 36px; }
-		}
-		@media (max-width: 575px) {
-			#quick-quote.gm-qq-section { padding: 60px 0; }
-			.gm-qq-features { gap: 26px; justify-content: space-between; }
-			.gm-qq-steps { flex-direction: column; align-items: stretch; gap: 18px; }
-			.gm-qq-step-arrow { display: none; }
-			.gm-qq-row { grid-template-columns: 1fr; }
-			.gm-qq-card { padding: 28px 22px; }
-		}
+		#quick-quote.gm-qq-section { background: #fff; padding: 40px 0 8px; }
+		.gm-qq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+		.gm-qq-title { font-size: 40px; line-height: 1.12; color: #15202b; margin: 0 0 16px; font-weight: 800; }
+		.gm-qq-lead { font-size: 16px; line-height: 1.6; color: #5b6b73; margin: 0 0 22px; max-width: 520px; }
+		.gm-qq-freeimg { width: 100%; max-width: 430px; height: auto; display: block; margin: 0 0 22px; }
+		.gm-qq-trust { display: flex; flex-wrap: wrap; gap: 12px 22px; }
+		.gm-qq-trust span { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: #48575f; font-weight: 600; }
+		.gm-qq-trust i { color: #1e8e4e; font-size: 15px; }
+		.gm-qq-card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 26px 26px 22px; }
+		.gm-qq-card-title { font-size: 22px; font-weight: 800; color: #15202b; margin: 0 0 16px; }
+		.gm-qq-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+		.gm-qq-field { margin: 0; }
+		.gm-qq-field input, .gm-qq-field select { width: 100%; border: 1px solid #dfe6e3; border-radius: 10px; background: #fbfdfc; padding: 12px 14px; font-size: 14px; color: #15202b; outline: none; font-family: inherit; transition: border-color .2s, box-shadow .2s; }
+		.gm-qq-field select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+		.gm-qq-field input::placeholder { color: #9aa7af; }
+		.gm-qq-field input:focus, .gm-qq-field select:focus { border-color: #1e8e4e; box-shadow: 0 0 0 3px rgba(30,142,78,.12); }
+		.gm-qq-submit { width: 100%; border: none; border-radius: 10px; background: #1e8e4e; color: #fff; font-size: 16px; font-weight: 700; padding: 14px; cursor: pointer; margin-top: 14px; transition: background .2s; }
+		.gm-qq-submit:hover { background: #17753f; }
+		.gm-qq-submit:disabled { opacity: .6; cursor: default; }
+		.gm-qq-cardtrust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin: 14px 0 0; }
+		.gm-qq-cardtrust span { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #7a8891; font-weight: 600; }
+		.gm-qq-cardtrust i { color: #1e8e4e; font-size: 13px; }
+		.gm-qq-status { text-align: center; font-size: 14px; margin: 12px 0 0; color: #00875a; font-weight: 600; }
+		.gm-qq-status.is-error { color: #c0392b; }
+		.gm-qq-hp { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
+		.page-loader, .loader-wrapper { display: none !important; }
+		.gm-qq-err { color: #c0392b; font-size: 12px; margin: 4px 0 0; }
+		.gm-qq-err.is-hint { color: #b7791f; }
+		.gm-qq-field.has-error input, .gm-qq-field.has-error select { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192,57,43,.10); }
+		.gm-qq-contactpick { margin-top: 2px; }
+		.gm-qq-toggle { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
+		.gm-qq-toglabel { font-size: 13px; color: #7a8891; }
+		.gm-qq-tog { border: 1px solid #dfe6e3; background: #fff; color: #48575f; border-radius: 999px; font-size: 13px; font-weight: 600; padding: 5px 16px; cursor: pointer; }
+		.gm-qq-tog.is-active { background: #1e8e4e; border-color: #1e8e4e; color: #fff; }
+		.gm-qq-more { display: inline-block; border: none; background: transparent; color: #1e8e4e; font-size: 14px; font-weight: 600; cursor: pointer; padding: 8px 0; }
+		.gm-qq-more:hover { text-decoration: underline; }
+		.gm-qq-details.is-hidden { display: none; }
+		@media (max-width: 991px) { .gm-qq-grid { grid-template-columns: 1fr; gap: 30px; } .gm-qq-title { font-size: 32px; } .gm-qq-card { order: -1; } }
+		@media (max-width: 575px) { .gm-qq-grid2 { grid-template-columns: 1fr; } #quick-quote.gm-qq-section { padding: 30px 0 8px; } }
 	</style>
 	<!-- End Quick Quote Section Styles -->
 </head>
@@ -404,101 +176,106 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
         <!-- End Navigation container -->
         <div class="mobile-nav-bg"></div>
     </nav>
-    <!-- End Navigation -->
 
-
-
-
-		<div class="pt-100"></div>
-<section id="contact" class="py-100">
-
-		<!-- Container for contact and title -->
-        <div class="container">
-        	
-        	<!-- Row start -->
-        	<div class="row">
-
-        		<!-- Column for title -->
-            	<div class="col-12 d-flex flex-column align-items-center t-center">
-            		<!-- Header -->
-					<h1 class="fs-60 fs-40-sm uppercase dark font-secondary">
-						Contact US
-					</h1>
-					<!-- Header Strip -->
-					<div class="width-70 height-1 my-20 bg-gray4"></div>
-					<!-- Header Description -->
-					<p class="mxw-800 fs-24 fs-20-sm lh-30">
-						Ready to talk. We respond within 24 hours.
-					</p>
-            	</div>
-                <!-- End column for title -->
-
-
-            	<!-- Contact details -->
-                <div class="col-12 mt-30 t-center">
-                    <p class="mxw-900 fs-18 lh-30 gray6 mx-auto">
-                        Whether you're a moving company looking to grow, a strategic partner, or an investor — we're ready to talk.
-                    </p>
-
-                    <div class="row mt-20 justify-content-center">
-                        <div class="col-12 col-lg-5 mb-30 mb-lg-0 d-flex flex-column align-items-center">
-                            <h3 class="font-secondary uppercase fs-24 dark mt-20">US</h3>
-                            <p class="fs-22 dark mt-5">GetMoved LLC</p>
-
-                            <p class="fs-18 gray6 mt-15 mb-0"><strong>Address:</strong></p>
-                            <p class="fs-18 dark mt-5 lh-30">
-                                2108 North Street<br>
-                                STE N<br>
-                                Sacramento, CA US
-                            </p>
-
-                            <h3 class="font-secondary uppercase fs-24 dark mt-20">Email</h3>
-                            <a href="mailto:jack@getmoved.app" class="fs-22 dark colored-hover slow mt-5">jack@getmoved.app</a>
-
-                            <h3 class="font-secondary uppercase fs-24 dark mt-20">Phone</h3>
-                            <a href="tel:+12016080850" class="fs-22 dark colored-hover slow mt-5">+1 (201) 608-0850</a>
-                        </div>
-
-                        <div class="col-12 col-lg-5 d-flex flex-column align-items-center">
-                            <h3 class="font-secondary uppercase fs-24 dark mt-20">EUROPE</h3>
-                            <p class="fs-22 dark mt-5">CYBER CO.</p>
-
-                            <p class="fs-18 gray6 mt-15 mb-0"><strong>Address:</strong></p>
-                            <p class="fs-18 dark mt-5 lh-30">
-                                Studentska 6, Stan 13<br>
-                                81000 Podgorica<br>
-                                Montenegro
-                            </p>
-
-                            <h3 class="font-secondary uppercase fs-24 dark mt-20">Email</h3>
-                            <a href="mailto:bdjakovic@cyberco.me" class="fs-22 dark colored-hover slow mt-5">bdjakovic@cyberco.me</a>
-
-                            <h3 class="font-secondary uppercase fs-24 dark mt-20">Phone / Viber / WhatsApp</h3>
-                            <a href="tel:+38268040359" class="fs-22 dark colored-hover slow mt-5">+382 68 040 359</a>
-                        </div>
-                    </div>
-
-                    <p class="fs-17 gray6 mt-30">We respond to all inquiries within 24-48 hours.</p>
-                </div>
-
-            </div>
-        	<!-- Row end -->
-
-        </div>
-		<!-- End container for contact -->
-
-	</section>
-
-	<!-- Quote CTA -->
-	<section class="py-90 bg-dark4">
-		<div class="container t-center">
-			<h3 class="fs-40 fs-28-sm uppercase white font-secondary mb-15">Get your free moving quote</h3>
-			<p class="mxw-800 mx-auto fs-18 lh-30 gray3 mb-30">Tell us about your move, film a quick walkthrough, and compare binding quotes from trusted movers. No phone calls, no obligation — and you only pay after your move is done.</p>
-			<a href="index.html#quick-quote" class="btn-md bg-colored white font-secondary uppercase fs-16 slow">Get my free quote</a>
+	<!-- Quote Step 2 -->
+	<style>
+		#quote-step2.gm-qq-section { background: #fff; padding: 130px 0 60px; }
+		.gm-qq-title { font-size: 34px; line-height: 1.15; color: #15202b; margin: 0 0 10px; font-weight: 800; }
+		.gm-qq-lead { font-size: 16px; line-height: 1.6; color: #5b6b73; margin: 0 auto 26px; max-width: 560px; }
+		.gm-qq-card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 26px 26px 22px; max-width: 720px; margin: 0 auto; }
+		.gm-qq-sec { font-size: 13px; font-weight: 800; letter-spacing: .4px; text-transform: uppercase; color: #1e8e4e; margin: 18px 0 8px; }
+		.gm-qq-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+		.gm-qq-field { margin: 0 0 10px; }
+		.gm-qq-field input, .gm-qq-field select { width: 100%; border: 1px solid #dfe6e3; border-radius: 10px; background: #fbfdfc; padding: 12px 14px; font-size: 14px; color: #15202b; outline: none; font-family: inherit; transition: border-color .2s, box-shadow .2s; }
+		.gm-qq-field select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+		.gm-qq-field input::placeholder { color: #9aa7af; }
+		.gm-qq-field input:focus, .gm-qq-field select:focus { border-color: #1e8e4e; box-shadow: 0 0 0 3px rgba(30,142,78,.12); }
+		.gm-qq-submit { width: 100%; border: none; border-radius: 10px; background: #1e8e4e; color: #fff; font-size: 16px; font-weight: 700; padding: 14px; cursor: pointer; margin-top: 14px; transition: background .2s; }
+		.gm-qq-submit:hover { background: #17753f; }
+		.gm-qq-submit:disabled { opacity: .6; cursor: default; }
+		.gm-qq-cardtrust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin: 14px 0 0; }
+		.gm-qq-cardtrust span { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #7a8891; font-weight: 600; }
+		.gm-qq-cardtrust i { color: #1e8e4e; font-size: 13px; }
+		.gm-qq-status { text-align: center; font-size: 14px; margin: 12px 0 0; color: #00875a; font-weight: 600; }
+		.gm-qq-status.is-error { color: #c0392b; }
+		.gm-qq-hp { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
+		.gm-qq-err { color: #c0392b; font-size: 12px; margin: 4px 0 0; }
+		.gm-qq-err.is-hint { color: #b7791f; }
+		.gm-qq-field.has-error input, .gm-qq-field.has-error select { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192,57,43,.10); }
+		.gm-qq-video { border: 2px dashed #bcd9c8; border-radius: 12px; padding: 20px 18px; text-align: center; margin: 6px 0 4px; background: #f7fbf9; }
+		.gm-qq-video h4 { font-size: 18px; font-weight: 800; color: #15202b; margin: 0 0 8px; }
+		.gm-qq-video p { font-size: 13.5px; line-height: 1.55; color: #5b6b73; margin: 0 0 12px; }
+		.gm-qq-video-btn { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid #1e8e4e; border-radius: 10px; background: #fff; color: #1e8e4e; font-size: 14.5px; font-weight: 700; padding: 11px 22px; cursor: pointer; transition: all .2s; }
+		.gm-qq-video-btn:hover { background: #1e8e4e; color: #fff; }
+		.gm-qq-vprog { height: 6px; background: #e6ecea; border-radius: 999px; overflow: hidden; margin-top: 12px; display: none; }
+		.gm-qq-vprog span { display: block; height: 100%; width: 0; background: #1e8e4e; transition: width .2s; }
+		.gm-qq-vdone { color: #00875a; font-weight: 700; font-size: 13.5px; margin: 10px 0 0; display: none; }
+		.gm-qq-vnote { font-size: 12.5px; color: #7a8891; margin: 10px 0 0; }
+		.page-loader, .loader-wrapper { display: none !important; }
+		@media (max-width: 575px) { .gm-qq-grid2 { grid-template-columns: 1fr; } #quote-step2.gm-qq-section { padding: 110px 0 40px; } .gm-qq-title { font-size: 27px; } }
+	</style>
+	<section id="quote-step2" class="gm-qq-section">
+		<div class="container">
+			<div class="t-center">
+				<h1 class="gm-qq-title font-secondary">You&#39;re one step away from your quotes</h1>
+				<p class="gm-qq-lead">Tell us a bit about your move &mdash; licensed movers will send you real quotes.</p>
+			</div>
+			<div class="gm-qq-card">
+				<form id="quick-quote-form" novalidate>
+					<p class="gm-qq-sec" style="margin-top:0;">Your route</p>
+					<div class="gm-qq-grid2">
+						<div class="gm-qq-field">
+							<input type="text" id="qq-move-from" name="move_from" placeholder="Pick up &mdash; city or ZIP" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="move_from"></p>
+						</div>
+						<div class="gm-qq-field">
+							<input type="text" id="qq-move-to" name="move_to" placeholder="Delivery &mdash; city or ZIP" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="move_to"></p>
+						</div>
+					</div>
+					<p class="gm-qq-sec">Move details</p>
+					<div class="gm-qq-grid2">
+						<div class="gm-qq-field"><input type="text" name="moving_date" placeholder="Move date (optional)" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"></div>
+						<div class="gm-qq-field"><select id="qq-size" name="property_type"><option value="" disabled selected hidden>Move size (optional)</option></select></div>
+					</div>
+					<div class="gm-qq-field"><input type="text" name="details" placeholder="Anything else about your move? (optional)"></div>
+					<p class="gm-qq-sec">Contact</p>
+					<div class="gm-qq-grid2">
+						<div class="gm-qq-field">
+							<input type="email" id="qq-email" name="email" placeholder="Email address" inputmode="email" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="email"></p>
+						</div>
+						<div class="gm-qq-field">
+							<input type="tel" id="qq-phone" name="phone" placeholder="Phone number" inputmode="tel" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="phone"></p>
+						</div>
+					</div>
+					<div class="gm-qq-field"><input type="text" name="full_name" placeholder="Your name (optional)"></div>
+					<div class="gm-qq-video" id="qq-video-block">
+						<h4 class="font-secondary">Upload a video to get a precise quote</h4>
+						<p>Record a quick walkthrough of your home. Our AI builds your inventory automatically, so movers quote your exact move &mdash; no calls, no guessing.</p>
+						<input type="file" id="qq-video-file" accept="video/*" style="display:none">
+						<button type="button" class="gm-qq-video-btn" id="qq-video-btn"><i class="ti-video-camera"></i> Upload video</button>
+						<div class="gm-qq-vprog" id="qq-video-prog"><span id="qq-video-bar"></span></div>
+						<p class="gm-qq-vdone" id="qq-video-done"></p>
+						<p class="gm-qq-err" id="qq-video-err"></p>
+						<p class="gm-qq-vnote">No video? No problem &mdash; submit and movers will quote from your details.</p>
+						<input type="hidden" name="video_url" id="qq-video-url">
+					</div>
+					<div class="gm-qq-hp" aria-hidden="true">
+						<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
+					</div>
+					<button type="submit" class="gm-qq-submit font-secondary">Send &amp; Get My Quotes</button>
+					<div class="gm-qq-cardtrust">
+						<span><i class="ti-timer"></i> Takes less than 60 seconds</span>
+						<span><i class="ti-check"></i> No obligation</span>
+						<span><i class="ti-lock"></i> 100% Free</span>
+					</div>
+					<p id="quick-quote-status" class="gm-qq-status" aria-live="polite"></p>
+				</form>
+			</div>
 		</div>
 	</section>
-
-
     <!-- Footer -->
     <footer class="py-50 d-flex flex-column align-items-center justify-content-center">
         <img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300">
@@ -649,4 +426,3 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
 </body>
 
-</html>

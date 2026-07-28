@@ -273,6 +273,7 @@
         movingDate: (data.get("moving_date") || "").toString().trim(),
         propertyType: (data.get("property_type") || "").toString().trim(),
         details: (data.get("details") || "").toString().trim(),
+        video_url: (data.get("video_url") || "").toString().trim(),
         hp: (data.get("hp") || "").toString().trim(),
       };
       var attribution = gmAttribution();
@@ -297,7 +298,135 @@
           setStatus("Thank you! Your request has been sent. Our team will contact you shortly.", false);
         })
         .catch(() => { setStatus("Sorry, something went wrong. Please email us directly at jack@getmoved.app.", true); })
-        .finally(() => { if (quoteSubmit) { quoteSubmit.disabled = false; quoteSubmit.textContent = "Compare My Free Quotes"; } });
+        .finally(() => { if (quoteSubmit) { quoteSubmit.disabled = false; quoteSubmit.textContent = quoteSubmit.getAttribute("data-orig-label") || "Compare My Free Quotes"; } });
+    });
+    if (quoteSubmit && !quoteSubmit.getAttribute("data-orig-label")) {
+      quoteSubmit.setAttribute("data-orig-label", quoteSubmit.textContent);
+    }
+
+    // ---- Quote page (step 2) extras: prefill route from step 1 + video upload -------------
+    // Present only on quote.html (the elements don't exist on other pages).
+    (function () {
+      // Prefill Pick up / Delivery from ?from=&to= (with sessionStorage fallback).
+      try {
+        var qs = new URLSearchParams(window.location.search);
+        var fromV = (qs.get("from") || sessionStorage.getItem("gm_qq_from") || "").trim();
+        var toV = (qs.get("to") || sessionStorage.getItem("gm_qq_to") || "").trim();
+        var fromEl = quoteForm.querySelector('[name="move_from"]');
+        var toEl = quoteForm.querySelector('[name="move_to"]');
+        if (fromEl && fromV && !fromEl.value) fromEl.value = fromV;
+        if (toEl && toV && !toEl.value) toEl.value = toV;
+      } catch (e) {}
+
+      var vBtn = document.getElementById("qq-video-btn");
+      var vFile = document.getElementById("qq-video-file");
+      var vUrl = document.getElementById("qq-video-url");
+      if (!vBtn || !vFile || !vUrl) return;
+      var vProg = document.getElementById("qq-video-prog");
+      var vBar = document.getElementById("qq-video-bar");
+      var vDone = document.getElementById("qq-video-done");
+      var vErr = document.getElementById("qq-video-err");
+      var uploading = false;
+
+      var setVErr = function (msg) { if (vErr) vErr.textContent = msg || ""; };
+
+      vBtn.addEventListener("click", function () { vFile.click(); });
+      vFile.addEventListener("change", function () {
+        var file = vFile.files && vFile.files[0];
+        if (!file) return;
+        setVErr("");
+        if (file.size > 500 * 1024 * 1024) { setVErr("Video is too large (max 500MB). Try a shorter recording."); vFile.value = ""; return; }
+
+        var fd = new FormData();
+        fd.append("file", file, file.name || "walkthrough.mp4");
+        fd.append("folder", "leads/videos");
+
+        uploading = true;
+        vUrl.value = "";
+        if (vProg) vProg.style.display = "block";
+        if (vBar) vBar.style.width = "0%";
+        if (vDone) vDone.style.display = "none";
+        vBtn.disabled = true;
+        vBtn.innerHTML = '<i class="ti-reload"></i> Uploading…';
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://portal.getmoved.app/api/v1/s3/upload");
+        xhr.upload.onprogress = function (ev) {
+          if (ev.lengthComputable && vBar) vBar.style.width = Math.round((ev.loaded / ev.total) * 100) + "%";
+        };
+        xhr.onload = function () {
+          uploading = false;
+          vBtn.disabled = false;
+          var url = "";
+          try {
+            var body = JSON.parse(xhr.responseText || "{}");
+            url = (body.data && (body.data.url || body.data.Location)) || body.url || "";
+          } catch (e) {}
+          if (xhr.status >= 200 && xhr.status < 300 && url) {
+            vUrl.value = url;
+            if (vBar) vBar.style.width = "100%";
+            if (vDone) { vDone.textContent = "✓ " + (file.name || "Video") + " uploaded — movers will quote your exact move"; vDone.style.display = "block"; }
+            vBtn.innerHTML = '<i class="ti-video-camera"></i> Replace video';
+            gmTrack("video_uploaded", { source: "landing" });
+            if (quoteSubmit) quoteSubmit.textContent = "Send & Get My Precise Quotes";
+          } else {
+            if (vProg) vProg.style.display = "none";
+            vBtn.innerHTML = '<i class="ti-video-camera"></i> Upload video';
+            setVErr("Upload failed — please try again, or submit without the video.");
+          }
+        };
+        xhr.onerror = function () {
+          uploading = false;
+          vBtn.disabled = false;
+          if (vProg) vProg.style.display = "none";
+          vBtn.innerHTML = '<i class="ti-video-camera"></i> Upload video';
+          setVErr("Upload failed — please try again, or submit without the video.");
+        };
+        xhr.send(fd);
+      });
+
+      // Don't let the form submit mid-upload (the video URL would be lost).
+      quoteForm.addEventListener("submit", function (ev) {
+        if (uploading) {
+          ev.preventDefault();
+          ev.stopImmediatePropagation();
+          setVErr("Your video is still uploading — one moment…");
+        }
+      }, true);
+    })();
+  }
+
+  // Quick-quote STEP 1 (homepage hero): locations only -> quote.html with them pre-filled.
+  const step1Form = document.getElementById("qq-step1-form");
+  if (step1Form) {
+    step1Form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var fromEl = step1Form.querySelector('[name="move_from"]');
+      var toEl = step1Form.querySelector('[name="move_to"]');
+      var showErr = function (el, key, msg) {
+        var fld = el.closest(".gm-qq-field");
+        if (fld) fld.classList.add("has-error");
+        var errEl = step1Form.querySelector('[data-err-for="' + key + '"]');
+        if (errEl) errEl.textContent = msg;
+      };
+      step1Form.querySelectorAll(".gm-qq-err").forEach(function (el) { el.textContent = ""; });
+      step1Form.querySelectorAll(".gm-qq-field.has-error").forEach(function (el) { el.classList.remove("has-error"); });
+      var fromV = (fromEl && fromEl.value || "").trim();
+      var toV = (toEl && toEl.value || "").trim();
+      if (!fromV) { showErr(fromEl, "move_from", "Enter your pick up city or ZIP"); }
+      if (!toV) { showErr(toEl, "move_to", "Enter your delivery city or ZIP"); }
+      if (!fromV || !toV) return;
+      try {
+        if (!sessionStorage.getItem("gm_form_start")) {
+          sessionStorage.setItem("gm_form_start", "1");
+          gmTrack("begin_quote", { source: "landing" });
+          gmTrack("form_start", { source: "landing" });
+        }
+        sessionStorage.setItem("gm_qq_from", fromV);
+        sessionStorage.setItem("gm_qq_to", toV);
+      } catch (e) {}
+      gmTrack("form_step_complete", { source: "landing", step: 1, name: "route" });
+      window.location.href = "quote.html?from=" + encodeURIComponent(fromV) + "&to=" + encodeURIComponent(toV);
     });
   }
 
