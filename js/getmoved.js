@@ -496,7 +496,8 @@
   // window so the Maps script's `callback=gmInitPlacesAutocomplete` invokes it once ready.
   window.gmInitPlacesAutocomplete = function () {
     if (!(window.google && window.google.maps && window.google.maps.places)) return;
-    ["qq-move-from", "qq-move-to"].forEach((id) => {
+    // Covers the step-1 hero fields (qq1-*) and the quote-page route fields (qq-move-*).
+    ["qq-move-from", "qq-move-to", "qq1-from", "qq1-to"].forEach((id) => {
       const input = document.getElementById(id);
       if (!input || input.dataset.acInit === "1") return;
       input.dataset.acInit = "1";
