@@ -291,6 +291,7 @@
           if (result && result.success === false) { throw new Error(result.message || "Send failed"); }
           gmTrack("generate_lead", { source: "landing" });
           if (typeof window.rdt === "function") { window.rdt("track", "Lead"); }
+          if (typeof window.ndp === "function") { window.ndp("track", "LEAD"); }
           if (typeof window.gtag === "function") {
             window.gtag("set", "user_data", { email: payload.email, phone_number: payload.phone });
             window.gtag("event", "conversion", { send_to: "AW-18301808532/Cd3sCNnGm8scEJTf_ZZE", value: 1.0, currency: "USD" });
@@ -554,6 +555,7 @@
           successWrapper.classList.remove("none");
         }
         if (typeof window.rdt === "function") { window.rdt("track", "Lead"); }
+          if (typeof window.ndp === "function") { window.ndp("track", "LEAD"); }
         form.reset();
       };
 

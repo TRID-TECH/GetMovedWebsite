@@ -344,6 +344,16 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jbyb8cuovmz9",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_jbyb8cuovmz9');rdt('track', 'PageVisit');
     </script>
     <!-- End Reddit Pixel -->
+    <!-- Nextdoor Pixel Code -->
+    <script type="text/javascript">
+    !function(e,n){var t,p;e.ndp||((t=e.ndp=function(){t.handleRequest?t.handleRequest.apply(t,arguments):t.queue.push(arguments)}).queue=[],t.v=1,(p=n.createElement("script")).async=!0,p.src="https://ads.nextdoor.com/public/pixel/ndp.js?id=f6ccadb4-4665-4729-8af4-fd197ce2744f",(n=n.getElementsByTagName("script")[0]).parentNode.insertBefore(p,n))}(window,document);
+    ndp('init','f6ccadb4-4665-4729-8af4-fd197ce2744f', {});
+    ndp('track','PAGE_VIEW');
+    </script>
+    <noscript>
+    <img height="1" width="1" style="display:none" src="https://flask.nextdoor.com/pixel?pid=f6ccadb4-4665-4729-8af4-fd197ce2744f&ev=PAGE_VIEW&noscript=1"/>
+    </noscript>
+    <!-- End Nextdoor Pixel Code -->
 </head>
 
 <body>
@@ -585,7 +595,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=23"></script>
+	<script src="js/getmoved.js?v=24"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
