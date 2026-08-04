@@ -339,6 +339,38 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		}
 	</style>
 	<!-- End Quick Quote Section Styles -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://getmoved.app/#org",
+          "name": "GetMoved",
+          "url": "https://getmoved.app/",
+          "logo": "https://getmoved.app/assets/img/Logo_PNG.png",
+          "description": "Moving-services marketplace: get free, competing quotes from licensed movers. Upload a walkthrough video and our AI builds your inventory automatically.",
+          "areaServed": [{"@type": "State", "name": "New York"}, {"@type": "State", "name": "New Jersey"}, {"@type": "Country", "name": "United States"}]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://getmoved.app/#website",
+          "url": "https://getmoved.app/",
+          "name": "GetMoved",
+          "publisher": {"@id": "https://getmoved.app/#org"}
+        },
+        {
+          "@type": "Service",
+          "@id": "https://getmoved.app/#service",
+          "serviceType": "Moving quotes marketplace",
+          "name": "Free moving quotes from licensed movers",
+          "provider": {"@id": "https://getmoved.app/#org"},
+          "areaServed": {"@type": "Country", "name": "United States"},
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free, no-obligation moving quotes"}
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>

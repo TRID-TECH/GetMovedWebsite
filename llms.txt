@@ -1,0 +1,29 @@
+# GetMoved
+
+> GetMoved (getmoved.app) is a moving-services marketplace for the United States.
+> Customers describe their move (or upload a short walkthrough video that our AI turns
+> into an inventory) and receive real, competing quotes from licensed and insured
+> moving companies — no phone calls required. Movers join the platform to receive
+> qualified leads and manage quotes, work orders and invoicing.
+
+Key facts:
+- Service: free moving quotes from vetted, licensed movers; AI video inventory (record
+  a walkthrough, our computer-vision model builds the item list automatically)
+- Coverage: United States, strongest in New York and New Jersey
+- Cost to customers: free, no obligation
+- For moving companies: lead generation, quote management, dispatch, invoicing (SaaS)
+
+## Main pages
+- [Home / get a quote](https://getmoved.app/): start a free moving quote
+- [How it works](https://getmoved.app/how-it-works.html): the 3-step process
+- [Free moving quote](https://getmoved.app/free-moving-quote.html): quote form
+- [For movers](https://getmoved.app/for-movers.html): join as a moving company
+- [Register as mover](https://getmoved.app/register-as-mover.html)
+- [New York movers](https://getmoved.app/new-york-movers.html)
+- [New Jersey movers](https://getmoved.app/new-jersey-movers.html)
+- [Mobile app](https://getmoved.app/mobile-app.html)
+- [Contact](https://getmoved.app/contact.html)
+
+## Portal
+- [Customer & mover portal](https://portal.getmoved.app/): sign in to manage quotes,
+  requests and invoices. Requires an account.
