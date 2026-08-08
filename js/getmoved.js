@@ -84,6 +84,31 @@
       return v;
     } catch (e) { return ""; }
   }
+  // Infer the acquisition source from the referring site when the inbound link
+  // wasn't UTM-tagged (e.g. an untagged Reddit/Nextdoor ad or organic click).
+  // UTM/gclid always take priority; this is only a fallback.
+  function gmSourceFromReferrer() {
+    try {
+      var ref = document.referrer || "";
+      if (!ref) return "";
+      var host = new URL(ref).hostname.toLowerCase().replace(/^www\./, "");
+      if (!host || host.indexOf("getmoved.app") !== -1) return ""; // ignore our own site
+      var MAP = [
+        [/(^|\.)reddit\.com$|(^|\.)redd\.it$/, "reddit"],
+        [/(^|\.)nextdoor\.com$/, "nextdoor"],
+        [/(^|\.)facebook\.com$|(^|\.)fb\.com$|(^|\.)fb\.me$/, "facebook"],
+        [/(^|\.)instagram\.com$/, "instagram"],
+        [/(^|\.)t\.co$|(^|\.)twitter\.com$|(^|\.)x\.com$/, "twitter"],
+        [/(^|\.)tiktok\.com$/, "tiktok"],
+        [/(^|\.)linkedin\.com$|(^|\.)lnkd\.in$/, "linkedin"],
+        [/(^|\.)youtube\.com$|(^|\.)youtu\.be$/, "youtube"],
+        [/(^|\.)google\./, "google"],
+        [/(^|\.)bing\.com$/, "bing"],
+      ];
+      for (var i = 0; i < MAP.length; i++) { if (MAP[i][0].test(host)) return MAP[i][1]; }
+      return host; // any other external referrer -> its host
+    } catch (e) { return ""; }
+  }
   // Ad attribution captured once per session from the landing URL (gclid/gbraid/wbraid + UTM).
   function gmAttribution() {
     try { var st = sessionStorage.getItem("gm_attribution"); if (st) return JSON.parse(st); } catch (e) {}
@@ -95,6 +120,11 @@
       attr.source = qs.get("utm_source") || (g ? "google" : "");
       attr.medium = qs.get("utm_medium") || (g ? "cpc" : "");
       attr.campaign = qs.get("utm_campaign") || "";
+      // Fallback to referrer-based source when the link had no UTM/gclid.
+      if (!attr.source) {
+        var refSrc = gmSourceFromReferrer();
+        if (refSrc) { attr.source = refSrc; if (!attr.medium) attr.medium = "referral"; }
+      }
       if (g || attr.source) sessionStorage.setItem("gm_attribution", JSON.stringify(attr));
     } catch (e) {}
     return attr;
