@@ -129,6 +129,23 @@
     } catch (e) {}
     return attr;
   }
+  // Reddit click id (rdt_cid): captured once per session from the ad-click URL so
+  // it can be sent with the server-side CAPI Lead event for attribution.
+  function gmRedditClickId() {
+    try {
+      var qs = new URLSearchParams(window.location.search);
+      var cid = qs.get("rdt_cid") || "";
+      if (cid) { try { sessionStorage.setItem("gm_rdt_cid", cid); } catch (e) {} return cid; }
+      return sessionStorage.getItem("gm_rdt_cid") || "";
+    } catch (e) { return ""; }
+  }
+  function gmUuid() {
+    try { if (window.crypto && crypto.randomUUID) return crypto.randomUUID(); } catch (e) {}
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      var r = (Math.random() * 16) | 0, v = c === "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
   function gmTrack(eventName, params) {
     params = params || {};
     var attr = gmAttribution();
@@ -311,6 +328,11 @@
       payload.source = attribution.source;
       payload.medium = attribution.medium;
       payload.campaign = attribution.campaign;
+      // Reddit CAPI attribution: pass the ad-click id and a shared conversion_id
+      // so the server-side Lead event dedupes against the browser pixel below.
+      var rdtConversionId = gmUuid();
+      payload.rdt_cid = gmRedditClickId();
+      payload.reddit_conversion_id = rdtConversionId;
 
       if (quoteSubmit) { quoteSubmit.disabled = true; quoteSubmit.textContent = "Sending..."; }
       setStatus("", false);
@@ -320,7 +342,8 @@
         .then((result) => {
           if (result && result.success === false) { throw new Error(result.message || "Send failed"); }
           gmTrack("generate_lead", { source: "landing" });
-          if (typeof window.rdt === "function") { window.rdt("track", "Lead"); }
+          // Same conversion_id as the server-side CAPI event so Reddit dedupes them.
+          if (typeof window.rdt === "function") { window.rdt("track", "Lead", { conversion_id: rdtConversionId }); }
           if (typeof window.ndp === "function") { window.ndp("track", "LEAD"); }
           if (typeof window.gtag === "function") {
             window.gtag("set", "user_data", { email: payload.email, phone_number: payload.phone });
