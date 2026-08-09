@@ -416,7 +416,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 						<button type="button" class="gm-qq-more" data-more>+ Add move details (optional)</button>
 						<div class="gm-qq-details is-hidden" data-details>
 							<div class="gm-qq-grid2">
-								<div class="gm-qq-field"><input type="text" name="full_name" placeholder="First name (optional)"></div>
+								<div class="gm-qq-field"><input type="text" name="full_name" placeholder="First name" required><p class="gm-qq-err" data-err-for="full_name"></p></div>
 								<div class="gm-qq-field"><select id="qq-size" name="property_type"><option value="" disabled selected hidden>Move size (optional)</option></select></div>
 								<div class="gm-qq-field"><input type="text" name="moving_date" placeholder="Move date (optional)" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"></div>
 								<div class="gm-qq-field"><input type="text" name="details" placeholder="Notes (optional)"></div>
@@ -532,7 +532,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=26"></script>
+	<script src="js/getmoved.js?v=27"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
