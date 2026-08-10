@@ -284,14 +284,12 @@
       event.preventDefault();
       clearErrors();
 
-      // Required: pickup, delivery, email, and phone.
-      const nameInput = quoteForm.querySelector('[name="full_name"]');
+      // Required: pickup, delivery, email, and phone. Name is optional.
       const from = quoteForm.querySelector('[name="move_from"]');
       const to = quoteForm.querySelector('[name="move_to"]');
       const emailInput = quoteForm.querySelector('[name="email"]');
       const phoneInput = quoteForm.querySelector('[name="phone"]');
       const errors = [];
-      if (nameInput && !nameInput.value.trim()) errors.push([nameInput, "full_name", "Enter your name"]);
       if (from && !from.value.trim()) errors.push([from, "move_from", "Enter your pickup ZIP code"]);
       if (to && !to.value.trim()) errors.push([to, "move_to", "Enter your delivery ZIP code"]);
       if (emailInput) {
@@ -350,6 +348,8 @@
           if (typeof window.gtag === "function") {
             window.gtag("set", "user_data", { email: payload.email, phone_number: payload.phone });
             window.gtag("event", "conversion", { send_to: "AW-18301808532/Cd3sCNnGm8scEJTf_ZZE", value: 1.0, currency: "USD" });
+            // Request quote (1) conversion — fires on successful quote submit.
+            window.gtag("event", "conversion", { send_to: "AW-18301808532/tyknCISIsN8cEJTf_ZZE" });
           }
           quoteForm.reset();
           setStatus("Thank you! Your request has been sent. Our team will contact you shortly.", false);
