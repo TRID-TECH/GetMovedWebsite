@@ -394,44 +394,21 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 				<!-- Right: form card -->
 				<div class="gm-qq-card">
 					<h3 class="gm-qq-card-title font-secondary">Get Free Moving Quotes</h3>
-					<form id="quick-quote-form" novalidate>
-						<div class="gm-qq-grid2">
-							<div class="gm-qq-field">
-								<input type="text" id="qq-move-from" name="move_from" placeholder="Pickup ZIP code" autocomplete="off" required>
-								<p class="gm-qq-err" data-err-for="move_from"></p>
-							</div>
-							<div class="gm-qq-field">
-								<input type="text" id="qq-move-to" name="move_to" placeholder="Delivery ZIP code" autocomplete="off" required>
-								<p class="gm-qq-err" data-err-for="move_to"></p>
-							</div>
-						</div>
+					<form id="qq-step1-form" novalidate>
 						<div class="gm-qq-field">
-							<input type="email" id="qq-email" name="email" placeholder="Email address" inputmode="email" autocomplete="off" required>
-							<p class="gm-qq-err" data-err-for="email"></p>
+							<input type="text" id="qq1-from" name="move_from" placeholder="Pick up &mdash; city or ZIP" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="move_from"></p>
 						</div>
-						<div class="gm-qq-field">
-							<input type="tel" id="qq-phone" name="phone" placeholder="Phone number" inputmode="tel" autocomplete="off" required>
-							<p class="gm-qq-err" data-err-for="phone"></p>
+						<div class="gm-qq-field" style="margin-top:12px;">
+							<input type="text" id="qq1-to" name="move_to" placeholder="Delivery &mdash; city or ZIP" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="move_to"></p>
 						</div>
-						<button type="button" class="gm-qq-more" data-more>+ Add move details (optional)</button>
-						<div class="gm-qq-details is-hidden" data-details>
-							<div class="gm-qq-grid2">
-								<div class="gm-qq-field"><input type="text" name="full_name" placeholder="First name (optional)"></div>
-								<div class="gm-qq-field"><select id="qq-size" name="property_type"><option value="" disabled selected hidden>Move size (optional)</option></select></div>
-								<div class="gm-qq-field"><input type="text" name="moving_date" placeholder="Move date (optional)" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"></div>
-								<div class="gm-qq-field"><input type="text" name="details" placeholder="Notes (optional)"></div>
-							</div>
-						</div>
-						<div class="gm-qq-hp" aria-hidden="true">
-							<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
-						</div>
-						<button type="submit" class="gm-qq-submit font-secondary">Compare My Free Quotes</button>
+						<button type="submit" class="gm-qq-submit font-secondary">Get My Free Quote &rarr;</button>
 						<div class="gm-qq-cardtrust">
-							<span><i class="ti-timer"></i> Takes less than 60 seconds</span>
+							<span><i class="ti-check"></i> Free</span>
 							<span><i class="ti-check"></i> No obligation</span>
-							<span><i class="ti-lock"></i> 100% Free</span>
+							<span><i class="ti-timer"></i> Takes 2 minutes</span>
 						</div>
-						<p id="quick-quote-status" class="gm-qq-status" aria-live="polite"></p>
 					</form>
 				</div>
 

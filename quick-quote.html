@@ -45,8 +45,8 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
       gtag('config', 'G-ED9B6NC03X');
       gtag('config', 'AW-18301808532');
     </script>
-    <title>GetMoved Mobile App | GetMoved</title>
-    <meta name="description" content="Manage moves on the go with the GetMoved mobile app — quotes, jobs, crew and payments from your phone." />
+    <title>Quick Moving Quote — Get Free Movers in 2 Minutes | GetMoved</title>
+    <meta name="description" content="Get a quick moving quote in 2 minutes. Enter pickup and delivery, then film a short walkthrough for an AI-built inventory and compare binding quotes from trusted movers." />
     <meta property="og:title" content="GetMoved — The Operating System for Modern Moving Companies" />
     <meta property="og:description" content="GetMoved gives moving companies a complete digital backbone — quoting, dispatch, crew, fleet, invoicing, and payments — while connecting them to customers ready to book." />
     <meta property="og:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
@@ -111,6 +111,38 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		@media (max-width: 575px) { .gm-qq-grid2 { grid-template-columns: 1fr; } #quick-quote.gm-qq-section { padding: 30px 0 8px; } }
 	</style>
 	<!-- End Quick Quote Section Styles -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://getmoved.app/#org",
+          "name": "GetMoved",
+          "url": "https://getmoved.app/",
+          "logo": "https://getmoved.app/assets/img/Logo_PNG.png",
+          "description": "Moving-services marketplace: get free, competing quotes from licensed movers. Upload a walkthrough video and our AI builds your inventory automatically.",
+          "areaServed": [{"@type": "State", "name": "New York"}, {"@type": "State", "name": "New Jersey"}, {"@type": "Country", "name": "United States"}]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://getmoved.app/#website",
+          "url": "https://getmoved.app/",
+          "name": "GetMoved",
+          "publisher": {"@id": "https://getmoved.app/#org"}
+        },
+        {
+          "@type": "Service",
+          "@id": "https://getmoved.app/#service",
+          "serviceType": "Moving quotes marketplace",
+          "name": "Free moving quotes from licensed movers",
+          "provider": {"@id": "https://getmoved.app/#org"},
+          "areaServed": {"@type": "Country", "name": "United States"},
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free, no-obligation moving quotes"}
+        }
+      ]
+    }
+    </script>
     <!-- Reddit Pixel -->
     <script>
     !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jbyb8cuovmz9",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_jbyb8cuovmz9');rdt('track', 'PageVisit');
@@ -197,117 +229,6 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
 
 		<div class="pt-100"></div>
-<section id="mobile-app" class="py-100 bg-white">
-        <div class="container">
-
-            <!-- Title -->
-            <div class="row t-center">
-                <div class="col-12 d-flex flex-column align-items-center">
-                    <h1 class="fs-60 fs-40-sm uppercase dark font-secondary animated" data-animation="fadeIn" data-animation-delay="100">
-                        Available on Mobile
-                    </h1>
-                    <div class="width-70 height-1 my-20 bg-gray4 animated" data-animation="fadeIn" data-animation-delay="100"></div>
-                    <p class="mxw-800 fs-18 lh-30 animated" data-animation="fadeIn" data-animation-delay="100">
-                        The full GetMoved experience — in your pocket. Customers book moves and track jobs. Moving companies manage quotes, crew, fleet, and payments. All from the same app.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Two columns: Customer + Mover -->
-            <div class="row mt-60 align-items-start">
-
-                <!-- Customer column -->
-                <div class="col-lg-6 col-12 mt-30">
-                    <div class="b-1 b-gray2 bg-gray p-40 h-100">
-                        <div class="d-flex align-items-center mb-25">
-                            <div class="d-inline-flex width-60 height-60 circle align-items-center justify-content-center bg-colored white mr-20 flex-shrink-0">
-                                <i class="ti-user fs-22"></i>
-                            </div>
-                            <h3 class="fs-24 font-secondary uppercase dark mb-0">For Customers</h3>
-                        </div>
-                        <ul class="list list-sm fs-16 gray7 lh-28" style="padding-left:20px; list-style:disc;">
-                            <li>Request a quote in 4 simple steps — origin, services, inventory, send</li>
-                            <li>Upload a walkthrough video — AI builds your inventory automatically</li>
-                            <li>Add items manually or combine both methods for full accuracy</li>
-                            <li>Review quotes from trusted movers with full pricing breakdown</li>
-                            <li>Accept a quote and pay securely in one tap — card or bank</li>
-                            <li>Track your move and booking in real time</li>
-                            <li>Add extra services or items after booking without restarting</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Mover column -->
-                <div class="col-lg-6 col-12 mt-30">
-                    <div class="b-1 b-gray2 bg-gray p-40 h-100">
-                        <div class="d-flex align-items-center mb-25">
-                            <div class="d-inline-flex width-60 height-60 circle align-items-center justify-content-center bg-dark4 white mr-20 flex-shrink-0">
-                                <i class="ti-truck fs-22"></i>
-                            </div>
-                            <h3 class="fs-24 font-secondary uppercase dark mb-0">For Moving Companies</h3>
-                        </div>
-                        <ul class="list list-sm fs-16 gray7 lh-28" style="padding-left:20px; list-style:disc;">
-                            <li>View all incoming quote requests from your mobile dashboard</li>
-                            <li>Review full job details — route map, inventory, services, customer info</li>
-                            <li>Set itemized pricing per service and submit binding quotes</li>
-                            <li>Manage your vehicle roster and crew members from the app</li>
-                            <li>Confirm jobs, track bookings, and assign resources on the go</li>
-                            <li>Price and approve post-booking extras submitted by customers</li>
-                            <li>Full Finance tab — invoices, payments, and job history in one place</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Stats strip -->
-            <div class="row mt-60 t-center">
-                <div class="col-lg-4 col-md-4 col-12 mt-20">
-                    <h2 class="fs-50 font-secondary colored">4</h2>
-                    <p class="fs-16 gray6 mt-5">Steps to submit a quote request</p>
-                </div>
-                <div class="col-lg-4 col-md-4 col-12 mt-20">
-                    <h2 class="fs-50 font-secondary colored">2</h2>
-                    <p class="fs-16 gray6 mt-5">Apps in one — customer &amp; mover</p>
-                </div>
-                <div class="col-lg-4 col-md-4 col-12 mt-20">
-                    <h2 class="fs-50 font-secondary colored">0</h2>
-                    <p class="fs-16 gray6 mt-5">Phone calls needed to book a move</p>
-                </div>
-            </div>
-
-            <!-- Download Now -->
-            <div class="row mt-60 t-center">
-                <div class="col-12 d-flex flex-column align-items-center">
-                    <h3 class="fs-24 font-secondary uppercase dark mb-25 animated" data-animation="fadeIn" data-animation-delay="100">
-                        Download Now
-                    </h3>
-                    <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap:16px;">
-                        <a href="https://apps.apple.com/me/app/get-moved/id6770672621" target="_blank" rel="noopener noreferrer" aria-label="Download GetMoved on the App Store">
-                            <img src="images/app-store-badge.svg" alt="Download on the App Store" style="height:56px;width:auto;">
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=getmoved.app" target="_blank" rel="noopener noreferrer" aria-label="Get GetMoved on Google Play">
-                            <img src="images/google-play-badge.svg" alt="Get it on Google Play" style="height:56px;width:auto;">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="row mt-50 t-center">
-                <div class="col-12">
-                    <a href="register-as-mover.html" class="btn-md bg-colored white font-secondary uppercase fs-16 slow mx-10" target="_blank" rel="noopener noreferrer">
-                        Register as a Mover
-                    </a>
-                    <a href="index.html#contact" class="btn-md bg-dark4 white font-secondary uppercase fs-16 slow mx-10">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
 <section id="quick-quote" class="gm-qq-section">
 		<div class="container">
 			<div class="gm-qq-grid">
@@ -370,16 +291,6 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		</div>
 	</div>
 
-
-
-	<!-- Quote CTA -->
-	<section class="py-90 bg-dark4">
-		<div class="container t-center">
-			<h3 class="fs-40 fs-28-sm uppercase white font-secondary mb-15">Get your free moving quote</h3>
-			<p class="mxw-800 mx-auto fs-18 lh-30 gray3 mb-30">Tell us about your move, film a quick walkthrough, and compare binding quotes from trusted movers. No phone calls, no obligation — and you only pay after your move is done.</p>
-			<a href="index.html#quick-quote" class="btn-md bg-colored white font-secondary uppercase fs-16 slow">Get my free quote</a>
-		</div>
-	</section>
 
 
     <!-- Footer -->
