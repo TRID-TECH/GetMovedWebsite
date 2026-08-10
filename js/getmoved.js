@@ -536,6 +536,9 @@
           if (!r.ok || (r.j && r.j.success === false)) { throw new Error((r.j && (r.j.error || r.j.message)) || "Submission failed"); }
           // sign_up is logged server-side by the endpoint; fire GA4 here for Ads attribution.
           gmTrack("sign_up", { method: "email", source: "landing" });
+          // Nextdoor conversion for a completed mover registration (distinct from the
+          // customer LEAD event fired on quote submit). Data source: f6ccadb4-...
+          if (typeof window.ndp === "function") { window.ndp("track", "SIGN_UP"); }
           moverForm.reset();
           setMoverStatus("Thank you! Your registration has been submitted. Our team will review it and get back to you.", false);
         })
