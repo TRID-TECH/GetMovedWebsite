@@ -198,7 +198,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
                         <li><a href="#home" class="nav-link">Home</a></li>
                         <li><a href="#quick-quote" class="nav-link">Quick Quote</a></li>
                         <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-                        <li><a href="#features" class="nav-link">For Movers</a></li>
+                        <li><a href="#use-cases" class="nav-link">For Movers</a></li>
                         <li class="d-none" style="display:none !important;"><a href="https://test.getmoved.app" class="nav-link" target="_blank" rel="noopener noreferrer">Demo</a></li>
                         <li><a href="#mobile-app" class="nav-link">Mobile App</a></li>
                         <li><a href="#use-cases" class="nav-link">Partner</a></li>
@@ -363,7 +363,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 								<p class="text-uppercase font-secondary" style="color:#00A76F; font-size:34px; line-height:44px; margin:0 0 16px 0; text-shadow:0 2px 8px rgba(0,0,0,0.8); white-space:normal; text-align:center;">More Jobs. Less Admin. Better Margins.</p>
 								<p class="font-main" style="color:#dddddd; font-size:15px; line-height:25px; margin:0 0 28px 0; white-space:normal; text-align:center;">Access qualified leads, manage operations digitally, assign crew and fleet, generate invoices automatically, and get paid — all in one platform built for moving companies.</p>
 								<div style="display:flex; justify-content:space-between; width:100%;">
-									<a href="#features" class="btn-sm rounded-0 bg-dark1-hover slow" style="background:#00A76F; color:#ffffff; text-transform:uppercase; font-size:13px;">For Movers</a>
+									<a href="#use-cases" class="btn-sm rounded-0 bg-dark1-hover slow" style="background:#00A76F; color:#ffffff; text-transform:uppercase; font-size:13px;">For Movers</a>
 									<a href="#pricing" class="btn-sm rounded-0 bg-dark1-hover slow" style="background:#00A76F; color:#ffffff; text-transform:uppercase; font-size:13px;">Pricing</a>
 								</div>
 						</div>
@@ -736,7 +736,11 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
 
 	<!-- Features section -->
-    <section id="features" class="features-section py-100 relative">
+    <!-- ===== Merged section: Available on Mobile + Key Features ===== -->
+    <section id="mobile-app" class="relative" style="padding:0;">
+
+    <!-- Key Features block -->
+    <div id="features" class="features-section py-100 relative">
 
 		<!-- Background image, you can find height options in css/style.css file > .features-section .features-background{...} -->
     	<div id="features-parallax" class="has-parallax features-background fai bg-soft-45 bg-soft-dark4">
@@ -894,12 +898,12 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
         </div>
     	<!-- End container -->
 
-    </section>
-    <!-- End features section -->
+    </div>
+    <!-- End Key Features block -->
 
 
-    <!-- Mobile App Section -->
-    <section id="mobile-app" class="py-100 bg-white">
+    <!-- Available on Mobile block -->
+    <div class="py-100 bg-white">
         <div class="container">
 
             <!-- Title -->
@@ -1008,8 +1012,11 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
             </div>
 
         </div>
+    </div>
+    <!-- End Available on Mobile block -->
+
     </section>
-    <!-- End Mobile App Section -->
+    <!-- End Mobile App Section (merged with Key Features) -->
 
 
 
@@ -1047,7 +1054,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
             	</div>
                 <!-- End column for title -->
 
-                <div class="col-lg-6 col-12 mt-40">
+                <div class="col-lg-8 offset-lg-2 col-12 mt-40">
                     <div class="hover-container p-3 d-flex align-items-center text-center flex-column b-1 b-solid b-gray2 bg-white h-100">
                         <div class="relative d-inline-flex width-130 height-130 circle align-items-center justify-content-center b-1 b-solid b-gray5 bg-dark4-hover-item white-hover-item gray8 slow">
                             <div class="zoom-in-hover-item opacity-0 opacity-hover-item absolute radius-inherit bg-transparent left-0 top-0 bottom-0 right-0 slow zi-1 b-1 b-dark"></div>
@@ -1071,28 +1078,6 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-12 mt-40">
-                    <div class="hover-container p-3 d-flex align-items-center text-center flex-column b-1 b-solid b-gray2 bg-white h-100">
-                        <div class="relative d-inline-flex width-130 height-130 circle align-items-center justify-content-center b-1 b-solid b-gray5 bg-dark4-hover-item white-hover-item gray8 slow">
-                            <div class="zoom-in-hover-item opacity-0 opacity-hover-item absolute radius-inherit bg-transparent left-0 top-0 bottom-0 right-0 slow zi-1 b-1 b-dark"></div>
-                            <i class="ti-stats-up fs-25 relative zi-5"></i>
-                        </div>
-                        <h4 class="font-secondary fs-24 medium uppercase gray6 mt-20">For Investors &amp; Strategic Partners</h4>
-                        <p class="fs-17 gray6 mt-10 lh-25"><strong>Participate at the foundational stage of a new category.</strong></p>
-                        <p class="fs-16 gray6 mt-15 lh-25">GetMoved is building scalable digital infrastructure for a fragmented, multi-billion-dollar global moving industry — combining marketplace network effects, recurring SaaS revenue, and proprietary AI-driven automation.</p>
-                        <p class="fs-16 gray6 mt-10 lh-25">We are currently in a preliminary seed round. Early investors participate at ground floor valuation as we expand across the EU, USA, and the Middle East.</p>
-                        <p class="fs-16 gray6 mt-10 lh-25">Currently engaging:</p>
-                        <ul class="list list-sm mt-10 fs-15 gray7 lh-24 text-start w-100 px-25">
-                            <li>Venture capital funds</li>
-                            <li>Angel investors</li>
-                            <li>Strategic industry partners</li>
-                        </ul>
-                        <p class="fs-16 gray6 mt-10 lh-25">Reach out to learn more about the full market thesis, product roadmap, and financial projections.</p>
-                        <a href="mailto:djakovic@getmoved.app" class="btn-sm bg-colored white white-hover bg-dark1-hover rounded-0 slow mt-auto">
-                            Contact Us
-                        </a>
-                    </div>
-                </div>
             </div>
 			<!-- Row end -->
 
