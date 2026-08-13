@@ -175,53 +175,34 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
 
     <!-- Start Navigation -->
-    <nav id="navigation" class="modern-nav sticky nav-lg fs-15 bordered link-hover-01 nav-white font-secondary fixed-height" data-offset="75">
-        <!-- Navigation container - You can chnage container type and paddding value -->
+    <!-- Simplified nav for this paid-traffic landing page: logo + visible phone + one CTA.
+         Full site nav intentionally removed so the page has a single conversion path. -->
+    <style>
+      .lqq-nav .lqq-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:70px;}
+      .lqq-nav .header-phone{display:inline-flex !important;align-items:center;gap:.35em;min-height:44px;padding:6px 12px;font-weight:700;font-size:16px;color:#15202b !important;white-space:nowrap;text-decoration:none;}
+      .lqq-nav .header-phone:hover{color:#1e8e4e !important;}
+      .lqq-nav .lqq-right{display:flex;align-items:center;gap:10px;}
+      .lqq-nav .lqq-cta{display:inline-flex !important;align-items:center;justify-content:center;min-height:44px;padding:9px 20px;background:#1e8e4e;color:#fff !important;border-radius:999px;font-weight:700;font-size:15px;white-space:nowrap;text-decoration:none;transition:background .2s;}
+      .lqq-nav .lqq-cta:hover{background:#17753f;color:#fff !important;}
+      @media (max-width:575px){
+        .lqq-nav .header-phone{font-size:15px;padding:6px 6px;}
+        .lqq-nav .lqq-cta{font-size:13px;padding:9px 13px;}
+        .lqq-nav .logo img{max-width:112px !important;}
+      }
+    </style>
+    <nav id="navigation" class="modern-nav sticky nav-lg fs-15 bordered nav-white font-secondary fixed-height lqq-nav" data-offset="75">
         <div class="container nav-container">
-            <!-- Row for cols in the nav -->
-            <div class="row nav-wrapper justify-content-end">
-                <!-- Column for logo -->
-                <div class="col">
-                    <a href="index.html#home" class="logo d-flex align-items-center">
-                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
-                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-dark mxw-140">
-                    </a>
-                </div>
-                <!-- Column for Navigation -->
-                <div id="nav-menu" class="col ml-auto nav-menu">
-                    <!-- Navigation links, you can add nav-links-centered class for centered links -->
-                    <ul class="nav-links justify-content-end">
-                        <!-- Logo for mobile navigation -->
-                        <li class="logo-for-mobile-navigation">
-                            <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
-                        </li>
-                        <li><a href="index.html#home" class="nav-link">Home</a></li>
-                        <li><a href="index.html#quick-quote" class="nav-link">Quick Quote</a></li>
-                        <li><a href="index.html#how-it-works" class="nav-link">How It Works</a></li>
-                        <li><a href="index.html#use-cases" class="nav-link">For Movers</a></li>
-                        <li class="d-none" style="display:none !important;"><a href="https://test.getmoved.app" class="nav-link" target="_blank" rel="noopener noreferrer">Demo</a></li>
-                        <li><a href="index.html#mobile-app" class="nav-link">Mobile App</a></li>
-                        <li><a href="index.html#use-cases" class="nav-link">Partner</a></li>
-                        <li><a href="index.html#pricing" class="nav-link">Pricing</a></li>
-                        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-                        <li><a href="register-as-mover.html" class="nav-link">Register as Mover</a></li>
-                        <li><a href="https://portal.getmoved.app/login/" class="nav-link">Login</a></li>
-                    </ul>
-                </div>
-                <!-- End Column for Navigation -->
-                <!-- Mobile navigation trigger button -->
-                <div class="mobile-nb">
-                    <div class="hamburger-menu">
-                        <div class="top-bun"></div>
-                        <div class="meat"></div>
-                        <div class="bottom-bun"></div>
-                    </div>
+            <div class="lqq-inner">
+                <a href="index.html#home" class="logo d-flex align-items-center" aria-label="GetMoved home">
+                    <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
+                    <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-dark mxw-140">
+                </a>
+                <div class="lqq-right">
+                    <a href="tel:+12016080850" class="header-phone">&#9742;&nbsp;+1 (201) 608-0850</a>
+                    <a href="#quick-quote" class="lqq-cta">Get My Free Quote</a>
                 </div>
             </div>
-            <!-- End Row for cols in the nav -->
         </div>
-        <!-- End Navigation container -->
-        <div class="mobile-nav-bg"></div>
     </nav>
     <!-- End Navigation -->
 
@@ -297,6 +278,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <footer class="py-50 d-flex flex-column align-items-center justify-content-center">
         <img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300">
         <p class="fs-14 gray6 mt-10 t-center-sm">The operating platform for modern moving companies.</p>
+    	<p class="fs-15 mt-10 t-center-sm">Questions? Call us: <a href="tel:+12016080850" style="font-weight:700;color:#1e8e4e;">+1 (201) 608-0850</a></p>
     	<p class="fs-13 mt-15 t-center-sm">
     		<a href="free-moving-quote.html" class="gray6 colored-hover mr-10">Free Quote</a>
     		<a href="how-it-works.html" class="gray6 colored-hover mr-10">How It Works</a>
