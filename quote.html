@@ -210,6 +210,9 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		.gm-qq-lead { font-size: 16px; line-height: 1.6; color: #5b6b73; margin: 0 auto 26px; max-width: 560px; }
 		.gm-qq-card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 26px 26px 22px; max-width: 720px; margin: 0 auto; }
 		.gm-qq-sec { font-size: 13px; font-weight: 800; letter-spacing: .4px; text-transform: uppercase; color: #1e8e4e; margin: 18px 0 8px; }
+		.gm-qq-summary { background: #f2f9f5; border: 1px solid #d5ebdf; border-radius: 10px; padding: 12px 14px; font-size: 14px; color: #2b3b43; margin: 0 0 6px; }
+		.gm-qq-summary:empty { display: none; }
+		.gm-qq-summary strong { color: #15202b; }
 		.gm-qq-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 		.gm-qq-field { margin: 0 0 10px; }
 		.gm-qq-field input, .gm-qq-field select { width: 100%; border: 1px solid #dfe6e3; border-radius: 10px; background: #fbfdfc; padding: 12px 14px; font-size: 14px; color: #15202b; outline: none; font-family: inherit; transition: border-color .2s, box-shadow .2s; }
@@ -248,36 +251,29 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 			</div>
 			<div class="gm-qq-card">
 				<form id="quick-quote-form" novalidate>
-					<p class="gm-qq-sec" style="margin-top:0;">Your route</p>
-					<div class="gm-qq-grid2">
-						<div class="gm-qq-field">
-							<input type="text" id="qq-move-from" name="move_from" placeholder="Pick up &mdash; city or ZIP" autocomplete="off" required>
-							<p class="gm-qq-err" data-err-for="move_from"></p>
-						</div>
-						<div class="gm-qq-field">
-							<input type="text" id="qq-move-to" name="move_to" placeholder="Delivery &mdash; city or ZIP" autocomplete="off" required>
-							<p class="gm-qq-err" data-err-for="move_to"></p>
-						</div>
+					<!-- Move details captured in step 1 -> hidden here, shown as a summary. -->
+					<input type="hidden" name="move_from" id="qq-move-from">
+					<input type="hidden" name="move_to" id="qq-move-to">
+					<input type="hidden" name="moving_date">
+					<input type="hidden" name="property_type">
+					<div id="qq-summary" class="gm-qq-summary"></div>
+
+					<p class="gm-qq-sec" style="margin-top:0;">Your contact details</p>
+					<div class="gm-qq-field">
+						<input type="text" id="qq-first" name="first_name" placeholder="First name" autocomplete="given-name" required>
+						<p class="gm-qq-err" data-err-for="first_name"></p>
 					</div>
-					<p class="gm-qq-sec">Move details</p>
-					<div class="gm-qq-grid2">
-						<div class="gm-qq-field"><input type="text" name="moving_date" placeholder="Move date (optional)" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"></div>
-						<div class="gm-qq-field"><select id="qq-size" name="property_type"><option value="" disabled selected hidden>Move size (optional)</option></select></div>
-					</div>
-					<div class="gm-qq-field"><input type="text" name="details" placeholder="Anything else about your move? (optional)"></div>
-					<p class="gm-qq-sec">Contact</p>
 					<div class="gm-qq-grid2">
 						<div class="gm-qq-field">
-							<input type="email" id="qq-email" name="email" placeholder="Email address" inputmode="email" autocomplete="off" required>
-							<p class="gm-qq-err" data-err-for="email"></p>
-						</div>
-						<div class="gm-qq-field">
-							<input type="tel" id="qq-phone" name="phone" placeholder="Phone number" inputmode="tel" autocomplete="off" required>
+							<input type="tel" id="qq-phone" name="phone" placeholder="Phone" inputmode="tel" autocomplete="off" required>
 							<p class="gm-qq-err" data-err-for="phone"></p>
 						</div>
+						<div class="gm-qq-field">
+							<input type="email" id="qq-email" name="email" placeholder="Email" inputmode="email" autocomplete="off" required>
+							<p class="gm-qq-err" data-err-for="email"></p>
+						</div>
 					</div>
-					<div class="gm-qq-field"><input type="text" name="full_name" placeholder="Your name (optional)"></div>
-					
+
 					<div class="gm-qq-hp" aria-hidden="true">
 						<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
 					</div>
@@ -353,7 +349,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=29"></script>
+	<script src="js/getmoved.js?v=30"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->

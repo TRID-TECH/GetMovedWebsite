@@ -284,22 +284,21 @@
       event.preventDefault();
       clearErrors();
 
-      // Required: pickup, delivery, email, and phone. Name is optional.
-      const from = quoteForm.querySelector('[name="move_from"]');
-      const to = quoteForm.querySelector('[name="move_to"]');
+      // Step 2 (contact): first name, phone, email required. Route/date/size come
+      // from step 1 as hidden fields.
+      const firstInput = quoteForm.querySelector('[name="first_name"]');
       const emailInput = quoteForm.querySelector('[name="email"]');
       const phoneInput = quoteForm.querySelector('[name="phone"]');
       const errors = [];
-      if (from && !from.value.trim()) errors.push([from, "move_from", "Enter your pickup ZIP code"]);
-      if (to && !to.value.trim()) errors.push([to, "move_to", "Enter your delivery ZIP code"]);
+      if (firstInput && !firstInput.value.trim()) errors.push([firstInput, "first_name", "Enter your first name"]);
+      if (phoneInput) {
+        const pv = phoneInput.value.trim();
+        if (!pv) errors.push([phoneInput, "phone", "Enter your phone number"]);
+      }
       if (emailInput) {
         const ev = emailInput.value.trim();
         if (!ev) errors.push([emailInput, "email", "Enter your email address"]);
         else if (!emailOk(ev)) errors.push([emailInput, "email", "Enter a valid email address"]);
-      }
-      if (phoneInput) {
-        const pv = phoneInput.value.trim();
-        if (!pv) errors.push([phoneInput, "phone", "Enter your phone number"]);
       }
       if (errors.length) {
         errors.forEach((e, i) => showError(e[0], e[1], e[2], i === 0));
@@ -312,7 +311,7 @@
 
       const data = new FormData(quoteForm);
       const payload = {
-        fullName: (data.get("full_name") || "").toString().trim(),
+        fullName: (data.get("first_name") || data.get("full_name") || "").toString().trim(),
         email: (data.get("email") || "").toString().trim(),
         phone: (data.get("phone") || "").toString().trim(),
         moveFrom: (data.get("move_from") || "").toString().trim(),
@@ -369,10 +368,21 @@
         var qs = new URLSearchParams(window.location.search);
         var fromV = (qs.get("from") || sessionStorage.getItem("gm_qq_from") || "").trim();
         var toV = (qs.get("to") || sessionStorage.getItem("gm_qq_to") || "").trim();
-        var fromEl = quoteForm.querySelector('[name="move_from"]');
-        var toEl = quoteForm.querySelector('[name="move_to"]');
-        if (fromEl && fromV && !fromEl.value) fromEl.value = fromV;
-        if (toEl && toV && !toEl.value) toEl.value = toV;
+        var dateV = (qs.get("date") || sessionStorage.getItem("gm_qq_date") || "").trim();
+        var sizeV = (qs.get("size") || sessionStorage.getItem("gm_qq_size") || "").trim();
+        var setHidden = function (nm, val) { var el = quoteForm.querySelector('[name="' + nm + '"]'); if (el && val) el.value = val; };
+        setHidden("move_from", fromV);
+        setHidden("move_to", toV);
+        setHidden("moving_date", dateV);
+        setHidden("property_type", sizeV);
+        // Summary of the move details collected in step 1.
+        var sum = document.getElementById("qq-summary");
+        if (sum && (fromV || toV)) {
+          var parts = ['<strong>' + (fromV || "?") + '</strong> &rarr; <strong>' + (toV || "?") + '</strong>'];
+          if (dateV) parts.push(dateV);
+          if (sizeV) parts.push(sizeV);
+          sum.innerHTML = parts.join(' &middot; ');
+        }
       } catch (e) {}
 
       var vBtn = document.getElementById("qq-video-btn");
@@ -470,6 +480,11 @@
       step1Form.querySelectorAll(".gm-qq-field.has-error").forEach(function (el) { el.classList.remove("has-error"); });
       var fromV = (fromEl && fromEl.value || "").trim();
       var toV = (toEl && toEl.value || "").trim();
+      var dateEl = step1Form.querySelector('[name="moving_date"]');
+      var flexEl = step1Form.querySelector('[name="flexible"]');
+      var sizeEl = step1Form.querySelector('[name="property_type"]');
+      var dateV = flexEl && flexEl.checked ? "I'm flexible" : ((dateEl && dateEl.value || "").trim());
+      var sizeV = (sizeEl && sizeEl.value || "").trim();
       if (!fromV) { showErr(fromEl, "move_from", "Enter your pick up city or ZIP"); }
       if (!toV) { showErr(toEl, "move_to", "Enter your delivery city or ZIP"); }
       if (!fromV || !toV) return;
@@ -481,9 +496,12 @@
         }
         sessionStorage.setItem("gm_qq_from", fromV);
         sessionStorage.setItem("gm_qq_to", toV);
+        sessionStorage.setItem("gm_qq_date", dateV);
+        sessionStorage.setItem("gm_qq_size", sizeV);
       } catch (e) {}
-      gmTrack("form_step_complete", { source: "landing", step: 1, name: "route" });
-      window.location.href = "quote.html?from=" + encodeURIComponent(fromV) + "&to=" + encodeURIComponent(toV);
+      gmTrack("form_step_complete", { source: "landing", step: 1, name: "move_details" });
+      window.location.href = "quote.html?from=" + encodeURIComponent(fromV) + "&to=" + encodeURIComponent(toV) +
+        (dateV ? "&date=" + encodeURIComponent(dateV) : "") + (sizeV ? "&size=" + encodeURIComponent(sizeV) : "");
     });
   }
 

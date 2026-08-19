@@ -269,7 +269,20 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 							<input type="text" id="qq1-to" name="move_to" placeholder="Delivery &mdash; city or ZIP" autocomplete="off" required>
 							<p class="gm-qq-err" data-err-for="move_to"></p>
 						</div>
-						<button type="submit" class="gm-qq-submit font-secondary">Get My Free Quote &rarr;</button>
+						<div class="gm-qq-field" style="margin-top:12px;">
+								<input type="text" name="moving_date" placeholder="Moving date" autocomplete="off" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+								<label style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#5b6b73;margin-top:8px;cursor:pointer;"><input type="checkbox" name="flexible" value="1" style="width:auto;"> I&#39;m flexible</label>
+							</div>
+							<div class="gm-qq-field" style="margin-top:12px;">
+								<select name="property_type">
+									<option value="" disabled selected hidden>Move size</option>
+									<option value="Studio">Studio</option>
+									<option value="1BR">1BR</option>
+									<option value="2BR">2BR</option>
+									<option value="3BR+">3BR+</option>
+								</select>
+							</div>
+							<button type="submit" class="gm-qq-submit font-secondary">See My Moving Options &rarr;</button>
 						<div class="gm-qq-cardtrust">
 							<span><i class="ti-check"></i> Free</span>
 							<span><i class="ti-check"></i> No obligation</span>
@@ -1407,7 +1420,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=29"></script>
+	<script src="js/getmoved.js?v=30"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
