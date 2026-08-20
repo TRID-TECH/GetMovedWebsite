@@ -86,8 +86,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"/>
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="css/plugins.min.css" />
-	<!-- Revolution Slider -->
-    <link rel="stylesheet" href="css/revslider/settings.css" />
+	<!-- Revolution Slider CSS removed: no slider on this page (was render-blocking dead weight). -->
 	<!-- Page Styles -->
 	<link rel="stylesheet" href="css/style.css?v=2.4" />
 	<!-- End CSS Files -->
@@ -131,7 +130,12 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		.gm-qq-more { display: inline-block; border: none; background: transparent; color: #1e8e4e; font-size: 14px; font-weight: 600; cursor: pointer; padding: 8px 0; }
 		.gm-qq-more:hover { text-decoration: underline; }
 		.gm-qq-details.is-hidden { display: none; }
-		@media (max-width: 991px) { .gm-qq-grid { grid-template-columns: 1fr; gap: 30px; } .gm-qq-title { font-size: 32px; } .gm-qq-card { order: -1; } }
+		.gm-qq-steps { font-size: 12.5px; font-weight: 700; color: #1e8e4e; letter-spacing: .3px; margin: 0 0 10px; text-transform: uppercase; }
+		.gm-qq-mobilehead { display: none; }
+		.gm-qq-mh-title { font-size: 20px; line-height: 1.2; font-weight: 800; color: #15202b; margin: 0 0 6px; }
+		.gm-qq-mh-proof { font-size: 13px; color: #48575f; font-weight: 600; margin: 0 0 12px; }
+		.lqq-topspace { height: 100px; }
+		@media (max-width: 991px) { .gm-qq-grid { grid-template-columns: 1fr; gap: 30px; } .gm-qq-title { font-size: 32px; } .gm-qq-card { order: -1; } .gm-qq-mobilehead { display: block; } .lqq-topspace { height: 74px; } #quick-quote.gm-qq-section { padding-top: 18px; } }
 		@media (max-width: 575px) { .gm-qq-grid2 { grid-template-columns: 1fr; } #quick-quote.gm-qq-section { padding: 30px 0 8px; } }
 	</style>
 	<!-- End Quick Quote Section Styles -->
@@ -237,15 +241,15 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
 
 
-		<div class="pt-100"></div>
+		<div class="lqq-topspace"></div>
 <section id="quick-quote" class="gm-qq-section">
 		<div class="container">
 			<div class="gm-qq-grid">
 
 				<!-- Left: intro / value props -->
 				<div class="gm-qq-intro">
-					<h2 class="gm-qq-title font-secondary">Tell Us About Your Move.<br>We&#39;ll Find the Best Movers for You.</h2>
-					<p class="gm-qq-lead">Fill out our quick form and our moving experts will contact trusted movers, compare quotes, and send you the best options &mdash; completely free.</p>
+					<h1 class="gm-qq-title font-secondary">Trusted movers, without the guesswork.</h1>
+					<p class="gm-qq-lead">Licensed, insured movers send you <strong>binding quotes</strong> &mdash; the price you accept is the price you pay. Free, no obligation, and no phone calls required.</p>
 					<img class="gm-qq-freeimg" loading="lazy" src="images/FreeSLika.png?v=3" alt="It&#39;s completely FREE. Premium support from our moving experts.">
 					<div class="gm-qq-trust">
 						<span><i class="ti-check-box"></i> Trusted movers</span>
@@ -257,7 +261,14 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
 				<!-- Right: form card -->
 				<div class="gm-qq-card">
-					<h3 class="gm-qq-card-title font-secondary">Get Free Moving Quotes</h3>
+					<!-- Mobile-only: the card renders first on phones (order:-1), so the
+					     ad-matching headline + proof must live here to sit above the fold. -->
+					<div class="gm-qq-mobilehead">
+						<p class="gm-qq-mh-title">Trusted movers, without the guesswork.</p>
+						<p class="gm-qq-mh-proof">Licensed &amp; insured &middot; binding quotes &middot; no phone calls</p>
+					</div>
+					<div class="gm-qq-steps">Step 1 of 2 &middot; takes 2 minutes</div>
+					<h3 class="gm-qq-card-title font-secondary">Get your free moving quotes</h3>
 					<form id="qq-step1-form" novalidate>
 						<div class="gm-qq-field">
 							<input type="text" id="qq1-from" name="move_from" placeholder="Pick up &mdash; city or ZIP" autocomplete="off" required>
@@ -301,15 +312,14 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		</div>
 	</section>
 	<!-- End Value banner -->
-	<!-- Trust strip -->
+	<!-- Trust strip — every claim is true of the product. No invented ratings/reviews. -->
 	<div style="background:#0f1520;padding:14px 16px;">
 		<div style="max-width:1140px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;justify-content:center;font-family:inherit;font-size:13px;color:#cbd5e1;">
-			<span style="color:#22c55e;font-weight:700;letter-spacing:1px;">★★★★★</span>
-			<span>Licensed &amp; Insured Movers</span>
-			<span>FMCSA Verified</span>
-			<span>Secure Stripe Payments</span>
-			<span>Transparent Pricing</span>
-			<span>No Hidden Fees</span>
+			<span>Licensed &amp; insured movers</span>
+			<span>Binding quotes &mdash; the price you accept is the price you pay</span>
+			<span>No phone calls required</span>
+			<span>Free &amp; no obligation</span>
+			<span>FMCSA-registered carriers</span>
 		</div>
 	</div>
 
@@ -318,18 +328,15 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <!-- Footer -->
     <footer class="py-50 d-flex flex-column align-items-center justify-content-center">
         <img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300">
-        <p class="fs-14 gray6 mt-10 t-center-sm">The operating platform for modern moving companies.</p>
+        <p class="fs-14 gray6 mt-10 t-center-sm">Free quotes from licensed, insured movers &mdash; you choose the best offer.</p>
     	<p class="fs-15 mt-10 t-center-sm">Questions? Call us: <a href="tel:+12016080850" style="font-weight:700;color:#1e8e4e;">+1 (201) 608-0850</a></p>
+    	<!-- Mover/B2B links (For Movers, Partners, Pricing, Become a Mover) removed on this
+    	     paid customer landing page — a cold home-mover clicking a B2B link is a paid loss. -->
     	<p class="fs-13 mt-15 t-center-sm">
-    		<a href="free-moving-quote.html" class="gray6 colored-hover mr-10">Free Quote</a>
     		<a href="how-it-works.html" class="gray6 colored-hover mr-10">How It Works</a>
     		<a href="about.html" class="gray6 colored-hover mr-10">About</a>
-    		<a href="for-movers.html" class="gray6 colored-hover mr-10">For Movers</a>
     		<a href="mobile-app.html" class="gray6 colored-hover mr-10">Mobile App</a>
-    		<a href="partners.html" class="gray6 colored-hover mr-10">Partners</a>
-    		<a href="pricing.html" class="gray6 colored-hover mr-10">Pricing</a>
-    		<a href="contact.html" class="gray6 colored-hover mr-10">Contact</a>
-    		<a href="register-as-mover.html" class="gray6 colored-hover">Become a Mover</a>
+    		<a href="contact.html" class="gray6 colored-hover">Contact</a>
     	</p>
     	<p class="fs-13 mt-10 t-center-sm">
     		<a href="new-york-movers.html" class="gray6 colored-hover mr-10">New York Movers</a>
@@ -372,96 +379,15 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 	<!-- JS Files -->
     <script src="js/bs.js"></script>
     <script src="js/plugins.min.js"></script>
-	<!-- REVOLUTION SLIDER -->
-    <script src="js/revslider/jquery.themepunch.revolution.min.js"></script>
-    <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
-	<!-- End REVOLUTION SLIDER -->
+	<!-- Revolution Slider removed on this landing page: there is no slider here, so its
+	     ~349 KB of JS (revolution + tools) was pure dead weight hurting mobile LCP. -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=31"></script>
+	<script src="js/getmoved.js?v=32"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnXM-U_nxnVA-4Gb2TXYH80rv6aQJB_iY&libraries=places&callback=gmInitPlacesAutocomplete&loading=async"></script>
-
-	<script>
-		var tpj=jQuery;
-	    var revapi1050;
-	    tpj(document).ready(function() {
-	    if(tpj("#home-slider").revolution == undefined){
-	    	revslider_showDoubleJqueryError("#home-slider");
-	    }else{
-	        revapi1050 = tpj("#home-slider").show().revolution({
-	            sliderType:"standard",
-	            jsFileLocation:"js/revslider/",
-	            sliderLayout:"fullwidth",
-	            dottedOverlay:"none",
-	            delay:9000,
-	            navigation: {
-	                keyboardNavigation:"on",
-	                keyboard_direction: "vertical",
-	                mouseScrollNavigation:"off",
-	                mouseScrollReverse:"default",
-	                onHoverStop:"off",
-	                arrows: {
-				        enable: true,
-				        style: 'gyges',
-				    },
-	                touch:{
-	                    touchenabled:"on",
-	                    swipe_threshold: 75,
-	                    swipe_min_touches: 50,
-	                    swipe_direction: "vertical",
-	                    drag_block_vertical: false
-	                },
-	                bullets: {
-	                    enable:true,
-	                    hide_onmobile:true,
-	                    hide_under:1024,
-	                    style:"hesperiden",
-	                    hide_onleave:true,
-	                    direction:"horizontal",
-	                    h_align:"center",
-	                    v_align:"bottom",
-	                    h_offset:0,
-	                    v_offset:20,
-	                    space:5,
-	                    tmp:''
-	                }
-	            },
-	            responsiveLevels:[1400,1350,1200,1024,750],
-	            visibilityLevels:[1320,1140,960,720,540],
-	            gridwidth:[1320,1140,960,720,540],
-	            gridheight:[610,568,512,600],
-	            lazyType:"none",
-	            shadow:0,
-	            spinner:"spinner2",
-	            stopLoop:"off",
-	            stopAfterLoops:-1,
-	            stopAtSlide:-1,
-	            shuffle:"off",
-	            autoHeight:"off",
-	            fullScreenAutoWidth:"off",
-	            fullScreenAlignForce:"off",
-	            fullScreenOffsetContainer: "",
-	            fullScreenOffset: "0px",
-	            disableProgressBar:"off",
-	            hideThumbsOnMobile:"off",
-	            fullWidth:"on",
-				fullScreen:"off",
-	            hideSliderAtLimit:0,
-	            hideCaptionAtLimit:0,
-	            hideAllCaptionAtLilmit:0,
-	            debugMode:false,
-	            fallbacks: {
-	                simplifyAll:"off",
-	                nextSlideOnWindowFocus:"off",
-	                disableFocusListener:false,
-	            }
-	        });
-	        }
-	    });	/*ready*/
-	</script>
 
 
 </body>

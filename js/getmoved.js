@@ -206,6 +206,16 @@
     out.city = s.split(",")[0].trim();
     return out;
   }
+  // Bucketed move-value estimate (USD) for Meta value-based optimisation. Crude on
+  // purpose — a rough bucket beats a constant. size: Studio/1BR/2BR/3BR+.
+  //   studio/1BR local  -> 800    2BR/3BR+ local  -> 2000
+  //   studio/1BR long   -> 3500   2BR/3BR+ long   -> 7000
+  function gmMoveValue(propertyType, moveType) {
+    var s = String(propertyType || "").toLowerCase();
+    var big = s.indexOf("2br") !== -1 || s.indexOf("3br") !== -1;
+    var long = moveType === "long_distance";
+    return long ? (big ? 7000 : 3500) : (big ? 2000 : 800);
+  }
   // Fire a Meta event: browser fbq + server CAPI relay, sharing one event_id.
   function gmFireMeta(eventName, customData, userData) {
     if (!gmMetaConsentOk()) return null;
@@ -412,21 +422,27 @@
             window.gtag("event", "conversion", { send_to: "AW-18301808532/tyknCISIsN8cEJTf_ZZE" });
           }
           // Meta Lead — browser Pixel + server CAPI (shared event_id), fired only on
-          // confirmed backend success (the quote is persisted). value is fixed at 1
-          // (no quote/offer exists yet at submit time).
-          // TODO(value-estimator): replace value:1 with a real move-value estimate
-          // (home size + local/long-distance distance) once an estimator exists.
+          // confirmed backend success (the quote is persisted).
           try {
             var _mLoc = gmParseLoc(payload.moveFrom);
-            var _mDst = gmParseLoc(payload.moveTo).state;
-            var _mType = (_mLoc.state && _mDst && _mLoc.state.toLowerCase() === _mDst.toLowerCase()) ? "local" : "long_distance";
-            gmFireMeta("Lead", { content_name: "Quote Request", content_category: _mType, value: 1, currency: "USD" }, {
+            var _oState = (_mLoc.state || "").toLowerCase();
+            var _dState = (gmParseLoc(payload.moveTo).state || "").toLowerCase();
+            // Long-distance only when origin/destination are KNOWN different states;
+            // unknown or same-state defaults to local (conservative).
+            var _mType = (_oState && _dState && _oState !== _dState) ? "long_distance" : "local";
+            var _mValue = gmMoveValue(payload.propertyType, _mType); // bucketed $ estimate
+            gmFireMeta("Lead", { content_name: "Quote Request", content_category: _mType, value: _mValue, currency: "USD" }, {
               email: payload.email, phone: payload.phone, firstName: payload.fullName, lastName: "",
               city: _mLoc.city, state: _mLoc.state, zip: _mLoc.zip
             });
           } catch (e) {}
           quoteForm.reset();
-          setStatus("Thank you! Your request has been sent. Our team will contact you shortly.", false);
+          setStatus("Thank you! Redirecting…", false);
+          // P0.4: the thank-you state is its own URL (quote-received.html), not an inline
+          // swap. Lead has already fired here on confirmed success; the thank-you page
+          // fires no Lead, so a direct load or refresh counts nothing. The short delay
+          // lets the fbq beacon flush (the CAPI relay uses keepalive and survives anyway).
+          setTimeout(function () { window.location.href = "quote-received.html"; }, 400);
         })
         .catch(() => { setStatus("Sorry, something went wrong. Please email us directly at jack@getmoved.app.", true); })
         .finally(() => { if (quoteSubmit) { quoteSubmit.disabled = false; quoteSubmit.textContent = quoteSubmit.getAttribute("data-orig-label") || "Compare My Free Quotes"; } });
