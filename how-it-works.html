@@ -32,6 +32,23 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     })(window,document,'script','dataLayer','GTM-TWSQBZ4B');</script>
     <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
+    <!-- Meta Pixel Code -->
+    <script>
+      (function(){
+        var denied=false; try{denied=localStorage.getItem('gm_cookie_consent')==='denied';}catch(e){}
+        window.gmMetaPixelId='912613588109668';
+        if(denied)return; // no fbevents.js / cookies / PageView until consent
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init','912613588109668'); fbq('track','PageView');
+      })();
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=912613588109668&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
     <!-- Google tag (gtag.js) with Consent Mode v2 -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -533,7 +550,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=30"></script>
+	<script src="js/getmoved.js?v=31"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->

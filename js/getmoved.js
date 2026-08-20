@@ -167,6 +167,67 @@
     }
   }
 
+  // --- Meta (Facebook) Pixel + Conversions API helpers ------------------------------
+  // Each event fires twice — browser fbq(...,{eventID}) and server CAPI — sharing one
+  // event_id so Meta deduplicates. Gated on the SAME cookie consent as gtag: fire
+  // unless the visitor explicitly declined (gm_cookie_consent === 'denied'). The base
+  // pixel + PageView live inline in each page's <head>. Flip the check to
+  // === 'granted' for strict opt-in before an EU rollout.
+  var GM_META_CAPI_ENDPOINT = "https://portal.getmoved.app/api/v1/meta/event";
+  function gmMetaConsentOk() {
+    try { return localStorage.getItem("gm_cookie_consent") !== "denied"; } catch (e) { return true; }
+  }
+  function gmGetFbCookies() {
+    var read = function (n) {
+      try {
+        var m = document.cookie.split("; ").find(function (c) { return c.indexOf(n + "=") === 0; });
+        return m ? m.split("=")[1] : null;
+      } catch (e) { return null; }
+    };
+    return { fbp: read("_fbp"), fbc: read("_fbc") };
+  }
+  // Capture ?fbclid= into an _fbc cookie on landing (belt-and-suspenders; fbevents.js
+  // also does this once loaded). Skipped entirely when consent is denied.
+  function gmCaptureFbclid() {
+    if (!gmMetaConsentOk()) return;
+    try {
+      var fbclid = new URLSearchParams(window.location.search).get("fbclid");
+      if (fbclid && document.cookie.indexOf("_fbc=") === -1) {
+        document.cookie = "_fbc=fb.1." + Date.now() + "." + fbclid + "; max-age=7776000; path=/; SameSite=Lax";
+      }
+    } catch (e) {}
+  }
+  // Best-effort parse of "City, ST 12345" -> { city, state, zip }.
+  function gmParseLoc(s) {
+    s = String(s || "").trim();
+    var out = { city: "", state: "", zip: "" };
+    var zipM = s.match(/(\d{5})(?:-\d{4})?\s*$/); if (zipM) out.zip = zipM[1];
+    var stM = s.match(/,\s*([A-Za-z]{2})\b(?:\s+\d{5}(?:-\d{4})?)?\s*$/); if (stM) out.state = stM[1];
+    out.city = s.split(",")[0].trim();
+    return out;
+  }
+  // Fire a Meta event: browser fbq + server CAPI relay, sharing one event_id.
+  function gmFireMeta(eventName, customData, userData) {
+    if (!gmMetaConsentOk()) return null;
+    var eventId = gmUuid();
+    try { if (typeof window.fbq === "function") window.fbq("track", eventName, customData || {}, { eventID: eventId }); } catch (e) {}
+    try {
+      var ud = Object.assign({}, userData || {}, gmGetFbCookies());
+      fetch(GM_META_CAPI_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ eventName: eventName, eventId: eventId, eventSourceUrl: window.location.href, userData: ud, customData: customData || {} }),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {}
+    return eventId;
+  }
+  // Run on load: capture fbclid, and fire ViewContent on any page that hosts a quote form.
+  gmCaptureFbclid();
+  if (document.getElementById("qq-step1-form") || document.getElementById("quick-quote-form")) {
+    gmFireMeta("ViewContent", { content_name: "Quote Request", content_category: "moving_quote" });
+  }
+
   // --- Cookie consent banner (Consent Mode v2). Default is 'denied' (set in the <head>),
   // so GA already sends cookieless pings; Accept upgrades to full (cookie) tracking. ---
   (function () {
@@ -350,6 +411,20 @@
             // Request quote (1) conversion — fires on successful quote submit.
             window.gtag("event", "conversion", { send_to: "AW-18301808532/tyknCISIsN8cEJTf_ZZE" });
           }
+          // Meta Lead — browser Pixel + server CAPI (shared event_id), fired only on
+          // confirmed backend success (the quote is persisted). value is fixed at 1
+          // (no quote/offer exists yet at submit time).
+          // TODO(value-estimator): replace value:1 with a real move-value estimate
+          // (home size + local/long-distance distance) once an estimator exists.
+          try {
+            var _mLoc = gmParseLoc(payload.moveFrom);
+            var _mDst = gmParseLoc(payload.moveTo).state;
+            var _mType = (_mLoc.state && _mDst && _mLoc.state.toLowerCase() === _mDst.toLowerCase()) ? "local" : "long_distance";
+            gmFireMeta("Lead", { content_name: "Quote Request", content_category: _mType, value: 1, currency: "USD" }, {
+              email: payload.email, phone: payload.phone, firstName: payload.fullName, lastName: "",
+              city: _mLoc.city, state: _mLoc.state, zip: _mLoc.zip
+            });
+          } catch (e) {}
           quoteForm.reset();
           setStatus("Thank you! Your request has been sent. Our team will contact you shortly.", false);
         })
@@ -435,6 +510,7 @@
             if (vDone) { vDone.textContent = "✓ " + (file.name || "Video") + " uploaded — movers will quote your exact move"; vDone.style.display = "block"; }
             vBtn.innerHTML = '<i class="ti-video-camera"></i> Replace video';
             gmTrack("video_uploaded", { source: "landing" });
+            gmFireMeta("CompleteRegistration", { content_name: "AI Video Walkthrough", content_category: "ai_video_walkthrough" });
             if (quoteSubmit) quoteSubmit.textContent = "Send & Get My Precise Quotes";
           } else {
             if (vProg) vProg.style.display = "none";
@@ -500,6 +576,9 @@
         sessionStorage.setItem("gm_qq_size", sizeV);
       } catch (e) {}
       gmTrack("form_step_complete", { source: "landing", step: 1, name: "move_details" });
+      // Meta InitiateCheckout — step 1 (addresses + date) accepted. keepalive lets the
+      // CAPI relay finish across the navigation that follows.
+      gmFireMeta("InitiateCheckout", { content_name: "Quote Request", content_category: "quote_form_step1" }, gmParseLoc(fromV));
       window.location.href = "quote.html?from=" + encodeURIComponent(fromV) + "&to=" + encodeURIComponent(toV) +
         (dateV ? "&date=" + encodeURIComponent(dateV) : "") + (sizeV ? "&size=" + encodeURIComponent(sizeV) : "");
     });
