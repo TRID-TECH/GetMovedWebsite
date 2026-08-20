@@ -592,11 +592,15 @@
         sessionStorage.setItem("gm_qq_size", sizeV);
       } catch (e) {}
       gmTrack("form_step_complete", { source: "landing", step: 1, name: "move_details" });
-      // Meta InitiateCheckout — step 1 (addresses + date) accepted. keepalive lets the
-      // CAPI relay finish across the navigation that follows.
-      gmFireMeta("InitiateCheckout", { content_name: "Quote Request", content_category: "quote_form_step1" }, gmParseLoc(fromV));
-      window.location.href = "quote.html?from=" + encodeURIComponent(fromV) + "&to=" + encodeURIComponent(toV) +
+      // Meta InitiateCheckout — step 1 (addresses + date) accepted. Fire it, THEN let the
+      // browser Pixel beacon flush before navigating. An immediate redirect was discarding
+      // the queued fbq call on unload (fbevents.js may not have replayed the queue yet),
+      // leaving only the server (CAPI) event — which is why the IC count looked stuck.
+      // ~300ms is imperceptible; the CAPI relay uses keepalive and survives regardless.
+      var _step2Url = "quote.html?from=" + encodeURIComponent(fromV) + "&to=" + encodeURIComponent(toV) +
         (dateV ? "&date=" + encodeURIComponent(dateV) : "") + (sizeV ? "&size=" + encodeURIComponent(sizeV) : "");
+      gmFireMeta("InitiateCheckout", { content_name: "Quote Request", content_category: "quote_form_step1" }, gmParseLoc(fromV));
+      setTimeout(function () { window.location.href = _step2Url; }, 300);
     });
   }
 
