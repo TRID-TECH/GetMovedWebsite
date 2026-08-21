@@ -605,6 +605,42 @@
   }
 
   // Register-as-Mover form -> posts to the same backend endpoint as the portal registration.
+  // Pre-launch city landing pages: waitlist email capture (no quote flow, no Meta Lead).
+  var waitlistForm = document.getElementById("waitlist-form");
+  if (waitlistForm) {
+    var wlStatus = document.getElementById("waitlist-status");
+    var wlSubmit = waitlistForm.querySelector('button[type="submit"]');
+    var wlEndpoint = "https://portal.getmoved.app/api/v1/email/waitlist";
+    if (wlSubmit && !wlSubmit.getAttribute("data-orig-label")) wlSubmit.setAttribute("data-orig-label", wlSubmit.textContent);
+    waitlistForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = new FormData(waitlistForm);
+      var email = (data.get("email") || "").toString().trim();
+      var name = (data.get("name") || "").toString().trim();
+      var city = (data.get("city") || waitlistForm.getAttribute("data-city") || "").toString().trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (wlStatus) { wlStatus.textContent = "Please enter a valid email address."; wlStatus.classList.add("is-error"); }
+        return;
+      }
+      if (wlSubmit) { wlSubmit.disabled = true; wlSubmit.textContent = "Signing up…"; }
+      if (wlStatus) { wlStatus.textContent = ""; wlStatus.classList.remove("is-error"); }
+      fetch(wlEndpoint, {
+        method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
+        body: JSON.stringify({ email: email, name: name, city: city, hp: (data.get("hp") || "").toString() }),
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }); })
+        .then(function (res) {
+          if (res && res.success === false) throw new Error(res.error || "Signup failed");
+          // GA/funnel only — a pre-launch waitlist signup is NOT a Meta Lead conversion.
+          gmTrack("generate_lead", { source: "waitlist", city: city });
+          waitlistForm.reset();
+          if (wlStatus) { wlStatus.textContent = "You're on the list! We'll email you the moment GetMoved launches in " + (city || "your city") + "."; wlStatus.classList.remove("is-error"); }
+        })
+        .catch(function () { if (wlStatus) { wlStatus.textContent = "Sorry, something went wrong. Please try again."; wlStatus.classList.add("is-error"); } })
+        .finally(function () { if (wlSubmit) { wlSubmit.disabled = false; wlSubmit.textContent = wlSubmit.getAttribute("data-orig-label") || "Notify me at launch"; } });
+    });
+  }
+
   const moverForm = document.getElementById("mover-registration-form");
   if (moverForm) {
     const moverStatus = document.getElementById("mover-registration-status");
