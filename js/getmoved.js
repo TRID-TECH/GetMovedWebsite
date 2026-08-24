@@ -444,7 +444,7 @@
           // lets the fbq beacon flush (the CAPI relay uses keepalive and survives anyway).
           setTimeout(function () { window.location.href = "quote-received.html"; }, 400);
         })
-        .catch(() => { setStatus("Sorry, something went wrong. Please email us directly at jack@getmoved.app.", true); })
+        .catch(() => { setStatus("Sorry, something went wrong. Please email us directly at sales@getmoved.app.", true); })
         .finally(() => { if (quoteSubmit) { quoteSubmit.disabled = false; quoteSubmit.textContent = quoteSubmit.getAttribute("data-orig-label") || "Compare My Free Quotes"; } });
     });
     if (quoteSubmit && !quoteSubmit.getAttribute("data-orig-label")) {
@@ -696,7 +696,7 @@
           setMoverStatus("Thank you! Your registration has been submitted. Our team will review it and get back to you.", false);
         })
         .catch(function (err) {
-          setMoverStatus((err && err.message) || "Sorry, something went wrong. Please try again or email jack@getmoved.app.", true);
+          setMoverStatus((err && err.message) || "Sorry, something went wrong. Please try again or email sales@getmoved.app.", true);
         })
         .finally(function () {
           if (moverSubmit) { moverSubmit.disabled = false; moverSubmit.textContent = "Submit Registration"; }
