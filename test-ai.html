@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TWSQBZ4B');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8" />
+    <!-- Meta Pixel Code -->
+    <script>
+      (function(){
+        var denied=false; try{denied=localStorage.getItem('gm_cookie_consent')==='denied';}catch(e){}
+        window.gmMetaPixelId='912613588109668';
+        if(denied)return; // no fbevents.js / cookies / PageView until consent
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init','912613588109668'); fbq('track','PageView');
+      })();
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=912613588109668&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+    <!-- Google tag (gtag.js) with Consent Mode v2 -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent Mode v2: default denied (EU-safe). GA still sends cookieless pings so events
+      // are always measured; the cookie banner upgrades to granted on Accept.
+      gtag('consent', 'default', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update: 500, region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] });
+      gtag('set', 'url_passthrough', true);
+      gtag('set', 'ads_data_redaction', true);
+      try { if (localStorage.getItem('gm_cookie_consent') === 'granted') {
+        gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      } } catch(e){}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED9B6NC03X"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-ED9B6NC03X');
+      gtag('config', 'AW-18301808532');
+    </script>
+    <title>Test Our AI | GetMoved</title>
+    <meta name="description" content="Upload a short video walkthrough of your home and watch GetMoved's AI build your moving inventory in minutes — free, no signup required." />
+    <meta property="og:title" content="Test the GetMoved AI — Video to Moving Inventory" />
+    <meta property="og:description" content="Upload a walkthrough video and our AI detects your furniture, counts items, and recommends the right truck. Try it free." />
+    <meta property="og:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="684" />
+    <meta property="og:image:height" content="684" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--Favicon -->
+	<link rel="icon" type="image/png" href="assets/img/favicon-128.png" />
+	<!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"/>
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/plugins.min.css" />
+	<!-- Page Styles -->
+	<link rel="stylesheet" href="css/style.css?v=2.4" />
+	<!-- End CSS Files -->
+
+	<!-- TEST AI page styles (follows the gm-qq card conventions) -->
+	<style>
+		.page-loader, .loader-wrapper { display: none !important; }
+		.tai-section { background: #fff; padding: 40px 0 60px; }
+		.tai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+		.tai-title { font-size: 40px; line-height: 1.12; color: #15202b; margin: 0 0 16px; font-weight: 800; }
+		.tai-lead { font-size: 16px; line-height: 1.6; color: #5b6b73; margin: 0 0 22px; max-width: 520px; }
+		.tai-trust { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-bottom: 18px; }
+		.tai-trust span { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: #48575f; font-weight: 600; }
+		.tai-trust i { color: #1e8e4e; font-size: 15px; }
+		.tai-steps { margin: 0; padding: 0; list-style: none; }
+		.tai-steps li { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; font-size: 14.5px; color: #48575f; line-height: 1.5; }
+		.tai-steps .n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #e7f4ec; color: #1e8e4e; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+		.tai-card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 26px; }
+		.tai-card-title { font-size: 22px; font-weight: 800; color: #15202b; margin: 0 0 16px; }
+		.tai-dropzone { border: 2px dashed #cfe0d6; border-radius: 14px; background: #fbfdfc; padding: 42px 20px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; }
+		.tai-dropzone.is-drag, .tai-dropzone:hover { border-color: #1e8e4e; background: #f2faf5; }
+		.tai-dropzone i { font-size: 40px; color: #1e8e4e; display: block; margin-bottom: 12px; }
+		.tai-dropzone p { margin: 0 0 6px; font-size: 15px; color: #15202b; font-weight: 600; }
+		.tai-dropzone small { color: #7a8891; font-size: 12.5px; }
+		.tai-btn { border: none; border-radius: 10px; background: #1e8e4e; color: #fff; font-size: 15px; font-weight: 700; padding: 12px 26px; cursor: pointer; transition: background .2s; }
+		.tai-btn:hover { background: #17753f; }
+		.tai-btn--ghost { background: transparent; color: #1e8e4e; border: 1px solid #1e8e4e; }
+		.tai-btn--ghost:hover { background: #f2faf5; }
+		.tai-prog { display: none; height: 8px; border-radius: 6px; background: #e9efec; overflow: hidden; margin-top: 18px; }
+		.tai-prog-bar { height: 100%; width: 0%; background: #1e8e4e; transition: width .25s; }
+		.tai-proc { text-align: center; padding: 24px 8px; }
+		.tai-spinner { width: 46px; height: 46px; border-radius: 50%; border: 4px solid #e7f4ec; border-top-color: #1e8e4e; margin: 0 auto 18px; animation: tai-spin 1s linear infinite; }
+		@keyframes tai-spin { to { transform: rotate(360deg); } }
+		.tai-proc-text { font-size: 15px; color: #48575f; line-height: 1.55; margin: 0 0 8px; }
+		.tai-proc-timer { font-size: 13px; color: #9aa7af; font-variant-numeric: tabular-nums; }
+		.tai-summary { font-size: 15px; color: #48575f; margin: 0 0 14px; }
+		.tai-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-height: 380px; overflow: auto; padding-right: 4px; }
+		.tai-item { display: flex; align-items: center; gap: 10px; border: 1px solid #e6ecea; border-radius: 10px; padding: 8px 12px; font-size: 14px; color: #15202b; }
+		.tai-item img { width: 44px; height: 44px; object-fit: cover; border-radius: 8px; flex: none; background: #f2f5f4; }
+		.tai-item-name { font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+		.tai-item-qty { color: #1e8e4e; font-weight: 800; flex: none; }
+		.tai-vehicle { margin: 16px 0 0; padding: 12px 16px; border-radius: 10px; background: #e7f4ec; color: #15202b; font-size: 14.5px; display: none; }
+		.tai-vehicle i { color: #1e8e4e; margin-right: 6px; }
+		.tai-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+		.tai-error { text-align: center; padding: 22px 8px; }
+		.tai-error p { color: #c0392b; font-size: 14.5px; margin: 0 0 16px; }
+		.tai-disclaimer { font-size: 12px; color: #9aa7af; margin-top: 14px; line-height: 1.5; }
+		@media (max-width: 991px) { .tai-grid { grid-template-columns: 1fr; gap: 30px; } .tai-title { font-size: 32px; } }
+		@media (max-width: 575px) { .tai-items { grid-template-columns: 1fr; } .tai-section { padding: 30px 0 40px; } }
+	</style>
+    <!-- Reddit Pixel -->
+    <script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jbyb8cuovmz9",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_jbyb8cuovmz9');rdt('track', 'PageVisit');
+    </script>
+    <!-- End Reddit Pixel -->
+    <!-- Nextdoor Pixel Code -->
+    <script type="text/javascript">
+    !function(e,n){var t,p;e.ndp||((t=e.ndp=function(){t.handleRequest?t.handleRequest.apply(t,arguments):t.queue.push(arguments)}).queue=[],t.v=1,(p=n.createElement("script")).async=!0,p.src="https://ads.nextdoor.com/public/pixel/ndp.js?id=f6ccadb4-4665-4729-8af4-fd197ce2744f",(n=n.getElementsByTagName("script")[0]).parentNode.insertBefore(p,n))}(window,document);
+    ndp('init','f6ccadb4-4665-4729-8af4-fd197ce2744f', {});
+    ndp('track','PAGE_VIEW');
+    </script>
+    <noscript>
+    <img height="1" width="1" style="display:none" src="https://flask.nextdoor.com/pixel?pid=f6ccadb4-4665-4729-8af4-fd197ce2744f&ev=PAGE_VIEW&noscript=1"/>
+    </noscript>
+    <!-- End Nextdoor Pixel Code -->
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWSQBZ4B"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Page loader -->
+	<div class="page-loader loader-wrapper bg-white">
+		<div class="loader">
+			<div class="outter b-dark3">
+				<div class="mid b-dark3"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+    <!-- Start Navigation -->
+    <nav id="navigation" class="modern-nav sticky nav-lg fs-15 bordered link-hover-01 nav-white font-secondary fixed-height" data-offset="75">
+        <!-- Navigation container - You can chnage container type and paddding value -->
+        <div class="container nav-container">
+            <!-- Row for cols in the nav -->
+            <div class="row nav-wrapper justify-content-end">
+                <!-- Column for logo -->
+                <div class="col">
+                    <a href="index.html#home" class="logo d-flex align-items-center">
+                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
+                        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-dark mxw-140">
+                    </a>
+                </div>
+                <!-- Column for Navigation -->
+                <div id="nav-menu" class="col ml-auto nav-menu">
+                    <!-- Navigation links, you can add nav-links-centered class for centered links -->
+                    <ul class="nav-links justify-content-end">
+                        <!-- Logo for mobile navigation -->
+                        <li class="logo-for-mobile-navigation">
+                            <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
+                        </li>
+                        <li><a href="index.html#home" class="nav-link">Home</a></li>
+                        <li><a href="index.html#quick-quote" class="nav-link">Quick Quote</a></li>
+                        <li><a href="index.html#how-it-works" class="nav-link">How It Works</a></li>
+                        <li><a href="index.html#use-cases" class="nav-link">For Movers</a></li>
+                        <li class="d-none" style="display:none !important;"><a href="https://test.getmoved.app" class="nav-link" target="_blank" rel="noopener noreferrer">Demo</a></li>
+                        <li><a href="index.html#mobile-app" class="nav-link">Mobile App</a></li>
+                        <li><a href="test-ai.html" class="nav-link">Test AI</a></li>
+                        <li><a href="index.html#use-cases" class="nav-link">Partner</a></li>
+                        <li><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+                        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                        <li><a href="register-as-mover.html" class="nav-link">Register as Mover</a></li>
+                        <li><a href="https://portal.getmoved.app/login/" class="nav-link">Login</a></li>
+                    </ul>
+                </div>
+                <!-- End Column for Navigation -->
+                <!-- Mobile navigation trigger button -->
+                <div class="mobile-nb">
+                    <div class="hamburger-menu">
+                        <div class="top-bun"></div>
+                        <div class="meat"></div>
+                        <div class="bottom-bun"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Row for cols in the nav -->
+        </div>
+        <!-- End Navigation container -->
+        <div class="mobile-nav-bg"></div>
+    </nav>
+    <!-- End Navigation -->
+
+
+
+
+	<div class="pt-100"></div>
+	<section id="test-ai" class="tai-section">
+		<div class="container">
+			<div class="tai-grid">
+
+				<!-- Left: intro / how it works -->
+				<div class="tai-intro">
+					<h1 class="tai-title font-secondary">Test Our AI.<br>Video In. Moving Inventory Out.</h1>
+					<p class="tai-lead">Film a quick walkthrough of your home, upload it here, and watch our AI identify your furniture, count every item, and recommend the right truck &mdash; in minutes.</p>
+					<div class="tai-trust">
+						<span><i class="ti-check-box"></i> Free &mdash; no signup</span>
+						<span><i class="ti-check-box"></i> Real AI, not a demo</span>
+						<span><i class="ti-check-box"></i> Your video stays private</span>
+					</div>
+					<ul class="tai-steps">
+						<li><span class="n">1</span><span><strong>Record a walkthrough.</strong> Walk slowly through each room with your phone camera. 30&ndash;90 seconds is perfect.</span></li>
+						<li><span class="n">2</span><span><strong>Upload it here.</strong> Our AI watches the video and identifies beds, sofas, tables, appliances and more.</span></li>
+						<li><span class="n">3</span><span><strong>Get your inventory.</strong> See every detected item with quantities, plus the truck size your move needs.</span></li>
+						<li><span class="n">4</span><span><strong>Turn it into a quote.</strong> One click sends your inventory to trusted movers for a real, accurate quote.</span></li>
+					</ul>
+				</div>
+
+				<!-- Right: interactive card -->
+				<div class="tai-card">
+
+					<!-- State: upload -->
+					<div id="tai-state-upload">
+						<h3 class="tai-card-title font-secondary">Upload Your Walkthrough</h3>
+						<div id="tai-dropzone" class="tai-dropzone">
+							<i class="ti-video-camera"></i>
+							<p>Drag &amp; drop your video here</p>
+							<small>MP4, MOV or WEBM &mdash; up to 300MB</small>
+							<div style="margin-top:18px;">
+								<button type="button" id="tai-pick" class="tai-btn">Choose a video</button>
+							</div>
+						</div>
+						<input type="file" id="tai-file" accept="video/*" style="display:none;">
+						<p class="tai-disclaimer">By uploading you agree to our <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>. We store your video securely to generate your inventory and improve our AI.</p>
+					</div>
+
+					<!-- State: processing -->
+					<div id="tai-state-processing" style="display:none;">
+						<h3 class="tai-card-title font-secondary">Analyzing Your Video&hellip;</h3>
+						<div class="tai-proc">
+							<div class="tai-spinner" aria-hidden="true"></div>
+							<p id="tai-proc-text" class="tai-proc-text">Uploading your video&hellip;</p>
+							<p class="tai-proc-timer"><span id="tai-proc-timer">0:00</span> elapsed</p>
+							<div id="tai-prog" class="tai-prog"><div id="tai-prog-bar" class="tai-prog-bar"></div></div>
+						</div>
+					</div>
+
+					<!-- State: results -->
+					<div id="tai-state-results" style="display:none;">
+						<h3 class="tai-card-title font-secondary">Your AI Inventory</h3>
+						<p id="tai-summary" class="tai-summary"></p>
+						<div id="tai-items" class="tai-items"></div>
+						<div id="tai-vehicle" class="tai-vehicle"></div>
+						<div class="tai-cta-row">
+							<button type="button" id="tai-quote-btn" class="tai-btn">Get My Free Quote With This Inventory &rarr;</button>
+							<button type="button" class="tai-btn tai-btn--ghost" data-tai-restart>Try another video</button>
+						</div>
+					</div>
+
+					<!-- State: error -->
+					<div id="tai-state-error" style="display:none;">
+						<h3 class="tai-card-title font-secondary">Something Went Wrong</h3>
+						<div class="tai-error">
+							<p id="tai-error-text">Something went wrong. Please try again.</p>
+							<button type="button" class="tai-btn" data-tai-restart>Try again</button>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Business CTA -->
+	<section class="py-90 bg-dark4">
+		<div class="container t-center">
+			<h3 class="fs-40 fs-28-sm uppercase white font-secondary mb-15">This same AI powers real moving companies</h3>
+			<p class="mxw-800 mx-auto fs-18 lh-30 gray3 mb-30">Video surveys, AI inventory, instant cubing and truck recommendations — built into the GetMoved platform for movers. See what it can do for your company.</p>
+			<a href="index.html#contact" class="btn-md bg-colored white font-secondary uppercase fs-16 slow">Get started</a>
+		</div>
+	</section>
+
+
+    <!-- Footer -->
+    <footer class="py-50 d-flex flex-column align-items-center justify-content-center">
+        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300">
+        <p class="fs-14 gray6 mt-10 t-center-sm">The operating platform for modern moving companies.</p>
+    	<p class="fs-13 mt-15 t-center-sm">
+    		<a href="free-moving-quote.html" class="gray6 colored-hover mr-10">Free Quote</a>
+    		<a href="how-it-works.html" class="gray6 colored-hover mr-10">How It Works</a>
+    		<a href="about.html" class="gray6 colored-hover mr-10">About</a>
+    		<a href="for-movers.html" class="gray6 colored-hover mr-10">For Movers</a>
+    		<a href="mobile-app.html" class="gray6 colored-hover mr-10">Mobile App</a>
+    		<a href="test-ai.html" class="gray6 colored-hover mr-10">Test AI</a>
+    		<a href="partners.html" class="gray6 colored-hover mr-10">Partners</a>
+    		<a href="pricing.html" class="gray6 colored-hover mr-10">Pricing</a>
+    		<a href="contact.html" class="gray6 colored-hover mr-10">Contact</a>
+    		<a href="register-as-mover.html" class="gray6 colored-hover">Become a Mover</a>
+    	</p>
+    	<p class="fs-13 mt-10 t-center-sm">
+    		<a href="new-york-movers.html" class="gray6 colored-hover mr-10">New York Movers</a>
+    		<a href="new-jersey-movers.html" class="gray6 colored-hover">New Jersey Movers</a>
+    	</p>
+    	<p class="fs-12 mt-15 t-center-sm">
+    		© 2026 GetMoved. All rights reserved.
+    	</p>
+    	<p class="fs-12 mt-10 t-center-sm">
+    		<a href="terms.html" class="gray6 colored-hover mr-10">Terms &amp; Conditions</a>
+    		<a href="privacy.html" class="gray6 colored-hover">Privacy Policy</a>
+    	</p>
+    </footer>
+    <!-- End footer -->
+
+
+
+    <!-- Back To Top -->
+    <a id="back-to-top" href="index.html#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
+        <i class="ti-angle-double-up fs-18"></i>
+    </a>
+
+
+
+
+	<!-- JS Files -->
+    <script src="js/bs.js"></script>
+    <script src="js/plugins.min.js"></script>
+	<script src="js/functions.js"></script>
+	<script src="js/getmoved.js?v=36"></script>
+	<script src="js/test-ai.js?v=1"></script>
+	<script defer src="js/visit-counter.js?v=1"></script>
+
+</body>
+
+</html>

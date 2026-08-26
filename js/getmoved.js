@@ -404,6 +404,15 @@
       payload.rdt_cid = gmRedditClickId();
       payload.reddit_conversion_id = rdtConversionId;
 
+      // TEST AI handoff: if the visitor analyzed a walkthrough on test-ai.html,
+      // carry its S3 video + detected inventory into the quote. The backend
+      // attaches the items to the created Request (see sendQuickQuote).
+      try {
+        if (!payload.video_url) payload.video_url = sessionStorage.getItem("gm_testai_video_url") || "";
+        var tinv = JSON.parse(sessionStorage.getItem("gm_testai_inventory") || "null");
+        if (Array.isArray(tinv) && tinv.length) payload.inventory = tinv.slice(0, 100);
+      } catch (e) {}
+
       if (quoteSubmit) { quoteSubmit.disabled = true; quoteSubmit.textContent = "Sending..."; }
       setStatus("", false);
 
@@ -437,6 +446,8 @@
             });
           } catch (e) {}
           quoteForm.reset();
+          // The TEST AI inventory is now attached to the created Request — clear the handoff.
+          try { sessionStorage.removeItem("gm_testai_video_url"); sessionStorage.removeItem("gm_testai_inventory"); } catch (e) {}
           setStatus("Thank you! Redirecting…", false);
           // P0.4: the thank-you state is its own URL (quote-received.html), not an inline
           // swap. Lead has already fired here on confirmed success; the thank-you page
