@@ -150,10 +150,12 @@
     setTimeout(function () {
       fetch(API + "/yolo/jobs/" + encodeURIComponent(current.jobId) + "?include_frames=0")
         .then(function (r) { return r.json().catch(function () { return {}; }); })
-        .then(function (data) {
+        .then(function (raw) {
+          // The backend wraps the furniture-api payload: {success, data:{...}}.
+          var data = raw && raw.data ? raw.data : raw;
           var status = String(data.status || (data.status_data && data.status_data.status) || "").toLowerCase();
           var results = data.results || data.results_data || null;
-          if (results && (results.inventory_items || results.items_with_quantity || results.product_groups)) {
+          if (results && (results.inventory_items || results.items_with_quantity || results.aggregated_inventory || results.product_groups)) {
             renderResults(data);
             return;
           }
@@ -175,7 +177,12 @@
     if (timerHandle) { clearInterval(timerHandle); timerHandle = null; }
     var rd = data.results_data || {};
     var r = data.results || {};
-    var items = rd.items_with_quantity || r.items_with_quantity || rd.clustered_items || r.clustered_items || rd.inventory_items || r.inventory_items || [];
+    // aggregated_inventory is already grouped per class with quantity — the best
+    // source for display; the raw per-track lists are the fallback.
+    var items = r.aggregated_inventory || rd.aggregated_inventory ||
+      rd.items_with_quantity || r.items_with_quantity ||
+      rd.clustered_items || r.clustered_items ||
+      rd.inventory_items || r.inventory_items || [];
 
     // Collapse to {name, quantity} and merge duplicates by name.
     var byName = {};
@@ -183,9 +190,10 @@
       var name = prettyName(it.className || it.class_name || it.name);
       if (!name) return;
       var qty = Number(it.quantity) > 0 ? Number(it.quantity) : 1;
-      if (!byName[name]) byName[name] = { name: name, quantity: 0, image: it.image_filename || "" };
+      var img = it.image_filename || it.representative_image || "";
+      if (!byName[name]) byName[name] = { name: name, quantity: 0, image: img };
       byName[name].quantity += qty;
-      if (!byName[name].image && it.image_filename) byName[name].image = it.image_filename;
+      if (!byName[name].image && img) byName[name].image = img;
     });
     var list = Object.keys(byName).map(function (k) { return byName[k]; });
     list.sort(function (a, b) { return b.quantity - a.quantity || a.name.localeCompare(b.name); });
