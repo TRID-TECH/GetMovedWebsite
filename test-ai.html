@@ -110,6 +110,11 @@
 		.tai-error { text-align: center; padding: 22px 8px; }
 		.tai-error p { color: #c0392b; font-size: 14.5px; margin: 0 0 16px; }
 		.tai-disclaimer { font-size: 12px; color: #9aa7af; margin-top: 14px; line-height: 1.5; }
+		.tai-beta-badge { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 3px 12px; border-radius: 999px; background: #fdf3e0; color: #b7791f; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+		.tai-beta-note { margin-top: 14px; padding: 11px 14px; border-radius: 10px; background: #fdf6e7; border: 1px solid #f3e3c2; font-size: 13px; color: #6b5b3a; line-height: 1.55; }
+		.tai-beta-note a { color: #1e8e4e; font-weight: 700; }
+		.tai-beta-mini { font-size: 12.5px; color: #b7791f; margin: 14px 0 0; }
+		.tai-beta-mini a { color: #1e8e4e; font-weight: 700; }
 		@media (max-width: 991px) { .tai-grid { grid-template-columns: 1fr; gap: 30px; } .tai-title { font-size: 32px; } }
 		@media (max-width: 575px) { .tai-items { grid-template-columns: 1fr; } .tai-section { padding: 30px 0 40px; } }
 	</style>
@@ -230,7 +235,7 @@
 
 					<!-- State: upload -->
 					<div id="tai-state-upload">
-						<h3 class="tai-card-title font-secondary">Upload Your Walkthrough</h3>
+						<h3 class="tai-card-title font-secondary">Upload Your Walkthrough<span class="tai-beta-badge">Beta</span></h3>
 						<div id="tai-dropzone" class="tai-dropzone">
 							<i class="ti-video-camera"></i>
 							<p>Drag &amp; drop your video here</p>
@@ -240,6 +245,7 @@
 							</div>
 						</div>
 						<input type="file" id="tai-file" accept="video/*" style="display:none;">
+						<p class="tai-beta-note">You&#39;re trying the <strong>free beta</strong> &mdash; it runs on limited hardware, so processing takes a few minutes. For the full-speed experience, <a href="https://portal.getmoved.app/register">create a free account</a>.</p>
 						<p class="tai-disclaimer">By uploading you agree to our <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>. We store your video securely to generate your inventory and improve our AI.</p>
 					</div>
 
@@ -251,6 +257,7 @@
 							<p id="tai-proc-text" class="tai-proc-text">Uploading your video&hellip;</p>
 							<p class="tai-proc-timer"><span id="tai-proc-timer">0:00</span> elapsed</p>
 							<div id="tai-prog" class="tai-prog"><div id="tai-prog-bar" class="tai-prog-bar"></div></div>
+							<p class="tai-beta-mini">Beta preview &mdash; limited processing speed. <a href="https://portal.getmoved.app/register">Registered users</a> get the full-speed experience.</p>
 						</div>
 					</div>
 
