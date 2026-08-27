@@ -223,7 +223,7 @@
 						<span><i class="ti-check-box"></i> Your video stays private</span>
 					</div>
 					<ul class="tai-steps">
-						<li><span class="n">1</span><span><strong>Record a walkthrough.</strong> Walk slowly through each room with your phone camera. 30&ndash;90 seconds is perfect.</span></li>
+						<li><span class="n">1</span><span><strong>Record a walkthrough.</strong> Walk slowly with your phone camera. The beta analyzes the <strong>first 15 seconds</strong>, so start with your fullest room.</span></li>
 						<li><span class="n">2</span><span><strong>Upload it here.</strong> Our AI watches the video and identifies beds, sofas, tables, appliances and more.</span></li>
 						<li><span class="n">3</span><span><strong>Get your inventory.</strong> See every detected item with quantities, plus the truck size your move needs.</span></li>
 						<li><span class="n">4</span><span><strong>Turn it into a quote.</strong> One click sends your inventory to trusted movers for a real, accurate quote.</span></li>
@@ -239,13 +239,13 @@
 						<div id="tai-dropzone" class="tai-dropzone">
 							<i class="ti-video-camera"></i>
 							<p>Drag &amp; drop your video here</p>
-							<small>MP4, MOV or WEBM &mdash; up to 300MB</small>
+							<small>MP4, MOV or WEBM &mdash; up to 300MB &middot; beta analyzes the <strong>first 15 seconds</strong></small>
 							<div style="margin-top:18px;">
 								<button type="button" id="tai-pick" class="tai-btn">Choose a video</button>
 							</div>
 						</div>
 						<input type="file" id="tai-file" accept="video/*" style="display:none;">
-						<p class="tai-beta-note">You&#39;re trying the <strong>free beta</strong> &mdash; it runs on limited hardware, so processing takes a few minutes. For the full-speed experience, <a href="https://portal.getmoved.app/register">create a free account</a>.</p>
+						<p class="tai-beta-note">You&#39;re trying the <strong>free beta</strong> &mdash; it runs on limited hardware, so processing takes a few minutes and <strong>only the first 15 seconds</strong> of your video are analyzed. For the full-speed, full-length experience, <a href="https://portal.getmoved.app/register">create a free account</a>.</p>
 						<p class="tai-disclaimer">By uploading you agree to our <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>. We store your video securely to generate your inventory and improve our AI.</p>
 					</div>
 
@@ -257,14 +257,15 @@
 							<p id="tai-proc-text" class="tai-proc-text">Uploading your video&hellip;</p>
 							<p class="tai-proc-timer"><span id="tai-proc-timer">0:00</span> elapsed</p>
 							<div id="tai-prog" class="tai-prog"><div id="tai-prog-bar" class="tai-prog-bar"></div></div>
-							<p class="tai-beta-mini">Beta preview &mdash; limited processing speed. <a href="https://portal.getmoved.app/register">Registered users</a> get the full-speed experience.</p>
+							<p class="tai-beta-mini">Beta preview &mdash; limited speed, first 15 seconds only. <a href="https://portal.getmoved.app/register">Registered users</a> get the full experience.</p>
 						</div>
 					</div>
 
 					<!-- State: results -->
 					<div id="tai-state-results" style="display:none;">
-						<h3 class="tai-card-title font-secondary">Your AI Inventory</h3>
+						<h3 class="tai-card-title font-secondary">Your AI Inventory<span class="tai-beta-badge">Beta</span></h3>
 						<p id="tai-summary" class="tai-summary"></p>
+						<p class="tai-beta-mini" style="margin:0 0 12px;">Based on the <strong>first 15 seconds</strong> of your video &mdash; <a href="https://portal.getmoved.app/register">register free</a> for full-length analysis.</p>
 						<div id="tai-items" class="tai-items"></div>
 						<div id="tai-vehicle" class="tai-vehicle"></div>
 						<div class="tai-cta-row">
