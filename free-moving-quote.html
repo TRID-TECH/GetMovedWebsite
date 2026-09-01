@@ -112,6 +112,12 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		.gm-qq-submit { width: 100%; border: none; border-radius: 10px; background: #1e8e4e; color: #fff; font-size: 16px; font-weight: 700; padding: 14px; cursor: pointer; margin-top: 14px; transition: background .2s; }
 		.gm-qq-submit:hover { background: #17753f; }
 		.gm-qq-submit:disabled { opacity: .6; cursor: default; }
+		/* Mobile-only tap-to-call under the CTA (Nextdoor traffic is mobile-first). */
+		.gm-call-cta { display: none; }
+		@media (max-width: 640px) {
+			.gm-call-cta { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; padding: 12px; border: 1px solid #1e8e4e; border-radius: 10px; color: #1e8e4e; font-size: 15px; font-weight: 700; text-decoration: none; }
+			.gm-call-cta:hover { background: #f2faf5; color: #17753f; }
+		}
 		.gm-qq-cardtrust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin: 14px 0 0; }
 		.gm-qq-cardtrust span { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #7a8891; font-weight: 600; }
 		.gm-qq-cardtrust i { color: #1e8e4e; font-size: 13px; }
@@ -248,14 +254,12 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
 				<!-- Left: intro / value props -->
 				<div class="gm-qq-intro">
-					<h1 class="gm-qq-title font-secondary">Trusted movers, without the guesswork.</h1>
-					<p class="gm-qq-lead">Licensed, insured movers send you <strong>binding quotes</strong> &mdash; the price you accept is the price you pay. Free, no obligation, and no phone calls required.</p>
+					<h1 class="gm-qq-title font-secondary" id="qq-hero-h1">Your free moving quote, in 2 minutes.</h1>
+					<p class="gm-qq-lead">Licensed, insured NY &amp; NJ movers send you <strong>binding quotes</strong>. No phone calls unless you want one, no obligation.</p>
 					<img class="gm-qq-freeimg" loading="lazy" src="images/FreeSLika.png?v=3" alt="It&#39;s completely FREE. Premium support from our moving experts.">
 					<div class="gm-qq-trust">
-						<span><i class="ti-check-box"></i> Trusted movers</span>
-						<span><i class="ti-check-box"></i> No obligation</span>
-						<span><i class="ti-check-box"></i> Free instant quotes</span>
-						<span><i class="ti-check-box"></i> Your information stays protected</span>
+						<span><i class="ti-check-box"></i> <strong>70+ licensed movers</strong> across NY &amp; NJ</span>
+						<span><i class="ti-check-box"></i> FMCSA-registered carriers</span>
 					</div>
 				</div>
 
@@ -264,8 +268,8 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					<!-- Mobile-only: the card renders first on phones (order:-1), so the
 					     ad-matching headline + proof must live here to sit above the fold. -->
 					<div class="gm-qq-mobilehead">
-						<p class="gm-qq-mh-title">Trusted movers, without the guesswork.</p>
-						<p class="gm-qq-mh-proof">Licensed &amp; insured &middot; binding quotes &middot; no phone calls</p>
+						<p class="gm-qq-mh-title" id="qq-hero-h1-mobile">Your free moving quote, in 2 minutes.</p>
+						<p class="gm-qq-mh-proof">70+ licensed NY &amp; NJ movers &middot; binding quotes &middot; FMCSA-registered</p>
 					</div>
 					<div class="gm-qq-steps">Step 1 of 2 &middot; takes 2 minutes</div>
 					<h3 class="gm-qq-card-title font-secondary">Get your free moving quotes</h3>
@@ -279,19 +283,11 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 							<p class="gm-qq-err" data-err-for="move_to"></p>
 						</div>
 						<div class="gm-qq-field" style="margin-top:12px;">
-								<input type="text" name="moving_date" placeholder="Moving date" autocomplete="off" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
-								<label style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#5b6b73;margin-top:8px;cursor:pointer;"><input type="checkbox" name="flexible" value="1" style="width:auto;"> I&#39;m flexible</label>
-							</div>
-							<div class="gm-qq-field" style="margin-top:12px;">
-								<select name="property_type">
-									<option value="" disabled selected hidden>Move size</option>
-									<option value="Studio">Studio</option>
-									<option value="1BR">1BR</option>
-									<option value="2BR">2BR</option>
-									<option value="3BR+">3BR+</option>
-								</select>
+								<input type="text" id="qq1-contact" name="contact" placeholder="Email or phone &mdash; where quotes go" autocomplete="email" inputmode="email" required>
+								<p class="gm-qq-err" data-err-for="contact"></p>
 							</div>
 							<button type="submit" class="gm-qq-submit font-secondary">See My Moving Options &rarr;</button>
+							<a href="tel:+12016080850" class="gm-call-cta font-secondary"><i class="ti-headphone-alt"></i> Rather talk? Call (201) 608-0850</a>
 						<div class="gm-qq-cardtrust">
 							<span><i class="ti-check"></i> Free</span>
 							<span><i class="ti-check"></i> No obligation</span>
@@ -383,7 +379,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 	<!-- Revolution Slider removed on this landing page: there is no slider here, so its
 	     ~349 KB of JS (revolution + tools) was pure dead weight hurting mobile LCP. -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=36"></script>
+	<script src="js/getmoved.js?v=37"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->

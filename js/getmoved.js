@@ -477,6 +477,15 @@
         setHidden("move_to", toV);
         setHidden("moving_date", dateV);
         setHidden("property_type", sizeV);
+        // Step-1 contact -> prefill the matching step-2 field (email or phone).
+        try {
+          var c1 = (sessionStorage.getItem("gm_qq_contact") || "").trim();
+          if (c1) {
+            var c1IsEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c1);
+            var c1Target = quoteForm.querySelector(c1IsEmail ? '[name="email"]' : '[name="phone"]');
+            if (c1Target && !c1Target.value) c1Target.value = c1;
+          }
+        } catch (e) {}
         // Summary of the move details collected in step 1.
         var sum = document.getElementById("qq-summary");
         if (sum && (fromV || toV)) {
@@ -588,9 +597,41 @@
       var sizeEl = step1Form.querySelector('[name="property_type"]');
       var dateV = flexEl && flexEl.checked ? "I'm flexible" : ((dateEl && dateEl.value || "").trim());
       var sizeV = (sizeEl && sizeEl.value || "").trim();
+      // Step 1 now captures a contact (email OR phone) so an abandoned step 2
+      // still leaves a usable partial lead (spec fix 02).
+      var contactEl = step1Form.querySelector('[name="contact"]');
+      var contactV = (contactEl && contactEl.value || "").trim();
+      var contactIsEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactV);
+      var contactIsPhone = contactV.replace(/\D/g, "").length >= 10;
       if (!fromV) { showErr(fromEl, "move_from", "Enter your pick up city or ZIP"); }
       if (!toV) { showErr(toEl, "move_to", "Enter your delivery city or ZIP"); }
-      if (!fromV || !toV) return;
+      if (contactEl && !contactV) { showErr(contactEl, "contact", "Enter your email or phone so movers can reach you"); }
+      else if (contactEl && !contactIsEmail && !contactIsPhone) { showErr(contactEl, "contact", "Enter a valid email or a 10-digit phone"); }
+      if (!fromV || !toV || (contactEl && !(contactIsEmail || contactIsPhone))) return;
+
+      // Capture the partial lead NOW (fire-and-forget, keepalive survives the redirect).
+      // Deliberately NO Meta/Reddit/Nextdoor conversion events here — those stay bound to
+      // the final step-2 submit so ad algorithms keep optimizing for full leads.
+      if (contactV) {
+        try {
+          var attribution1 = gmAttribution();
+          fetch("https://portal.getmoved.app/api/v1/leads/partial", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            keepalive: true,
+            body: JSON.stringify({
+              move_from: fromV,
+              move_to: toV,
+              contact: contactV,
+              source: attribution1.source,
+              medium: attribution1.medium,
+              campaign: attribution1.campaign,
+            }),
+          }).catch(function () {});
+          sessionStorage.setItem("gm_qq_contact", contactV);
+        } catch (e) {}
+        gmTrack("quote_step_1", { source: "landing" });
+      }
       try {
         if (!sessionStorage.getItem("gm_form_start")) {
           sessionStorage.setItem("gm_form_start", "1");
@@ -614,6 +655,28 @@
       setTimeout(function () { window.location.href = _step2Url; }, 300);
     });
   }
+
+  // Ad-matched headline (spec fix 01): "-neighborhood" ad variants get a
+  // neighborhood-flavored H1 on the quote landing. Display-only, no tracking impact.
+  try {
+    var utmContentV = new URLSearchParams(window.location.search).get("utm_content") || "";
+    if (/-neighborhood/.test(utmContentV)) {
+      var adH1 = document.getElementById("qq-hero-h1");
+      var adH1m = document.getElementById("qq-hero-h1-mobile");
+      var adTxt = "Moving out of your neighborhood? Get free quotes.";
+      if (adH1) adH1.textContent = adTxt;
+      if (adH1m) adH1m.textContent = adTxt;
+    }
+  } catch (e) {}
+
+  // call_click (spec fix 03/06): measure tap-to-call separately. GA4 + funnel
+  // mirror only — deliberately NOT a Meta/Nextdoor/Reddit conversion.
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (telA) {
+    telA.addEventListener("click", function () {
+      gmTrack("call_click", { source: "landing", href: telA.getAttribute("href") || "" });
+      try { if (typeof window.gtag === "function") window.gtag("event", "call_click", { link_url: telA.getAttribute("href") || "" }); } catch (e) {}
+    });
+  });
 
   // Register-as-Mover form -> posts to the same backend endpoint as the portal registration.
   // Pre-launch city landing pages: waitlist email capture (no quote flow, no Meta Lead).

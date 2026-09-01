@@ -244,11 +244,27 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					<!-- Move details captured in step 1 -> hidden here, shown as a summary. -->
 					<input type="hidden" name="move_from" id="qq-move-from">
 					<input type="hidden" name="move_to" id="qq-move-to">
-					<input type="hidden" name="moving_date">
-					<input type="hidden" name="property_type">
 					<div id="qq-summary" class="gm-qq-summary"></div>
 
-					<p class="gm-qq-sec" style="margin-top:0;">Your contact details</p>
+					<!-- Date + size moved here from step 1 (spec fix 04): step 1 only asks
+					     route + contact; these enrich the already-captured lead. -->
+					<p class="gm-qq-sec" style="margin-top:0;">About your move</p>
+					<div class="gm-qq-grid2">
+						<div class="gm-qq-field">
+							<input type="text" name="moving_date" placeholder="Moving date (optional)" autocomplete="off" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+						</div>
+						<div class="gm-qq-field">
+							<select name="property_type">
+								<option value="" disabled selected hidden>Move size</option>
+								<option value="Studio">Studio</option>
+								<option value="1BR">1BR</option>
+								<option value="2BR">2BR</option>
+								<option value="3BR+">3BR+</option>
+							</select>
+						</div>
+					</div>
+
+					<p class="gm-qq-sec">Your contact details</p>
 					<div class="gm-qq-field">
 						<input type="text" id="qq-first" name="first_name" placeholder="First name" autocomplete="given-name" required>
 						<p class="gm-qq-err" data-err-for="first_name"></p>
@@ -336,7 +352,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=36"></script>
+	<script src="js/getmoved.js?v=37"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
