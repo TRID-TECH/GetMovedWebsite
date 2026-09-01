@@ -252,6 +252,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					<div class="gm-qq-grid2">
 						<div class="gm-qq-field">
 							<input type="text" name="moving_date" placeholder="Moving date (optional)" autocomplete="off" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+							<label style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#5b6b73;margin-top:8px;cursor:pointer;"><input type="checkbox" name="flexible" value="1" style="width:auto;"> I&#39;m flexible</label>
 						</div>
 						<div class="gm-qq-field">
 							<select name="property_type">
@@ -264,19 +265,20 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 						</div>
 					</div>
 
-					<p class="gm-qq-sec">Your contact details</p>
-					<div class="gm-qq-field">
-						<input type="text" id="qq-first" name="first_name" placeholder="First name" autocomplete="given-name" required>
-						<p class="gm-qq-err" data-err-for="first_name"></p>
-					</div>
-					<div class="gm-qq-grid2">
-						<div class="gm-qq-field">
-							<input type="tel" id="qq-phone" name="phone" placeholder="Phone" inputmode="tel" autocomplete="off" required>
-							<p class="gm-qq-err" data-err-for="phone"></p>
-						</div>
-						<div class="gm-qq-field">
-							<input type="email" id="qq-email" name="email" placeholder="Email" inputmode="email" autocomplete="off" required>
-							<p class="gm-qq-err" data-err-for="email"></p>
+					<!-- Contact was captured on step 1 (email + phone). Hidden here, prefilled
+					     from sessionStorage; getmoved.js un-hides this block only when someone
+					     lands on this page directly without step-1 data. -->
+					<div id="qq-contact-fallback" style="display:none;">
+						<p class="gm-qq-sec">Your contact details</p>
+						<div class="gm-qq-grid2">
+							<div class="gm-qq-field">
+								<input type="email" id="qq-email" name="email" placeholder="Email &mdash; where your quotes arrive" inputmode="email" autocomplete="email">
+								<p class="gm-qq-err" data-err-for="email"></p>
+							</div>
+							<div class="gm-qq-field">
+								<input type="tel" id="qq-phone" name="phone" placeholder="Phone" inputmode="tel" autocomplete="tel">
+								<p class="gm-qq-err" data-err-for="phone"></p>
+							</div>
 						</div>
 					</div>
 
@@ -284,6 +286,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 						<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
 					</div>
 					<button type="submit" class="gm-qq-submit font-secondary">Send &amp; Get My Quotes</button>
+					<p class="gm-qq-consent" style="font-size:11.5px;color:#9aa7af;margin:10px 2px 0;line-height:1.5;">By submitting, you agree that GetMoved and its partner moving companies may contact you by phone, text, or email about your quote request. See our <a href="terms.html" style="color:#1e8e4e;">Terms</a> and <a href="privacy.html" style="color:#1e8e4e;">Privacy Policy</a>.</p>
 					<div class="gm-qq-cardtrust">
 						<span><i class="ti-timer"></i> Takes less than 60 seconds</span>
 						<span><i class="ti-check"></i> No obligation</span>

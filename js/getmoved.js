@@ -404,6 +404,13 @@
       payload.rdt_cid = gmRedditClickId();
       payload.reddit_conversion_id = rdtConversionId;
 
+      // Link the step-1 partial lead (if we captured its id) so the backend can
+      // merge it into this full lead precisely, even if the phone was edited.
+      try {
+        var partialId1 = sessionStorage.getItem("gm_qq_partial_id");
+        if (partialId1) payload.partial_lead_id = Number(partialId1) || null;
+      } catch (e) {}
+
       // TEST AI handoff: if the visitor analyzed a walkthrough on test-ai.html,
       // carry its S3 video + detected inventory into the quote. The backend
       // attaches the items to the created Request (see sendQuickQuote).
@@ -477,13 +484,40 @@
         setHidden("move_to", toV);
         setHidden("moving_date", dateV);
         setHidden("property_type", sizeV);
-        // Step-1 contact -> prefill the matching step-2 field (email or phone).
+        // Step-1 contact (email + phone) -> prefill the hidden step-2 fields.
+        // If someone lands here directly with no step-1 data, un-hide the
+        // contact block so the form still works standalone.
         try {
-          var c1 = (sessionStorage.getItem("gm_qq_contact") || "").trim();
-          if (c1) {
-            var c1IsEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c1);
-            var c1Target = quoteForm.querySelector(c1IsEmail ? '[name="email"]' : '[name="phone"]');
-            if (c1Target && !c1Target.value) c1Target.value = c1;
+          var s1Email = (sessionStorage.getItem("gm_qq_email") || "").trim();
+          var s1Phone = (sessionStorage.getItem("gm_qq_phone") || "").trim();
+          var emTarget = quoteForm.querySelector('[name="email"]');
+          var phTarget = quoteForm.querySelector('[name="phone"]');
+          if (emTarget && s1Email && !emTarget.value) emTarget.value = s1Email;
+          if (phTarget && s1Phone && !phTarget.value) phTarget.value = s1Phone;
+          if (!s1Email || !s1Phone) {
+            var fb = document.getElementById("qq-contact-fallback");
+            if (fb) fb.style.display = "";
+          }
+        } catch (e) {}
+
+        // Email typo helper (soft "did you mean", never a hard block).
+        try {
+          var emEl2 = quoteForm.querySelector('[name="email"]');
+          if (emEl2) {
+            var TYPOS = { gmial: "gmail", gmai: "gmail", gamil: "gmail", hotmial: "hotmail", hotmal: "hotmail", yaho: "yahoo", yahooo: "yahoo", outlok: "outlook" };
+            emEl2.addEventListener("blur", function () {
+              var errEl2 = quoteForm.querySelector('[data-err-for="email"]');
+              if (!errEl2 || errEl2.classList.contains("has-error")) return;
+              var v2 = (emEl2.value || "").trim().toLowerCase();
+              var m2 = /@([a-z0-9-]+)\./.exec(v2);
+              if (m2 && TYPOS[m2[1]]) {
+                errEl2.textContent = "Did you mean " + v2.replace("@" + m2[1] + ".", "@" + TYPOS[m2[1]] + ".") + "?";
+                errEl2.classList.add("is-hint");
+              } else if (errEl2.classList.contains("is-hint")) {
+                errEl2.textContent = "";
+                errEl2.classList.remove("is-hint");
+              }
+            });
           }
         } catch (e) {}
         // Summary of the move details collected in step 1.
@@ -578,6 +612,25 @@
   // Quick-quote STEP 1 (homepage hero): locations only -> quote.html with them pre-filled.
   const step1Form = document.getElementById("qq-step1-form");
   if (step1Form) {
+    // Email typo helper on step 1 (soft "did you mean", never a hard block).
+    (function () {
+      var em1 = step1Form.querySelector('[name="email"]');
+      if (!em1) return;
+      var TYPOS1 = { gmial: "gmail", gmai: "gmail", gamil: "gmail", hotmial: "hotmail", hotmal: "hotmail", yaho: "yahoo", yahooo: "yahoo", outlok: "outlook" };
+      em1.addEventListener("blur", function () {
+        var errEl1 = step1Form.querySelector('[data-err-for="email"]');
+        if (!errEl1) return;
+        var v1 = (em1.value || "").trim().toLowerCase();
+        var m1 = /@([a-z0-9-]+)\./.exec(v1);
+        if (m1 && TYPOS1[m1[1]]) {
+          errEl1.textContent = "Did you mean " + v1.replace("@" + m1[1] + ".", "@" + TYPOS1[m1[1]] + ".") + "?";
+          errEl1.classList.add("is-hint");
+        } else if (errEl1.classList.contains("is-hint")) {
+          errEl1.textContent = "";
+          errEl1.classList.remove("is-hint");
+        }
+      });
+    })();
     step1Form.addEventListener("submit", function (event) {
       event.preventDefault();
       var fromEl = step1Form.querySelector('[name="move_from"]');
@@ -597,22 +650,29 @@
       var sizeEl = step1Form.querySelector('[name="property_type"]');
       var dateV = flexEl && flexEl.checked ? "I'm flexible" : ((dateEl && dateEl.value || "").trim());
       var sizeV = (sizeEl && sizeEl.value || "").trim();
-      // Step 1 now captures a contact (email OR phone) so an abandoned step 2
-      // still leaves a usable partial lead (spec fix 02).
-      var contactEl = step1Form.querySelector('[name="contact"]');
-      var contactV = (contactEl && contactEl.value || "").trim();
-      var contactIsEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactV);
-      var contactIsPhone = contactV.replace(/\D/g, "").length >= 10;
+      // Step 1 captures BOTH contacts: email (account identity, the dedup key)
+      // and phone (so a mover can confirm a missing detail). An abandoned step 2
+      // still leaves a usable partial lead — followed up by EMAIL only.
+      var email1El = step1Form.querySelector('[name="email"]');
+      var email1V = (email1El && email1El.value || "").trim().toLowerCase();
+      var email1Valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email1V);
+      var phone1El = step1Form.querySelector('[name="phone"]');
+      var phone1Raw = (phone1El && phone1El.value || "").trim();
+      var phone1Digits = phone1Raw.replace(/\D/g, "");
+      // Accept 10 digits, or 11 starting with 1; normalize to E.164 (+1XXXXXXXXXX).
+      if (phone1Digits.length === 11 && phone1Digits.charAt(0) === "1") phone1Digits = phone1Digits.slice(1);
+      var phone1Valid = phone1Digits.length === 10;
+      var phone1E164 = phone1Valid ? "+1" + phone1Digits : "";
       if (!fromV) { showErr(fromEl, "move_from", "Enter your pick up city or ZIP"); }
       if (!toV) { showErr(toEl, "move_to", "Enter your delivery city or ZIP"); }
-      if (contactEl && !contactV) { showErr(contactEl, "contact", "Enter your email or phone so movers can reach you"); }
-      else if (contactEl && !contactIsEmail && !contactIsPhone) { showErr(contactEl, "contact", "Enter a valid email or a 10-digit phone"); }
-      if (!fromV || !toV || (contactEl && !(contactIsEmail || contactIsPhone))) return;
+      if (email1El && !email1Valid) { showErr(email1El, "email", "Enter a valid email address."); }
+      if (phone1El && !phone1Valid) { showErr(phone1El, "phone", "Enter a 10-digit US phone number."); }
+      if (!fromV || !toV || (email1El && !email1Valid) || (phone1El && !phone1Valid)) return;
 
       // Capture the partial lead NOW (fire-and-forget, keepalive survives the redirect).
-      // Deliberately NO Meta/Reddit/Nextdoor conversion events here — those stay bound to
-      // the final step-2 submit so ad algorithms keep optimizing for full leads.
-      if (contactV) {
+      // HARD CONSTRAINT: no Meta/Reddit/Nextdoor/gtag conversion events here — those stay
+      // bound to the final step-2 submit so ad algorithms optimize for full leads.
+      if (email1Valid) {
         try {
           var attribution1 = gmAttribution();
           fetch("https://portal.getmoved.app/api/v1/leads/partial", {
@@ -622,15 +682,23 @@
             body: JSON.stringify({
               move_from: fromV,
               move_to: toV,
-              contact: contactV,
+              email: email1V,
+              phone: phone1E164,
               source: attribution1.source,
               medium: attribution1.medium,
               campaign: attribution1.campaign,
             }),
-          }).catch(function () {});
-          sessionStorage.setItem("gm_qq_contact", contactV);
+          })
+            .then(function (r) { return r.json().catch(function () { return {}; }); })
+            .then(function (pr) {
+              // Best-effort: remember the partial id so step 2 can merge exactly.
+              try { if (pr && pr.data && pr.data.id) sessionStorage.setItem("gm_qq_partial_id", String(pr.data.id)); } catch (e) {}
+            })
+            .catch(function () {});
+          sessionStorage.setItem("gm_qq_email", email1V);
+          sessionStorage.setItem("gm_qq_phone", phone1E164);
         } catch (e) {}
-        gmTrack("quote_step_1", { source: "landing" });
+        gmTrack("quote_step_1", { source: "landing", has_email: true, has_phone: true });
       }
       try {
         if (!sessionStorage.getItem("gm_form_start")) {

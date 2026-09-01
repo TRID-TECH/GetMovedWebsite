@@ -112,6 +112,9 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		.gm-qq-submit { width: 100%; border: none; border-radius: 10px; background: #1e8e4e; color: #fff; font-size: 16px; font-weight: 700; padding: 14px; cursor: pointer; margin-top: 14px; transition: background .2s; }
 		.gm-qq-submit:hover { background: #17753f; }
 		.gm-qq-submit:disabled { opacity: .6; cursor: default; }
+		.gm-qq-helper { font-size: 12px; color: #7a8891; margin: 5px 2px 0; line-height: 1.45; }
+		.gm-qq-consent { font-size: 11.5px; color: #9aa7af; margin: 10px 2px 0; line-height: 1.5; }
+		.gm-qq-consent a { color: #1e8e4e; }
 		/* Mobile-only tap-to-call under the CTA (Nextdoor traffic is mobile-first). */
 		.gm-call-cta { display: none; }
 		@media (max-width: 640px) {
@@ -255,7 +258,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 				<!-- Left: intro / value props -->
 				<div class="gm-qq-intro">
 					<h1 class="gm-qq-title font-secondary" id="qq-hero-h1">Your free moving quote, in 2 minutes.</h1>
-					<p class="gm-qq-lead">Licensed, insured NY &amp; NJ movers send you <strong>binding quotes</strong>. No phone calls unless you want one, no obligation.</p>
+					<p class="gm-qq-lead">Licensed, insured NY &amp; NJ movers send you <strong>binding quotes</strong>. No sales calls &mdash; we only ring if a detail is missing.</p>
 					<img class="gm-qq-freeimg" loading="lazy" src="images/FreeSLika.png?v=3" alt="It&#39;s completely FREE. Premium support from our moving experts.">
 					<div class="gm-qq-trust">
 						<span><i class="ti-check-box"></i> <strong>70+ licensed movers</strong> across NY &amp; NJ</span>
@@ -283,9 +286,14 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 							<p class="gm-qq-err" data-err-for="move_to"></p>
 						</div>
 						<div class="gm-qq-field" style="margin-top:12px;">
-								<input type="text" id="qq1-contact" name="contact" placeholder="Email or phone &mdash; where quotes go" autocomplete="email" inputmode="email" required>
-								<p class="gm-qq-err" data-err-for="contact"></p>
+								<input type="email" id="qq1-email" name="email" placeholder="Email &mdash; where your quotes arrive" autocomplete="email" inputmode="email" required>
+								<p class="gm-qq-err" data-err-for="email"></p>
 							</div>
+							<div class="gm-qq-field" style="margin-top:12px;">
+								<input type="tel" id="qq1-phone" name="phone" placeholder="Phone &mdash; in case a mover needs a detail confirmed" autocomplete="tel" inputmode="tel" required>
+								<p class="gm-qq-err" data-err-for="phone"></p>
+							</div>
+							<p class="gm-qq-helper">We never sell your details. No sales calls.</p>
 							<button type="submit" class="gm-qq-submit font-secondary">See My Moving Options &rarr;</button>
 							<a href="tel:+12016080850" class="gm-call-cta font-secondary"><i class="ti-headphone-alt"></i> Rather talk? Call (201) 608-0850</a>
 						<div class="gm-qq-cardtrust">
@@ -311,10 +319,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 	<!-- Trust strip — every claim is true of the product. No invented ratings/reviews. -->
 	<div style="background:#0f1520;padding:14px 16px;">
 		<div style="max-width:1140px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;justify-content:center;font-family:inherit;font-size:13px;color:#cbd5e1;">
-			<span>Licensed &amp; insured movers</span>
-			<span>Binding quotes &mdash; the price you accept is the price you pay</span>
-			<span>No phone calls required</span>
-			<span>Free &amp; no obligation</span>
+			<span>70+ licensed movers across NY &amp; NJ</span>
 			<span>FMCSA-registered carriers</span>
 		</div>
 	</div>
