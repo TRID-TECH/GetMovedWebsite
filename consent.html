@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+  Call-consent confirmation page.
+
+  DELIBERATELY BARE: no GTM, no Meta/Reddit/Nextdoor pixels, no gtag, no
+  analytics of any kind. Conversion events live exclusively on the quote
+  step-2 submit; this page must never fire or double-count anything.
+
+  A bare GET (mail scanner prefetch) renders this page and changes NOTHING —
+  the accept/decline action only happens on the button's POST.
+-->
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noindex,nofollow" />
+	<title>GetMoved — Confirm</title>
+	<link rel="icon" type="image/png" href="assets/img/favicon-128.png" />
+	<style>
+		body { margin: 0; font-family: -apple-system, "Segoe UI", Arial, sans-serif; background: #f2f5f4; color: #15202b; }
+		.wrap { max-width: 460px; margin: 8vh auto 0; padding: 0 16px; }
+		.card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 30px 26px; text-align: center; }
+		.logo { max-width: 150px; margin: 0 auto 18px; display: block; }
+		h1 { font-size: 21px; margin: 0 0 12px; }
+		p { font-size: 14.5px; color: #48575f; line-height: 1.6; margin: 0 0 14px; }
+		.consent-text { font-size: 12.5px; color: #6b7280; border-top: 1px solid #e6ecea; padding-top: 14px; margin-top: 6px; text-align: left; }
+		.btn { display: inline-block; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 700; padding: 14px 30px; cursor: pointer; margin-top: 6px; }
+		.btn-accept { background: #1e8e4e; }
+		.btn-accept:hover { background: #17753f; }
+		.btn-decline { background: #6b7280; }
+		.btn-decline:hover { background: #4b5563; }
+		.btn[disabled] { opacity: .6; cursor: default; }
+		.state-ok { color: #1e8e4e; font-weight: 700; font-size: 16px; }
+		.state-muted { color: #6b7280; font-weight: 600; }
+		.err { color: #c0392b; font-size: 13.5px; }
+		.foot { text-align: center; font-size: 12px; color: #9aa7af; margin: 18px 0 40px; }
+		.foot a { color: #9aa7af; }
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="card" id="card">
+			<img class="logo" src="assets/img/logo_png.png" alt="GetMoved">
+			<div id="content"><p>Loading&hellip;</p></div>
+		</div>
+		<p class="foot">GetMoved &middot; +1 (201) 608-0850 &middot; <a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></p>
+	</div>
+
+	<script>
+	(function () {
+		var API = "https://portal.getmoved.app/api/v1/leads/consent-token/";
+		var content = document.getElementById("content");
+		var token = new URLSearchParams(window.location.search).get("t") || "";
+		var esc = function (s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+
+		function showOutcome(outcome) {
+			if (outcome === "accepted") {
+				content.innerHTML = '<h1>Thank you!</h1><p class="state-ok">You’re all set — a GetMoved moving expert will call you shortly to finish your quote request.</p><p>Prefer to finish online instead? <a href="free-moving-quote.html" style="color:#1e8e4e;">Complete your request here</a>.</p>';
+			} else if (outcome === "declined") {
+				content.innerHTML = '<h1>No problem.</h1><p class="state-muted">We won’t call you, and we won’t email you about this again.</p><p>Changed your mind? You can always start fresh at <a href="free-moving-quote.html" style="color:#1e8e4e;">getmoved.app</a>.</p>';
+			} else {
+				content.innerHTML = '<h1>Link no longer valid</h1><p>This link has expired or was replaced by a newer email. If you’d still like moving quotes, <a href="free-moving-quote.html" style="color:#1e8e4e;">start here</a>.</p>';
+			}
+		}
+
+		function render(data) {
+			if (!data || data.state === "invalid") {
+				content.innerHTML = '<h1>Link not recognized</h1><p class="err">This link is not valid. If you’d like moving quotes, <a href="free-moving-quote.html" style="color:#1e8e4e;">start here</a>.</p>';
+				return;
+			}
+			if (data.state === "used" || data.outcome === "accepted" || data.outcome === "declined") { showOutcome(data.outcome); return; }
+			if (data.state === "expired" || data.state === "invalidated") { showOutcome(null); return; }
+			// state === ready — render the single-action confirmation (POST on click).
+			if (data.action === "accept") {
+				content.innerHTML =
+					'<h1>May we call you?</h1>' +
+					'<p>Hi ' + esc(data.first_name) + ' — one tap below and a GetMoved moving expert will call you to finish your quote request (about 5 minutes, nothing to pay).</p>' +
+					'<button class="btn btn-accept" id="go">Yes, call me</button>' +
+					'<p class="consent-text">' + esc(data.consent_sentence) + '</p>';
+			} else {
+				content.innerHTML =
+					'<h1>Confirm: no call</h1>' +
+					'<p>One tap below and we won’t call you — and we won’t email you about this request again.</p>' +
+					'<button class="btn btn-decline" id="go">No thanks — don’t call me</button>';
+			}
+			document.getElementById("go").addEventListener("click", function () {
+				var btn = this;
+				btn.disabled = true;
+				btn.textContent = "One moment…";
+				fetch(API + encodeURIComponent(token), { method: "POST", headers: { "Content-Type": "application/json" } })
+					.then(function (r) { return r.json().catch(function () { return {}; }); })
+					.then(function (res) { showOutcome(res.outcome || (data.action === "accept" ? "accepted" : "declined")); })
+					.catch(function () {
+						btn.disabled = false;
+						btn.textContent = data.action === "accept" ? "Yes, call me" : "No thanks — don’t call me";
+						var p = document.createElement("p");
+						p.className = "err";
+						p.textContent = "Something went wrong — please try again.";
+						content.appendChild(p);
+					});
+			});
+		}
+
+		if (!token) { render(null); return; }
+		fetch(API + encodeURIComponent(token))
+			.then(function (r) { return r.json().catch(function () { return {}; }); })
+			.then(render)
+			.catch(function () { render(null); });
+	})();
+	</script>
+</body>
+</html>
