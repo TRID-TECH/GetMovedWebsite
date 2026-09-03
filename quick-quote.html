@@ -121,6 +121,16 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		.gm-qq-hp { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
 		.page-loader, .loader-wrapper { display: none !important; }
 		.gm-qq-err { color: #c0392b; font-size: 12px; margin: 4px 0 0; }
+		/* Progressive disclosure (step 1 opens with ONE field) */
+		.gm-qq-label { display: block; font-size: 13px; font-weight: 600; color: #3c4a52; margin: 0 0 6px; }
+		.gm-qq-confirmed { display: flex; align-items: center; gap: 8px; background: #f0f7f2; border: 1px solid #cfe6d8; border-radius: 10px; padding: 10px 14px; font-size: 14px; color: #15202b; }
+		.gm-qq-confirmed[hidden] { display: none; }
+		.gm-qq-confirmed .gm-qq-change { margin-left: auto; border: none; background: none; color: #1e8e4e; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: underline; padding: 0; font-family: inherit; }
+		.gm-qq-helper { font-size: 12px; color: #7a8891; margin: 5px 2px 0; line-height: 1.45; }
+		#qq1-more { overflow: hidden; }
+		#qq1-more[hidden] { display: none; }
+		@media (prefers-reduced-motion: no-preference) { #qq1-more.gm-anim { transition: max-height .35s ease; } }
+
 		.gm-qq-err.is-hint { color: #b7791f; }
 		.gm-qq-field.has-error input, .gm-qq-field.has-error select { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192,57,43,.10); }
 		.gm-qq-contactpick { margin-top: 2px; }
@@ -278,25 +288,35 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 				<!-- Right: form card -->
 				<div class="gm-qq-card">
 					<h3 class="gm-qq-card-title font-secondary">Get Free Moving Quotes</h3>
-					<form id="qq-step1-form" novalidate>
-						<div class="gm-qq-field">
-							<input type="text" id="qq1-from" name="move_from" placeholder="Pick up &mdash; city or ZIP" autocomplete="off" required>
+					<form id="qq-step1-form" novalidate data-progressive="1">
+						<div class="gm-qq-field" id="qq1-from-field">
+							<label class="gm-qq-label" for="qq1-from">Where are you moving from?</label>
+							<input type="text" id="qq1-from" name="move_from" placeholder="ZIP or city" autocomplete="off" required>
 							<p class="gm-qq-err" data-err-for="move_from"></p>
 						</div>
-						<div class="gm-qq-field" style="margin-top:12px;">
-							<input type="text" id="qq1-to" name="move_to" placeholder="Delivery &mdash; city or ZIP" autocomplete="off" required>
-							<p class="gm-qq-err" data-err-for="move_to"></p>
+						<div class="gm-qq-confirmed" id="qq1-from-confirmed" hidden>
+							<span>From: <strong id="qq1-from-confirmed-val"></strong> &#10003;</span>
+							<button type="button" class="gm-qq-change" id="qq1-from-change">change</button>
 						</div>
-						<div class="gm-qq-field" style="margin-top:12px;">
-								<input type="email" name="email" placeholder="Email &mdash; where your quotes arrive" autocomplete="email" inputmode="email" required>
+						<div id="qq1-more" hidden>
+							<div class="gm-qq-field" style="margin-top:12px;">
+								<label class="gm-qq-label" for="qq1-to">Where to?</label>
+								<input type="text" id="qq1-to" name="move_to" placeholder="ZIP or city" autocomplete="off" required>
+								<p class="gm-qq-err" data-err-for="move_to"></p>
+							</div>
+							<div class="gm-qq-field" style="margin-top:12px;">
+								<label class="gm-qq-label" for="qq1-email">Where should movers send quotes?</label>
+								<input type="email" id="qq1-email" name="email" placeholder="Email" autocomplete="email" inputmode="email" required>
 								<p class="gm-qq-err" data-err-for="email"></p>
 							</div>
 							<div class="gm-qq-field" style="margin-top:12px;">
-								<input type="tel" name="phone" placeholder="Phone &mdash; in case our moving experts need more details" autocomplete="tel" inputmode="tel" required>
+								<label class="gm-qq-label" for="qq1-phone">Phone</label>
+								<input type="tel" id="qq1-phone" name="phone" placeholder="(___) ___-____" autocomplete="tel" inputmode="tel" required>
 								<p class="gm-qq-err" data-err-for="phone"></p>
+								<p class="gm-qq-helper">A mover may call to confirm a detail. Never for sales.</p>
 							</div>
-							<p style="font-size:12px;color:#7a8891;margin:5px 2px 0;line-height:1.45;">We never sell your details. No sales calls.</p>
-							<button type="submit" class="gm-qq-submit font-secondary">See My Moving Options &rarr;</button>
+						</div>
+						<button type="submit" class="gm-qq-submit font-secondary" id="qq1-submit">Continue &rarr;</button>
 						<div class="gm-qq-cardtrust">
 							<span><i class="ti-check"></i> Free</span>
 							<span><i class="ti-check"></i> No obligation</span>
