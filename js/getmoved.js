@@ -155,7 +155,7 @@
     if (attr.medium) payload.medium = attr.medium;
     if (attr.campaign) payload.campaign = attr.campaign;
     if (typeof window.gtag === "function") { window.gtag("event", eventName, payload); }
-    if (["begin_quote", "begin_signup", "form_start", "form_step_complete", "form_error"].indexOf(eventName) !== -1) {
+    if (["begin_quote", "begin_signup", "form_start", "form_step_complete", "form_error", "reveal_step", "partial_lead"].indexOf(eventName) !== -1) {
       try {
         fetch(trackEndpoint, {
           method: "POST",
@@ -612,27 +612,201 @@
   // Quick-quote STEP 1 (homepage hero): locations only -> quote.html with them pre-filled.
   const step1Form = document.getElementById("qq-step1-form");
   if (step1Form) {
-    // Email typo helper on step 1 (soft "did you mean", never a hard block).
+    // --- Progressive disclosure (pages with data-progressive="1" only, currently
+    // free-moving-quote.html). The form opens with ONE visible field (move_from);
+    // a valid value reveals move_to/email/phone on the same page, no reload.
+    // HARD CONSTRAINT: no ad pixel moves — Meta Lead + CAPI, gtag conversions,
+    // Reddit Lead and Nextdoor LEAD stay exclusively on the step-2 final submit;
+    // InitiateCheckout stays on the step-1 submit below.
+    var progressive = step1Form.getAttribute("data-progressive") === "1";
+    var qq1FromEl = step1Form.querySelector('[name="move_from"]');
+    var qq1FromField = document.getElementById("qq1-from-field");
+    var qq1FromConfirmed = document.getElementById("qq1-from-confirmed");
+    var qq1FromConfirmedVal = document.getElementById("qq1-from-confirmed-val");
+    var qq1FromChange = document.getElementById("qq1-from-change");
+    var qq1More = document.getElementById("qq1-more");
+    var qq1Submit = step1Form.querySelector('button[type="submit"]');
+    var qq1Revealed = false;
+
+    function qq1FromValid() { return ((qq1FromEl && qq1FromEl.value) || "").trim().length >= 3; }
+
+    // Collapse move_from into the compact confirmed row ("From: 10001 ✓  change").
+    function qq1CollapseFrom() {
+      if (!qq1FromField || !qq1FromConfirmed) return;
+      if (qq1FromConfirmedVal) qq1FromConfirmedVal.textContent = ((qq1FromEl && qq1FromEl.value) || "").trim();
+      qq1FromField.hidden = true;
+      qq1FromConfirmed.hidden = false;
+    }
+
+    function qq1Reveal() {
+      if (qq1Revealed) return;
+      qq1Revealed = true;
+      qq1CollapseFrom();
+      if (qq1More) {
+        var reduce = false;
+        try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+        if (!reduce) {
+          // Animate height from 0 so nothing jumps; hidden -> el.hidden only.
+          qq1More.style.maxHeight = "0px";
+          qq1More.hidden = false;
+          qq1More.classList.add("gm-anim");
+          void qq1More.offsetHeight; // reflow so the transition starts from 0
+          qq1More.style.maxHeight = qq1More.scrollHeight + "px";
+          qq1More.addEventListener("transitionend", function te() {
+            qq1More.style.maxHeight = "";
+            qq1More.classList.remove("gm-anim");
+            qq1More.removeEventListener("transitionend", te);
+          });
+        } else {
+          qq1More.hidden = false;
+        }
+      }
+      if (qq1Submit) qq1Submit.innerHTML = "Get my free quotes &rarr;";
+      // reveal_step: THE metric for whether the one-field opener works.
+      gmTrack("reveal_step", { source: "landing" });
+      var toFocus = step1Form.querySelector('[name="move_to"]');
+      if (toFocus) { try { toFocus.focus({ preventScroll: true }); } catch (e) { try { toFocus.focus(); } catch (e2) {} } }
+    }
+
+    if (progressive && qq1FromEl) {
+      // Blur reveals too (delayed so a Google Places pick can land its value first).
+      qq1FromEl.addEventListener("blur", function () {
+        setTimeout(function () {
+          if (!qq1FromValid()) return;
+          if (!qq1Revealed) qq1Reveal();
+          else if (qq1FromField && !qq1FromField.hidden) qq1CollapseFrom();
+        }, 250);
+      });
+      if (qq1FromChange) {
+        qq1FromChange.addEventListener("click", function () {
+          if (qq1FromConfirmed) qq1FromConfirmed.hidden = true;
+          if (qq1FromField) qq1FromField.hidden = false;
+          try { qq1FromEl.focus({ preventScroll: true }); } catch (e) { try { qq1FromEl.focus(); } catch (e2) {} }
+        });
+      }
+
+      // form_start: first interaction with any field, once per session.
+      step1Form.addEventListener("focusin", function () {
+        try { if (sessionStorage.getItem("gm_form_start")) return; sessionStorage.setItem("gm_form_start", "1"); } catch (e) {}
+        gmTrack("begin_quote", { source: "landing" });
+        gmTrack("form_start", { source: "landing" });
+      });
+    }
+
+    // Partial lead writer — the server upserts on the lowercased email (24h window).
+    function qq1SendPartial(emailV, phoneE164) {
+      try {
+        var attributionP = gmAttribution();
+        var toElP = step1Form.querySelector('[name="move_to"]');
+        fetch("https://portal.getmoved.app/api/v1/leads/partial", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+          body: JSON.stringify({
+            move_from: ((qq1FromEl && qq1FromEl.value) || "").trim(),
+            move_to: ((toElP && toElP.value) || "").trim(),
+            email: emailV,
+            phone: phoneE164 || "",
+            source: attributionP.source,
+            medium: attributionP.medium,
+            campaign: attributionP.campaign,
+          }),
+        })
+          .then(function (r) { return r.json().catch(function () { return {}; }); })
+          .then(function (pr) {
+            try { if (pr && pr.data && pr.data.id) sessionStorage.setItem("gm_qq_partial_id", String(pr.data.id)); } catch (e) {}
+          })
+          .catch(function () {});
+      } catch (e) {}
+    }
+
+    // Email: inline validation + typo hint + EARLY partial (valid email + blur ->
+    // POST /leads/partial, at most once per distinct email per session — whoever
+    // abandons at the phone field is still in the database).
     (function () {
       var em1 = step1Form.querySelector('[name="email"]');
       if (!em1) return;
       var TYPOS1 = { gmial: "gmail", gmai: "gmail", gamil: "gmail", hotmial: "hotmail", hotmal: "hotmail", yaho: "yahoo", yahooo: "yahoo", outlok: "outlook" };
+      var partialTimer = null;
       em1.addEventListener("blur", function () {
         var errEl1 = step1Form.querySelector('[data-err-for="email"]');
-        if (!errEl1) return;
+        var fld1 = em1.closest(".gm-qq-field");
         var v1 = (em1.value || "").trim().toLowerCase();
-        var m1 = /@([a-z0-9-]+)\./.exec(v1);
-        if (m1 && TYPOS1[m1[1]]) {
-          errEl1.textContent = "Did you mean " + v1.replace("@" + m1[1] + ".", "@" + TYPOS1[m1[1]] + ".") + "?";
-          errEl1.classList.add("is-hint");
-        } else if (errEl1.classList.contains("is-hint")) {
-          errEl1.textContent = "";
-          errEl1.classList.remove("is-hint");
+        var valid1 = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v1);
+        // Inline format error on blur (progressive form), not only on submit.
+        if (progressive && errEl1) {
+          if (v1 && !valid1) {
+            if (fld1) fld1.classList.add("has-error");
+            errEl1.classList.remove("is-hint");
+            errEl1.textContent = "Enter a valid email address.";
+            return;
+          }
+          if (fld1) fld1.classList.remove("has-error");
+          if (!errEl1.classList.contains("is-hint")) errEl1.textContent = "";
+        }
+        // Soft "did you mean …?" for top-domain typos — a suggestion, never a block.
+        if (errEl1) {
+          var m1 = /@([a-z0-9-]+)\./.exec(v1);
+          if (m1 && TYPOS1[m1[1]]) {
+            errEl1.textContent = "Did you mean " + v1.replace("@" + m1[1] + ".", "@" + TYPOS1[m1[1]] + ".") + "?";
+            errEl1.classList.add("is-hint");
+          } else if (errEl1.classList.contains("is-hint")) {
+            errEl1.textContent = "";
+            errEl1.classList.remove("is-hint");
+          }
+        }
+        // Early partial: debounced, once per distinct email per session.
+        if (progressive && valid1) {
+          clearTimeout(partialTimer);
+          partialTimer = setTimeout(function () {
+            var sent = [];
+            try { sent = JSON.parse(sessionStorage.getItem("gm_qq_partials_sent") || "[]"); } catch (e) {}
+            if (sent.indexOf(v1) !== -1) return;
+            sent.push(v1);
+            try { sessionStorage.setItem("gm_qq_partials_sent", JSON.stringify(sent)); } catch (e) {}
+            try { sessionStorage.setItem("gm_qq_email", v1); } catch (e) {}
+            qq1SendPartial(v1, "");
+            gmTrack("partial_lead", { source: "landing", has_email: true });
+          }, 400);
         }
       });
+      // Phone: inline error on blur ("Enter a 10-digit US phone number.").
+      var ph1v = step1Form.querySelector('[name="phone"]');
+      if (progressive && ph1v) {
+        ph1v.addEventListener("blur", function () {
+          var errP = step1Form.querySelector('[data-err-for="phone"]');
+          var fldP = ph1v.closest(".gm-qq-field");
+          if (!errP) return;
+          var dP = (ph1v.value || "").replace(/\D/g, "");
+          if (dP.length === 11 && dP.charAt(0) === "1") dP = dP.slice(1);
+          if (ph1v.value.trim() && dP.length !== 10) {
+            if (fldP) fldP.classList.add("has-error");
+            errP.textContent = "Enter a 10-digit US phone number.";
+          } else {
+            if (fldP) fldP.classList.remove("has-error");
+            errP.textContent = "";
+          }
+        });
+      }
     })();
     step1Form.addEventListener("submit", function (event) {
       event.preventDefault();
+      // Progressive phase 1: only move_from is visible — validate it, reveal the rest.
+      if (progressive && !qq1Revealed) {
+        step1Form.querySelectorAll(".gm-qq-err").forEach(function (el) { el.textContent = ""; el.classList.remove("is-hint"); });
+        step1Form.querySelectorAll(".gm-qq-field.has-error").forEach(function (el) { el.classList.remove("has-error"); });
+        if (!qq1FromValid()) {
+          var fldF = qq1FromEl && qq1FromEl.closest(".gm-qq-field");
+          if (fldF) fldF.classList.add("has-error");
+          var errF = step1Form.querySelector('[data-err-for="move_from"]');
+          if (errF) errF.textContent = "Enter your pick up city or ZIP";
+          return;
+        }
+        qq1Reveal();
+        return;
+      }
+      // If move_from was re-opened via "change", fold it back before validating.
+      if (progressive && qq1Revealed && qq1FromField && !qq1FromField.hidden && qq1FromValid()) qq1CollapseFrom();
       var fromEl = step1Form.querySelector('[name="move_from"]');
       var toEl = step1Form.querySelector('[name="move_to"]');
       var showErr = function (el, key, msg) {
