@@ -772,6 +772,11 @@
             try { sessionStorage.setItem("gm_qq_email", v1); } catch (e) {}
             qq1SendPartial(v1, "");
             gmTrack("partial_lead", { source: "landing", has_email: true });
+            // OpenAI Ads event — inherits the once-per-distinct-email-per-session
+            // guard of this block, same cadence as the GA4 event above.
+            if (window.oaiq) {
+              oaiq("measure", "registration_completed", { type: "customer_action" });
+            }
           }, 400);
         }
       });
@@ -878,6 +883,10 @@
           sessionStorage.setItem("gm_qq_phone", phone1E164);
         } catch (e) {}
         gmTrack("quote_step_1", { source: "landing", has_email: true, has_phone: true });
+        // OpenAI Ads mid-funnel event — same trigger and cadence as the GA4 event above.
+        if (window.oaiq) {
+          oaiq("measure", "checkout_started", { type: "contents" });
+        }
       }
       try {
         if (!sessionStorage.getItem("gm_form_start")) {
@@ -954,10 +963,8 @@
           if (res && res.success === false) throw new Error(res.error || "Signup failed");
           // GA/funnel only — a pre-launch waitlist signup is NOT a Meta Lead conversion.
           gmTrack("generate_lead", { source: "waitlist", city: city });
-          // OpenAI Ads conversion — mirrors the GA4 generate_lead above.
-          if (window.oaiq) {
-            oaiq("measure", "lead_created", { type: "customer_action" });
-          }
+          // No oaiq lead_created here: "Quote Lead" means a NY/NJ moving-quote
+          // request only — a pre-launch waitlist signup stays GA4-only.
           waitlistForm.reset();
           if (wlStatus) { wlStatus.textContent = "You're on the list! We'll email you the moment GetMoved launches in " + (city || "your city") + "."; wlStatus.classList.remove("is-error"); }
         })
