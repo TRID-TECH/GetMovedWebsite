@@ -1057,11 +1057,18 @@
             if (!v || v.length < 3 || input.dataset.acPicked === "1" || input.dataset.geocoding === "1") return;
             if (!(window.google && google.maps && google.maps.Geocoder)) return;
             input.dataset.geocoding = "1";
+            // Bias (not restrict) to the NY/NJ service area so ambiguous city
+            // names ("Bayside") resolve to our market, not another state.
+            const gmBias = new google.maps.LatLngBounds({ lat: 39.4, lng: -75.6 }, { lat: 42.1, lng: -71.7 });
             new google.maps.Geocoder().geocode(
-              { address: v, componentRestrictions: { country: "US" } },
+              { address: v, componentRestrictions: { country: "US" }, bounds: gmBias },
               (results, status) => {
                 input.dataset.geocoding = "";
                 if (status !== "OK" || !results || !results[0] || !results[0].formatted_address) return;
+                // Reject results too coarse to route (country / bare state) — a
+                // typo'd ZIP must keep the raw value, not become "United States".
+                const rTypes = results[0].types || [];
+                if (rTypes.indexOf("country") !== -1 || rTypes.indexOf("administrative_area_level_1") !== -1) return;
                 input.value = results[0].formatted_address;
                 input.dataset.acPicked = "1";
                 // Keep the progressive confirmed row ("From: … ✓") in sync.
