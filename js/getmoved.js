@@ -428,6 +428,11 @@
         .then((result) => {
           if (result && result.success === false) { throw new Error(result.message || "Send failed"); }
           gmTrack("generate_lead", { source: "landing" });
+          // OpenAI Ads conversion — same trigger as GA4 generate_lead (confirmed
+          // backend success only; never on partial / quote_step_1).
+          if (window.oaiq) {
+            oaiq("measure", "lead_created", { type: "customer_action" });
+          }
           // Same conversion_id as the server-side CAPI event so Reddit dedupes them.
           if (typeof window.rdt === "function") { window.rdt("track", "Lead", { conversion_id: rdtConversionId }); }
           if (typeof window.ndp === "function") { window.ndp("track", "LEAD"); }
@@ -949,6 +954,10 @@
           if (res && res.success === false) throw new Error(res.error || "Signup failed");
           // GA/funnel only — a pre-launch waitlist signup is NOT a Meta Lead conversion.
           gmTrack("generate_lead", { source: "waitlist", city: city });
+          // OpenAI Ads conversion — mirrors the GA4 generate_lead above.
+          if (window.oaiq) {
+            oaiq("measure", "lead_created", { type: "customer_action" });
+          }
           waitlistForm.reset();
           if (wlStatus) { wlStatus.textContent = "You're on the list! We'll email you the moment GetMoved launches in " + (city || "your city") + "."; wlStatus.classList.remove("is-error"); }
         })
