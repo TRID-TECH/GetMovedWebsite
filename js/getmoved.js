@@ -1039,10 +1039,41 @@
         ac.addListener("place_changed", () => {
           const place = ac.getPlace();
           input.value = (place && (place.formatted_address || place.name)) || input.value;
+          input.dataset.acPicked = "1";
         });
       } catch (e) {
         /* Maps unavailable — the field still accepts free-typed ZIP / city, state */
       }
+      // Any further typing invalidates the picked-suggestion flag.
+      input.addEventListener("input", () => { input.dataset.acPicked = ""; });
+      // Normalize free-typed values: if the visitor blurs WITHOUT picking a
+      // suggestion, geocode the raw text ("Bayside", "11810") into a full
+      // "City, ST ZIP, USA" so requests always carry a routable address with
+      // at least the ZIP. Best-effort — the raw value stays if geocoding fails.
+      input.addEventListener("blur", () => {
+        setTimeout(() => {
+          try {
+            const v = (input.value || "").trim();
+            if (!v || v.length < 3 || input.dataset.acPicked === "1" || input.dataset.geocoding === "1") return;
+            if (!(window.google && google.maps && google.maps.Geocoder)) return;
+            input.dataset.geocoding = "1";
+            new google.maps.Geocoder().geocode(
+              { address: v, componentRestrictions: { country: "US" } },
+              (results, status) => {
+                input.dataset.geocoding = "";
+                if (status !== "OK" || !results || !results[0] || !results[0].formatted_address) return;
+                input.value = results[0].formatted_address;
+                input.dataset.acPicked = "1";
+                // Keep the progressive confirmed row ("From: … ✓") in sync.
+                if (input.id === "qq1-from") {
+                  const cv = document.getElementById("qq1-from-confirmed-val");
+                  if (cv && cv.textContent) cv.textContent = results[0].formatted_address;
+                }
+              }
+            );
+          } catch (e2) { input.dataset.geocoding = ""; }
+        }, 350);
+      });
       // Don't let Enter (choosing a suggestion) submit the form.
       input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") e.preventDefault();
