@@ -297,11 +297,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 							<input type="text" id="qq1-from" name="move_from" placeholder="ZIP or city" autocomplete="off" required>
 							<p class="gm-qq-err" data-err-for="move_from"></p>
 						</div>
-						<div class="gm-qq-confirmed" id="qq1-from-confirmed" hidden>
-							<span>From: <strong id="qq1-from-confirmed-val"></strong> &#10003;</span>
-							<button type="button" class="gm-qq-change" id="qq1-from-change">change</button>
-						</div>
-						<div id="qq1-more" hidden>
+						<div id="qq1-more">
 							<div class="gm-qq-field" style="margin-top:12px;">
 								<label class="gm-qq-label" for="qq1-to">Where to?</label>
 								<input type="text" id="qq1-to" name="move_to" placeholder="ZIP or city" autocomplete="off" required>
@@ -416,7 +412,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     <script src="js/revslider/jquery.themepunch.tools.min.js"></script>
 	<!-- End REVOLUTION SLIDER -->
 	<script src="js/functions.js"></script>
-	<script src="js/getmoved.js?v=42"></script>
+	<script src="js/getmoved.js?v=43"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
 	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->

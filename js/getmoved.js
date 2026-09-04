@@ -617,79 +617,17 @@
   // Quick-quote STEP 1 (homepage hero): locations only -> quote.html with them pre-filled.
   const step1Form = document.getElementById("qq-step1-form");
   if (step1Form) {
-    // --- Progressive disclosure (pages with data-progressive="1" only, currently
-    // free-moving-quote.html). The form opens with ONE visible field (move_from);
-    // a valid value reveals move_to/email/phone on the same page, no reload.
+    // --- data-progressive pages (all step-1 landing pages): all four fields are
+    // ALWAYS visible — no disclosure, no reveal animation, no "change" summary.
+    // The flag still gates the extras added with that pass: early partial on
+    // email blur, inline blur validation, and form_start on first focus.
     // HARD CONSTRAINT: no ad pixel moves — Meta Lead + CAPI, gtag conversions,
     // Reddit Lead and Nextdoor LEAD stay exclusively on the step-2 final submit;
     // InitiateCheckout stays on the step-1 submit below.
     var progressive = step1Form.getAttribute("data-progressive") === "1";
     var qq1FromEl = step1Form.querySelector('[name="move_from"]');
-    var qq1FromField = document.getElementById("qq1-from-field");
-    var qq1FromConfirmed = document.getElementById("qq1-from-confirmed");
-    var qq1FromConfirmedVal = document.getElementById("qq1-from-confirmed-val");
-    var qq1FromChange = document.getElementById("qq1-from-change");
-    var qq1More = document.getElementById("qq1-more");
-    var qq1Submit = step1Form.querySelector('button[type="submit"]');
-    var qq1Revealed = false;
-
-    function qq1FromValid() { return ((qq1FromEl && qq1FromEl.value) || "").trim().length >= 3; }
-
-    // Collapse move_from into the compact confirmed row ("From: 10001 ✓  change").
-    function qq1CollapseFrom() {
-      if (!qq1FromField || !qq1FromConfirmed) return;
-      if (qq1FromConfirmedVal) qq1FromConfirmedVal.textContent = ((qq1FromEl && qq1FromEl.value) || "").trim();
-      qq1FromField.hidden = true;
-      qq1FromConfirmed.hidden = false;
-    }
-
-    function qq1Reveal() {
-      if (qq1Revealed) return;
-      qq1Revealed = true;
-      qq1CollapseFrom();
-      if (qq1More) {
-        var reduce = false;
-        try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
-        if (!reduce) {
-          // Animate height from 0 so nothing jumps; hidden -> el.hidden only.
-          qq1More.style.maxHeight = "0px";
-          qq1More.hidden = false;
-          qq1More.classList.add("gm-anim");
-          void qq1More.offsetHeight; // reflow so the transition starts from 0
-          qq1More.style.maxHeight = qq1More.scrollHeight + "px";
-          qq1More.addEventListener("transitionend", function te() {
-            qq1More.style.maxHeight = "";
-            qq1More.classList.remove("gm-anim");
-            qq1More.removeEventListener("transitionend", te);
-          });
-        } else {
-          qq1More.hidden = false;
-        }
-      }
-      if (qq1Submit) qq1Submit.innerHTML = "Get my free quotes &rarr;";
-      // reveal_step: THE metric for whether the one-field opener works.
-      gmTrack("reveal_step", { source: "landing" });
-      var toFocus = step1Form.querySelector('[name="move_to"]');
-      if (toFocus) { try { toFocus.focus({ preventScroll: true }); } catch (e) { try { toFocus.focus(); } catch (e2) {} } }
-    }
 
     if (progressive && qq1FromEl) {
-      // Blur reveals too (delayed so a Google Places pick can land its value first).
-      qq1FromEl.addEventListener("blur", function () {
-        setTimeout(function () {
-          if (!qq1FromValid()) return;
-          if (!qq1Revealed) qq1Reveal();
-          else if (qq1FromField && !qq1FromField.hidden) qq1CollapseFrom();
-        }, 250);
-      });
-      if (qq1FromChange) {
-        qq1FromChange.addEventListener("click", function () {
-          if (qq1FromConfirmed) qq1FromConfirmed.hidden = true;
-          if (qq1FromField) qq1FromField.hidden = false;
-          try { qq1FromEl.focus({ preventScroll: true }); } catch (e) { try { qq1FromEl.focus(); } catch (e2) {} }
-        });
-      }
-
       // form_start: first interaction with any field, once per session.
       step1Form.addEventListener("focusin", function () {
         try { if (sessionStorage.getItem("gm_form_start")) return; sessionStorage.setItem("gm_form_start", "1"); } catch (e) {}
@@ -801,22 +739,6 @@
     })();
     step1Form.addEventListener("submit", function (event) {
       event.preventDefault();
-      // Progressive phase 1: only move_from is visible — validate it, reveal the rest.
-      if (progressive && !qq1Revealed) {
-        step1Form.querySelectorAll(".gm-qq-err").forEach(function (el) { el.textContent = ""; el.classList.remove("is-hint"); });
-        step1Form.querySelectorAll(".gm-qq-field.has-error").forEach(function (el) { el.classList.remove("has-error"); });
-        if (!qq1FromValid()) {
-          var fldF = qq1FromEl && qq1FromEl.closest(".gm-qq-field");
-          if (fldF) fldF.classList.add("has-error");
-          var errF = step1Form.querySelector('[data-err-for="move_from"]');
-          if (errF) errF.textContent = "Enter your pick up city or ZIP";
-          return;
-        }
-        qq1Reveal();
-        return;
-      }
-      // If move_from was re-opened via "change", fold it back before validating.
-      if (progressive && qq1Revealed && qq1FromField && !qq1FromField.hidden && qq1FromValid()) qq1CollapseFrom();
       var fromEl = step1Form.querySelector('[name="move_from"]');
       var toEl = step1Form.querySelector('[name="move_to"]');
       var showErr = function (el, key, msg) {
