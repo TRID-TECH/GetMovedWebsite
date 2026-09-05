@@ -35,18 +35,36 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     })(window,document,'script','dataLayer','GTM-TWSQBZ4B');</script>
     <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
-    <!-- Meta Pixel Code -->
+    <!-- Preconnect for the critical measurement path (GA4 must fire ASAP) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="preconnect" href="https://region1.google-analytics.com" crossorigin>
+    <link rel="preconnect" href="https://bzrcdn.openai.com" crossorigin>
+    <!-- Meta Pixel Code — DEFERRED: the fbq stub queues init+PageView immediately,
+         but the ~420 KB fbevents.js library loads only on first user interaction
+         or 3s after load, whichever comes first. Queued events replay on load. -->
     <script>
       (function(){
         var denied=false; try{denied=localStorage.getItem('gm_cookie_consent')==='denied';}catch(e){}
         window.gmMetaPixelId='912613588109668';
         if(denied)return; // no fbevents.js / cookies / PageView until consent
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        if(!window.fbq){
+          var n=window.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!window._fbq)window._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+        }
         fbq('init','912613588109668'); fbq('track','PageView');
+        var evs=['pointerdown','keydown','scroll','touchstart','focusin'];
+        var fired=false;
+        function loadFb(){
+          if(fired)return; fired=true;
+          evs.forEach(function(ev){window.removeEventListener(ev,loadFb,true);});
+          var t=document.createElement('script'); t.async=true;
+          t.src='https://connect.facebook.net/en_US/fbevents.js';
+          var s=document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t,s);
+        }
+        evs.forEach(function(ev){window.addEventListener(ev,loadFb,{capture:true,passive:true});});
+        if(document.readyState==='complete'){setTimeout(loadFb,3000);}
+        else{window.addEventListener('load',function(){setTimeout(loadFb,3000);});}
       })();
     </script>
     <noscript><img height="1" width="1" style="display:none"
@@ -246,8 +264,8 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
         <div class="container nav-container">
             <div class="lqq-inner">
                 <a href="index.html#home" class="logo d-flex align-items-center" aria-label="GetMoved home">
-                    <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140">
-                    <img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-dark mxw-140">
+                    <picture><source srcset="assets/img/logo-600.webp" type="image/webp"><img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140"></picture>
+                    <picture><source srcset="assets/img/logo-600.webp" type="image/webp"><img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-dark mxw-140"></picture>
                 </a>
                 <div class="lqq-right">
                     <a href="tel:+12016080850" class="header-phone">&#9742;&nbsp;+1 (201) 608-0850</a>
@@ -272,8 +290,8 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					<p class="gm-qq-lead">Licensed, insured movers send you <strong>binding quotes</strong>. Free, no obligation, no sales calls.</p>
 					<img class="gm-qq-freeimg" loading="lazy" src="images/DonjaSlika.png?v=3" alt="You relax. We handle the rest. We find. We compare. You choose. Premium service, zero cost, maximum peace of mind.">
 					<div class="gm-qq-trust">
-						<span><i class="ti-check-box"></i> <strong>70+ licensed movers</strong> across NY &amp; NJ</span>
-						<span><i class="ti-check-box"></i> FMCSA-registered carriers</span>
+						<span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;vertical-align:-2px"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12l3 3 5-6"/></svg> <strong>70+ licensed movers</strong> across NY &amp; NJ</span>
+						<span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;vertical-align:-2px"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12l3 3 5-6"/></svg> FMCSA-registered carriers</span>
 					</div>
 				</div>
 
@@ -311,11 +329,11 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 								</div>
 							</div>
 							<button type="submit" class="gm-qq-submit font-secondary" id="qq1-submit">Continue &rarr;</button>
-							<a href="tel:+12016080850" class="gm-call-cta font-secondary"><i class="ti-headphone-alt"></i> Rather talk? Call (201) 608-0850</a>
+							<a href="tel:+12016080850" class="gm-call-cta font-secondary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px"><path d="M4 18v-6a8 8 0 0 1 16 0v6"/><path d="M4 14h3v6H4zM17 14h3v6h-3z"/></svg> Rather talk? Call (201) 608-0850</a>
 						<div class="gm-qq-cardtrust">
-							<span><i class="ti-check"></i> Free</span>
-							<span><i class="ti-check"></i> No obligation</span>
-							<span><i class="ti-timer"></i> Takes 2 minutes</span>
+							<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><path d="M20 6L9 17l-5-5"/></svg> Free</span>
+							<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><path d="M20 6L9 17l-5-5"/></svg> No obligation</span>
+							<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="2" stroke-linecap="round" style="vertical-align:-1px"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg> Takes 2 minutes</span>
 						</div>
 					</form>
 				</div>
@@ -337,7 +355,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
     <!-- Footer -->
     <footer class="py-50 d-flex flex-column align-items-center justify-content-center">
-        <img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300">
+        <picture><source srcset="assets/img/logo-600.webp" type="image/webp"><img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300"></picture>
         <p class="fs-14 gray6 mt-10 t-center-sm">Free quotes from licensed, insured movers &mdash; you choose the best offer.</p>
     	<p class="fs-15 mt-10 t-center-sm">Questions? Call us: <a href="tel:+12016080850" style="font-weight:700;color:#1e8e4e;">+1 (201) 608-0850</a></p>
     	<!-- Mover/B2B links (For Movers, Partners, Pricing, Become a Mover) removed on this
@@ -367,14 +385,14 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 
     <!-- Back To Top -->
     <a id="back-to-top" href="index.html#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
-        <i class="ti-angle-double-up fs-18"></i>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><path d="M17 18l-5-5-5 5"/><path d="M17 11l-5-5-5 5"/></svg>
     </a>
 
 
 
     <!-- Back To Top -->
     <a id="back-to-top" href="index.html#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
-        <i class="ti-angle-double-up fs-18"></i>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><path d="M17 18l-5-5-5 5"/><path d="M17 11l-5-5-5 5"/></svg>
     </a>
 
 
@@ -395,10 +413,25 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 	<script src="js/functions.js"></script>
 	<script src="js/getmoved.js?v=43"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
-	<!-- Google Maps Places: city/state or ZIP autocomplete for the quick-quote Move From/To fields.
-	     Calls window.gmInitPlacesAutocomplete (defined in getmoved.js) once the API is ready. -->
-	<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnXM-U_nxnVA-4Gb2TXYH80rv6aQJB_iY&libraries=places&callback=gmInitPlacesAutocomplete&loading=async"></script>
+	<!-- Google Maps Places — LAZY: ~1.25 MB of library only loads on the FIRST focus
+	     of a route field. Until then the fields are plain text inputs; the existing
+	     gmInitPlacesAutocomplete callback attaches autocomplete once the API lands. -->
+	<script>
+	(function(){
+		var loaded=false;
+		function loadMaps(){
+			if(loaded)return; loaded=true;
+			var s=document.createElement('script');
+			s.async=true;
+			s.src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDnXM-U_nxnVA-4Gb2TXYH80rv6aQJB_iY&libraries=places&callback=gmInitPlacesAutocomplete&loading=async';
+			document.head.appendChild(s);
+		}
+		['qq1-from','qq1-to'].forEach(function(id){
+			var el=document.getElementById(id);
+			if(el)el.addEventListener('focus',loadMaps,{once:true});
+		});
+	})();
+	</script>
 
 
 </body>
