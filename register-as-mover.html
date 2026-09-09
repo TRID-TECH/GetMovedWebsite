@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<!-- Register as a Mover - same design/content as software.html; the card carries the
-     network REGISTRATION form (posts to /api/v1/mover-registrations; begin_signup/sign_up
-     funnel + ndp SIGN_UP conversion live in js/getmoved.js #mover-registration-form block). -->
+<!-- Register as a Mover - IDENTICAL clone of software.html (same demo form, same content,
+     same /api/v1/demo-requests destination) per owner request; only title + legacy pixels differ.
+     Funnel events: begin_demo_request (first focus) + demo_request (confirmed submit, DB row
+     written server-side). Handled in js/getmoved.js (#demo-request-form block). -->
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <!-- OpenAI Ads pixel -->
@@ -51,7 +52,7 @@
       gtag('config', 'AW-18301808532');
     </script>
     <title>Register as a Mover | GetMoved</title>
-    <meta name="description" content="Register your moving company on GetMoved. Get matched with customers ready to book: quoting, dispatch, invoicing and payments in one platform." />
+    <meta name="description" content="Leads, estimates, bookings, dispatch, crews, payments and AI-powered inventory in one platform built for moving companies. Request a free 15-minute demo." />
     <meta property="og:title" content="Register as a Mover | GetMoved" />
     <meta property="og:description" content="Manage leads, estimates, bookings, dispatch, crews, payments and AI-powered inventory with GetMoved Software. Request a demo." />
     <meta property="og:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
@@ -121,9 +122,6 @@
       .sw-alt { text-align: center; margin: 16px 0 0; font-size: 13.5px; color: var(--muted); }
       .sw-alt a { display: inline-block; margin-top: 4px; color: var(--green); font-weight: 800; }
       .sw-alt a:hover { text-decoration: underline; }
-      .sw-plain input, .sw-plain select { padding-left: 14px; }
-      .sw-sec { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #7a8891; margin: 18px 0 10px; }
-      .sw-card form .sw-two { margin-bottom: 0; }
       .sw-hp { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
       /* Trust strip */
@@ -181,8 +179,8 @@
         <div class="sw-links">
           <a href="index.html">Home</a>
           <a href="how-it-works.html">How It Works</a>
-          <a href="for-movers.html" class="is-active">For Movers</a>
-          <a href="software.html">Software</a>
+          <a href="for-movers.html">For Movers</a>
+          <a href="software.html" class="is-active">Software</a>
           <a href="pricing.html">Pricing</a>
         </div>
         <div class="sw-nav-right">
@@ -238,72 +236,72 @@
             </p>
           </div>
 
-          <!-- Right: Register as a Mover card -->
+          <!-- Right: Request a Demo card -->
           <div class="sw-card">
-            <p class="sw-card-eyebrow">Join the GetMoved network</p>
-            <h2>Register as a Mover</h2>
-            <p class="sw-card-sub">Tell us about your company. Our team reviews every registration and gets you onboarded.</p>
+            <p class="sw-card-eyebrow">For moving companies interested in the software</p>
+            <h2>Request a Demo</h2>
+            <p class="sw-card-sub">Tell us a little about your company and our team will contact you shortly.</p>
 
-            <form id="mover-registration-form" novalidate>
-              <p class="sw-sec">Company information</p>
-              <div class="sw-two">
-                <div class="sw-field sw-plain"><input type="text" name="companyLegalName" placeholder="Company Legal Name *" required></div>
-                <div class="sw-field sw-plain"><input type="text" name="tradingName" placeholder="Trading Name (if different)"></div>
+            <form id="demo-request-form" novalidate>
+              <div class="sw-field">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>
+                <input type="text" name="company_name" placeholder="Company Name *" autocomplete="organization" required>
+                <p class="sw-err" data-err-for="company_name"></p>
               </div>
-              <div class="sw-field sw-plain"><input type="email" name="email" placeholder="Email *" required></div>
-              <div class="sw-two">
-                <div class="sw-field sw-plain"><select name="country" required><option value="">Country *</option>
-                  <option>United States</option><option>Canada</option><option>United Kingdom</option><option>Ireland</option><option>Australia</option><option>Germany</option><option>France</option><option>Netherlands</option><option>Spain</option><option>Italy</option><option>United Arab Emirates</option><option>Other</option>
-                </select></div>
-                <div class="sw-field sw-plain"><input type="text" name="city" placeholder="City *" required></div>
+              <div class="sw-field">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" name="contact_name" placeholder="Your Name *" autocomplete="name" required>
+                <p class="sw-err" data-err-for="contact_name"></p>
               </div>
-              <div class="sw-field sw-plain"><input type="text" name="businessAddress" placeholder="Business Address *" required></div>
-              <div class="sw-two">
-                <div class="sw-field sw-plain"><input type="text" name="companyRegistrationNumber" placeholder="Company Registration Number"></div>
-                <div class="sw-field sw-plain"><input type="text" name="vatTaxId" placeholder="VAT / Tax ID"></div>
+              <div class="sw-field">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+                <input type="email" name="email" placeholder="Business Email *" autocomplete="email" inputmode="email" required>
+                <p class="sw-err" data-err-for="email"></p>
+              </div>
+              <div class="sw-field">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <input type="tel" name="phone" placeholder="Phone" autocomplete="tel" inputmode="tel">
+                <p class="sw-err" data-err-for="phone"></p>
               </div>
               <div class="sw-two">
-                <div class="sw-field sw-plain"><input type="number" name="yearsInOperation" placeholder="Years in operation *" required min="0"></div>
-                <div class="sw-field sw-plain"><input type="url" name="companyWebsite" placeholder="Company website (optional)"></div>
+                <div class="sw-field">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <select name="state" required>
+                    <option value="">State *</option>
+                    <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>DC</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+                  </select>
+                  <p class="sw-err" data-err-for="state"></p>
+                </div>
+                <div class="sw-field">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  <select name="trucks">
+                    <option value="">Number of Trucks</option>
+                    <option value="1-2">1&ndash;2</option>
+                    <option value="3-5">3&ndash;5</option>
+                    <option value="6-10">6&ndash;10</option>
+                    <option value="11-20">11&ndash;20</option>
+                    <option value="20+">20+</option>
+                  </select>
+                </div>
               </div>
 
-              <p class="sw-sec">Services &amp; coverage</p>
-              <div class="sw-two">
-                <div class="sw-field sw-plain"><input type="text" name="countriesServed" placeholder="Countries served (comma-separated)"></div>
-                <div class="sw-field sw-plain"><input type="text" name="regionsCitiesCovered" placeholder="Regions / cities covered"></div>
-              </div>
-              <div class="sw-two">
-                <div class="sw-field sw-plain"><input type="text" name="maxMovingDistance" placeholder="Max moving distance (mi/km)"></div>
-                <div class="sw-field sw-plain"><input type="number" name="numberOfVansTrucks" placeholder="Number of vans / trucks" min="0"></div>
-              </div>
-              <div class="sw-two">
-                <div class="sw-field sw-plain"><input type="text" name="vehicleTypes" placeholder="Vehicle types (e.g. box truck, van)"></div>
-                <div class="sw-field sw-plain"><input type="text" name="maxLoadCapacity" placeholder="Max load capacity"></div>
-              </div>
-              <div class="sw-two">
-                <div class="sw-field sw-plain"><input type="number" name="numberOfFullTimeMovers" placeholder="Number of full-time movers" min="0"></div>
-                <div class="sw-field sw-plain"><input type="text" name="insuranceCoverage" placeholder="Insurance coverage"></div>
-              </div>
-              <div class="sw-field sw-plain"><input type="text" name="liabilityInsuranceAmount" placeholder="Liability insurance amount"></div>
-
-              <p class="sw-int-title">Services offered</p>
+              <p class="sw-int-title">What are you interested in?</p>
               <div class="sw-ints">
-                <label class="sw-int"><input type="checkbox" name="residentialMoving"> Residential moving</label>
-                <label class="sw-int"><input type="checkbox" name="commercialMoving"> Commercial moving</label>
-                <label class="sw-int"><input type="checkbox" name="packingServices"> Packing services</label>
-                <label class="sw-int"><input type="checkbox" name="storage"> Storage</label>
-                <label class="sw-int"><input type="checkbox" name="furnitureDisassembly"> Furniture disassembly</label>
-                <label class="sw-int"><input type="checkbox" name="pianoSpecialItems"> Piano / special items</label>
-                <label class="sw-int"><input type="checkbox" name="internationalRelocation"> International relocation</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="Full GetMoved Platform"> Full GetMoved Platform</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="CRM &amp; Leads"> CRM &amp; Leads</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="Estimates &amp; Quotes"> Estimates &amp; Quotes</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="Dispatch &amp; Crews"> Dispatch &amp; Crews</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="Payments &amp; Invoicing"> Payments &amp; Invoicing</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="AI Video Inventory"> AI Video Inventory</label>
               </div>
 
-              <input class="sw-hp" type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
-              <button type="submit" class="sw-submit gm-qq-submit">Submit Registration</button>
-              <p class="sw-status" id="mover-registration-status" role="status"></p>
+              <input class="sw-hp" type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button type="submit" class="sw-submit">Request a Demo &rarr;</button>
+              <p class="sw-status" id="demo-request-status" role="status"></p>
             </form>
 
-            <p class="sw-alt">Interested in the software instead?<br>
-              <a href="software.html">Request a Demo &rarr;</a>
+            <p class="sw-alt">Looking to join the network instead?<br>
+              <a href="register-as-mover.html">Register as a Mover &rarr;</a>
             </p>
           </div>
 
