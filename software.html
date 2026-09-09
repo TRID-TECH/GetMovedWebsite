@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<!-- GetMoved Software for Movers — SaaS demo-request landing (mover acquisition campaign).
+     Standalone page: no theme bundle (fast). Form posts to /api/v1/demo-requests.
+     Funnel events: begin_demo_request (first focus) + demo_request (confirmed submit, DB row
+     written server-side). Handled in js/getmoved.js (#demo-request-form block). -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- OpenAI Ads pixel -->
+    <script>!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"L6V79yK3mCSpmKsvKmeX6Q",debug:true});</script>
+    <!-- End OpenAI Ads pixel -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TWSQBZ4B');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8" />
+    <!-- Meta Pixel Code -->
+    <script>
+      (function(){
+        var denied=false; try{denied=localStorage.getItem('gm_cookie_consent')==='denied';}catch(e){}
+        window.gmMetaPixelId='912613588109668';
+        if(denied)return;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init','912613588109668'); fbq('track','PageView');
+      })();
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=912613588109668&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+    <!-- Google tag (gtag.js) with Consent Mode v2 -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update: 500, region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] });
+      gtag('set', 'url_passthrough', true);
+      gtag('set', 'ads_data_redaction', true);
+      try { if (localStorage.getItem('gm_cookie_consent') === 'granted') {
+        gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      } } catch(e){}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED9B6NC03X"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-ED9B6NC03X');
+      gtag('config', 'AW-18301808532');
+    </script>
+    <title>GetMoved Software for Movers — Run Your Moving Company From One Platform</title>
+    <meta name="description" content="Leads, estimates, bookings, dispatch, crews, payments and AI-powered inventory in one platform built for moving companies. Request a free 15-minute demo." />
+    <meta property="og:title" content="GetMoved Software for Movers" />
+    <meta property="og:description" content="Manage leads, estimates, bookings, dispatch, crews, payments and AI-powered inventory with GetMoved Software. Request a demo." />
+    <meta property="og:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/img/favicon-128.png" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"/>
+
+    <style>
+      :root { --green: #1e8e4e; --green-dark: #17753f; --ink: #15202b; --muted: #5b6b73; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: #fff; }
+      a { text-decoration: none; }
+      .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+      /* Nav */
+      .sw-nav { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid #eef2f0; }
+      .sw-nav-inner { display: flex; align-items: center; gap: 26px; height: 74px; }
+      .sw-nav img { width: 52px; height: 52px; }
+      .sw-links { display: flex; gap: 24px; font-size: 13.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+      .sw-links a { color: var(--ink); }
+      .sw-links a:hover, .sw-links a.is-active { color: var(--green); }
+      .sw-nav-right { margin-left: auto; display: flex; align-items: center; gap: 18px; }
+      .sw-login { font-size: 13.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+      .sw-cta { background: var(--green); color: #fff; font-size: 14px; font-weight: 700; padding: 12px 22px; border-radius: 10px; }
+      .sw-cta:hover { background: var(--green-dark); }
+
+      /* Hero grid */
+      .sw-hero { padding: 46px 0 0; }
+      .sw-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; }
+      .sw-eyebrow { color: var(--green); font-size: 13px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; margin: 6px 0 14px; }
+      .sw-h1 { font-size: 52px; line-height: 1.08; font-weight: 800; margin: 0 0 18px; }
+      .sw-h1 em { font-style: italic; }
+      .sw-h1 .grn { color: var(--green); font-style: normal; }
+      .sw-lead { font-size: 17px; line-height: 1.6; color: var(--muted); margin: 0 0 26px; max-width: 540px; }
+      .sw-feats { display: grid; gap: 18px; margin: 0 0 8px; }
+      .sw-feat { display: flex; gap: 14px; align-items: flex-start; }
+      .sw-feat-ic { flex: none; width: 46px; height: 46px; border-radius: 50%; background: #e9f6ee; display: flex; align-items: center; justify-content: center; color: var(--green); }
+      .sw-feat h3 { margin: 2px 0 3px; font-size: 16.5px; font-weight: 800; }
+      .sw-feat p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
+      .sw-note { display: flex; align-items: center; gap: 9px; margin: 22px 0 0; font-size: 14.5px; color: var(--ink); font-weight: 600; }
+      .sw-visual { position: relative; margin: 8px 0 0; }
+      .sw-visual::before { content: ''; position: absolute; inset: 8% 4% 0 22%; background: radial-gradient(closest-side, rgba(30,142,78,.16), rgba(30,142,78,0)); border-radius: 50%; }
+      .sw-visual img { position: relative; width: 100%; max-width: 640px; height: auto; display: block; }
+
+      /* Form card */
+      .sw-card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 28px 28px 24px; }
+      .sw-card-eyebrow { font-size: 11.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+      .sw-card h2 { font-size: 30px; font-weight: 800; margin: 0 0 6px; }
+      .sw-card-sub { font-size: 14.5px; color: var(--muted); line-height: 1.55; margin: 0 0 18px; }
+      .sw-field { position: relative; margin: 0 0 12px; }
+      .sw-field svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #9aa7af; pointer-events: none; }
+      .sw-field input, .sw-field select { width: 100%; border: 1px solid #dfe6e3; border-radius: 10px; background: #fbfdfc; padding: 13px 14px 13px 40px; font-size: 14px; color: var(--ink); outline: none; font-family: inherit; transition: border-color .2s, box-shadow .2s; appearance: none; -webkit-appearance: none; }
+      .sw-field select { cursor: pointer; background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239aa7af' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; }
+      .sw-field input:focus, .sw-field select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(30,142,78,.12); }
+      .sw-field input::placeholder { color: #9aa7af; }
+      .sw-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .sw-err { color: #c0392b; font-size: 12px; margin: 4px 2px 0; }
+      .sw-int-title { font-size: 15px; font-weight: 800; margin: 16px 0 10px; }
+      .sw-ints { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+      .sw-int { display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #3c4a52; cursor: pointer; }
+      .sw-int input { width: 17px; height: 17px; accent-color: var(--green); cursor: pointer; }
+      .sw-submit { width: 100%; border: none; border-radius: 10px; background: var(--green); color: #fff; font-size: 16px; font-weight: 800; padding: 15px; cursor: pointer; margin-top: 18px; transition: background .2s; font-family: inherit; }
+      .sw-submit:hover { background: var(--green-dark); }
+      .sw-submit:disabled { opacity: .6; cursor: default; }
+      .sw-status { text-align: center; font-size: 14px; margin: 12px 0 0; color: #00875a; font-weight: 600; }
+      .sw-status.is-error { color: #c0392b; }
+      .sw-alt { text-align: center; margin: 16px 0 0; font-size: 13.5px; color: var(--muted); }
+      .sw-alt a { display: inline-block; margin-top: 4px; color: var(--green); font-weight: 800; }
+      .sw-alt a:hover { text-decoration: underline; }
+      .sw-hp { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+      /* Trust strip */
+      .sw-trust { background: #f6f9f7; margin-top: 54px; padding: 26px 0; }
+      .sw-trust-inner { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-around; }
+      .sw-trust-item { display: flex; align-items: center; gap: 13px; }
+      .sw-trust-item svg { color: var(--green); flex: none; }
+      .sw-trust-item span { font-size: 13px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: #2e3d46; line-height: 1.45; }
+
+      /* Footer */
+      .sw-footer { padding: 40px 0 46px; text-align: center; }
+      .sw-footer img { width: 120px; height: auto; }
+      .sw-footer p { font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+      .sw-footer a { color: var(--green); font-weight: 700; }
+
+      @media (max-width: 991px) {
+        .sw-grid { grid-template-columns: 1fr; gap: 34px; }
+        .sw-card { order: -1; }
+        .sw-h1 { font-size: 38px; }
+        .sw-links { display: none; }
+      }
+      @media (max-width: 575px) {
+        .sw-two, .sw-ints { grid-template-columns: 1fr; }
+        .sw-h1 { font-size: 32px; }
+      }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWSQBZ4B"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <nav class="sw-nav">
+      <div class="container sw-nav-inner">
+        <a href="index.html" aria-label="GetMoved home">
+          <picture><source srcset="assets/img/logo-600.webp" type="image/webp"><img src="assets/img/logo_png.png" alt="GetMoved logo"></picture>
+        </a>
+        <div class="sw-links">
+          <a href="index.html">Home</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="for-movers.html">For Movers</a>
+          <a href="software.html" class="is-active">Software</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+        <div class="sw-nav-right">
+          <a class="sw-login" href="https://portal.getmoved.app/login">Login</a>
+          <a class="sw-cta" href="free-moving-quote.html">Get a Quote</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="sw-hero">
+      <div class="container">
+        <div class="sw-grid">
+
+          <!-- Left: pitch -->
+          <div>
+            <p class="sw-eyebrow">GetMoved Software for Movers</p>
+            <h1 class="sw-h1">Run your <em>moving</em><br>company from <span class="grn">one platform</span></h1>
+            <p class="sw-lead">Manage leads, estimates, bookings, dispatch, crews, payments and AI-powered inventory with GetMoved Software.</p>
+
+            <div class="sw-feats">
+              <div class="sw-feat">
+                <span class="sw-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                <div><h3>Leads &amp; CRM</h3><p>Capture and manage leads, follow up, and grow.</p></div>
+              </div>
+              <div class="sw-feat">
+                <span class="sw-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span>
+                <div><h3>Estimates &amp; Quotes</h3><p>Create professional estimates and convert faster.</p></div>
+              </div>
+              <div class="sw-feat">
+                <span class="sw-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+                <div><h3>Dispatch &amp; Crews</h3><p>Schedule jobs, assign crews, and stay on track.</p></div>
+              </div>
+              <div class="sw-feat">
+                <span class="sw-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></span>
+                <div><h3>Payments &amp; Invoicing</h3><p>Get paid faster with integrated payments.</p></div>
+              </div>
+              <div class="sw-feat">
+                <span class="sw-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8L20 10l-6.1 1.2L12 17l-1.9-5.8L4 10l6.1-1.2z"/><path d="M19 17l.9 2.6L22 20l-2.1.4L19 23l-.9-2.6L16 20l2.1-.4z"/></svg></span>
+                <div><h3>AI Video Inventory</h3><p>Let AI turn videos into detailed inventory lists.</p></div>
+              </div>
+            </div>
+
+            <div class="sw-visual">
+              <picture>
+                <source srcset="images/saas-laptop.webp" type="image/webp">
+                <img loading="lazy" src="images/saas-laptop.png" alt="GetMoved Software dispatch board on a laptop, GetMoved trucks in the background">
+              </picture>
+            </div>
+
+            <p class="sw-note">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              Quick 15-minute demo. No long-term commitment.
+            </p>
+          </div>
+
+          <!-- Right: Request a Demo card -->
+          <div class="sw-card">
+            <p class="sw-card-eyebrow">For moving companies interested in the software</p>
+            <h2>Request a Demo</h2>
+            <p class="sw-card-sub">Tell us a little about your company and our team will contact you shortly.</p>
+
+            <form id="demo-request-form" novalidate>
+              <div class="sw-field">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/></svg>
+                <input type="text" name="company_name" placeholder="Company Name *" autocomplete="organization" required>
+                <p class="sw-err" data-err-for="company_name"></p>
+              </div>
+              <div class="sw-field">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" name="contact_name" placeholder="Your Name *" autocomplete="name" required>
+                <p class="sw-err" data-err-for="contact_name"></p>
+              </div>
+              <div class="sw-field">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+                <input type="email" name="email" placeholder="Business Email *" autocomplete="email" inputmode="email" required>
+                <p class="sw-err" data-err-for="email"></p>
+              </div>
+              <div class="sw-field">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <input type="tel" name="phone" placeholder="Phone" autocomplete="tel" inputmode="tel">
+                <p class="sw-err" data-err-for="phone"></p>
+              </div>
+              <div class="sw-two">
+                <div class="sw-field">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <select name="state" required>
+                    <option value="">State *</option>
+                    <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>DC</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+                  </select>
+                  <p class="sw-err" data-err-for="state"></p>
+                </div>
+                <div class="sw-field">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  <select name="trucks">
+                    <option value="">Number of Trucks</option>
+                    <option value="1-2">1&ndash;2</option>
+                    <option value="3-5">3&ndash;5</option>
+                    <option value="6-10">6&ndash;10</option>
+                    <option value="11-20">11&ndash;20</option>
+                    <option value="20+">20+</option>
+                  </select>
+                </div>
+              </div>
+
+              <p class="sw-int-title">What are you interested in?</p>
+              <div class="sw-ints">
+                <label class="sw-int"><input type="checkbox" name="interests" value="Full GetMoved Platform"> Full GetMoved Platform</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="CRM &amp; Leads"> CRM &amp; Leads</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="Estimates &amp; Quotes"> Estimates &amp; Quotes</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="Dispatch &amp; Crews"> Dispatch &amp; Crews</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="Payments &amp; Invoicing"> Payments &amp; Invoicing</label>
+                <label class="sw-int"><input type="checkbox" name="interests" value="AI Video Inventory"> AI Video Inventory</label>
+              </div>
+
+              <input class="sw-hp" type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button type="submit" class="sw-submit">Request a Demo &rarr;</button>
+              <p class="sw-status" id="demo-request-status" role="status"></p>
+            </form>
+
+            <p class="sw-alt">Looking to join the network instead?<br>
+              <a href="register-as-mover.html">Register as a Mover &rarr;</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="sw-trust">
+      <div class="container sw-trust-inner">
+        <div class="sw-trust-item">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span>Built for<br>moving companies</span>
+        </div>
+        <div class="sw-trust-item">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-6"/><path d="M10 20V10"/><path d="M16 20v-8"/><path d="M22 20V4"/></svg>
+          <span>Save time<br>work smarter</span>
+        </div>
+        <div class="sw-trust-item">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Grow your<br>business</span>
+        </div>
+        <div class="sw-trust-item">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span>Trusted by<br>movers nationwide</span>
+        </div>
+      </div>
+    </div>
+
+    <footer class="sw-footer">
+      <picture><source srcset="assets/img/logo-600.webp" type="image/webp"><img src="assets/img/logo_png.png" alt="GetMoved logo"></picture>
+      <p>The operating system for modern moving companies.</p>
+      <p><a href="how-it-works.html">How It Works</a> &nbsp;&middot;&nbsp; <a href="pricing.html">Pricing</a> &nbsp;&middot;&nbsp; <a href="register-as-mover.html">Register as a Mover</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></p>
+    </footer>
+
+    <script src="js/getmoved.js?v=44"></script>
+</body>
+</html>

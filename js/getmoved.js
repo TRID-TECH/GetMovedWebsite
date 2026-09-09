@@ -155,7 +155,7 @@
     if (attr.medium) payload.medium = attr.medium;
     if (attr.campaign) payload.campaign = attr.campaign;
     if (typeof window.gtag === "function") { window.gtag("event", eventName, payload); }
-    if (["begin_quote", "begin_signup", "form_start", "form_step_complete", "form_error", "reveal_step", "partial_lead"].indexOf(eventName) !== -1) {
+    if (["begin_quote", "begin_signup", "form_start", "form_step_complete", "form_error", "reveal_step", "partial_lead", "begin_demo_request"].indexOf(eventName) !== -1) {
       try {
         fetch(trackEndpoint, {
           method: "POST",
@@ -892,6 +892,82 @@
         })
         .catch(function () { if (wlStatus) { wlStatus.textContent = "Sorry, something went wrong. Please try again."; wlStatus.classList.add("is-error"); } })
         .finally(function () { if (wlSubmit) { wlSubmit.disabled = false; wlSubmit.textContent = wlSubmit.getAttribute("data-orig-label") || "Notify me at launch"; } });
+    });
+  }
+
+  // SaaS "Request a Demo" form (software.html) -> POST /api/v1/demo-requests.
+  // Funnel: begin_demo_request on first focus (GA4 + DB), demo_request on confirmed
+  // success (GA4 here; the DB completion row is written SERVER-SIDE by the endpoint,
+  // same pattern as generate_lead / sign_up — so no client DB write, no double count).
+  // No ad-platform conversions here — wire those to the campaign when it exists.
+  var demoForm = document.getElementById("demo-request-form");
+  if (demoForm) {
+    var demoStatus = document.getElementById("demo-request-status");
+    var demoSubmit = demoForm.querySelector('button[type="submit"]');
+    var setDemoStatus = function (msg, isError) {
+      if (!demoStatus) return;
+      demoStatus.textContent = msg || "";
+      demoStatus.classList.toggle("is-error", Boolean(isError));
+    };
+
+    demoForm.addEventListener("focusin", function () {
+      try { if (sessionStorage.getItem("gm_begin_demo")) return; sessionStorage.setItem("gm_begin_demo", "1"); } catch (e) {}
+      gmTrack("begin_demo_request", { source: "landing" });
+    });
+
+    demoForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      demoForm.querySelectorAll(".sw-err").forEach(function (el) { el.textContent = ""; });
+      var data = new FormData(demoForm);
+      var val = function (n) { return (data.get(n) || "").toString().trim(); };
+      var showErr = function (key, msg) {
+        var el = demoForm.querySelector('[data-err-for="' + key + '"]');
+        if (el) el.textContent = msg;
+      };
+      var errors = [];
+      if (!val("company_name")) errors.push(["company_name", "Enter your company name"]);
+      if (!val("contact_name")) errors.push(["contact_name", "Enter your name"]);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val("email"))) errors.push(["email", "Enter a valid business email"]);
+      if (!val("state")) errors.push(["state", "Select your state"]);
+      if (errors.length) { errors.forEach(function (e) { showErr(e[0], e[1]); }); return; }
+
+      var interests = [];
+      demoForm.querySelectorAll('input[name="interests"]:checked').forEach(function (cb) { interests.push(cb.value); });
+      var attr = gmAttribution();
+      var payload = {
+        company_name: val("company_name"),
+        contact_name: val("contact_name"),
+        email: val("email").toLowerCase(),
+        phone: val("phone"),
+        state: val("state"),
+        trucks: val("trucks"),
+        interests: interests,
+        hp: val("hp"),
+        session_id: gmSessionId(),
+        source: attr.source, medium: attr.medium, campaign: attr.campaign, gclid: attr.gclid,
+      };
+
+      if (demoSubmit) { demoSubmit.disabled = true; demoSubmit.textContent = "Sending..."; }
+      setDemoStatus("", false);
+      fetch("https://portal.getmoved.app/api/v1/demo-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        keepalive: true,
+        body: JSON.stringify(payload),
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (r) {
+          if (!r.ok || (r.j && r.j.success === false)) throw new Error((r.j && r.j.error) || "Submission failed");
+          gmTrack("demo_request", { source: "landing" });
+          demoForm.reset();
+          setDemoStatus("Thank you! Our team will reach out shortly to schedule your demo.", false);
+        })
+        .catch(function (err) {
+          setDemoStatus((err && err.message) || "Sorry, something went wrong. Please email us at sales@getmoved.app.", true);
+        })
+        .finally(function () {
+          if (demoSubmit) { demoSubmit.disabled = false; demoSubmit.innerHTML = "Request a Demo &rarr;"; }
+        });
     });
   }
 
