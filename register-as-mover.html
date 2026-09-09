@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Register as a Mover - IDENTICAL clone of software.html (same demo form, same content,
-     same /api/v1/demo-requests destination) per owner request; only title + legacy pixels differ.
+     Standalone page: no theme bundle (fast). Form posts to /api/v1/demo-requests.
      Funnel events: begin_demo_request (first focus) + demo_request (confirmed submit, DB row
      written server-side). Handled in js/getmoved.js (#demo-request-form block). -->
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -57,12 +57,15 @@
     <meta property="og:description" content="Manage leads, estimates, bookings, dispatch, crews, payments and AI-powered inventory with GetMoved Software. Request a demo." />
     <meta property="og:image" content="https://getmoved.app/assets/img/Logo_PNG.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://getmoved.app/software.html" />
+    <!-- Duplicate of software.html by owner request; canonical points at the primary URL. -->
     <link rel="icon" type="image/png" href="assets/img/favicon-128.png" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"/>
 
     <style>
       :root { --green: #1e8e4e; --green-dark: #17753f; --ink: #15202b; --muted: #5b6b73; }
       * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
       body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: #fff; }
       a { text-decoration: none; }
       .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
@@ -181,11 +184,10 @@
           <a href="how-it-works.html">How It Works</a>
           <a href="for-movers.html">For Movers</a>
           <a href="software.html" class="is-active">Software</a>
-          <a href="pricing.html">Pricing</a>
         </div>
         <div class="sw-nav-right">
           <a class="sw-login" href="https://portal.getmoved.app/login">Login</a>
-          <a class="sw-cta" href="free-moving-quote.html">Get a Quote</a>
+          <a class="sw-cta" href="#request-demo">Request a Demo</a>
         </div>
       </div>
     </nav>
@@ -237,7 +239,7 @@
           </div>
 
           <!-- Right: Request a Demo card -->
-          <div class="sw-card">
+          <div class="sw-card" id="request-demo">
             <p class="sw-card-eyebrow">For moving companies interested in the software</p>
             <h2>Request a Demo</h2>
             <p class="sw-card-sub">Tell us a little about your company and our team will contact you shortly.</p>
@@ -301,7 +303,7 @@
             </form>
 
             <p class="sw-alt">Looking to join the network instead?<br>
-              <a href="register-as-mover.html">Register as a Mover &rarr;</a>
+              <a href="https://portal.getmoved.app/register-as-mover">Register as a Mover &rarr;</a>
             </p>
           </div>
 
@@ -333,9 +335,9 @@
     <footer class="sw-footer">
       <picture><source srcset="assets/img/logo-600.webp" type="image/webp"><img src="assets/img/logo_png.png" alt="GetMoved logo"></picture>
       <p>The operating system for modern moving companies.</p>
-      <p><a href="how-it-works.html">How It Works</a> &nbsp;&middot;&nbsp; <a href="pricing.html">Pricing</a> &nbsp;&middot;&nbsp; <a href="register-as-mover.html">Register as a Mover</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></p>
+      <p><a href="how-it-works.html">How It Works</a> &nbsp;&middot;&nbsp; <a href="register-as-mover.html">Register as a Mover</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a></p>
     </footer>
 
-    <script src="js/getmoved.js?v=44"></script>
+    <script src="js/getmoved.js?v=45"></script>
 </body>
 </html>

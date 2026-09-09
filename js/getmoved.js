@@ -958,7 +958,35 @@
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
         .then(function (r) {
           if (!r.ok || (r.j && r.j.success === false)) throw new Error((r.j && r.j.error) || "Submission failed");
-          gmTrack("demo_request", { source: "landing" });
+          // Campaign conversion event — pushed ONLY on a confirmed 2xx from the API,
+          // never on click / finally, and never when the honeypot caught a bot.
+          // GTM (GTM-TWSQBZ4B) listens for this Custom Event and fires GA4 +
+          // Google Ads Enhanced Conversions + Meta Lead from ONE place, so
+          // measurement changes need no site deploy. user_data goes in UNHASHED —
+          // GTM hashes it before sending (Google EC / Meta Advanced Matching);
+          // it is not logged or sent anywhere else. GA4 gets demo_request solely
+          // via the GTM tag (no direct gtag call here — no double counting);
+          // the DB funnel row is written server-side by the endpoint.
+          if (!payload.hp) {
+            var toE164 = function (v) {
+              var d = String(v || "").replace(/\D/g, "");
+              if (!d) return "";
+              return d.length === 10 ? "+1" + d : (d.charAt(0) === "1" ? "+" + d : "+" + d);
+            };
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: "demo_request",
+              form_id: "demo-request-form",
+              page_type: "software",
+              mover_state: payload.state,
+              fleet_size: payload.trucks,
+              interests: interests,
+              user_data: {
+                email: payload.email,
+                phone_number: toE164(payload.phone),
+              },
+            });
+          }
           demoForm.reset();
           setDemoStatus("Thank you! Our team will reach out shortly to schedule your demo.", false);
         })
@@ -1172,6 +1200,9 @@
   (function () {
     function mountFloatQuote() {
       if (document.getElementById("gm-float-quote")) return;
+      // B2B demo pages (paid mover-acquisition traffic): no consumer quote CTA —
+      // every exit into the customer funnel is a paid visitor lost.
+      if (document.getElementById("demo-request-form")) return;
       var section = document.getElementById("quick-quote");
       var btn = document.createElement("a");
       btn.id = "gm-float-quote";
