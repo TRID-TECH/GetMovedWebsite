@@ -111,9 +111,27 @@
     xhr.send(fd);
   }
 
+  // Optional contact fields above the dropzone: not mandatory, but when present
+  // the backend emails the visitor their full inventory + CUFT estimate.
+  function contactFields() {
+    var out = {};
+    try {
+      var em = (document.getElementById("tai-email") || {}).value || "";
+      var ph = (document.getElementById("tai-phone") || {}).value || "";
+      em = em.trim().toLowerCase();
+      ph = ph.trim();
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) out.email = em;
+      if (ph) out.phone = ph;
+    } catch (e) {}
+    return out;
+  }
+
   // ---- Step 2: record the upload for the admins (best-effort) ---------------
   function logUpload(extra) {
     var payload = { video_url: current.videoUrl, s3_key: current.s3Key, job_id: current.jobId };
+    var contact = contactFields();
+    if (contact.email) payload.email = contact.email;
+    if (contact.phone) payload.phone = contact.phone;
     if (extra) { for (var k in extra) payload[k] = extra[k]; }
     fetch(API + "/submitted-videos/test-ai", {
       method: "POST",

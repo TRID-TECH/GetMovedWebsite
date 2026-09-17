@@ -85,6 +85,12 @@
 		.tai-steps .n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #e7f4ec; color: #1e8e4e; font-weight: 800; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
 		.tai-card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 26px; }
 		.tai-card-title { font-size: 22px; font-weight: 800; color: #15202b; margin: 0 0 16px; }
+		.tai-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 8px; }
+		.tai-contact input { width: 100%; border: 1px solid #dfe6e3; border-radius: 10px; background: #fbfdfc; padding: 12px 14px; font-size: 14px; color: #15202b; outline: none; font-family: inherit; transition: border-color .2s, box-shadow .2s; box-sizing: border-box; }
+		.tai-contact input:focus { border-color: #1e8e4e; box-shadow: 0 0 0 3px rgba(30,142,78,.12); }
+		.tai-contact input::placeholder { color: #9aa7af; }
+		.tai-contact-note { font-size: 12.5px; color: #7a8891; margin: 0 0 14px; line-height: 1.5; }
+		@media (max-width: 575px) { .tai-contact { grid-template-columns: 1fr; } }
 		.tai-dropzone { border: 2px dashed #cfe0d6; border-radius: 14px; background: #fbfdfc; padding: 42px 20px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; }
 		.tai-dropzone.is-drag, .tai-dropzone:hover { border-color: #1e8e4e; background: #f2faf5; }
 		.tai-dropzone i { font-size: 40px; color: #1e8e4e; display: block; margin-bottom: 12px; }
@@ -239,6 +245,11 @@
 					<!-- State: upload -->
 					<div id="tai-state-upload">
 						<h3 class="tai-card-title font-secondary">Upload Your Walkthrough<span class="tai-beta-badge">Beta</span></h3>
+						<div class="tai-contact">
+							<input type="email" id="tai-email" placeholder="Email address (optional)" autocomplete="email" inputmode="email">
+							<input type="tel" id="tai-phone" placeholder="Phone (optional)" autocomplete="tel" inputmode="tel">
+						</div>
+						<p class="tai-contact-note">Not mandatory. But if you add them, we will email you the <strong>full inventory and CUFT estimate</strong>.</p>
 						<div id="tai-dropzone" class="tai-dropzone">
 							<i class="ti-video-camera"></i>
 							<p>Drag &amp; drop your video here</p>
@@ -348,7 +359,7 @@
     <script src="js/plugins.min.js"></script>
 	<script src="js/functions.js"></script>
 	<script src="js/getmoved.js?v=45"></script>
-	<script src="js/test-ai.js?v=2"></script>
+	<script src="js/test-ai.js?v=3"></script>
 	<script defer src="js/visit-counter.js?v=1"></script>
 
 </body>
