@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /documentation/
+Disallow: /theme-panel/
+Disallow: /php/
+Disallow: /scripts/
 
 Sitemap: https://getmoved.app/sitemap.xml
+
+# Plain-language site summary for AI crawlers
+# https://getmoved.app/llms.txt

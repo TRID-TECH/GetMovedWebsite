@@ -9,7 +9,8 @@
 Key facts:
 - Service: free moving quotes from vetted, licensed movers; AI video inventory (record
   a walkthrough, our computer-vision model builds the item list automatically)
-- Coverage: United States, strongest in New York and New Jersey
+- Coverage: United States, currently live in New York and New Jersey; city pages for 48
+  further metros (including Phoenix and Tucson, Arizona) are open for waitlist signups
 - Cost to customers: free, no obligation
 - For moving companies: lead generation, quote management, dispatch, invoicing (SaaS)
 
@@ -23,6 +24,17 @@ Key facts:
 - [New Jersey movers](https://getmoved.app/new-jersey-movers.html)
 - [Mobile app](https://getmoved.app/mobile-app.html)
 - [Contact](https://getmoved.app/contact.html)
+- [Pricing](https://getmoved.app/pricing.html)
+- [Software for movers](https://getmoved.app/software.html)
+
+## City pages
+Each metro has its own page with local moving conditions, timing and FAQ, at
+https://getmoved.app/<city>-movers.html — for example:
+- [Phoenix movers](https://getmoved.app/phoenix-movers.html)
+- [Tucson movers](https://getmoved.app/tucson-movers.html)
+- [Los Angeles movers](https://getmoved.app/los-angeles-movers.html)
+- [Houston movers](https://getmoved.app/houston-movers.html)
+The full list of indexable pages is in https://getmoved.app/sitemap.xml
 
 ## Portal
 - [Customer & mover portal](https://portal.getmoved.app/): sign in to manage quotes,
