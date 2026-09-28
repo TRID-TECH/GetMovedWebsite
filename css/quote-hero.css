@@ -10,14 +10,9 @@
 	background-image:
 		linear-gradient(90deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.18) 28%, rgba(255,255,255,0) 52%),
 		url("../images/quote-hero.webp") !important;
-	background-size: cover !important;
-	background-position: center 62% !important;
+	background-size: 100% auto !important;
+	background-position: center center !important;
 	background-repeat: no-repeat !important;
-}
-
-#quick-quote.gm-qq-section {
-	background-size: 155% auto !important;
-	background-position: 38% 64% !important;
 }
 
 #quote-step2.gm-qq-section {
@@ -27,8 +22,8 @@
 	background-image:
 		linear-gradient(180deg, rgba(255,255,255,.38), rgba(255,255,255,.22)),
 		url("../images/quote-hero.webp") !important;
-	background-size: 155% auto !important;
-	background-position: 38% 64% !important;
+	background-size: 100% auto !important;
+	background-position: center center !important;
 }
 
 #quick-quote.gm-qq-section {
@@ -359,8 +354,8 @@
 	.gm-qq-proof-inner { grid-template-columns: 1fr 1fr; }
 	#quick-quote.gm-qq-section,
 	#quote-step2.gm-qq-section {
-		background-size: cover !important;
-		background-position: 16% 18% !important;
+		background-size: 100% auto !important;
+		background-position: center top !important;
 	}
 }
 
