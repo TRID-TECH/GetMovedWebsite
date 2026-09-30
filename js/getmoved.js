@@ -333,24 +333,6 @@
       });
     });
 
-    // Size dropdown from the portal (public); static fallback so it is never empty.
-    const sizeSelect = document.getElementById("qq-size");
-    if (sizeSelect) {
-      const SIZE_FALLBACK = ["Room or Less - 153 CF", "Studio - 297 CF", "Small 1 Bedroom - 323 CF", "Large 1 Bedroom - 452 CF", "Small 2 Bedroom - 650 CF", "Large 2 Bedroom - 689 CF", "2 Bedroom House - 932 CF", "3 Bedroom Apartment - 1047 CF", "3 Bedroom House - 1199 CF", "4+ Bedroom House - 1478 CF"];
-      const addOpt = (label) => { if (!label) return; const o = document.createElement("option"); o.value = label; o.textContent = label; sizeSelect.appendChild(o); };
-      const ensure = () => { if (sizeSelect.options.length <= 1) SIZE_FALLBACK.forEach(addOpt); };
-      fetch("https://portal.getmoved.app/api/v1/size-of-move?active=true")
-        .then((r) => (r.ok ? r.json() : null))
-        .then((body) => {
-          const rows = Array.isArray(body) ? body : (body && Array.isArray(body.data) ? body.data : []);
-          rows.filter((row) => row && (row.is_active === undefined || row.is_active))
-            .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
-            .forEach((row) => addOpt(String((row && (row.display_name || row.name)) || "").trim()));
-          ensure();
-        })
-        .catch(ensure);
-    }
-
     quoteForm.addEventListener("submit", (event) => {
       event.preventDefault();
       clearErrors();
