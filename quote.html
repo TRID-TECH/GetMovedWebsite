@@ -303,7 +303,12 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					</div>
 
 					<div class="gm-qq-hp" aria-hidden="true">
-						<input type="text" name="hp" tabindex="-1" autocomplete="new-password" value="" aria-hidden="true">
+						<!-- Anti-spam honeypot. "new-password" used to be the autocomplete value here,
+						     which invited password managers in; `off` plus `readonly` is what autofill
+						     engines actually respect. A bot setting .value directly is unaffected, so
+						     this costs no detection. The field only flags a submission now - the server
+						     no longer drops one because of it (see emailController.sendQuickQuote). -->
+						<input type="text" name="hp" tabindex="-1" autocomplete="off" value="" aria-hidden="true" readonly>
 					</div>
 					<button type="submit" class="gm-qq-submit font-secondary">Send &amp; Get My Quotes</button>
 					<p class="gm-qq-consent" style="font-size:11.5px;color:#9aa7af;margin:10px 2px 0;line-height:1.5;">By submitting, you agree that GetMoved and its partner moving companies may contact you by phone, text, or email about your quote request. See our <a href="terms.html" style="color:#1e8e4e;">Terms</a> and <a href="privacy.html" style="color:#1e8e4e;">Privacy Policy</a>.</p>
