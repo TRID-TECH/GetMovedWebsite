@@ -337,13 +337,17 @@
       event.preventDefault();
       clearErrors();
 
-      // Step 2 (contact): first name, phone, email required. Route/date/size come
-      // from step 1 as hidden fields.
-      const firstInput = quoteForm.querySelector('[name="first_name"]');
+      // Step 2 (contact): phone and email required. Route/date/size come from
+      // step 1 as hidden fields.
+      //
+      // The name is asked for but NOT required, which is what the backend has
+      // always assumed ("Name is optional now ... to cut friction" in
+      // emailController.sendQuickQuote, which substitutes "Website lead" when it
+      // is blank). It was briefly mandatory from 2026-09-30, and the step-1 to
+      // step-2 completion rate over that window ran 67% against 86% before it.
       const emailInput = quoteForm.querySelector('[name="email"]');
       const phoneInput = quoteForm.querySelector('[name="phone"]');
       const errors = [];
-      if (firstInput && !firstInput.value.trim()) errors.push([firstInput, "first_name", "Enter your first name"]);
       if (phoneInput) {
         const pv = phoneInput.value.trim();
         if (!pv) errors.push([phoneInput, "phone", "Enter your phone number"]);

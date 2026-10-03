@@ -258,11 +258,14 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					<div id="qq-summary" class="gm-qq-summary"></div>
 
 					<!-- Step 1 captures route + email + phone, so this is the only place we
-					     ask who is moving. Required by the step-2 validation in getmoved.js;
-					     without it every lead reached the portal as "Website lead". -->
+					     ask who is moving. Asked for, not required: a blank name still reaches
+					     the portal (as "Website lead") and we can get it on the call, whereas a
+					     blocked submit loses the lead outright. It was mandatory from
+					     2026-09-30 and step-1 to step-2 completion ran 67% over that window
+					     against 86% before it. -->
 					<p class="gm-qq-sec" style="margin-top:0;">Your name</p>
 					<div class="gm-qq-field">
-						<input type="text" id="qq-first-name" name="first_name" placeholder="First name" autocomplete="given-name" required>
+						<input type="text" id="qq-first-name" name="first_name" placeholder="First name (optional)" autocomplete="given-name">
 						<p class="gm-qq-err" data-err-for="first_name"></p>
 					</div>
 
