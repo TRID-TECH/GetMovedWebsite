@@ -203,7 +203,9 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
         </div>
     </nav>
 
-	<!-- Quote Step 2 -->
+	<!-- The long quote form. No longer a second step: the landing pages finish
+	     the quote themselves, and this page stands on its own for anyone who
+	     arrives directly or comes back from the TEST AI walkthrough. -->
 	<style>
 		#quote-step2.gm-qq-section { background: #fff; padding: 130px 0 60px; }
 		.gm-qq-title { font-size: 34px; line-height: 1.15; color: #15202b; margin: 0 0 10px; font-weight: 800; }
@@ -257,7 +259,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 					<input type="hidden" name="move_to" id="qq-move-to">
 					<div id="qq-summary" class="gm-qq-summary"></div>
 
-					<!-- Step 1 captures route + email + phone, so this is the only place we
+					<!-- The landing form captures route + email + phone, so this is the only place we
 					     ask who is moving. Asked for, not required: a blank name still reaches
 					     the portal (as "Website lead") and we can get it on the call, whereas a
 					     blocked submit loses the lead outright. It was mandatory from
