@@ -328,8 +328,21 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 								<input type="tel" id="qq1-phone" name="phone" placeholder="(___) ___-____" autocomplete="tel" inputmode="tel" required>
 								<p class="gm-qq-err" data-err-for="phone"></p>
 							</div>
+							<!-- Optional. The quote is now a single step, so the size is asked
+							     here or not at all; a blank one does not block the submit. -->
+							<div class="gm-qq-field" style="margin-top:12px;">
+								<label class="gm-qq-label" for="qq1-size">Size of move <span style="font-weight:400;color:#8a97a0;">(optional)</span></label>
+								<select id="qq1-size" name="property_type">
+									<option value="" selected>Not sure yet</option>
+									<option value="Studio">Studio</option>
+									<option value="1BR">1BR</option>
+									<option value="2BR">2BR</option>
+									<option value="3BR+">3BR+</option>
+								</select>
+							</div>
 						</div>
-						<button type="submit" class="gm-qq-submit font-secondary" id="qq1-submit">Continue &rarr;</button>
+						<button type="submit" class="gm-qq-submit font-secondary" id="qq1-submit">Send &amp; Get My Quotes</button>
+						<p id="qq1-status" role="status" aria-live="polite" style="margin:10px 2px 0;font-size:13px;min-height:1em;"></p>
 						<div class="gm-qq-cardtrust">
 							<span><i class="ti-check"></i> Free</span>
 							<span><i class="ti-check"></i> No obligation</span>

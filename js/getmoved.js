@@ -272,11 +272,99 @@
   })();
 
   // Quick Quote form -> sends via the GetMoved backend API (Amazon SES).
+  // ---------------------------------------------------------------------------
+  // The end of the quote, in one place.
+  //
+  // The funnel is a single step: the "Send & Get My Quotes" button on any
+  // landing page runs this, and so does the longer form on quote.html for anyone
+  // who lands there directly. Everything that must happen exactly once on a
+  // confirmed lead - the POST, the GA4 event, the Meta/Reddit/Nextdoor/Google
+  // conversions, the TEST AI handoff, the thank-you redirect - lives here and
+  // nowhere else, so the two entry points cannot drift apart.
+  //
+  // `ui` is { form, submit, status }.
+  const GM_QUOTE_ENDPOINT = "https://portal.getmoved.app/api/v1/email/quick-quote";
+  function gmCompleteQuote(payload, ui) {
+    ui = ui || {};
+    if (typeof ui.status !== "function") ui.status = function () {};
+          var attribution = gmAttribution();
+          payload.gclid = attribution.gclid;
+          payload.source = attribution.source;
+          payload.medium = attribution.medium;
+          payload.campaign = attribution.campaign;
+          // Reddit CAPI attribution: pass the ad-click id and a shared conversion_id
+          // so the server-side Lead event dedupes against the browser pixel below.
+          var rdtConversionId = gmUuid();
+          payload.rdt_cid = gmRedditClickId();
+          payload.reddit_conversion_id = rdtConversionId;
+      
+          // No partial_lead_id any more: with a single step there is no earlier
+          // half-lead for the backend to merge this into.
+      
+          // TEST AI handoff: if the visitor analyzed a walkthrough on test-ai.html,
+          // carry its S3 video + detected inventory into the quote. The backend
+          // attaches the items to the created Request (see sendQuickQuote).
+          try {
+            if (!payload.video_url) payload.video_url = sessionStorage.getItem("gm_testai_video_url") || "";
+            var tinv = JSON.parse(sessionStorage.getItem("gm_testai_inventory") || "null");
+            if (Array.isArray(tinv) && tinv.length) payload.inventory = tinv.slice(0, 100);
+          } catch (e) {}
+      
+          if (ui.submit) { ui.submit.disabled = true; ui.submit.textContent = "Sending..."; }
+          ui.status("", false);
+      
+          fetch(GM_QUOTE_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+            .then((response) => { if (!response.ok) { throw new Error("Request failed with status " + response.status); } return response.json().catch(() => ({})); })
+            .then((result) => {
+              if (result && result.success === false) { throw new Error(result.message || "Send failed"); }
+              gmTrack("generate_lead", { source: "landing" });
+              // OpenAI Ads conversion — same trigger as GA4 generate_lead (confirmed
+              // backend success only; never on partial / quote_step_1).
+              if (window.oaiq) {
+                oaiq("measure", "lead_created", { type: "customer_action" });
+              }
+              // Same conversion_id as the server-side CAPI event so Reddit dedupes them.
+              if (typeof window.rdt === "function") { window.rdt("track", "Lead", { conversion_id: rdtConversionId }); }
+              if (typeof window.ndp === "function") { window.ndp("track", "LEAD"); }
+              if (typeof window.gtag === "function") {
+                window.gtag("set", "user_data", { email: payload.email, phone_number: payload.phone });
+                window.gtag("event", "conversion", { send_to: "AW-18301808532/Cd3sCNnGm8scEJTf_ZZE", value: 1.0, currency: "USD" });
+                // Request quote (1) conversion — fires on successful quote submit.
+                window.gtag("event", "conversion", { send_to: "AW-18301808532/tyknCISIsN8cEJTf_ZZE" });
+              }
+              // Meta Lead — browser Pixel + server CAPI (shared event_id), fired only on
+              // confirmed backend success (the quote is persisted).
+              try {
+                var _mLoc = gmParseLoc(payload.moveFrom);
+                var _oState = (_mLoc.state || "").toLowerCase();
+                var _dState = (gmParseLoc(payload.moveTo).state || "").toLowerCase();
+                // Long-distance only when origin/destination are KNOWN different states;
+                // unknown or same-state defaults to local (conservative).
+                var _mType = (_oState && _dState && _oState !== _dState) ? "long_distance" : "local";
+                var _mValue = gmMoveValue(payload.propertyType, _mType); // bucketed $ estimate
+                gmFireMeta("Lead", { content_name: "Quote Request", content_category: _mType, value: _mValue, currency: "USD" }, {
+                  email: payload.email, phone: payload.phone, firstName: payload.fullName, lastName: "",
+                  city: _mLoc.city, state: _mLoc.state, zip: _mLoc.zip
+                });
+              } catch (e) {}
+              if (ui.form) ui.form.reset();
+              // The TEST AI inventory is now attached to the created Request — clear the handoff.
+              try { sessionStorage.removeItem("gm_testai_video_url"); sessionStorage.removeItem("gm_testai_inventory"); } catch (e) {}
+              ui.status("Thank you! Redirecting…", false);
+              // P0.4: the thank-you state is its own URL (quote-received.html), not an inline
+              // swap. Lead has already fired here on confirmed success; the thank-you page
+              // fires no Lead, so a direct load or refresh counts nothing. The short delay
+              // lets the fbq beacon flush (the CAPI relay uses keepalive and survives anyway).
+              setTimeout(function () { window.location.href = "quote-received.html"; }, 400);
+            })
+            .catch(() => { ui.status("Sorry, something went wrong. Please email us directly at sales@getmoved.app.", true); })
+            .finally(() => { if (ui.submit) { ui.submit.disabled = false; ui.submit.textContent = ui.submit.getAttribute("data-orig-label") || "Send & Get My Quotes"; } });
+  }
+
   const quoteForm = document.getElementById("quick-quote-form");
   if (quoteForm) {
     const quoteStatus = document.getElementById("quick-quote-status");
     const quoteSubmit = quoteForm.querySelector('button[type="submit"]');
-    const mailEndpoint = "https://portal.getmoved.app/api/v1/email/quick-quote";
 
     const setStatus = (message, isError) => {
       if (!quoteStatus) return;
@@ -379,82 +467,11 @@
         video_url: (data.get("video_url") || "").toString().trim(),
         hp: (data.get("hp") || "").toString().trim(),
       };
-      var attribution = gmAttribution();
-      payload.gclid = attribution.gclid;
-      payload.source = attribution.source;
-      payload.medium = attribution.medium;
-      payload.campaign = attribution.campaign;
-      // Reddit CAPI attribution: pass the ad-click id and a shared conversion_id
-      // so the server-side Lead event dedupes against the browser pixel below.
-      var rdtConversionId = gmUuid();
-      payload.rdt_cid = gmRedditClickId();
-      payload.reddit_conversion_id = rdtConversionId;
-
-      // Link the step-1 partial lead (if we captured its id) so the backend can
-      // merge it into this full lead precisely, even if the phone was edited.
-      try {
-        var partialId1 = sessionStorage.getItem("gm_qq_partial_id");
-        if (partialId1) payload.partial_lead_id = Number(partialId1) || null;
-      } catch (e) {}
-
-      // TEST AI handoff: if the visitor analyzed a walkthrough on test-ai.html,
-      // carry its S3 video + detected inventory into the quote. The backend
-      // attaches the items to the created Request (see sendQuickQuote).
-      try {
-        if (!payload.video_url) payload.video_url = sessionStorage.getItem("gm_testai_video_url") || "";
-        var tinv = JSON.parse(sessionStorage.getItem("gm_testai_inventory") || "null");
-        if (Array.isArray(tinv) && tinv.length) payload.inventory = tinv.slice(0, 100);
-      } catch (e) {}
-
-      if (quoteSubmit) { quoteSubmit.disabled = true; quoteSubmit.textContent = "Sending..."; }
-      setStatus("", false);
-
-      fetch(mailEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
-        .then((response) => { if (!response.ok) { throw new Error("Request failed with status " + response.status); } return response.json().catch(() => ({})); })
-        .then((result) => {
-          if (result && result.success === false) { throw new Error(result.message || "Send failed"); }
-          gmTrack("generate_lead", { source: "landing" });
-          // OpenAI Ads conversion — same trigger as GA4 generate_lead (confirmed
-          // backend success only; never on partial / quote_step_1).
-          if (window.oaiq) {
-            oaiq("measure", "lead_created", { type: "customer_action" });
-          }
-          // Same conversion_id as the server-side CAPI event so Reddit dedupes them.
-          if (typeof window.rdt === "function") { window.rdt("track", "Lead", { conversion_id: rdtConversionId }); }
-          if (typeof window.ndp === "function") { window.ndp("track", "LEAD"); }
-          if (typeof window.gtag === "function") {
-            window.gtag("set", "user_data", { email: payload.email, phone_number: payload.phone });
-            window.gtag("event", "conversion", { send_to: "AW-18301808532/Cd3sCNnGm8scEJTf_ZZE", value: 1.0, currency: "USD" });
-            // Request quote (1) conversion — fires on successful quote submit.
-            window.gtag("event", "conversion", { send_to: "AW-18301808532/tyknCISIsN8cEJTf_ZZE" });
-          }
-          // Meta Lead — browser Pixel + server CAPI (shared event_id), fired only on
-          // confirmed backend success (the quote is persisted).
-          try {
-            var _mLoc = gmParseLoc(payload.moveFrom);
-            var _oState = (_mLoc.state || "").toLowerCase();
-            var _dState = (gmParseLoc(payload.moveTo).state || "").toLowerCase();
-            // Long-distance only when origin/destination are KNOWN different states;
-            // unknown or same-state defaults to local (conservative).
-            var _mType = (_oState && _dState && _oState !== _dState) ? "long_distance" : "local";
-            var _mValue = gmMoveValue(payload.propertyType, _mType); // bucketed $ estimate
-            gmFireMeta("Lead", { content_name: "Quote Request", content_category: _mType, value: _mValue, currency: "USD" }, {
-              email: payload.email, phone: payload.phone, firstName: payload.fullName, lastName: "",
-              city: _mLoc.city, state: _mLoc.state, zip: _mLoc.zip
-            });
-          } catch (e) {}
-          quoteForm.reset();
-          // The TEST AI inventory is now attached to the created Request — clear the handoff.
-          try { sessionStorage.removeItem("gm_testai_video_url"); sessionStorage.removeItem("gm_testai_inventory"); } catch (e) {}
-          setStatus("Thank you! Redirecting…", false);
-          // P0.4: the thank-you state is its own URL (quote-received.html), not an inline
-          // swap. Lead has already fired here on confirmed success; the thank-you page
-          // fires no Lead, so a direct load or refresh counts nothing. The short delay
-          // lets the fbq beacon flush (the CAPI relay uses keepalive and survives anyway).
-          setTimeout(function () { window.location.href = "quote-received.html"; }, 400);
-        })
-        .catch(() => { setStatus("Sorry, something went wrong. Please email us directly at sales@getmoved.app.", true); })
-        .finally(() => { if (quoteSubmit) { quoteSubmit.disabled = false; quoteSubmit.textContent = quoteSubmit.getAttribute("data-orig-label") || "Compare My Free Quotes"; } });
+      gmCompleteQuote(payload, {
+        form: quoteForm,
+        submit: quoteSubmit,
+        status: setStatus,
+      });
     });
     if (quoteSubmit && !quoteSubmit.getAttribute("data-orig-label")) {
       quoteSubmit.setAttribute("data-orig-label", quoteSubmit.textContent);
@@ -622,41 +639,16 @@
       });
     }
 
-    // Partial lead writer — the server upserts on the lowercased email (24h window).
-    function qq1SendPartial(emailV, phoneE164) {
-      try {
-        var attributionP = gmAttribution();
-        var toElP = step1Form.querySelector('[name="move_to"]');
-        fetch("https://portal.getmoved.app/api/v1/leads/partial", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          keepalive: true,
-          body: JSON.stringify({
-            move_from: ((qq1FromEl && qq1FromEl.value) || "").trim(),
-            move_to: ((toElP && toElP.value) || "").trim(),
-            email: emailV,
-            phone: phoneE164 || "",
-            source: attributionP.source,
-            medium: attributionP.medium,
-            campaign: attributionP.campaign,
-          }),
-        })
-          .then(function (r) { return r.json().catch(function () { return {}; }); })
-          .then(function (pr) {
-            try { if (pr && pr.data && pr.data.id) sessionStorage.setItem("gm_qq_partial_id", String(pr.data.id)); } catch (e) {}
-          })
-          .catch(function () {});
-      } catch (e) {}
-    }
+    // The partial-lead writer used to live here. The quote is a single step now,
+    // so there is no half-finished state to rescue: the submit either produces a
+    // full lead or produces nothing, and POST /leads/partial is no longer called
+    // from this page.
 
-    // Email: inline validation + typo hint + EARLY partial (valid email + blur ->
-    // POST /leads/partial, at most once per distinct email per session — whoever
-    // abandons at the phone field is still in the database).
+    // Email: inline validation on blur plus a typo hint ("gmial" -> "gmail").
     (function () {
       var em1 = step1Form.querySelector('[name="email"]');
       if (!em1) return;
       var TYPOS1 = { gmial: "gmail", gmai: "gmail", gamil: "gmail", hotmial: "hotmail", hotmal: "hotmail", yaho: "yahoo", yahooo: "yahoo", outlok: "outlook" };
-      var partialTimer = null;
       em1.addEventListener("blur", function () {
         var errEl1 = step1Form.querySelector('[data-err-for="email"]');
         var fld1 = em1.closest(".gm-qq-field");
@@ -684,24 +676,11 @@
             errEl1.classList.remove("is-hint");
           }
         }
-        // Early partial: debounced, once per distinct email per session.
+        // A valid email on blur used to fire a partial lead here. It no longer
+        // does: there is one step, so the only lead that exists is the finished
+        // one. The email is still remembered for a prefill.
         if (progressive && valid1) {
-          clearTimeout(partialTimer);
-          partialTimer = setTimeout(function () {
-            var sent = [];
-            try { sent = JSON.parse(sessionStorage.getItem("gm_qq_partials_sent") || "[]"); } catch (e) {}
-            if (sent.indexOf(v1) !== -1) return;
-            sent.push(v1);
-            try { sessionStorage.setItem("gm_qq_partials_sent", JSON.stringify(sent)); } catch (e) {}
-            try { sessionStorage.setItem("gm_qq_email", v1); } catch (e) {}
-            qq1SendPartial(v1, "");
-            gmTrack("partial_lead", { source: "landing", has_email: true });
-            // OpenAI Ads event — inherits the once-per-distinct-email-per-session
-            // guard of this block, same cadence as the GA4 event above.
-            if (window.oaiq) {
-              oaiq("measure", "registration_completed", { type: "customer_action" });
-            }
-          }, 400);
+          try { sessionStorage.setItem("gm_qq_email", v1); } catch (e) {}
         }
       });
       // Phone: inline error on blur ("Enter a 10-digit US phone number.").
@@ -742,9 +721,8 @@
       var sizeEl = step1Form.querySelector('[name="property_type"]');
       var dateV = flexEl && flexEl.checked ? "I'm flexible" : ((dateEl && dateEl.value || "").trim());
       var sizeV = (sizeEl && sizeEl.value || "").trim();
-      // Step 1 captures BOTH contacts: email (account identity, the dedup key)
-      // and phone (so a mover can confirm a missing detail). An abandoned step 2
-      // still leaves a usable partial lead — followed up by EMAIL only.
+      // Both contacts are required: email is the dedup key the backend merges
+      // on, phone is how a mover confirms a missing detail.
       var email1El = step1Form.querySelector('[name="email"]');
       var email1V = (email1El && email1El.value || "").trim().toLowerCase();
       var email1Valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email1V);
@@ -761,62 +739,50 @@
       if (phone1El && !phone1Valid) { showErr(phone1El, "phone", "Enter a 10-digit US phone number."); }
       if (!fromV || !toV || (email1El && !email1Valid) || (phone1El && !phone1Valid)) return;
 
-      // Capture the partial lead NOW (fire-and-forget, keepalive survives the redirect).
-      // HARD CONSTRAINT: no Meta/Reddit/Nextdoor/gtag conversion events here — those stay
-      // bound to the final step-2 submit so ad algorithms optimize for full leads.
-      if (email1Valid) {
-        try {
-          var attribution1 = gmAttribution();
-          fetch("https://portal.getmoved.app/api/v1/leads/partial", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            keepalive: true,
-            body: JSON.stringify({
-              move_from: fromV,
-              move_to: toV,
-              email: email1V,
-              phone: phone1E164,
-              source: attribution1.source,
-              medium: attribution1.medium,
-              campaign: attribution1.campaign,
-            }),
-          })
-            .then(function (r) { return r.json().catch(function () { return {}; }); })
-            .then(function (pr) {
-              // Best-effort: remember the partial id so step 2 can merge exactly.
-              try { if (pr && pr.data && pr.data.id) sessionStorage.setItem("gm_qq_partial_id", String(pr.data.id)); } catch (e) {}
-            })
-            .catch(function () {});
-          sessionStorage.setItem("gm_qq_email", email1V);
-          sessionStorage.setItem("gm_qq_phone", phone1E164);
-        } catch (e) {}
-        gmTrack("quote_step_1", { source: "landing", has_email: true, has_phone: true });
-        // OpenAI Ads mid-funnel event — same trigger and cadence as the GA4 event above.
-        if (window.oaiq) {
-          oaiq("measure", "checkout_started", { type: "contents" });
-        }
-      }
+      // This IS the end of the quote now. There is no step 2 to carry anything
+      // into, so nothing is stashed for a later page and no partial lead is
+      // written: the submit either produces a complete lead or produces nothing.
       try {
         if (!sessionStorage.getItem("gm_form_start")) {
           sessionStorage.setItem("gm_form_start", "1");
           gmTrack("begin_quote", { source: "landing" });
           gmTrack("form_start", { source: "landing" });
         }
-        sessionStorage.setItem("gm_qq_from", fromV);
-        sessionStorage.setItem("gm_qq_to", toV);
-        sessionStorage.setItem("gm_qq_date", dateV);
-        sessionStorage.setItem("gm_qq_size", sizeV);
       } catch (e) {}
-      gmTrack("form_step_complete", { source: "landing", step: 1, name: "move_details" });
-      // Meta InitiateCheckout — step 1 (addresses + date) accepted. Fire it, THEN let the
-      // browser Pixel beacon flush before navigating. An immediate redirect was discarding
-      // the queued fbq call on unload (fbevents.js may not have replayed the queue yet),
-      // leaving only the server (CAPI) event — which is why the IC count looked stuck.
-      // ~300ms is imperceptible; the CAPI relay uses keepalive and survives regardless.
-      var _step2Url = "quote.html?from=" + encodeURIComponent(fromV) + "&to=" + encodeURIComponent(toV) +
-        (dateV ? "&date=" + encodeURIComponent(dateV) : "") + (sizeV ? "&size=" + encodeURIComponent(sizeV) : "");
-      gmFireMeta("InitiateCheckout", { content_name: "Quote Request", content_category: "quote_form_step1" }, gmParseLoc(fromV));
-      setTimeout(function () { window.location.href = _step2Url; }, 300);
+      gmTrack("form_step_complete", { source: "landing", step: 1, name: "quote" });
+
+      // Meta InitiateCheckout, kept as the "committed to the form" signal. It now
+      // fires moments before Lead rather than on a separate page; Lead itself
+      // still fires only on confirmed backend success, inside gmCompleteQuote.
+      gmFireMeta("InitiateCheckout", { content_name: "Quote Request", content_category: "quote_form" }, gmParseLoc(fromV));
+      if (window.oaiq) {
+        oaiq("measure", "checkout_started", { type: "contents" });
+      }
+
+      var statusEl1 = document.getElementById("qq1-status");
+      gmCompleteQuote(
+        {
+          fullName: "",
+          email: email1V,
+          phone: phone1E164,
+          moveFrom: fromV,
+          moveTo: toV,
+          movingDate: dateV,
+          propertyType: sizeV,
+          details: "",
+          video_url: "",
+          hp: ((step1Form.querySelector('[name="hp"]') || {}).value || "").trim(),
+        },
+        {
+          form: step1Form,
+          submit: step1Form.querySelector('button[type="submit"]'),
+          status: function (msg, isError) {
+            if (!statusEl1) return;
+            statusEl1.textContent = msg || "";
+            statusEl1.style.color = isError ? "#b4231f" : "#1e8e4e";
+          },
+        }
+      );
     });
   }
 

@@ -341,8 +341,21 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 									<input type="tel" id="qq1-phone" name="phone" placeholder="(___) ___-____" autocomplete="tel" inputmode="tel" required>
 									<p class="gm-qq-err" data-err-for="phone"></p>
 								</div>
+								<!-- Optional. The quote is now a single step, so the size is asked
+								     here or not at all; a blank one does not block the submit. -->
+								<div class="gm-qq-field" style="margin-top:12px;">
+									<label class="gm-qq-label" for="qq1-size">Size of move <span style="font-weight:400;color:#8a97a0;">(optional)</span></label>
+									<select id="qq1-size" name="property_type">
+										<option value="" selected>Not sure yet</option>
+										<option value="Studio">Studio</option>
+										<option value="1BR">1BR</option>
+										<option value="2BR">2BR</option>
+										<option value="3BR+">3BR+</option>
+									</select>
+								</div>
 							</div>
-							<button type="submit" class="gm-qq-submit font-secondary" id="qq1-submit">Continue &rarr;</button>
+							<button type="submit" class="gm-qq-submit font-secondary" id="qq1-submit">Send &amp; Get My Quotes</button>
+						<p id="qq1-status" role="status" aria-live="polite" style="margin:10px 2px 0;font-size:13px;min-height:1em;"></p>
 							<a href="tel:+12016080850" class="gm-call-cta font-secondary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px"><path d="M4 18v-6a8 8 0 0 1 16 0v6"/><path d="M4 14h3v6H4zM17 14h3v6h-3z"/></svg> Rather talk? Call (201) 608-0850</a>
 						<div class="gm-qq-cardtrust">
 							<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><path d="M20 6L9 17l-5-5"/></svg> Free</span>
