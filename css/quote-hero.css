@@ -159,12 +159,13 @@
 	border: none;
 	border-radius: 22px;
 	box-shadow: 0 22px 55px rgba(18, 40, 28, .18);
-	padding: 22px 22px 16px;
+	/* Tightened so the whole card clears one screen with the submit visible. */
+	padding: 16px 20px 14px;
 }
 
 .gm-qq-cardtop {
 	position: relative;
-	margin: 0 0 14px;
+	margin: 0 0 10px;
 	padding-right: 108px;
 }
 
@@ -179,7 +180,10 @@
 
 #quick-quote .gm-qq-card-title {
 	margin: 0;
-	font-size: 22px;
+	/* 19px keeps "Get your free quotes" on one line; nowrap makes that a rule
+	   rather than a coincidence of the current wording. */
+	font-size: 19px;
+	white-space: nowrap;
 	font-weight: 800;
 	letter-spacing: -0.02em;
 	color: #152033;
@@ -220,7 +224,18 @@
 	padding-left: 40px;
 	border-radius: 12px;
 	border-color: #e4ebe8;
-	min-height: 48px;
+	min-height: 42px;
+}
+
+/* The date and size controls match the four contact fields above, so the row
+   does not read as a different form. They carry no leading icon, so they keep
+   the normal left padding. */
+#qq1-date,
+#qq1-size {
+	min-height: 42px;
+	border-radius: 12px;
+	border-color: #e4ebe8;
+	background-color: #fff;
 }
 
 #qq1-from,
@@ -241,8 +256,8 @@
 	background: #1b9a4a;
 	font-size: 17px;
 	font-weight: 700;
-	padding: 15px 18px;
-	margin-top: 16px;
+	padding: 12px 18px;
+	margin-top: 12px;
 	letter-spacing: 0;
 	text-transform: none;
 }
@@ -252,7 +267,7 @@
 }
 
 #quick-quote .gm-qq-cardtrust {
-	margin-top: 12px;
+	margin-top: 9px;
 }
 
 #quick-quote .gm-qq-cardtrust span {

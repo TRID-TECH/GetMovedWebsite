@@ -113,18 +113,18 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		.gm-qq-trust { display: flex; flex-wrap: wrap; gap: 12px 22px; }
 		.gm-qq-trust span { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: #48575f; font-weight: 600; }
 		.gm-qq-trust i { color: #1e8e4e; font-size: 15px; }
-		.gm-qq-card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 26px 26px 22px; }
-		.gm-qq-card-title { font-size: 22px; font-weight: 800; color: #15202b; margin: 0 0 16px; }
+		.gm-qq-card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 18px 22px 16px; }
+		.gm-qq-card-title { font-size: 19px; font-weight: 800; color: #15202b; margin: 0 0 12px; white-space: nowrap; }
 		.gm-qq-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 		.gm-qq-field { margin: 0; }
-		.gm-qq-field input, .gm-qq-field select { width: 100%; border: 1px solid #dfe6e3; border-radius: 10px; background: #fbfdfc; padding: 12px 14px; font-size: 14px; color: #15202b; outline: none; font-family: inherit; transition: border-color .2s, box-shadow .2s; }
-		.gm-qq-field select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+		.gm-qq-field input, .gm-qq-field select { width: 100%; border: 1px solid #dfe6e3; border-radius: 10px; background: #fbfdfc; padding: 10px 14px; font-size: 14px; color: #15202b; outline: none; font-family: inherit; transition: border-color .2s, box-shadow .2s; }
+		.gm-qq-field select { appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 38px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%235b6b73' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
 		.gm-qq-field input::placeholder { color: #9aa7af; }
 		.gm-qq-field input:focus, .gm-qq-field select:focus { border-color: #1e8e4e; box-shadow: 0 0 0 3px rgba(30,142,78,.12); }
-		.gm-qq-submit { width: 100%; border: none; border-radius: 10px; background: #1e8e4e; color: #fff; font-size: 16px; font-weight: 700; padding: 14px; cursor: pointer; margin-top: 14px; transition: background .2s; }
+		.gm-qq-submit { width: 100%; border: none; border-radius: 10px; background: #1e8e4e; color: #fff; font-size: 16px; font-weight: 700; padding: 12px; cursor: pointer; margin-top: 12px; transition: background .2s; }
 		.gm-qq-submit:hover { background: #17753f; }
 		.gm-qq-submit:disabled { opacity: .6; cursor: default; }
-		.gm-qq-cardtrust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin: 14px 0 0; }
+		.gm-qq-cardtrust { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin: 10px 0 0; }
 		.gm-qq-cardtrust span { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #7a8891; font-weight: 600; }
 		.gm-qq-cardtrust i { color: #1e8e4e; font-size: 13px; }
 		.gm-qq-status { text-align: center; font-size: 14px; margin: 12px 0 0; color: #00875a; font-weight: 600; }
@@ -133,7 +133,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		.page-loader, .loader-wrapper { display: none !important; }
 		.gm-qq-err { color: #c0392b; font-size: 12px; margin: 4px 0 0; }
 		/* Progressive disclosure (step 1 opens with ONE field) */
-		.gm-qq-label { display: block; font-size: 13px; font-weight: 600; color: #3c4a52; margin: 0 0 6px; }
+		.gm-qq-label { display: block; font-size: 13px; font-weight: 600; color: #3c4a52; margin: 0 0 4px; }
 		.gm-qq-confirmed { display: flex; align-items: center; gap: 8px; background: #f0f7f2; border: 1px solid #cfe6d8; border-radius: 10px; padding: 10px 14px; font-size: 14px; color: #15202b; }
 		.gm-qq-confirmed[hidden] { display: none; }
 		.gm-qq-confirmed .gm-qq-change { margin-left: auto; border: none; background: none; color: #1e8e4e; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: underline; padding: 0; font-family: inherit; }
@@ -156,7 +156,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 		@media (max-width: 575px) { .gm-qq-grid2 { grid-template-columns: 1fr; } #quick-quote.gm-qq-section { padding: 30px 0 8px; } }
 	</style>
 	<!-- End Quick Quote Section Styles -->
-	<link rel="stylesheet" href="css/quote-hero.css?v=3" />
+	<link rel="stylesheet" href="css/quote-hero.css?v=5" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -303,7 +303,7 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 				<div class="gm-qq-card">
 <div class="gm-qq-cardtop">
 						<div class="gm-qq-steps">One step &middot; Takes 2 minutes</div>
-						<h3 class="gm-qq-card-title font-secondary">Get your free moving quotes</h3>
+						<h3 class="gm-qq-card-title font-secondary">Get your free quotes</h3>
 						<p class="gm-qq-scribble gm-qq-scribble-card">Multiple movers.<br>You choose.</p>
 					</div>
 					<form id="qq-step1-form" novalidate data-progressive="1">
@@ -313,32 +313,42 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
 							<p class="gm-qq-err" data-err-for="move_from"></p>
 						</div>
 						<div id="qq1-more">
-							<div class="gm-qq-field" style="margin-top:12px;">
+							<div class="gm-qq-field" style="margin-top:9px;">
 								<label class="gm-qq-label" for="qq1-to">Where to?</label>
 								<input type="text" id="qq1-to" name="move_to" placeholder="ZIP code or city" autocomplete="off" required>
 								<p class="gm-qq-err" data-err-for="move_to"></p>
 							</div>
-							<div class="gm-qq-field" style="margin-top:12px;">
-								<label class="gm-qq-label" for="qq1-email">Where should movers send quotes?</label>
+							<div class="gm-qq-field" style="margin-top:9px;">
+								<label class="gm-qq-label" for="qq1-email">Email</label>
 								<input type="email" id="qq1-email" name="email" placeholder="Email address" autocomplete="email" inputmode="email" required>
 								<p class="gm-qq-err" data-err-for="email"></p>
 							</div>
-							<div class="gm-qq-field" style="margin-top:12px;">
+							<div class="gm-qq-field" style="margin-top:9px;">
 								<label class="gm-qq-label" for="qq1-phone">Phone</label>
 								<input type="tel" id="qq1-phone" name="phone" placeholder="(___) ___-____" autocomplete="tel" inputmode="tel" required>
 								<p class="gm-qq-err" data-err-for="phone"></p>
 							</div>
-							<!-- Optional. The quote is now a single step, so the size is asked
-							     here or not at all; a blank one does not block the submit. -->
-							<div class="gm-qq-field" style="margin-top:12px;">
-								<label class="gm-qq-label" for="qq1-size">Size of move <span style="font-weight:400;color:#8a97a0;">(optional)</span></label>
-								<select id="qq1-size" name="property_type">
-									<option value="" selected>Not sure yet</option>
-									<option value="Studio">Studio</option>
-									<option value="1BR">1BR</option>
-									<option value="2BR">2BR</option>
-									<option value="3BR+">3BR+</option>
-								</select>
+							<!-- Moving date and size of move, side by side, date first. Both optional:
+							     the quote is one step now and neither may block the submit. The date
+							     starts as a text input so its placeholder is readable, and turns into a
+							     date picker on focus. "I'm flexible" is read by getmoved.js and sent as
+							     the date, so someone without a fixed day is still a complete lead. -->
+							<div class="gm-qq-grid2" style="margin-top:9px;">
+								<div class="gm-qq-field">
+									<label class="gm-qq-label" for="qq1-date">Moving date <span style="font-weight:400;color:#8a97a0;">(optional)</span></label>
+									<input type="text" id="qq1-date" name="moving_date" placeholder="Pick a date" autocomplete="off" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+									<label style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#5b6b73;margin-top:8px;cursor:pointer;"><input type="checkbox" name="flexible" value="1" style="width:auto;"> I&#39;m flexible</label>
+								</div>
+								<div class="gm-qq-field">
+									<label class="gm-qq-label" for="qq1-size">Size of move <span style="font-weight:400;color:#8a97a0;">(optional)</span></label>
+									<select id="qq1-size" name="property_type">
+										<option value="" disabled selected>Select size</option>
+										<option value="Studio">Studio</option>
+										<option value="1BR">1BR</option>
+										<option value="2BR">2BR</option>
+										<option value="3BR+">3BR+</option>
+									</select>
+								</div>
 							</div>
 						</div>
 						<button type="submit" class="gm-qq-submit font-secondary" id="qq1-submit">Send &amp; Get My Quotes</button>
