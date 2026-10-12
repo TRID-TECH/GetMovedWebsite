@@ -186,6 +186,62 @@
     };
     return { fbp: read("_fbp"), fbc: read("_fbc") };
   }
+  // --- external_id ------------------------------------------------------------
+  // An identifier WE control, so Meta can join a browser event to its server
+  // twin and to this person's later visits. It must be byte-identical in both
+  // channels, which is why one promise computes it once and both the Pixel init
+  // and every CAPI relay read from it.
+  //
+  // The source is a first-party cookie, not our lead id: the lead id only exists
+  // after the quote is submitted, so it could never cover ViewContent or
+  // InitiateCheckout, and it would change identity mid-session. The cookie is
+  // stable from the first page view and survives across visits.
+  //
+  // Hashing needs crypto.subtle, which browsers expose only in a secure context.
+  // Over plain http it is absent; we then send no external_id at all rather than
+  // ship a hand-rolled digest that would differ from the server's.
+  var GM_VID_COOKIE = "gm_vid";
+  var GM_VID_MAX_AGE = 60 * 60 * 24 * 180; // 180 days
+  function gmVisitorId() {
+    try {
+      var m = document.cookie.split("; ").find(function (c) { return c.indexOf(GM_VID_COOKIE + "=") === 0; });
+      if (m) return decodeURIComponent(m.split("=")[1]);
+      var id = gmUuid();
+      document.cookie = GM_VID_COOKIE + "=" + encodeURIComponent(id) + "; max-age=" + GM_VID_MAX_AGE + "; path=/; SameSite=Lax";
+      return id;
+    } catch (e) { return null; }
+  }
+  var _gmExtIdPromise = null;
+  function gmExternalId() {
+    if (_gmExtIdPromise) return _gmExtIdPromise;
+    _gmExtIdPromise = (function () {
+      if (!gmMetaConsentOk()) return Promise.resolve(null);
+      var raw = gmVisitorId();
+      if (!raw) return Promise.resolve(null);
+      var subtle = (window.crypto && window.crypto.subtle) || null;
+      if (!subtle || typeof TextEncoder === "undefined") return Promise.resolve(null);
+      try {
+        return subtle.digest("SHA-256", new TextEncoder().encode(String(raw).trim().toLowerCase()))
+          .then(function (buf) {
+            return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+              return b.toString(16).padStart(2, "0");
+            }).join("");
+          })
+          .catch(function () { return null; });
+      } catch (e) { return Promise.resolve(null); }
+    })();
+    return _gmExtIdPromise;
+  }
+  // Hand the same hash to the Pixel as advanced matching. fbq('init') with the
+  // same pixel id is additive and fires no PageView of its own, so the inline
+  // snippet in <head> keeps owning the base pixel and its PageView.
+  function gmInitPixelExternalId() {
+    gmExternalId().then(function (ext) {
+      if (!ext) return;
+      try { if (typeof window.fbq === "function") window.fbq("init", "912613588109668", { external_id: ext }); } catch (e) {}
+    });
+  }
+
   // Capture ?fbclid= into an _fbc cookie on landing (belt-and-suspenders; fbevents.js
   // also does this once loaded). Skipped entirely when consent is denied.
   function gmCaptureFbclid() {
@@ -197,9 +253,39 @@
       }
     } catch (e) {}
   }
+  // Pull postal_code out of a Google address_components array.
+  function gmZipFromComponents(components) {
+    if (!components || !components.length) return "";
+    for (var i = 0; i < components.length; i++) {
+      var c = components[i];
+      if (c && c.types && c.types.indexOf("postal_code") !== -1) {
+        return String(c.short_name || c.long_name || "").replace(/\D/g, "").slice(0, 5);
+      }
+    }
+    return "";
+  }
+  // The origin ZIP for Meta. Google's own answer first (set when a suggestion is
+  // picked or the blur geocode resolves), then whatever is parseable out of the
+  // typed text. Five US digits or nothing - a partial ZIP hashes to a value that
+  // matches no one.
+  function gmOriginZip(fieldId, fallbackText) {
+    var z = "";
+    try {
+      var el = fieldId && document.getElementById(fieldId);
+      if (el && el.dataset && el.dataset.zip) z = String(el.dataset.zip).replace(/\D/g, "").slice(0, 5);
+    } catch (e) {}
+    if (!z && fallbackText) z = (gmParseLoc(fallbackText).zip || "").replace(/\D/g, "").slice(0, 5);
+    return z.length === 5 ? z : "";
+  }
   // Best-effort parse of "City, ST 12345" -> { city, state, zip }.
+  //
+  // The trailing country is stripped first, and that is the whole point: both
+  // patterns below are anchored to the end of the string, while Google Places
+  // and the geocoder always return "..., USA". On every normalised address the
+  // ZIP and the STATE therefore failed to match and went to Meta empty - which
+  // is the bulk of the missing zp on Lead events.
   function gmParseLoc(s) {
-    s = String(s || "").trim();
+    s = String(s || "").trim().replace(/,?\s*(usa|u\.s\.a\.|united states(?: of america)?)\s*$/i, "").trim();
     var out = { city: "", state: "", zip: "" };
     var zipM = s.match(/(\d{5})(?:-\d{4})?\s*$/); if (zipM) out.zip = zipM[1];
     var stM = s.match(/,\s*([A-Za-z]{2})\b(?:\s+\d{5}(?:-\d{4})?)?\s*$/); if (stM) out.state = stM[1];
@@ -217,23 +303,48 @@
     return long ? (big ? 7000 : 3500) : (big ? 2000 : 800);
   }
   // Fire a Meta event: browser fbq + server CAPI relay, sharing one event_id.
+  // Whatever we already know about this visitor, for the events that fire before
+  // the form is submitted. ViewContent on a first visit knows nothing; once an
+  // email or phone has been entered, InitiateCheckout and any later ViewContent
+  // carry it, which is most of the match-quality gain on those two events.
+  function gmKnownContact() {
+    var out = {};
+    try {
+      var e = (sessionStorage.getItem("gm_qq_email") || "").trim();
+      var p = (sessionStorage.getItem("gm_qq_phone") || "").trim();
+      if (e) out.email = e;
+      if (p) out.phone = p;
+    } catch (err) {}
+    return out;
+  }
+
   function gmFireMeta(eventName, customData, userData) {
     if (!gmMetaConsentOk()) return null;
     var eventId = gmUuid();
+    // The Pixel fires synchronously: the beacon must not wait on a promise, and
+    // the event_id is already decided, so dedup is unaffected by the async part.
     try { if (typeof window.fbq === "function") window.fbq("track", eventName, customData || {}, { eventID: eventId }); } catch (e) {}
     try {
-      var ud = Object.assign({}, userData || {}, gmGetFbCookies());
-      fetch(GM_META_CAPI_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ eventName: eventName, eventId: eventId, eventSourceUrl: window.location.href, userData: ud, customData: customData || {} }),
-        keepalive: true,
-      }).catch(function () {});
+      // Explicit userData wins over the remembered contact - on Lead it holds the
+      // values actually submitted, which are fresher than anything stashed.
+      var ud = Object.assign({}, gmKnownContact(), userData || {}, gmGetFbCookies());
+      // The hash resolves in well under a millisecond; keepalive means the request
+      // still completes if the page navigates immediately after.
+      gmExternalId().then(function (ext) {
+        if (ext) ud.externalId = ext;
+        fetch(GM_META_CAPI_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ eventName: eventName, eventId: eventId, eventSourceUrl: window.location.href, userData: ud, customData: customData || {} }),
+          keepalive: true,
+        }).catch(function () {});
+      });
     } catch (e) {}
     return eventId;
   }
   // Run on load: capture fbclid, and fire ViewContent on any page that hosts a quote form.
   gmCaptureFbclid();
+  gmInitPixelExternalId();
   if (document.getElementById("qq-step1-form") || document.getElementById("quick-quote-form")) {
     gmFireMeta("ViewContent", { content_name: "Quote Request", content_category: "moving_quote" });
   }
@@ -344,7 +455,9 @@
                 var _mValue = gmMoveValue(payload.propertyType, _mType); // bucketed $ estimate
                 gmFireMeta("Lead", { content_name: "Quote Request", content_category: _mType, value: _mValue, currency: "USD" }, {
                   email: payload.email, phone: payload.phone, firstName: payload.fullName, lastName: "",
-                  city: _mLoc.city, state: _mLoc.state, zip: _mLoc.zip
+                  city: _mLoc.city, state: _mLoc.state,
+                  // Google's postal_code when we have it, the parsed text otherwise.
+                  zip: gmOriginZip("qq1-from", payload.moveFrom) || _mLoc.zip
                 });
               } catch (e) {}
               if (ui.form) ui.form.reset();
@@ -699,6 +812,12 @@
             if (fldP) fldP.classList.remove("has-error");
             errP.textContent = "";
           }
+          // Remember a valid number in E.164 so InitiateCheckout can carry a
+          // hashed ph. The email is already remembered on its own blur; the
+          // phone stopped being stored when the partial-lead writer was removed.
+          if (dP.length === 10) {
+            try { sessionStorage.setItem("gm_qq_phone", "+1" + dP); } catch (e) {}
+          }
         });
       }
     })();
@@ -754,7 +873,14 @@
       // Meta InitiateCheckout, kept as the "committed to the form" signal. It now
       // fires moments before Lead rather than on a separate page; Lead itself
       // still fires only on confirmed backend success, inside gmCompleteQuote.
-      gmFireMeta("InitiateCheckout", { content_name: "Quote Request", content_category: "quote_form" }, gmParseLoc(fromV));
+      var _icLoc = gmParseLoc(fromV);
+      _icLoc.zip = gmOriginZip("qq1-from", fromV) || _icLoc.zip;
+      // email and phone are already in hand at this point - they are required
+      // fields above - so this event goes up fully matched rather than relying
+      // on what blur happened to stash.
+      _icLoc.email = email1V;
+      _icLoc.phone = phone1E164;
+      gmFireMeta("InitiateCheckout", { content_name: "Quote Request", content_category: "quote_form" }, _icLoc);
       if (window.oaiq) {
         oaiq("measure", "checkout_started", { type: "contents" });
       }
@@ -1028,12 +1154,18 @@
         const ac = new google.maps.places.Autocomplete(input, {
           types: ["(regions)"], // cities, states, ZIP/postal codes
           componentRestrictions: { country: ["us"] },
-          fields: ["formatted_address", "name"],
+          // address_components is the only place the postal code lives. Without
+          // it a city pick returns "Brooklyn, NY, USA" and the ZIP is simply not
+          // in the string - which is why only a small share of Lead events ever
+          // carried zp. A city still has no single ZIP, so this raises coverage
+          // rather than guaranteeing it.
+          fields: ["formatted_address", "name", "address_components"],
         });
         ac.addListener("place_changed", () => {
           const place = ac.getPlace();
           input.value = (place && (place.formatted_address || place.name)) || input.value;
           input.dataset.acPicked = "1";
+          input.dataset.zip = gmZipFromComponents(place && place.address_components) || "";
         });
       } catch (e) {
         /* Maps unavailable — the field still accepts free-typed ZIP / city, state */
@@ -1065,6 +1197,7 @@
                 if (rTypes.indexOf("country") !== -1 || rTypes.indexOf("administrative_area_level_1") !== -1) return;
                 input.value = results[0].formatted_address;
                 input.dataset.acPicked = "1";
+                input.dataset.zip = gmZipFromComponents(results[0].address_components) || "";
                 // Keep the progressive confirmed row ("From: … ✓") in sync.
                 if (input.id === "qq1-from") {
                   const cv = document.getElementById("qq1-from-confirmed-val");
