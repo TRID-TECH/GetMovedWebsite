@@ -35,6 +35,23 @@ SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
     })(window,document,'script','dataLayer','GTM-TWSQBZ4B');</script>
     <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
+    <script id="gm-unknown-route">
+    // Unknown routes: S3 answers /x with a 301 to /x/ and then a 404 whose body is THIS page,
+    // served from a sub-path, so every relative css/js/img link breaks and the design falls apart.
+    // Send the visitor to the real page when one exists (/team/ -> /team.html, the .html form is
+    // used on purpose: browsers cache the old 301 for /team -> /team/) and to the home page otherwise.
+    (function () {
+      var p = location.pathname;
+      if (p === '/' || p === '/index.html' || p === '/index') return;
+      var slug = p.replace(/\/+$/, '').replace(/\.html$/, '');
+      if (!slug || slug === '/index') { location.replace('/' + location.hash); return; }
+      document.documentElement.style.visibility = 'hidden';
+      var home = '/' + location.hash;
+      fetch(slug + '.html', { method: 'HEAD', cache: 'no-store' })
+        .then(function (r) { location.replace(r.ok ? slug + '.html' + location.search + location.hash : home); })
+        .catch(function () { location.replace(home); });
+    })();
+    </script>
     <meta name="facebook-domain-verification" content="bu1qvp3epip9ygvwun05vjv4pi6xq5" />
     <!-- Meta Pixel Code -->
     <script>
