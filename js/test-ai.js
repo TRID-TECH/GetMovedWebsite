@@ -202,21 +202,30 @@
       rd.clustered_items || r.clustered_items ||
       rd.inventory_items || r.inventory_items || [];
 
-    // Collapse to {name, quantity} and merge duplicates by name.
+    // Collapse to {name, quantity, cuft} and merge duplicates by name. cuft is the
+    // detection's own per-unit volume (on a Cosmos run: the Cosmos class table
+    // standard) so the request is priced with it instead of a name lookup.
     var byName = {};
     items.forEach(function (it) {
       var name = prettyName(it.className || it.class_name || it.name);
       if (!name) return;
       var qty = Number(it.quantity) > 0 ? Number(it.quantity) : 1;
       var img = it.image_filename || it.representative_image || "";
-      if (!byName[name]) byName[name] = { name: name, quantity: 0, image: img };
+      var perUnit = Number(it.cuft_per_unit != null ? it.cuft_per_unit : it.volume_cuft);
+      if (!(perUnit > 0)) perUnit = null;
+      if (!byName[name]) byName[name] = { name: name, quantity: 0, image: img, cuft: perUnit };
       byName[name].quantity += qty;
+      if (byName[name].cuft == null && perUnit != null) byName[name].cuft = perUnit;
       if (!byName[name].image && img) byName[name].image = img;
     });
     var list = Object.keys(byName).map(function (k) { return byName[k]; });
     list.sort(function (a, b) { return b.quantity - a.quantity || a.name.localeCompare(b.name); });
 
-    current.inventory = list.map(function (it) { return { name: it.name, quantity: it.quantity }; });
+    current.inventory = list.map(function (it) {
+      var entry = { name: it.name, quantity: it.quantity };
+      if (it.cuft != null) entry.cuft = it.cuft;
+      return entry;
+    });
 
     if (!list.length) {
       fail("We could not confidently detect furniture in this video. Try filming slower, closer, and with good lighting.");
