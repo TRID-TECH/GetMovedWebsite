@@ -112,7 +112,7 @@
   // Ad attribution captured once per session from the landing URL (gclid/gbraid/wbraid + UTM).
   function gmAttribution() {
     try { var st = sessionStorage.getItem("gm_attribution"); if (st) return JSON.parse(st); } catch (e) {}
-    var attr = { gclid: "", source: "", medium: "", campaign: "" };
+    var attr = { gclid: "", source: "", medium: "", campaign: "", term: "" };
     try {
       var qs = new URLSearchParams(window.location.search);
       var g = qs.get("gclid") || qs.get("gbraid") || qs.get("wbraid") || "";
@@ -120,6 +120,7 @@
       attr.source = qs.get("utm_source") || (g ? "google" : "");
       attr.medium = qs.get("utm_medium") || (g ? "cpc" : "");
       attr.campaign = qs.get("utm_campaign") || "";
+      attr.term = qs.get("utm_term") || "";
       // Fallback to referrer-based source when the link had no UTM/gclid.
       if (!attr.source) {
         var refSrc = gmSourceFromReferrer();
@@ -242,6 +243,55 @@
     });
   }
 
+  // --- Click ids (Google Ads / Meta) -> first-party cookies, 90 days ------------
+  // gclid / gbraid / wbraid / fbclid are read from the landing URL and kept in cookies so a
+  // booking that happens on a later visit still carries the click that paid for it. Sent with
+  // the quote form and stored on the lead for the offline-conversion upload. A new ad click
+  // replaces the previous Google id (last click wins). No cookie is written when the visitor
+  // declined cookies (gm_cookie_consent === "denied"); the ids then live for this page only.
+  var GM_CLICK_MAX_AGE = 60 * 60 * 24 * 90;
+  function gmReadCookie(n) {
+    try {
+      var m = document.cookie.split("; ").find(function (c) { return c.indexOf(n + "=") === 0; });
+      return m ? decodeURIComponent(m.slice(n.length + 1)) : "";
+    } catch (e) { return ""; }
+  }
+  function gmWriteCookie(n, v) {
+    try {
+      document.cookie = n + "=" + encodeURIComponent(v) + "; max-age=" + (v ? GM_CLICK_MAX_AGE : 0) + "; path=/; SameSite=Lax";
+    } catch (e) {}
+  }
+  function gmClickIds() {
+    var ids = { gclid: "", gbraid: "", wbraid: "", fbclid: "" };
+    var qs = null;
+    try { qs = new URLSearchParams(window.location.search); } catch (e) {}
+    var ok = gmMetaConsentOk();
+    var fromUrl = function (k) { return qs ? String(qs.get(k) || "").slice(0, 255) : ""; };
+    var google = ["gclid", "gbraid", "wbraid"];
+    var newClick = google.some(function (k) { return fromUrl(k); });
+    google.forEach(function (k) {
+      var v = newClick ? fromUrl(k) : gmReadCookie("gm_" + k);
+      ids[k] = v;
+      if (newClick && ok) gmWriteCookie("gm_" + k, v);
+    });
+    var fb = fromUrl("fbclid");
+    ids.fbclid = fb || gmReadCookie("gm_fbclid");
+    if (fb && ok) gmWriteCookie("gm_fbclid", fb);
+    return ids;
+  }
+  // Google Ads website call conversion: Google swaps GM_PHONE for a forwarding number for ad
+  // visitors and shows the real number to everyone else. Fill both fields to turn it on;
+  // while either is empty this does nothing and the page is unchanged.
+  // Config (static site: this block is the config; env vars GOOGLE_ADS_CALL_* mirror it on the server side).
+  var GM_ADS_CALL = { id: "AW-18301808532", label: "MuVmCJuB6LIdEJTf_ZZE" };
+  var GM_PHONE = "+1 (201) 608-0850";       // GOOGLE_ADS_CALL_DISPLAY_NUMBER: exactly as shown on every page
+  function gmInitCallConversion() {
+    try {
+      if (!GM_ADS_CALL.id || !GM_ADS_CALL.label || !gmMetaConsentOk() || typeof window.gtag !== "function") return;
+      window.gtag("config", "AW-" + String(GM_ADS_CALL.id).replace(/^AW-/, "") + "/" + GM_ADS_CALL.label, { phone_conversion_number: GM_PHONE });
+    } catch (e) {}
+  }
+
   // Capture ?fbclid= into an _fbc cookie on landing (belt-and-suspenders; fbevents.js
   // also does this once loaded). Skipped entirely when consent is denied.
   function gmCaptureFbclid() {
@@ -344,6 +394,8 @@
   }
   // Run on load: capture fbclid, and fire ViewContent on any page that hosts a quote form.
   gmCaptureFbclid();
+  gmClickIds();
+  gmInitCallConversion();
   gmInitPixelExternalId();
   if (document.getElementById("qq-step1-form") || document.getElementById("quick-quote-form")) {
     gmFireMeta("ViewContent", { content_name: "Quote Request", content_category: "moving_quote" });
@@ -403,6 +455,25 @@
           payload.source = attribution.source;
           payload.medium = attribution.medium;
           payload.campaign = attribution.campaign;
+          payload.term = attribution.term || "";
+          // Offline-conversion keys: real click ids (gbraid/wbraid no longer folded into gclid),
+          // Meta cookies and the landing path. Page URL without query string.
+          var clickIds = gmClickIds();
+          payload.gclid = clickIds.gclid;
+          // Session fallback (cookies declined, new page): attribution.gclid may hold any Google id.
+          if (!clickIds.gclid && !clickIds.gbraid && !clickIds.wbraid) payload.gclid = attribution.gclid || "";
+          payload.gbraid = clickIds.gbraid;
+          payload.wbraid = clickIds.wbraid;
+          var fbc = gmGetFbCookies();
+          payload.fbc = fbc.fbc || (clickIds.fbclid ? "fb.1." + Date.now() + "." + clickIds.fbclid : "");
+          payload.fbp = fbc.fbp || "";
+          payload.landing_page = window.location.origin + (window.location.pathname || ""); // page URL without query string
+          // TCPA consent: recorded only on forms that actually carry the disclosure next to the
+          // submit button (marked data-gm-consent); the server stamps time + IP.
+          try {
+            var consentEl = ui.form && ui.form.querySelector("[data-gm-consent]");
+            if (consentEl) { payload.consent = true; payload.consent_text_version = consentEl.getAttribute("data-gm-consent") || ""; }
+          } catch (e) {}
           // Reddit CAPI attribution: pass the ad-click id and a shared conversion_id
           // so the server-side Lead event dedupes against the browser pixel below.
           var rdtConversionId = gmUuid();
@@ -424,10 +495,25 @@
           if (ui.submit) { ui.submit.disabled = true; ui.submit.textContent = "Sending..."; }
           ui.status("", false);
       
-          fetch(GM_QUOTE_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+          // external_id: the same hash the Pixel and CAPI use, so BookedJob joins to this visitor.
+          gmExternalId().catch(function () { return null; })
+            .then(function (ext) {
+              payload.external_id = ext || "";
+              return fetch(GM_QUOTE_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+            })
             .then((response) => { if (!response.ok) { throw new Error("Request failed with status " + response.status); } return response.json().catch(() => ({})); })
             .then((result) => {
               if (result && result.success === false) { throw new Error(result.message || "Send failed"); }
+              // Enhanced Conversions for web: user_data must be set BEFORE generate_lead and the
+              // Ads conversions fire (gtag hashes it). Phone as E.164.
+              if (typeof window.gtag === "function") {
+                var _ecPhone = String(payload.phone || "").replace(/\D/g, "");
+                if (_ecPhone.length === 10) _ecPhone = "1" + _ecPhone;
+                var _ecData = {};
+                if (payload.email) _ecData.email = String(payload.email).trim().toLowerCase();
+                if (_ecPhone.length >= 11) _ecData.phone_number = "+" + _ecPhone;
+                if (_ecData.email || _ecData.phone_number) window.gtag("set", "user_data", _ecData);
+              }
               gmTrack("generate_lead", { source: "landing" });
               // OpenAI Ads conversion — same trigger as GA4 generate_lead (confirmed
               // backend success only; never on partial / quote_step_1).
@@ -438,7 +524,6 @@
               if (typeof window.rdt === "function") { window.rdt("track", "Lead", { conversion_id: rdtConversionId }); }
               if (typeof window.ndp === "function") { window.ndp("track", "LEAD"); }
               if (typeof window.gtag === "function") {
-                window.gtag("set", "user_data", { email: payload.email, phone_number: payload.phone });
                 window.gtag("event", "conversion", { send_to: "AW-18301808532/Cd3sCNnGm8scEJTf_ZZE", value: 1.0, currency: "USD" });
                 // Request quote (1) conversion — fires on successful quote submit.
                 window.gtag("event", "conversion", { send_to: "AW-18301808532/tyknCISIsN8cEJTf_ZZE" });

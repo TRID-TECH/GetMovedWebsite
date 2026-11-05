@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!--
+SECTION MAP (Template -> GetMoved)
+Template file: getmoved-landing/index.html
+
+ASSETS
+- CSS: css/plugins.min.css, css/revslider/settings.css, css/style.css?v=2.4
+- JS: js/bs.js, js/plugins.min.js, js/revslider/jquery.themepunch.revolution.min.js, js/revslider/jquery.themepunch.tools.min.js, js/functions.js
+- Images: images/ (key subfolders: images/portfolio/)
+- Logo: assets/img/logo_png.png
+
+SECTIONS IN ORDER (template name -> selector -> GetMoved intent)
+1) Home / Hero slider -> section#home.rev_slider_wrapper -> GetMoved Hero
+2) Quick Quote -> section#quick-quote -> Get a free moving quote (video walkthrough)
+3) Home page content strip -> section#home-page-content.bg-dark4 -> Value strip
+4) About -> section#about -> What is GetMoved
+5) How it works -> section#how-it-works -> Steps
+6) Features -> section#features -> Key product features
+7) Mobile app -> section#mobile-app -> App promo
+8) Use cases -> section#use-cases -> Use cases
+9) Pricing -> section#pricing -> Commercial pricing (SaaS, Leads, AI, Ecosystem)
+10) Contact -> section#contact -> Contact US
+11) Footer -> footer -> Footer / legal
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- OpenAI Ads pixel -->
+    <script>!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"L6V79yK3mCSpmKsvKmeX6Q"});</script>
+    <!-- End OpenAI Ads pixel -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TWSQBZ4B');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8" />
+    <!-- Preconnect for the critical measurement path (GA4 must fire ASAP) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="preconnect" href="https://region1.google-analytics.com" crossorigin>
+    <link rel="preconnect" href="https://bzrcdn.openai.com" crossorigin>
+    <!-- Meta Pixel Code — DEFERRED: the fbq stub queues init+PageView immediately,
+         but the ~420 KB fbevents.js library loads only on first user interaction
+         or 3s after load, whichever comes first. Queued events replay on load. -->
+    <script>
+      (function(){
+        var denied=false; try{denied=localStorage.getItem('gm_cookie_consent')==='denied';}catch(e){}
+        window.gmMetaPixelId='912613588109668';
+        if(denied)return; // no fbevents.js / cookies / PageView until consent
+        if(!window.fbq){
+          var n=window.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!window._fbq)window._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+        }
+        fbq('init','912613588109668'); fbq('track','PageView');
+        var evs=['pointerdown','keydown','scroll','touchstart','focusin'];
+        var fired=false;
+        function loadFb(){
+          if(fired)return; fired=true;
+          evs.forEach(function(ev){window.removeEventListener(ev,loadFb,true);});
+          var t=document.createElement('script'); t.async=true;
+          t.src='https://connect.facebook.net/en_US/fbevents.js';
+          var s=document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t,s);
+        }
+        evs.forEach(function(ev){window.addEventListener(ev,loadFb,{capture:true,passive:true});});
+        if(document.readyState==='complete'){setTimeout(loadFb,3000);}
+        else{window.addEventListener('load',function(){setTimeout(loadFb,3000);});}
+      })();
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=912613588109668&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+    <!-- Google tag (gtag.js) with Consent Mode v2 -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent Mode v2: default denied (EU-safe). GA still sends cookieless pings so events
+      // are always measured; the cookie banner upgrades to granted on Accept.
+      gtag('consent', 'default', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update: 500, region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] });
+      gtag('set', 'url_passthrough', true);
+      gtag('set', 'ads_data_redaction', true);
+      try { if (localStorage.getItem('gm_cookie_consent') === 'granted') {
+        gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      } } catch(e){}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED9B6NC03X"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-ED9B6NC03X');
+      gtag('config', 'AW-18301808532');
+    </script>
+    <title>NYC Movers — Compare Local Moving Quotes | GetMoved</title>
+    <meta name="description" content="Compare quote estimates from verified local movers in Manhattan, Brooklyn, Queens, the Bronx and Staten Island. Studio to 3BR local moves. One short form, free." />
+    <link rel="canonical" href="https://getmoved.app/nyc-movers.html" />
+    <meta property="og:title" content="NYC Movers — Compare Local Moving Quotes | GetMoved" />
+    <meta property="og:url" content="https://getmoved.app/nyc-movers.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GetMoved" />
+    <meta property="og:description" content="Compare quote estimates from verified local movers in Manhattan, Brooklyn, Queens, the Bronx and Staten Island. Studio to 3BR local moves. One short form, free." />
+    <meta property="og:image" content="https://getmoved.app/assets/img/logo_png.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="684" />
+    <meta property="og:image:height" content="684" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NYC Movers — Compare Local Moving Quotes | GetMoved" />
+    <meta name="twitter:description" content="Compare quote estimates from verified local movers in Manhattan, Brooklyn, Queens, the Bronx and Staten Island. Studio to 3BR local moves. One short form, free." />
+    <meta name="twitter:image" content="https://getmoved.app/assets/img/logo_png.png" />
+    <link rel="preload" as="image" href="images/quote-hero.webp" type="image/webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--Favicon -->
+	<link rel="icon" type="image/png" href="assets/img/favicon-128.png" />
+	<!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"/>
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/plugins.min.css" />
+	<!-- Revolution Slider CSS removed: no slider on this page (was render-blocking dead weight). -->
+	<!-- Page Styles -->
+	<link rel="stylesheet" href="css/style.css?v=2.4" />
+	<!-- End CSS Files -->
+
+	<!-- Quick Quote Section Styles -->
+	<style>
+		#quick-quote.gm-qq-section { background: #fff; padding: 40px 0 8px; }
+		.gm-qq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+		.gm-qq-title { font-size: 40px; line-height: 1.12; color: #15202b; margin: 0 0 16px; font-weight: 800; }
+		.gm-qq-lead { font-size: 16px; line-height: 1.6; color: #5b6b73; margin: 0 0 22px; max-width: 520px; }
+		.gm-qq-freeimg { width: 100%; max-width: 100%; height: auto; display: block; margin: 0 0 22px; border-radius: 10px; }
+		.gm-qq-trust { display: flex; flex-wrap: wrap; gap: 12px 22px; }
+		.gm-qq-trust span { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: #48575f; font-weight: 600; }
+		.gm-qq-trust i { color: #1e8e4e; font-size: 15px; }
+		.gm-qq-card { background: #fff; border: 1px solid #e6ecea; border-radius: 16px; box-shadow: 0 20px 50px rgba(20,32,43,.08); padding: 18px 22px 16px; }
+		.gm-qq-card-title { font-size: 19px; font-weight: 800; color: #15202b; margin: 0 0 12px; white-space: nowrap; }
+		.gm-qq-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+		.gm-qq-field { margin: 0; }
+		.gm-qq-field input, .gm-qq-field select { width: 100%; border: 1px solid #dfe6e3; border-radius: 10px; background: #fbfdfc; padding: 10px 14px; font-size: 14px; color: #15202b; outline: none; font-family: inherit; transition: border-color .2s, box-shadow .2s; }
+		.gm-qq-field select { appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 38px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%235b6b73' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+		.gm-qq-field input::placeholder { color: #9aa7af; }
+		.gm-qq-field input:focus, .gm-qq-field select:focus { border-color: #1e8e4e; box-shadow: 0 0 0 3px rgba(30,142,78,.12); }
+		.gm-qq-submit { width: 100%; border: none; border-radius: 10px; background: #1e8e4e; color: #fff; font-size: 16px; font-weight: 700; padding: 12px; cursor: pointer; margin-top: 12px; transition: background .2s; }
+		.gm-qq-submit:hover { background: #17753f; }
+		.gm-qq-submit:disabled { opacity: .6; cursor: default; }
+		.gm-qq-helper { font-size: 12px; color: #7a8891; margin: 5px 2px 0; line-height: 1.45; }
+		.gm-qq-consent { font-size: 13px; color: #4b5a63; margin: 12px 2px 0; line-height: 1.5; }
+		.gm-qq-consent a { color: #1e8e4e; text-decoration: underline; }
+		/* Mobile-only tap-to-call under the CTA (Nextdoor traffic is mobile-first). */
+		.gm-call-cta { display: none; }
+		@media (max-width: 640px) {
+			.gm-call-cta { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; padding: 12px; border: 1px solid #1e8e4e; border-radius: 10px; color: #1e8e4e; font-size: 15px; font-weight: 700; text-decoration: none; }
+			.gm-call-cta:hover { background: #f2faf5; color: #17753f; }
+		}
+		.gm-qq-cardtrust { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin: 10px 0 0; }
+		.gm-qq-cardtrust span { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: #7a8891; font-weight: 600; }
+		.gm-qq-cardtrust i { color: #1e8e4e; font-size: 13px; }
+		.gm-qq-status { text-align: center; font-size: 14px; margin: 12px 0 0; color: #00875a; font-weight: 600; }
+		.gm-qq-status.is-error { color: #c0392b; }
+		.gm-qq-hp { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
+		.page-loader, .loader-wrapper { display: none !important; }
+		.gm-qq-err { color: #c0392b; font-size: 12px; margin: 4px 0 0; }
+		/* Progressive disclosure (step 1 opens with ONE field) */
+		.gm-qq-label { display: block; font-size: 13px; font-weight: 600; color: #3c4a52; margin: 0 0 4px; }
+		.gm-qq-confirmed { display: flex; align-items: center; gap: 8px; background: #f0f7f2; border: 1px solid #cfe6d8; border-radius: 10px; padding: 10px 14px; font-size: 14px; color: #15202b; }
+		.gm-qq-confirmed[hidden] { display: none; }
+		.gm-qq-confirmed .gm-qq-change { margin-left: auto; border: none; background: none; color: #1e8e4e; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: underline; padding: 0; font-family: inherit; }
+		#qq1-more { overflow: hidden; }
+		#qq1-more[hidden] { display: none; }
+		@media (prefers-reduced-motion: no-preference) { #qq1-more.gm-anim { transition: max-height .35s ease; } }
+		.gm-qq-err.is-hint { color: #b7791f; }
+		.gm-qq-field.has-error input, .gm-qq-field.has-error select { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192,57,43,.10); }
+		.gm-qq-contactpick { margin-top: 2px; }
+		.gm-qq-toggle { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
+		.gm-qq-toglabel { font-size: 13px; color: #7a8891; }
+		.gm-qq-tog { border: 1px solid #dfe6e3; background: #fff; color: #48575f; border-radius: 999px; font-size: 13px; font-weight: 600; padding: 5px 16px; cursor: pointer; }
+		.gm-qq-tog.is-active { background: #1e8e4e; border-color: #1e8e4e; color: #fff; }
+		.gm-qq-more { display: inline-block; border: none; background: transparent; color: #1e8e4e; font-size: 14px; font-weight: 600; cursor: pointer; padding: 8px 0; }
+		.gm-qq-more:hover { text-decoration: underline; }
+		.gm-qq-details.is-hidden { display: none; }
+		.gm-qq-steps { font-size: 12.5px; font-weight: 700; color: #1e8e4e; letter-spacing: .3px; margin: 0 0 10px; text-transform: uppercase; }
+		.gm-qq-mobilehead { display: none; }
+		.gm-qq-mh-title { font-size: 20px; line-height: 1.2; font-weight: 800; color: #15202b; margin: 0 0 6px; }
+		.gm-qq-mh-proof { font-size: 13px; color: #48575f; font-weight: 600; margin: 0 0 12px; }
+		.lqq-topspace { height: 100px; }
+		@media (max-width: 991px) { .gm-qq-grid { grid-template-columns: 1fr; gap: 30px; } .gm-qq-title { font-size: 32px; } .gm-qq-card { order: -1; } .gm-qq-mobilehead { display: block; } .lqq-topspace { height: 74px; } #quick-quote.gm-qq-section { padding-top: 18px; } }
+		@media (max-width: 575px) { .gm-qq-grid2 { grid-template-columns: 1fr; } #quick-quote.gm-qq-section { padding: 30px 0 8px; } }
+	</style>
+	<!-- End Quick Quote Section Styles -->
+	<link rel="stylesheet" href="css/quote-hero.css?v=5" />
+	<style>
+		/* NYC page, mobile: lead with H1 + one line, put the form above the fold. Perks, badge,
+		   scribble and fine print are hidden on phones; they stay on desktop. */
+		@media (max-width: 767px) {
+			.gm-qq-intro .gm-qq-badge, .gm-qq-intro .gm-qq-perks, .gm-qq-intro > .gm-qq-scribble, .gm-qq-intro .gm-qq-fine { display: none !important; }
+			.gm-qq-intro .gm-qq-lead { margin-bottom: 8px; }
+			.gm-qq-intro .gm-qq-title, .gm-qq-intro .gm-qq-lead { background: rgba(255,255,255,.9); padding: 6px 10px; border-radius: 10px; }
+		}
+	</style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://getmoved.app/#org",
+          "name": "GetMoved",
+          "url": "https://getmoved.app/",
+          "logo": "https://getmoved.app/assets/img/logo_png.png",
+          "description": "Moving-services marketplace: get free, competing quotes from licensed movers. Upload a walkthrough video and our AI builds your inventory automatically.",
+          "areaServed": [{"@type": "State", "name": "New York"}, {"@type": "State", "name": "New Jersey"}, {"@type": "Country", "name": "United States"}]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://getmoved.app/#website",
+          "url": "https://getmoved.app/",
+          "name": "GetMoved",
+          "publisher": {"@id": "https://getmoved.app/#org"}
+        },
+        {
+          "@type": "Service",
+          "@id": "https://getmoved.app/#service",
+          "serviceType": "Moving quotes marketplace",
+          "name": "Local moving quote estimates in New York City",
+          "provider": {"@id": "https://getmoved.app/#org"},
+          "areaServed": {"@type": "City", "name": "New York City"},
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free, no-obligation moving quote estimates"}
+        }
+      ]
+    }
+    </script>
+    <!-- Reddit Pixel -->
+    <script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jbyb8cuovmz9",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_jbyb8cuovmz9');rdt('track', 'PageVisit');
+    </script>
+    <!-- End Reddit Pixel -->
+    <!-- Nextdoor Pixel Code -->
+    <script type="text/javascript">
+    !function(e,n){var t,p;e.ndp||((t=e.ndp=function(){t.handleRequest?t.handleRequest.apply(t,arguments):t.queue.push(arguments)}).queue=[],t.v=1,(p=n.createElement("script")).async=!0,p.src="https://ads.nextdoor.com/public/pixel/ndp.js?id=f6ccadb4-4665-4729-8af4-fd197ce2744f",(n=n.getElementsByTagName("script")[0]).parentNode.insertBefore(p,n))}(window,document);
+    ndp('init','f6ccadb4-4665-4729-8af4-fd197ce2744f', {});
+    ndp('track','PAGE_VIEW');
+    </script>
+    <noscript>
+    <img height="1" width="1" style="display:none" src="https://flask.nextdoor.com/pixel?pid=f6ccadb4-4665-4729-8af4-fd197ce2744f&ev=PAGE_VIEW&noscript=1"/>
+    </noscript>
+    <!-- End Nextdoor Pixel Code -->
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWSQBZ4B"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Page loader -->
+	<div class="page-loader loader-wrapper bg-white">
+		<div class="loader">
+			<div class="outter b-dark3">
+				<div class="mid b-dark3"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+    <!-- Start Navigation -->
+    <!-- Landing nav: logo, primary links, phone, and one quote CTA. -->
+    <style>
+      .lqq-nav .lqq-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:70px;}
+      .lqq-nav .header-phone{display:inline-flex !important;align-items:center;gap:.35em;min-height:44px;padding:6px 12px;font-weight:700;font-size:16px;color:#15202b !important;white-space:nowrap;text-decoration:none;}
+      .lqq-nav .header-phone:hover{color:#1e8e4e !important;}
+      .lqq-nav .lqq-right{display:flex;align-items:center;gap:10px;}
+      .lqq-nav .lqq-cta{display:inline-flex !important;align-items:center;justify-content:center;min-height:44px;padding:9px 20px;background:#1e8e4e;color:#fff !important;border-radius:999px;font-weight:700;font-size:15px;white-space:nowrap;text-decoration:none;transition:background .2s;}
+      .lqq-nav .lqq-cta:hover{background:#17753f;color:#fff !important;}
+      @media (max-width:575px){
+        .lqq-nav .header-phone{font-size:15px;padding:6px 6px;}
+        .lqq-nav .lqq-cta{font-size:13px;padding:9px 13px;}
+        .lqq-nav .logo img{max-width:112px !important;}
+      }
+    </style>
+    <nav id="navigation" class="modern-nav sticky nav-lg fs-15 bordered nav-white font-secondary fixed-height lqq-nav" data-offset="75">
+        <div class="container nav-container">
+            <div class="lqq-inner">
+                <a href="index.html#home" class="logo d-flex align-items-center" aria-label="GetMoved home">
+                    <picture><source srcset="assets/img/logo-600.webp" type="image/webp"><img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-white mxw-140"></picture>
+                    <picture><source srcset="assets/img/logo-600.webp" type="image/webp"><img src="assets/img/logo_png.png" alt="GetMoved logo" class="logo-dark mxw-140"></picture>
+                </a>
+                <ul class="lqq-links">
+                    <li><a href="#quick-quote">Find Movers</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="for-movers.html">For Movers</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+                <div class="lqq-right">
+                    <a href="tel:+12016080850" class="header-phone">&#9742;&nbsp;+1 (201) 608-0850</a>
+                    <a href="#quick-quote" class="lqq-cta">Get My Free Quote</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navigation -->
+
+
+
+
+		<div class="lqq-topspace"></div>
+<section id="quick-quote" class="gm-qq-section">
+		<div class="container">
+			<div class="gm-qq-grid">
+
+				<!-- Left: intro / value props -->
+				<div class="gm-qq-intro">
+				<p class="gm-qq-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#17803f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.4 7.8-8 9-4.6-1.2-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg> Licensed &amp; insured movers</p>
+				<h1 class="gm-qq-title font-secondary" id="qq-hero-h1">Compare <span class="gm-qq-accent">NYC Moving Quotes</span></h1>
+				<p class="gm-qq-lead">Tell us about your move once, we collect quote estimates from verified local movers. Manhattan, Brooklyn, Queens, the Bronx and Staten Island, studio to 3BR. No obligation.</p>
+				<ul class="gm-qq-perks">
+					<li><span class="gm-qq-perk-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M8 13h8M8 17h6"/></svg></span><span>Quote estimates<br>in one request</span></li>
+					<li><span class="gm-qq-perk-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.4 7.8-8 9-4.6-1.2-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><span>Licensed &amp;<br>insured movers</span></li>
+					<li><span class="gm-qq-perk-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15.2 9.2c0-1.3-1.4-2.2-3.2-2.2s-3.2.9-3.2 2.2 1.3 2 3.2 2.3 3.2 1 3.2 2.3-1.4 2.2-3.2 2.2-3.2-.9-3.2-2.2"/></svg></span><span>Studio to 3BR<br>local moves</span></li>
+					<li><span class="gm-qq-perk-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg></span><span>Easy, secure<br>and fast</span></li>
+				</ul>
+				<p class="gm-qq-scribble">A smoother move starts here. <svg viewBox="0 0 68 34" fill="none" aria-hidden="true"><path d="M4 8c16 1 30 6 46 16" stroke="#1a1a1a" stroke-width="1.6" stroke-linecap="round"/><path d="M44 18l8 8-9 .2" stroke="#1a1a1a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+				<p class="gm-qq-fine">GetMoved is a marketplace, not a moving company. The licensed mover you choose performs and contracts for your move.</p>
+			</div>
+
+				<!-- Right: form card -->
+				<div class="gm-qq-card">
+					<div class="gm-qq-cardtop">
+						<div class="gm-qq-steps">One step &middot; Takes 2 minutes</div>
+						<h3 class="gm-qq-card-title font-secondary">Get your free quote estimates</h3>
+						<p class="gm-qq-scribble gm-qq-scribble-card">Multiple movers.<br>You choose.</p>
+					</div>
+						<form id="qq-step1-form" novalidate data-progressive="1">
+							<div class="gm-qq-field" id="qq1-from-field">
+								<label class="gm-qq-label" for="qq1-from">Where are you moving from?</label>
+								<input type="text" id="qq1-from" name="move_from" placeholder="ZIP code or city" autocomplete="off" required>
+								<p class="gm-qq-err" data-err-for="move_from"></p>
+							</div>
+							<div id="qq1-more">
+								<div class="gm-qq-field" style="margin-top:9px;">
+									<label class="gm-qq-label" for="qq1-to">Where to?</label>
+									<input type="text" id="qq1-to" name="move_to" placeholder="ZIP code or city" autocomplete="off" required>
+									<p class="gm-qq-err" data-err-for="move_to"></p>
+								</div>
+								<div class="gm-qq-field" style="margin-top:9px;">
+									<label class="gm-qq-label" for="qq1-email">Email</label>
+									<input type="email" id="qq1-email" name="email" placeholder="Email address" autocomplete="email" inputmode="email" required>
+									<p class="gm-qq-err" data-err-for="email"></p>
+								</div>
+								<div class="gm-qq-field" style="margin-top:9px;">
+									<label class="gm-qq-label" for="qq1-phone">Phone</label>
+									<input type="tel" id="qq1-phone" name="phone" placeholder="(___) ___-____" autocomplete="tel" inputmode="tel" required>
+									<p class="gm-qq-err" data-err-for="phone"></p>
+								</div>
+								<!-- Moving date and size of move, side by side, date first. Both optional:
+								     the quote is one step now and neither may block the submit. The date
+								     starts as a text input so its placeholder is readable, and turns into a
+								     date picker on focus. "I'm flexible" is read by getmoved.js and sent as
+								     the date, so someone without a fixed day is still a complete lead. -->
+								<div class="gm-qq-grid2" style="margin-top:9px;">
+									<div class="gm-qq-field">
+										<label class="gm-qq-label" for="qq1-date">Moving date <span style="font-weight:400;color:#8a97a0;">(optional)</span></label>
+										<input type="text" id="qq1-date" name="moving_date" placeholder="Pick a date" autocomplete="off" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+										<label style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#5b6b73;margin-top:8px;cursor:pointer;"><input type="checkbox" name="flexible" value="1" style="width:auto;"> I&#39;m flexible</label>
+									</div>
+									<div class="gm-qq-field">
+										<label class="gm-qq-label" for="qq1-size">Size of move <span style="font-weight:400;color:#8a97a0;">(optional)</span></label>
+										<select id="qq1-size" name="property_type">
+											<option value="" disabled selected>Select size</option>
+											<option value="Studio">Studio</option>
+											<option value="1BR">1BR</option>
+											<option value="2BR">2BR</option>
+											<option value="3BR+">3BR+</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<p class="gm-qq-consent" data-gm-consent="2026-11-05-v1">By clicking &ldquo;Send &amp; Get My Quotes,&rdquo; you agree that GetMoved and the licensed moving companies we match you with may contact you at the phone number and email you provided, including by calls and text messages that may use automated technology or prerecorded messages, about your move and quote estimates. Consent is not a condition of any purchase. Message and data rates may apply. Message frequency varies. Reply STOP to opt out of texts. See our <a href="https://getmoved.app/terms.html">Terms</a> and <a href="https://getmoved.app/privacy.html">Privacy Policy</a>.</p>
+							<button type="submit" class="gm-qq-submit font-secondary" id="qq1-submit">Send &amp; Get My Quotes</button>
+						<p id="qq1-status" role="status" aria-live="polite" style="margin:10px 2px 0;font-size:13px;min-height:1em;"></p>
+							<a href="tel:+12016080850" class="gm-call-cta font-secondary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px"><path d="M4 18v-6a8 8 0 0 1 16 0v6"/><path d="M4 14h3v6H4zM17 14h3v6h-3z"/></svg> Rather talk? Call +1 (201) 608-0850</a>
+						<div class="gm-qq-cardtrust">
+							<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><path d="M20 6L9 17l-5-5"/></svg> Free</span>
+							<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><path d="M20 6L9 17l-5-5"/></svg> No obligation</span>
+							<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e8e4e" stroke-width="2" stroke-linecap="round" style="vertical-align:-1px"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg> Takes 2 minutes</span>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End Quick Quote Section -->
+	<div class="gm-qq-proof" aria-label="Why GetMoved">
+		<div class="gm-qq-proof-inner">
+			<div class="gm-qq-proof-item"><span class="gm-qq-proof-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3z"/><path d="M14 10h4l3 3v2h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg></span><div><strong>70+ licensed movers across NY &amp; NJ</strong><span>Trusted, verified and insured</span></div></div>
+			<div class="gm-qq-proof-item"><span class="gm-qq-proof-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.4 7.8-8 9-4.6-1.2-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><strong>Licensed &amp; insured movers</strong><span>For local moves in NY &amp; NJ</span></div></div>
+			<div class="gm-qq-proof-item"><span class="gm-qq-proof-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3.5 19c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/><path d="M14 14.6c1.6-.4 3.2.2 4.2 1.6.7 1 .9 2 .9 2.8"/></svg></span><div><strong>All five boroughs</strong><span>Local movers who know NYC buildings</span></div></div>
+			<div class="gm-qq-proof-item"><span class="gm-qq-proof-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.2 4.6 5 .7-3.6 3.5.9 5.1L12 15.8 7.5 17.4l.9-5.1L4.8 8.8l5-.7z"/></svg></span><div><strong>No obligation</strong><span>Compare quote estimates and walk away free</span></div></div>
+		</div>
+	</div>
+
+
+
+    <!-- Footer -->
+    <footer class="py-50 d-flex flex-column align-items-center justify-content-center">
+        <picture><source srcset="assets/img/logo-600.webp" type="image/webp"><img src="assets/img/logo_png.png" alt="GetMoved logo" class="mxw-300"></picture>
+        <p class="fs-14 gray6 mt-10 t-center-sm">Free quote estimates from licensed, insured local movers &mdash; you choose the best offer.</p>
+    	<p class="fs-15 mt-10 t-center-sm">Questions? Call us: <a href="tel:+12016080850" style="font-weight:700;color:#1e8e4e;">+1 (201) 608-0850</a></p>
+    	<!-- Mover/B2B links (For Movers, Partners, Pricing, Become a Mover) removed on this
+    	     paid customer landing page — a cold home-mover clicking a B2B link is a paid loss. -->
+    	<p class="fs-13 mt-15 t-center-sm">
+    		<a href="how-it-works.html" class="gray6 colored-hover mr-10">How It Works</a>
+    		<a href="about.html" class="gray6 colored-hover mr-10">About</a>
+    		<a href="mobile-app.html" class="gray6 colored-hover mr-10">Mobile App</a>
+    		<a href="test-ai.html" class="gray6 colored-hover mr-10">Test AI</a>
+    		<a href="contact.html" class="gray6 colored-hover">Contact</a>
+    	</p>
+    	<p class="fs-13 mt-10 t-center-sm">
+    		<a href="new-york-movers.html" class="gray6 colored-hover mr-10">New York Movers</a>
+    		<a href="new-jersey-movers.html" class="gray6 colored-hover">New Jersey Movers</a>
+    	</p>
+    	<!-- NVIDIA Inception Program badge. Placed per NVIDIA's rules: the artwork is
+    	used unaltered - never recoloured, rotated, distorted or given effects - it
+    	keeps clear space around it, it sits on a light background (the black
+    	keyline and wordmark need one), and it carries its own keyline so no extra
+    	border is drawn around it. The caption says "member", never "partner" or
+    	"backed by", so nothing reads as an NVIDIA endorsement. -->
+    	<p class="fs-12 mt-25 t-center-sm">
+    	<a href="https://www.nvidia.com/en-us/startups/" target="_blank" rel="noopener noreferrer" style="display:inline-block;line-height:0;padding:14px;">
+    	<img src="assets/img/nvidia-inception-program-badge.svg" alt="Member of the NVIDIA Inception Program" width="500" height="216" style="width:170px;height:auto;display:block;">
+    	</a>
+    	</p>
+    	<p class="fs-12 gray6 mt-10 t-center-sm">Member of the NVIDIA Inception Program</p>
+    	<p class="fs-12 mt-15 t-center-sm">
+    		© 2026 GetMoved. All rights reserved.
+    	</p>
+    	<p class="fs-12 mt-10 t-center-sm">
+    		<a href="terms.html" class="gray6 colored-hover mr-10">Terms &amp; Conditions</a>
+    		<a href="privacy.html" class="gray6 colored-hover">Privacy Policy</a>
+    	</p>
+    </footer>
+    <!-- End footer -->
+
+
+
+    <!-- Back To Top -->
+    <a id="back-to-top" href="index.html#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><path d="M17 18l-5-5-5 5"/><path d="M17 11l-5-5-5 5"/></svg>
+    </a>
+
+
+
+    <!-- Back To Top -->
+    <a id="back-to-top" href="index.html#top" class="btt hide-on-home radius-md width-60 width-50-sm height-60 height-50-sm bg-soft-black bg-soft-2 bg-soft-65-hover white">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><path d="M17 18l-5-5-5 5"/><path d="M17 11l-5-5-5 5"/></svg>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- JS Files -->
+    <script src="js/bs.js"></script>
+    <script src="js/plugins.min.js"></script>
+	<!-- Revolution Slider removed on this landing page: there is no slider here, so its
+	     ~349 KB of JS (revolution + tools) was pure dead weight hurting mobile LCP. -->
+	<script src="js/functions.js"></script>
+	<script src="js/getmoved.js?v=46"></script>
+	<script defer src="js/visit-counter.js?v=1"></script>
+	<!-- Google Maps Places — LAZY: ~1.25 MB of library only loads on the FIRST focus
+	     of a route field. Until then the fields are plain text inputs; the existing
+	     gmInitPlacesAutocomplete callback attaches autocomplete once the API lands. -->
+	<script>
+	(function(){
+		var loaded=false;
+		function loadMaps(){
+			if(loaded)return; loaded=true;
+			var s=document.createElement('script');
+			s.async=true;
+			s.src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDnXM-U_nxnVA-4Gb2TXYH80rv6aQJB_iY&libraries=places&callback=gmInitPlacesAutocomplete&loading=async';
+			document.head.appendChild(s);
+		}
+		['qq1-from','qq1-to'].forEach(function(id){
+			var el=document.getElementById(id);
+			if(el)el.addEventListener('focus',loadMaps,{once:true});
+		});
+	})();
+	</script>
+
+
+</body>
+
+</html>
